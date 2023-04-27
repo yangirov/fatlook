@@ -9,26 +9,32 @@ import { Spinner } from '@/shared/ui';
 const tableList = ['protein', 'fat', 'fiber', 'carbohydrates'];
 
 const ReportPage: FC = () => {
+    const [isLoading, setIsLoading] = useState(false);
     const [report, setReport] = useState<NutritionData | undefined>();
     const [weight, setWeight] = useState<string | undefined>();
     const [steps, setSteps] = useState<string | undefined>();
 
     useEffect(() => {
+        setIsLoading(true);
+
         fetch(`/api/report?${new URLSearchParams(window.location.search)}`)
             .then(res => res.json())
             .then(({ report, weight, steps }) => {
                 setReport(report);
                 setWeight(weight);
                 setSteps(steps);
+                setIsLoading(false);
             });
     }, []);
+
+    if (isLoading) {
+        return <Spinner />;
+    }
 
     if (!report || report?.meals?.length === 0) {
         return (
             <div className={styles.container}>
-                <div className={styles.empty}>
-                    <Spinner />
-                </div>
+                <div className={styles.empty}>Ничего не найдено</div>
             </div>
         );
     }
