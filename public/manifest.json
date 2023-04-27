@@ -1,0 +1,24 @@
+{
+    "theme_color": "#009e00",
+    "background_color": "#ececf4",
+    "display": "standalone",
+    "scope": "/",
+    "start_url": "/",
+    "name": "FatLook – отчеты из FatSecret",
+    "description": "Приложение для построения удобных отчетов питания из FatSecret",
+    "short_name": "FatLook",
+    "icons": [
+        {
+            "src": "/favicon/icon-192x192.png",
+            "sizes": "192x192",
+            "type": "image/png",
+            "purpose": "any"
+        },
+        {
+            "src": "/favicon/icon-512x512.png",
+            "sizes": "512x512",
+            "type": "image/png",
+            "purpose": "any"
+        }
+    ]
+}
