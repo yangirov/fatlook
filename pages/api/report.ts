@@ -1,9 +1,15 @@
-import { ReportPageProps } from '@/pages/ReportPage/ReportPage';
+import { NutritionData } from '@/shared/types';
 import { isEmpty, getFoodDiaryLink, parseFatSecretCSV } from '@/shared/utils';
 import { format, parse } from 'date-fns';
 import { NextApiRequest, NextApiResponse } from 'next';
 
-const getReportFromFatSecret = async (req: NextApiRequest): Promise<ReportPageProps> => {
+interface ReportDto {
+    report?: NutritionData;
+    weight?: string | string[];
+    steps?: string | string[];
+}
+
+const getReportFromFatSecret = async (req: NextApiRequest): Promise<ReportDto> => {
     const { query } = req;
     let searchParams = { ...query };
 

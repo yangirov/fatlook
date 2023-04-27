@@ -1,23 +1,34 @@
 'use client';
-import { FC } from 'react';
+import { FC, useEffect, useState } from 'react';
 
 import { NutritionData, mealIconMap, unitMap } from '@/shared/types';
 
 import styles from './ReportPage.module.scss';
-
-export interface ReportPageProps {
-    report?: NutritionData;
-    weight?: string | string[];
-    steps?: string | string[];
-}
+import { Spinner } from '@/shared/ui';
 
 const tableList = ['protein', 'fat', 'fiber', 'carbohydrates'];
 
-const ReportPage: FC<ReportPageProps> = ({ report, weight, steps }) => {
+const ReportPage: FC = () => {
+    const [report, setReport] = useState<NutritionData | undefined>();
+    const [weight, setWeight] = useState<string | undefined>();
+    const [steps, setSteps] = useState<string | undefined>();
+
+    useEffect(() => {
+        fetch(`/api/report?${new URLSearchParams(window.location.search)}`)
+            .then(res => res.json())
+            .then(({ report, weight, steps }) => {
+                setReport(report);
+                setWeight(weight);
+                setSteps(steps);
+            });
+    }, []);
+
     if (!report || report?.meals?.length === 0) {
         return (
             <div className={styles.container}>
-                <div className={styles.empty}>Ничего не найдено</div>
+                <div className={styles.empty}>
+                    <Spinner />
+                </div>
             </div>
         );
     }
