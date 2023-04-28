@@ -17,9 +17,11 @@ const ReportPage: FC = () => {
     useEffect(() => {
         setIsLoading(true);
 
-        fetch(`/api/report?${new URLSearchParams(window.location.search)}`)
+        const params = new URLSearchParams(window.location.search);
+        fetch(`/api/report?${params}`)
             .then(res => res.json())
             .then(({ report, weight, steps }) => {
+                console.log(report);
                 setReport(report);
                 setWeight(weight);
                 setSteps(steps);
@@ -85,7 +87,7 @@ const ReportPage: FC = () => {
                             </div>
                         </div>
                         <div className={styles.mealInfo}>
-                            {meal.foods.length > 1 &&
+                            {meal.foods.length !== 0 &&
                                 meal.foods.map(food => (
                                     <div key={food.name} className={styles.food}>
                                         <div className={styles.foodItem}>
