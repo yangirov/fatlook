@@ -1,0 +1,41 @@
+.reportFood {
+    display: flex;
+    gap: 20px;
+    justify-content: space-between;
+    align-items: center;
+    border-top: 1px solid var(--border);
+    padding: 10px 10px 0 40px;
+
+    &Item {
+        width: 80%;
+
+        &Total {
+            display: flex;
+            gap: 10px;
+            margin: 10px 0;
+            font-size: var(--font-small);
+            color: var(--gray);
+            justify-content: space-between;
+        }
+
+        &Weight {
+            margin-top: 6px;
+            font-size: var(--font-small);
+            color: var(--green);
+        }
+
+        &Kcal {
+            font-weight: var(--font-bold);
+        }
+
+        &Empty {
+            font-size: var(--font-small);
+            color: var(--gray);
+            padding: 10px 10px 0 40px;
+        }
+    }
+
+    &:last-child {
+        margin-bottom: 0;
+    }
+}

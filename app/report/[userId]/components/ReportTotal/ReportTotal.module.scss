@@ -1,0 +1,27 @@
+.reportTotal {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 15px;
+    gap: 10px;
+    margin: 10px 0;
+    font-size: var(--font-small);
+
+    &Item {
+        &Key {
+            color: var(--gray);
+            margin-bottom: 5px;
+        }
+
+        &:last-child & {
+            &Value {
+                text-align: right;
+                font-weight: var(--font-bold);
+            }
+        }
+
+        &Value {
+            text-align: center;
+        }
+    }
+}

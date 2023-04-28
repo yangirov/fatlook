@@ -1,0 +1,13 @@
+.reportHeader {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+
+    &Date {
+        text-align: center;
+        padding: 10px;
+        color: var(--light);
+        background-color: var(--accent-green);
+    }
+}

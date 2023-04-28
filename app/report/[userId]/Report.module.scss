@@ -1,0 +1,16 @@
+.container {
+    max-width: var(--app-max-width);
+    margin: 0 auto 50px auto;
+    padding: 0 10px;
+}
+
+.report {
+    margin-top: 50px;
+}
+
+.empty {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+}

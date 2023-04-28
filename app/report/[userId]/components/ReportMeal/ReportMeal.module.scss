@@ -1,0 +1,55 @@
+.reportMeal {
+    background-color: var(--white);
+    border-radius: 6px;
+    padding: 10px 15px;
+    margin-bottom: 20px;
+    box-shadow: 0 0 4px 4px var(--shadowColor);
+
+    &Header {
+        display: flex;
+        justify-content: space-between;
+
+        &Icon {
+            margin-top: 10px;
+            flex: 0 0 10%;
+            font-size: 1.5rem;
+        }
+
+        &Info {
+            flex: 0 0 90%;
+        }
+
+        &Title {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-bottom: 5px;
+            border-bottom: 1px solid var(--border);
+
+            &Kcal {
+                font-weight: bold;
+            }
+
+            &KcalText {
+                font-size: var(--font-small);
+                color: var(--gray);
+            }
+        }
+
+        &Total {
+            display: flex;
+            justify-content: space-between;
+            gap: 10px;
+            margin: 10px 0;
+            font-size: 0.8em;
+            color: var(--gray);
+            width: 80%;
+        }
+    }
+
+    &Info {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+    }
+}
