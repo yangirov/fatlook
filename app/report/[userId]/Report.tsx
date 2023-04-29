@@ -37,7 +37,11 @@ const Report: FC = () => {
     }, []);
 
     if (isLoading) {
-        return <Spinner />;
+        return (
+            <div className={styles.spinnerContainer}>
+                <Spinner />
+            </div>
+        );
     }
 
     if (!report || report?.meals?.length === 0) {

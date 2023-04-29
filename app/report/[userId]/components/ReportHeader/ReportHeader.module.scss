@@ -3,11 +3,13 @@
     top: 0;
     left: 0;
     width: 100%;
+    text-align: center;
+    background-color: var(--accent-green);
+    padding: 10px;
+    color: var(--light);
 
-    &Date {
-        text-align: center;
-        padding: 10px;
-        color: var(--light);
-        background-color: var(--accent-green);
+    &Button {
+        position: absolute;
+        left: 10px;
     }
 }

@@ -1,0 +1,28 @@
+.buttonRoot {
+    composes: button from 'styles/scaffold.scss';
+}
+
+.hasHover {
+    background-color: var(--darken-green);
+}
+
+.active {
+    opacity: 0.8;
+}
+
+.disabled {
+    background-color: var(--gray);
+    cursor: not-allowed;
+}
+
+.buttonSpinner {
+    width: 12px;
+    height: 12px;
+    border-width: 3px;
+    border-inline-color: var(--white);
+    border-top-color: var(--white);
+}
+
+.linkRoot {
+    composes: link from 'styles/scaffold.scss';
+}

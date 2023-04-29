@@ -1,9 +1,12 @@
+import { FC } from 'react';
+import classnames from 'classnames';
+
 import styles from './Spinner.module.scss';
 
-export const Spinner = () => {
-    return (
-        <div className={styles.container}>
-            <div className={styles.spinner} />
-        </div>
-    );
+type SpinnerProps = {
+    className?: string;
+};
+
+export const Spinner: FC<SpinnerProps> = ({ className }) => {
+    return <div className={classnames(styles.spinner, className)} />;
 };

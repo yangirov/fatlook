@@ -1,26 +1,32 @@
 :root {
     --app-max-width: 400px;
+    --font-bold: 500;
+    --font-small: 0.9rem;
+    --border-radius: 3px;
+
     --background: #ececf4;
     --white: #ffffff;
+    --dark: #272727;
     --light: #ffffff;
-    --shadowColor: rgba(0, 0, 0, 0.05);
+    --shadow-color: rgba(0, 0, 0, 0.05);
     --border: #e1e1e1;
     --accent-green: #259b23;
     --green: #269c24;
+    --darken-green: #248f22;
     --gray: #959595;
-    --font-bold: 500;
-    --font-small: 0.9rem;
 }
 
 @media (prefers-color-scheme: dark) {
     :root {
         --background: #040c19;
         --white: #272727;
+        --dark: #ffffff;
         --light: #ffffff;
-        --shadowColor: rgba(0, 0, 0, 0.05);
+        --shadow-color: rgba(0, 0, 0, 0.05);
         --border: #5f6170;
         --accent-green: #272f3c;
         --green: #13cb65;
+        --darken-green: #248f22;
         --gray: #707070;
     }
 }
@@ -29,4 +35,5 @@ body {
     background-color: var(--background);
     padding: 0;
     margin: 0;
+    font-size: 16px;
 }
