@@ -9,7 +9,6 @@ $border: calc(var(--border-radius) * 2);
     &Header {
         display: flex;
         justify-content: space-between;
-
         padding: 10px 15px 0 15px;
 
         &Icon {
@@ -65,6 +64,12 @@ $border: calc(var(--border-radius) * 2);
                 grid-template-columns: repeat(auto-fit, minmax(0, 1fr));
             }
         }
+    }
+
+    &Empty {
+        font-size: var(--font-small);
+        color: var(--gray);
+        padding: 5px 15px 5px 50px;
     }
 }
 

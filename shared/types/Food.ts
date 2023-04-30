@@ -19,6 +19,8 @@ export type FoodDetails = {
     kalium: FoodUnit;
 };
 
+export type PartialFoodDetailsKeys = Partial<keyof FoodDetails>[];
+
 type UnitInfo = {
     fullName: string;
     shortName: string;

@@ -2,7 +2,7 @@ import { FC, useContext } from 'react';
 import classnames from 'classnames';
 
 import { BackIcon } from '@/shared/icons';
-import { FoodDetails, Meal, mealIconMap } from '@/shared/types';
+import { PartialFoodDetailsKeys, Meal, mealIconMap } from '@/shared/types';
 import { Accordion, AccordionContext, Colors } from '@/shared/ui';
 
 import ReportFood from '../ReportFood';
@@ -10,7 +10,7 @@ import ReportFood from '../ReportFood';
 import styles from './ReportMeal.module.scss';
 
 export type ReportMealProps = {
-    visibleItems: Array<Partial<keyof FoodDetails>>;
+    visibleItems: PartialFoodDetailsKeys;
     meal: Meal;
 };
 
@@ -54,18 +54,22 @@ const HeaderInfo: FC<ReportMealProps> = ({ visibleItems, meal }) => {
                     </div>
                 </div>
             </div>
-            <div
-                className={classnames(styles.reportMealHeaderTotal, {
-                    [styles.reportMealHeaderTotalCollapsed]: !isOpen
-                })}
-            >
-                <div className={styles.reportMealHeaderTotalItems}>
-                    {visibleItems.map(k => (
-                        <div key={k}>{meal.total[k] ?? 0}</div>
-                    ))}
+            {meal.foods.length !== 0 ? (
+                <div
+                    className={classnames(styles.reportMealHeaderTotal, {
+                        [styles.reportMealHeaderTotalCollapsed]: !isOpen
+                    })}
+                >
+                    <div className={styles.reportMealHeaderTotalItems}>
+                        {visibleItems.map(k => (
+                            <div key={k}>{meal.total[k] ?? 0}</div>
+                        ))}
+                    </div>
+                    <Toggler></Toggler>
                 </div>
-                <Toggler></Toggler>
-            </div>
+            ) : (
+                <div className={styles.reportMealEmpty}>Пусто</div>
+            )}
         </>
     );
 };
@@ -78,11 +82,9 @@ const ReportMeal: FC<ReportMealProps> = ({ visibleItems, meal }) => {
                     <HeaderInfo visibleItems={visibleItems} meal={meal} />
                 </Accordion.Header>
                 <Accordion.Content>
-                    {meal.foods.length !== 0 ? (
-                        meal.foods.map(food => <ReportFood key={food.name} food={food} visibleItems={visibleItems} />)
-                    ) : (
-                        <div className={styles.foodItemEmpty}>Пусто</div>
-                    )}
+                    {meal.foods.map(food => (
+                        <ReportFood key={food.name} food={food} visibleItems={visibleItems} />
+                    ))}
                 </Accordion.Content>
             </Accordion>
         </div>

@@ -28,12 +28,6 @@
             font-weight: var(--font-bold);
             text-align: right;
         }
-
-        &Empty {
-            font-size: var(--font-small);
-            color: var(--gray);
-            padding: 10px 10px 0 40px;
-        }
     }
 
     &:last-child {

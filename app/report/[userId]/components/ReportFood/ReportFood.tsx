@@ -1,11 +1,11 @@
 import { FC } from 'react';
 
-import { FoodDetails, FoodInfo } from '@/shared/types';
+import { PartialFoodDetailsKeys, FoodInfo } from '@/shared/types';
 
 import styles from './ReportFood.module.scss';
 
 export type ReportFoodProps = {
-    visibleItems: Array<Partial<keyof FoodDetails>>;
+    visibleItems: PartialFoodDetailsKeys;
     food: FoodInfo;
 };
 

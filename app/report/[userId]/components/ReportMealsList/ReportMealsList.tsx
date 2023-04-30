@@ -1,10 +1,10 @@
 import { FC } from 'react';
 
-import { FoodDetails, Meal } from '@/shared/types';
+import { PartialFoodDetailsKeys, Meal } from '@/shared/types';
 import ReportMeal from '../ReportMeal';
 
 export type ReportMealsProps = {
-    visibleItems: Array<Partial<keyof FoodDetails>>;
+    visibleItems: PartialFoodDetailsKeys;
     meals: Meal[];
 };
 

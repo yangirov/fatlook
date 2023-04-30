@@ -1,11 +1,11 @@
 import { FC } from 'react';
 
-import { FoodDetails, unitMap } from '@/shared/types';
+import { FoodDetails, unitMap, PartialFoodDetailsKeys } from '@/shared/types';
 
 import styles from './ReportTotal.module.scss';
 
 export type ReportTotalProps = {
-    visibleItems: Array<Partial<keyof FoodDetails>>;
+    visibleItems: PartialFoodDetailsKeys;
     total: FoodDetails;
 };
 
