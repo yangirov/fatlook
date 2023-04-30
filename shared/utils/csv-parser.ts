@@ -1,4 +1,4 @@
-import { Meal, NutritionData, FoodDetails, FoodInfo, FoodUnit } from '@/shared/types';
+import { Meal, ReportData, FoodDetails, FoodInfo, FoodUnit } from '@/shared/types';
 
 export const parseCSV = (str: string) => {
     const arr: string[][] = [];
@@ -42,7 +42,7 @@ export const parseCSV = (str: string) => {
     return arr;
 };
 
-export const parseFatSecretCSV = (csv: string): NutritionData => {
+export const parseFatSecretCSV = (csv: string): ReportData => {
     const matrix = parseCSV(csv);
 
     const headerIndex = matrix.findIndex(line => line[0].startsWith('Дата'));

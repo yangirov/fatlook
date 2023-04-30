@@ -17,7 +17,7 @@ const ReportHeader: FC<ReportHeaderProps> = ({ date }) => {
                     <BackIcon />
                 </IconButton>
                 <div className={styles.reportHeaderDate}>{date}</div>
-                <IconButton href="/">
+                <IconButton onClick={() => alert('Будут настройки')}>
                     <SettingsIcon />
                 </IconButton>
             </header>

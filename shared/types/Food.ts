@@ -30,14 +30,12 @@ type UnitMap = {
     [key: string]: UnitInfo;
 };
 
-const getUnitInfo = (params: string[]): UnitInfo => {
-    return {
-        fullName: params[0],
-        shortName: params[1].length === 0 ? params[0] : params[1],
-        parseName: params[2],
-        unitName: params[3]
-    };
-};
+const getUnitInfo = (params: string[]): UnitInfo => ({
+    fullName: params[0],
+    shortName: params[1].length === 0 ? params[0] : params[1],
+    parseName: params[2],
+    unitName: params[3]
+});
 
 export const unitMap: UnitMap = {
     kcal: getUnitInfo(['Калории', '', 'Кал ( ккал)', 'г']),

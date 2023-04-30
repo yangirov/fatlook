@@ -1,42 +1,22 @@
 import { format, parse } from 'date-fns';
 import { NextApiRequest, NextApiResponse } from 'next';
 
-import { NutritionData } from '@/shared/types';
+import { ReportData } from '@/shared/types';
 import { isEmpty, getFoodDiaryLink, parseFatSecretCSV } from '@/shared/utils';
 
-interface ReportDto {
-    report?: NutritionData;
-    weight?: string | string[];
-    steps?: string | string[];
-}
-
-const getReportFromFatSecret = async (req: NextApiRequest): Promise<ReportDto> => {
+const getReportFromFatSecret = async (req: NextApiRequest): Promise<ReportData | null> => {
     const { query } = req;
-    let searchParams = { ...query };
 
-    if (!searchParams || isEmpty(searchParams)) {
-        return {
-            report: undefined,
-            weight: undefined,
-            steps: undefined
-        };
+    if (!query || isEmpty(query)) {
+        return null;
     }
 
-    const { q } = searchParams;
-    if (q) {
-        const buffer = Buffer.from(q.toString(), 'base64');
-        const strParams = buffer.toString();
+    const { userId, date, weight, steps } = query;
 
-        searchParams = strParams.split('&').reduce<{ [key: string]: string }>((acc, p) => {
-            const [k, v] = p.split('=');
-            acc[k] = v;
-            return acc;
-        }, {});
-    }
-
-    const { userId, date, weight, steps } = searchParams;
-
-    let report;
+    let report = {
+        weight: weight as string,
+        steps: steps as string
+    } as ReportData;
 
     if (userId && date) {
         const parsedDate = date.toString() ?? format(new Date(), 'yyMd');
@@ -45,14 +25,10 @@ const getReportFromFatSecret = async (req: NextApiRequest): Promise<ReportDto> =
         const response = await fetch(fatSecretReportUrl);
         const reportCsv = await response.text();
 
-        report = parseFatSecretCSV(reportCsv);
+        report = { ...report, ...parseFatSecretCSV(reportCsv) };
     }
 
-    return {
-        report,
-        weight,
-        steps
-    };
+    return report;
 };
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any

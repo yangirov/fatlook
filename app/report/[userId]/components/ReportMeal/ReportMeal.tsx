@@ -61,7 +61,7 @@ const HeaderInfo: FC<ReportMealProps> = ({ visibleItems, meal }) => {
             >
                 <div className={styles.reportMealHeaderTotalItems}>
                     {visibleItems.map(k => (
-                        <div key={k}>{meal.total[k]}</div>
+                        <div key={k}>{meal.total[k] ?? 0}</div>
                     ))}
                 </div>
                 <Toggler></Toggler>
