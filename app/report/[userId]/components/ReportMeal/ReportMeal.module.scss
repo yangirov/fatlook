@@ -69,7 +69,8 @@ $border: calc(var(--border-radius) * 2);
     &Empty {
         font-size: var(--font-small);
         color: var(--gray);
-        padding: 5px 15px 5px 50px;
+        padding: 5px 15px 5px 52px;
+        margin-bottom: 10px;
     }
 }
 

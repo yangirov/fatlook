@@ -48,10 +48,12 @@ const HeaderInfo: FC<ReportMealProps> = ({ meal }) => {
                         })}
                     >
                         <div>{meal.name}</div>
-                        <div>
-                            <div className={styles.reportMealHeaderTitleKcal}>{meal.total.kcal}</div>
-                            <div className={styles.reportMealHeaderTitleKcalText}>Калории</div>
-                        </div>
+                        {meal.total.kcal && (
+                            <div>
+                                <div className={styles.reportMealHeaderTitleKcal}>{meal.total.kcal}</div>
+                                <div className={styles.reportMealHeaderTitleKcalText}>Калории</div>
+                            </div>
+                        )}
                     </div>
                 </div>
             </div>
