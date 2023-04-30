@@ -1,6 +1,6 @@
 import { FC, useContext } from 'react';
 
-import { unitMap } from '@/shared/types';
+import { PartialFoodDetailsKeys, unitMap } from '@/shared/types';
 
 import { ReportContext } from '../../Report';
 
@@ -12,12 +12,14 @@ const ReportTotal: FC = () => {
         report: { total }
     } = useContext(ReportContext);
 
+    const keys: PartialFoodDetailsKeys = [...visibleItems, 'kcal'];
+
     return (
         <div className={styles.reportTotal}>
-            {visibleItems.map(k => (
+            {keys.map(k => (
                 <div key={k} className={styles.reportTotalItem}>
                     <div className={styles.reportTotalItemKey}>{unitMap[k].shortName}</div>
-                    <div className={styles.reportTotalItemValue}>{Math.floor(total[k] as number)}</div>
+                    <div className={styles.reportTotalItemValue}>{Math.floor(total[k] as number) ?? 'dd'}</div>
                 </div>
             ))}
         </div>
