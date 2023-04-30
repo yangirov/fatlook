@@ -1,4 +1,3 @@
-import { format, parse } from 'date-fns';
 import { NextApiRequest, NextApiResponse } from 'next';
 
 import { ReportData } from '@/shared/types';
@@ -19,9 +18,8 @@ const getReportFromFatSecret = async (req: NextApiRequest): Promise<ReportData |
     } as ReportData;
 
     if (userId && date) {
-        const parsedDate = date.toString() ?? format(new Date(), 'yyMd');
+        const fatSecretReportUrl = getFoodDiaryLink(userId.toString(), date.toString());
 
-        const fatSecretReportUrl = getFoodDiaryLink(userId.toString(), parse(parsedDate, 'yyMd', new Date()));
         const response = await fetch(fatSecretReportUrl);
         const reportCsv = await response.text();
 
@@ -31,8 +29,7 @@ const getReportFromFatSecret = async (req: NextApiRequest): Promise<ReportData |
     return report;
 };
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-export default async function handler(req: NextApiRequest, res: NextApiResponse<any>) {
+export default async function handler(req: NextApiRequest, res: NextApiResponse) {
     try {
         const report = await getReportFromFatSecret(req);
         res.status(200).json(report);

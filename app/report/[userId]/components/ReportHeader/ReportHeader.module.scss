@@ -7,8 +7,40 @@
     background-color: var(--accent-green);
     padding: 5px 10px;
     color: var(--light);
+    z-index: 1;
 
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+    &Date {
+        user-select: none;
+        cursor: pointer;
+
+        &:after {
+            display: inline-block;
+            content: '▾';
+            position: relative;
+            top: 0;
+            left: 5px;
+            transform: rotate(0deg);
+            transition: all 0.3s ease;
+            transition-property: transform, top;
+        }
+
+        &Expanded {
+            &:after {
+                top: 3px;
+                transform: rotate(180deg);
+            }
+        }
+    }
+
+    &Controls {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    &DatePicker {
+        cursor: pointer;
+        background-color: var(--accent-green);
+        composes: flexCenter from 'styles/scaffold.scss';
+    }
 }

@@ -9,7 +9,7 @@ const BackCurve: FC<Colorable> = ({ color }) => {
 const DEFAULTS_CONFIG = {
     width: 24,
     height: 24,
-    viewBox: '0 -50 512 512'
+    viewBox: '0 0 512 512'
 } as const;
 
-export const BackIcon = asIcon(BackCurve, DEFAULTS_CONFIG);
+export const ArrowIcon = asIcon(BackCurve, DEFAULTS_CONFIG);

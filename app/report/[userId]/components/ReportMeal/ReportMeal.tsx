@@ -1,7 +1,7 @@
 import { FC, useContext } from 'react';
-import classnames from 'classnames';
+import classNames from 'classnames';
 
-import { BackIcon } from '@/shared/icons';
+import { ArrowIcon } from '@/shared/icons';
 import { Meal, mealIconMap } from '@/shared/types';
 import { Accordion, AccordionContext, Colors } from '@/shared/ui';
 
@@ -23,12 +23,12 @@ const Toggler: FC = () => {
 
     return (
         <div
-            className={classnames(styles.mealToggler, {
+            className={classNames(styles.mealToggler, {
                 [styles.mealTogglerCollapsed]: !isOpen
             })}
             onClick={onToggle}
         >
-            <BackIcon color={Colors.GREEN}></BackIcon>
+            <ArrowIcon color={Colors.GREEN}></ArrowIcon>
         </div>
     );
 };
@@ -43,7 +43,7 @@ const HeaderInfo: FC<ReportMealProps> = ({ meal }) => {
                 <div className={styles.reportMealHeaderIcon}>{mealIconMap[meal.name]}</div>
                 <div className={styles.reportMealHeaderInfo}>
                     <div
-                        className={classnames(styles.reportMealHeaderTitle, {
+                        className={classNames(styles.reportMealHeaderTitle, {
                             [styles.reportMealHeaderTitleExpanded]: isOpen
                         })}
                     >
@@ -59,7 +59,7 @@ const HeaderInfo: FC<ReportMealProps> = ({ meal }) => {
             </div>
             {meal.foods.length !== 0 ? (
                 <div
-                    className={classnames(styles.reportMealHeaderTotal, {
+                    className={classNames(styles.reportMealHeaderTotal, {
                         [styles.reportMealHeaderTotalCollapsed]: !isOpen
                     })}
                 >

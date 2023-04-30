@@ -1,4 +1,4 @@
 export * from './close';
 export * from './home';
-export * from './back';
+export * from './arrow';
 export * from './settings';

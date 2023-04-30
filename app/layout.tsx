@@ -25,21 +25,21 @@ export default function RootLayout({ children }: { children: ReactNode }) {
                 <meta property="og:url" content={process.env.DOMAIN} />
                 <meta property="og:image" content={`${process.env.DOMAIN}/media/preview.png`} />
 
-                <link rel="shortcut icon" href="./favicon/favicon.ico" sizes="any" />
-                <link rel="icon" type="image/svg+xml" href="./favicon/logo.svg" />
-                <link rel="apple-touch-icon" href="./favicon/icon-512x512.png" />
+                <link rel="shortcut icon" href={`${process.env.DOMAIN}/favicon/favicon.ico`} sizes="any" />
+                <link rel="icon" type="image/svg+xml" href={`${process.env.DOMAIN}/favicon/logo.svg`} />
+                <link rel="apple-touch-icon" href={`${process.env.DOMAIN}/favicon/icon-512x512.png`} />
 
                 <meta name="mobile-web-app-capable" content="yes" />
                 <meta name="apple-touch-fullscreen" content="yes" />
                 <meta name="apple-mobile-web-app-capable" content="yes" />
                 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
 
-                <link rel="apple-touch-startup-image" href="./media/splashscreen.png" />
+                <link rel="apple-touch-startup-image" href={`${process.env.DOMAIN}/media/splashscreen.png`} />
 
                 <meta name="theme-color" content="#259b23" />
                 <meta name="color-scheme" content="dark light" />
 
-                <link rel="manifest" href="./manifest.json" />
+                <link rel="manifest" href={`${process.env.DOMAIN}manifest.json`} />
             </head>
             <body className={robotoFont.className}>{children}</body>
         </html>

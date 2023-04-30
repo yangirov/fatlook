@@ -1,0 +1,19 @@
+.noneSelect {
+    user-select: none;
+}
+.month {
+    &DayLabels {
+        display: grid;
+        grid-template-columns: repeat(7, 1fr);
+        margin-bottom: 10px;
+        font-size: var(--font-small);
+        user-select: none;
+        color: #ccc;
+    }
+
+    &Days {
+        display: grid;
+        grid-template-columns: repeat(7, 1fr);
+        composes: noneSelect;
+    }
+}

@@ -8,3 +8,9 @@ export type ReportData = {
     weight?: string;
     steps?: string;
 };
+
+const CALC_COEF = {
+    fat: 9.3,
+    protein: 4.1,
+    carbohydrates: 4.1
+};

@@ -1,9 +1,9 @@
 'use client';
 import { FC, createContext, useContext, useState } from 'react';
-import classnames from 'classnames';
+import classNames from 'classnames';
 
-import styles from './Accordion.module.scss';
 import { AccordionContextType, AccordionProps, FCWithChild } from './types';
+import styles from './Accordion.module.scss';
 
 export const AccordionContext = createContext({} as AccordionContextType);
 
@@ -12,7 +12,7 @@ const AccordionWrapper: FC<AccordionProps> = ({ children, className }) => {
 
     return (
         <AccordionContext.Provider value={{ isOpen, setOpen }}>
-            <div className={classnames(styles.accordion, className)}>{children}</div>
+            <div className={classNames(styles.accordion, className)}>{children}</div>
         </AccordionContext.Provider>
     );
 };
@@ -24,7 +24,7 @@ const AccordionContent: FC<FCWithChild> = ({ children }) => {
 
     return (
         <div
-            className={classnames(styles.accordionContent, {
+            className={classNames(styles.accordionContent, {
                 [styles.accordionContentCollapsed]: !isOpen
             })}
         >

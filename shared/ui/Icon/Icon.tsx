@@ -15,7 +15,7 @@ const IconContainer: FC<IconContainerProps> = ({ className, ...propsRest }) => {
     );
 };
 
-const createCurveDefaults = ({ color = Colors.WHITE, width, height, viewBox }: CurveDefaultsConfig): CurveDefaults => ({
+const createCurveDefaults = ({ color = Colors.LIGHT, width, height, viewBox }: CurveDefaultsConfig): CurveDefaults => ({
     color,
     width: width.toString(),
     height: height.toString(),

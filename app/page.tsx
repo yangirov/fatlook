@@ -1,12 +1,12 @@
 import Link from 'next/link';
-import { format } from 'date-fns';
+import { formatDate } from '@/shared/utils';
 
 export default async function Home() {
     const d = new Date();
     d.setDate(d.getDate() - 1);
 
     const getReport = (userId: string) => {
-        return `/report/${userId}?date=${format(d, 'yyMd')}`;
+        return `/report/${userId}?date=${formatDate(d)}`;
     };
 
     return (

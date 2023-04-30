@@ -1,5 +1,5 @@
 import React, { FC } from 'react';
-import classnames from 'classnames';
+import classNames from 'classnames';
 
 import { Button, ButtonProps } from '../Button';
 
@@ -16,7 +16,7 @@ type Pressable = {
 type IconButtonProps = ButtonProps & IconRenderable & Pressable;
 
 export const IconButton: FC<IconButtonProps> = ({ children, className, pressed, renderIcon, ...propsRest }) => (
-    <Button className={classnames(styles.iconButton, className)} isPressed={pressed} {...propsRest}>
+    <Button className={classNames(styles.iconButton, className)} isPressed={pressed} {...propsRest}>
         {children ?? (typeof renderIcon === 'function' && renderIcon(pressed))}
     </Button>
 );

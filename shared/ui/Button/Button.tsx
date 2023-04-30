@@ -2,7 +2,7 @@
 import { ComponentPropsWithoutRef, FC, useEffect, useState } from 'react';
 import Link, { LinkProps } from 'next/link';
 
-import classnames from 'classnames';
+import classNames from 'classnames';
 import { Spinner } from '../Spinner/Spinner';
 
 import styles from './Button.module.scss';
@@ -13,12 +13,21 @@ export type ButtonProps = Omit<ComponentPropsWithoutRef<'button'>, 'aria-pressed
     isPressed?: boolean;
 };
 
-export const Button: FC<ButtonProps> = ({ children = null, className, disabled = false, href, type = 'button', isPressed, onClick, ...propsRest }) => {
+export const Button: FC<ButtonProps> = ({
+    children = null,
+    className,
+    disabled = false,
+    href,
+    type = 'button',
+    isPressed,
+    onClick,
+    ...propsRest
+}) => {
     const [hasHover, setHasHover] = useState(false);
     const [isActive, setIsActive] = useState(false);
 
     const createClassName = (rootClassName: string) =>
-        classnames(
+        classNames(
             rootClassName,
             {
                 [styles.active]: isActive && !disabled,
@@ -65,7 +74,12 @@ export const Button: FC<ButtonProps> = ({ children = null, className, disabled =
 
     if (href) {
         return (
-            <Link className={classnames(styles.linkRoot, className)} href={href} tabIndex={tabIndex} {...commonMouseHandlers}>
+            <Link
+                className={classNames(styles.linkRoot, className)}
+                href={href}
+                tabIndex={tabIndex}
+                {...commonMouseHandlers}
+            >
                 {children}
             </Link>
         );

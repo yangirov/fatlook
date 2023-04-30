@@ -13,13 +13,11 @@ export type ${name}Props = {
   prop: string;
 };
 
-const ${name}: FC<${name}Props> = ({ prop }) => (
+export const ${name}: FC<${name}Props> = ({ prop }) => (
   <div className={styles.${lowercaseFirstLetter(name)}}>
     {prop}
   </div>
-);
-
-export default ${name};`,
+);`,
     scss: name => `.${lowercaseFirstLetter(name)} {}`
 };
 
