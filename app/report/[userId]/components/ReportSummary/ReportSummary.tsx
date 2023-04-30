@@ -13,7 +13,7 @@ const ReportSummary: FC<ReportSummaryProps> = ({ total }) => {
 
     return (
         <div className={styles.reportSummary}>
-            <div>Всего жиров: {(+(fat ?? 0) + +(nonSaturatedFat ?? 0)).toFixed(2)} г</div>
+            <div>Всего жиров: {(+(fat ?? 0) + +(nonSaturatedFat ?? 0)).toFixed(2)} </div>
             <div>Холестерин: {cholesterol} мг</div>
             <div>Натрий: {sodium} мг</div>
             <div>Углеводов: {carbohydrates} г</div>

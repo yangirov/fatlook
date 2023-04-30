@@ -2,14 +2,13 @@
     position: fixed;
     top: 0;
     left: 0;
-    width: 100%;
+    width: calc(100% - 20px);
     text-align: center;
     background-color: var(--accent-green);
-    padding: 10px;
+    padding: 5px 10px;
     color: var(--light);
 
-    &Button {
-        position: absolute;
-        left: 10px;
-    }
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }

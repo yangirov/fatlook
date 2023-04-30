@@ -14,7 +14,7 @@ const ReportTotal: FC<ReportTotalProps> = ({ visibleItems, total }) => {
         <div className={styles.reportTotal}>
             {visibleItems.map(k => (
                 <div key={k} className={styles.reportTotalItem}>
-                    <div className={styles.reportTotalItemKey}>{unitMap[k][0]}</div>
+                    <div className={styles.reportTotalItemKey}>{unitMap[k].shortName}</div>
                     <div className={styles.reportTotalItemValue}>{Math.floor(total[k] as number)}</div>
                 </div>
             ))}

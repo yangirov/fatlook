@@ -9,16 +9,12 @@
 }
 
 .empty {
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    composes: flexCenter from 'styles/scaffold.scss';
     min-height: 100vh;
 }
 
 .spinnerContainer {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    composes: flexCenter from 'styles/scaffold.scss';
     width: 100vw;
     height: 100vh;
 }

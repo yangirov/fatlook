@@ -1,10 +1,8 @@
 .reportTotal {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 0 15px;
-    gap: 10px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(0, 1fr));
     margin: 10px 0;
+    padding: 0 15px 0 50px;
     font-size: var(--font-small);
 
     &Item {
@@ -14,14 +12,14 @@
         }
 
         &:last-child & {
-            &Value {
+            &Key {
                 text-align: right;
-                font-weight: var(--font-bold);
             }
-        }
 
-        &Value {
-            text-align: center;
+            &Value {
+                font-weight: var(--font-bold);
+                text-align: right;
+            }
         }
     }
 }

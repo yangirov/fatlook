@@ -4,7 +4,7 @@ const fs = require('fs');
 const lowercaseFirstLetter = str => str.charAt(0).toLowerCase() + str.slice(1);
 
 const templates = {
-    index: name => `export { default } from './${name}';`,
+    index: name => `export * from './${name}';`,
     component: name => `import { FC } from 'react';
 
 import styles from './${name}.module.scss';

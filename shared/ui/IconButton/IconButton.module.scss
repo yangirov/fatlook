@@ -1,5 +1,3 @@
 .iconButton {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    composes: flexCenter from 'styles/scaffold.scss';
 }

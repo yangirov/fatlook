@@ -1,53 +1,41 @@
 'use client';
-import { FC, useContext } from 'react';
+import { FC, createContext, useContext, useState } from 'react';
 import classnames from 'classnames';
 
 import styles from './Accordion.module.scss';
+import { AccordionContextType, AccordionProps, FCWithChild } from './types';
 
-export type AccordionProps = {
-    children: React.ReactNode;
-    className?: string;
-};
+export const AccordionContext = createContext({} as AccordionContextType);
 
-type FCWithChild = { children: React.ReactNode };
-
-type AccordionCmp = FC<AccordionProps> & {
-    Header: FC<FCWithChild>;
-    Content: FC<FCWithChild & { onToggle: () => void }>;
-};
-
-// export const AccordionContext = createContext({
-//     isOpen: false,
-//     setOpen: (state: boolean) => {}
-// });
-
-const Accordion: AccordionCmp = ({ children, className }) => {
-    // const [isOpen, setOpen] = useState(false);
+const AccordionWrapper: FC<AccordionProps> = ({ children, className }) => {
+    const [isOpen, setOpen] = useState(false);
 
     return (
-        // <AccordionContext.Provider value={{ isOpen, setOpen }}>
-        <div className={classnames(styles.accordion, className)}>{children}</div>
-        // </AccordionContext.Provider>
+        <AccordionContext.Provider value={{ isOpen, setOpen }}>
+            <div className={classnames(styles.accordion, className)}>{children}</div>
+        </AccordionContext.Provider>
     );
 };
 
-const Header: FC<FCWithChild> = ({ children }): JSX.Element => <>{children}</>;
+const AccordionHeader: FC<FCWithChild> = ({ children }) => <>{children}</>;
 
-const Content: FC<FCWithChild & { onToggle: () => void }> = ({ children }): JSX.Element => {
-    // const { isOpen } = useContext(AccordionContext);
+const AccordionContent: FC<FCWithChild> = ({ children }) => {
+    const { isOpen } = useContext(AccordionContext);
 
     return (
         <div
-        // className={classnames(styles.accordionContent, {
-        //     [styles.collapsed]: isOpen === false
-        // })}
+            className={classnames(styles.accordionContent, {
+                [styles.accordionContentCollapsed]: !isOpen
+            })}
         >
             {children}
         </div>
     );
 };
 
-Accordion.Header = Header;
-Accordion.Content = Content;
+const accordionComposition = {
+    Header: AccordionHeader,
+    Content: AccordionContent
+};
 
-export default Accordion;
+export const Accordion = Object.assign(AccordionWrapper, accordionComposition);

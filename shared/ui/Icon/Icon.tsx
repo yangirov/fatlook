@@ -1,5 +1,6 @@
 import { ComponentPropsWithoutRef, FC } from 'react';
 
+import { Colors } from '../colors';
 import { SemanticallyHidden, CurveDefaultsConfig, CurveDefaults, Colorable, ColorDefault } from './types';
 
 import styles from './Icon.module.scss';
@@ -14,7 +15,7 @@ const IconContainer: FC<IconContainerProps> = ({ className, ...propsRest }) => {
     );
 };
 
-const createCurveDefaults = ({ color = 'var(--white)', width, height, viewBox }: CurveDefaultsConfig): CurveDefaults => ({
+const createCurveDefaults = ({ color = Colors.WHITE, width, height, viewBox }: CurveDefaultsConfig): CurveDefaults => ({
     color,
     width: width.toString(),
     height: height.toString(),

@@ -19,17 +19,37 @@ export type FoodDetails = {
     kalium: FoodUnit;
 };
 
-export const unitMap: { [key: string]: string[] } = {
-    kcal: ['Кал ( ккал)', 'г'],
-    fat: ['Жир( г)', 'г'],
-    nonSaturatedFat: ['Н/жир( г)', 'г'],
-    carbohydrates: ['Углев( г)', 'г'],
-    fiber: ['Клетч( г)', 'г'],
-    sugar: ['Сахар( г)', 'г'],
-    protein: ['Белк( г)', 'г'],
-    sodium: ['Натри( мг)', 'мг'],
-    cholesterol: ['Холес( мг)', 'мг'],
-    kalium: ['Калий( мг)', 'г']
+type UnitInfo = {
+    fullName: string;
+    shortName: string;
+    parseName: string;
+    unitName: string;
+};
+
+type UnitMap = {
+    [key: string]: UnitInfo;
+};
+
+const getUnitInfo = (params: string[]): UnitInfo => {
+    return {
+        fullName: params[0],
+        shortName: params[1].length === 0 ? params[0] : params[1],
+        parseName: params[2],
+        unitName: params[3]
+    };
+};
+
+export const unitMap: UnitMap = {
+    kcal: getUnitInfo(['Калории', '', 'Кал ( ккал)', 'г']),
+    fat: getUnitInfo(['Жир', '', 'Жир( г)', 'г']),
+    nonSaturatedFat: getUnitInfo(['Н/жир', '', 'Н/жир( г)', 'г']),
+    carbohydrates: getUnitInfo(['Углеводы', 'Углев', 'Углев( г)', 'г']),
+    fiber: getUnitInfo(['Клетчатка', 'Клетч', 'Клетч( г)', 'г']),
+    sugar: getUnitInfo(['Сахар', '', 'Сахар( г)', 'г']),
+    protein: getUnitInfo(['Белок', 'Белк', 'Белк( г)', 'г']),
+    sodium: getUnitInfo(['Натрий', 'Натр', 'Натри( мг)', 'мг']),
+    cholesterol: getUnitInfo(['Холестерин', 'Холес', 'Холес( мг)', 'мг']),
+    kalium: getUnitInfo(['Калий', '', 'Калий( мг)', 'н'])
 };
 
 export const mealIconMap: { [key: string]: string } = {

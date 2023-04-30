@@ -1,7 +1,8 @@
+$border: calc(var(--border-radius) * 2);
+
 .reportMeal {
     background-color: var(--white);
-    border-radius: 6px;
-    padding: 10px 15px;
+    border-radius: $border;
     margin-bottom: 20px;
     box-shadow: 0 0 4px 4px var(--shadow-color);
 
@@ -9,9 +10,10 @@
         display: flex;
         justify-content: space-between;
 
+        padding: 10px 15px 0 15px;
+
         &Icon {
-            margin-top: 10px;
-            flex: 0 0 10%;
+            margin-top: 3px;
             font-size: 1.5rem;
         }
 
@@ -23,33 +25,54 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding-bottom: 5px;
-            border-bottom: 1px solid var(--border);
+            padding-bottom: 10px;
+            transition: border 0.3s ease;
+            border-bottom: 1px solid transparent;
 
             &Kcal {
                 font-weight: bold;
+                text-align: right;
             }
 
             &KcalText {
                 font-size: var(--font-small);
                 color: var(--gray);
             }
+
+            &Expanded {
+                border-bottom: 1px solid var(--border);
+            }
         }
 
         &Total {
             display: flex;
             justify-content: space-between;
-            gap: 10px;
-            margin: 10px 0;
-            font-size: 0.8em;
+            align-items: center;
+            padding: 5px 15px 5px 50px;
+            font-size: var(--font-small);
             color: var(--gray);
-            width: 80%;
+            background-color: var(--white);
+            transition: background-color 0.3s ease;
+            border-radius: 0 0 $border $border;
+
+            &Collapsed {
+                background-color: var(--background);
+            }
+
+            &Items {
+                width: 80%;
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(0, 1fr));
+            }
         }
     }
+}
 
-    &Info {
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
+.mealToggler {
+    transition: transform 0.3s ease;
+    transform: rotate(90deg);
+
+    &Collapsed {
+        transform: rotate(-90deg);
     }
 }

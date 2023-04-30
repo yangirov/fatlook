@@ -1,7 +1,7 @@
 import { FC } from 'react';
 
 import { IconButton } from '@/shared/ui';
-import { BackIcon } from '@/shared/icons';
+import { BackIcon, SettingsIcon } from '@/shared/icons';
 
 import styles from './ReportHeader.module.scss';
 
@@ -13,10 +13,13 @@ const ReportHeader: FC<ReportHeaderProps> = ({ date }) => {
     return (
         <>
             <header className={styles.reportHeader}>
-                <IconButton href="/" className={styles.reportHeaderButton}>
+                <IconButton href="/">
                     <BackIcon />
                 </IconButton>
                 <div className={styles.reportHeaderDate}>{date}</div>
+                <IconButton href="/">
+                    <SettingsIcon />
+                </IconButton>
             </header>
         </>
     );
