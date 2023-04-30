@@ -4,17 +4,11 @@
     padding: 0 10px;
 }
 
-.report {
+.reportBody {
     margin-top: 50px;
 }
 
 .empty {
     composes: flexCenter from 'styles/scaffold.scss';
     min-height: 100vh;
-}
-
-.spinnerContainer {
-    composes: flexCenter from 'styles/scaffold.scss';
-    width: 100vw;
-    height: 100vh;
 }

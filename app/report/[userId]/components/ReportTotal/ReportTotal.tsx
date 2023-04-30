@@ -1,15 +1,17 @@
-import { FC } from 'react';
+import { FC, useContext } from 'react';
 
-import { FoodDetails, unitMap, PartialFoodDetailsKeys } from '@/shared/types';
+import { unitMap } from '@/shared/types';
+
+import { ReportContext } from '../../Report';
 
 import styles from './ReportTotal.module.scss';
 
-export type ReportTotalProps = {
-    visibleItems: PartialFoodDetailsKeys;
-    total: FoodDetails;
-};
+const ReportTotal: FC = () => {
+    const {
+        visibleItems,
+        report: { total }
+    } = useContext(ReportContext);
 
-const ReportTotal: FC<ReportTotalProps> = ({ visibleItems, total }) => {
     return (
         <div className={styles.reportTotal}>
             {visibleItems.map(k => (

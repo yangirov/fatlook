@@ -1,12 +1,10 @@
-import { FC } from 'react';
+import { FC, useContext } from 'react';
 
-import { FoodDetails, FoodUnit, PartialFoodDetailsKeys, unitMap } from '@/shared/types';
+import { FoodUnit, PartialFoodDetailsKeys, unitMap } from '@/shared/types';
+
+import { ReportContext } from '../../Report';
 
 import styles from './ReportSummary.module.scss';
-
-export type ReportSummaryProps = {
-    total: FoodDetails;
-};
 
 const FormatUnit: FC<{ unitKey: string; unitValue: FoodUnit }> = ({ unitKey, unitValue }) => (
     <div>
@@ -14,7 +12,11 @@ const FormatUnit: FC<{ unitKey: string; unitValue: FoodUnit }> = ({ unitKey, uni
     </div>
 );
 
-const ReportSummary: FC<ReportSummaryProps> = ({ total }) => {
+const ReportSummary: FC = () => {
+    const {
+        report: { total }
+    } = useContext(ReportContext);
+
     const { fat, nonSaturatedFat } = total;
     const keys: PartialFoodDetailsKeys = ['cholesterol', 'sodium', 'carbohydrates', 'fiber', 'sugar', 'protein'];
 

@@ -2,15 +2,15 @@ import { FC, useContext } from 'react';
 import classnames from 'classnames';
 
 import { BackIcon } from '@/shared/icons';
-import { PartialFoodDetailsKeys, Meal, mealIconMap } from '@/shared/types';
+import { Meal, mealIconMap } from '@/shared/types';
 import { Accordion, AccordionContext, Colors } from '@/shared/ui';
 
+import { ReportContext } from '../../Report';
 import ReportFood from '../ReportFood';
 
 import styles from './ReportMeal.module.scss';
 
 export type ReportMealProps = {
-    visibleItems: PartialFoodDetailsKeys;
     meal: Meal;
 };
 
@@ -33,8 +33,9 @@ const Toggler: FC = () => {
     );
 };
 
-const HeaderInfo: FC<ReportMealProps> = ({ visibleItems, meal }) => {
+const HeaderInfo: FC<ReportMealProps> = ({ meal }) => {
     const { isOpen } = useContext(AccordionContext);
+    const { visibleItems } = useContext(ReportContext);
 
     return (
         <>
@@ -74,16 +75,16 @@ const HeaderInfo: FC<ReportMealProps> = ({ visibleItems, meal }) => {
     );
 };
 
-const ReportMeal: FC<ReportMealProps> = ({ visibleItems, meal }) => {
+const ReportMeal: FC<ReportMealProps> = ({ meal }) => {
     return (
         <div className={styles.reportMeal}>
             <Accordion>
                 <Accordion.Header>
-                    <HeaderInfo visibleItems={visibleItems} meal={meal} />
+                    <HeaderInfo meal={meal} />
                 </Accordion.Header>
                 <Accordion.Content>
                     {meal.foods.map(food => (
-                        <ReportFood key={food.name} food={food} visibleItems={visibleItems} />
+                        <ReportFood key={food.name} food={food} />
                     ))}
                 </Accordion.Content>
             </Accordion>

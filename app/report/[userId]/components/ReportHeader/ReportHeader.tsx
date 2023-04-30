@@ -1,15 +1,17 @@
-import { FC } from 'react';
+import { FC, useContext } from 'react';
 
 import { IconButton } from '@/shared/ui';
 import { BackIcon, SettingsIcon } from '@/shared/icons';
 
+import { ReportContext } from '../../Report';
+
 import styles from './ReportHeader.module.scss';
 
-export type ReportHeaderProps = {
-    date: string;
-};
+const ReportHeader: FC = () => {
+    const {
+        report: { date }
+    } = useContext(ReportContext);
 
-const ReportHeader: FC<ReportHeaderProps> = ({ date }) => {
     return (
         <>
             <header className={styles.reportHeader}>

@@ -1,22 +1,24 @@
 import { isEmpty } from '@/shared/utils';
 import { Report } from './Report';
+import { ReportData } from '@/shared/types';
 
 type RouteParams = {
     params?: { [key: string]: string };
     searchParams?: { [key: string]: string };
 };
 
-const getData = async (query: RouteParams) => {
+const getData = async (query: RouteParams): Promise<{ report?: ReportData }> => {
     const { params, searchParams } = query;
+
+    let report;
 
     if (params && !isEmpty(params) && !isEmpty(searchParams)) {
         const queryString = new URLSearchParams({ userId: params.userId, ...searchParams });
         const response = await fetch(`${process.env.DOMAIN}/api/report?${queryString}`);
-        const report = await response.json();
-        return { report };
+        report = (await response.json()) as ReportData;
     }
 
-    return null;
+    return { report };
 };
 
 export default async function ReportPage(params: RouteParams) {

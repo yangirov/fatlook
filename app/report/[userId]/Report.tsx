@@ -1,6 +1,8 @@
 'use client';
-import { FC } from 'react';
-import { FoodDetails, ReportData } from '@/shared/types';
+import { FC, createContext } from 'react';
+import { PartialFoodDetailsKeys, ReportData } from '@/shared/types';
+
+import { isEmpty } from '@/shared/utils';
 
 import ReportHeader from './components/ReportHeader';
 import ReportSummary from './components/ReportSummary';
@@ -9,37 +11,44 @@ import ReportTotal from './components/ReportTotal';
 
 import styles from './Report.module.scss';
 
-const tableList: Array<Partial<keyof FoodDetails>> = ['protein', 'fat', 'fiber', 'carbohydrates'];
-
 export type ReportProps = {
     report?: ReportData;
 };
 
+const visibleItems: PartialFoodDetailsKeys = ['protein', 'fat', 'fiber', 'carbohydrates'];
+
+export const ReportContext = createContext<{ report: ReportData; visibleItems: PartialFoodDetailsKeys }>({
+    report: {} as ReportData,
+    visibleItems
+});
+
 export const Report: FC<ReportProps> = ({ report }) => {
-    if (!report) {
+    if (!report || isEmpty(report.meals)) {
         return (
             <div className={styles.container}>
-                <div className={styles.empty}>Ничего не найдено</div>
+                <div className={styles.empty}>Ничего не найдено 🙄</div>
             </div>
         );
     }
 
     return (
-        <div className={styles.container}>
-            <ReportHeader date={report.date} />
+        <ReportContext.Provider value={{ report, visibleItems }}>
+            <div className={styles.container}>
+                <ReportHeader />
 
-            <div className={styles.report}>
-                <ReportTotal visibleItems={[...tableList, 'kcal']} total={report.total} />
-                <ReportMeals visibleItems={tableList} meals={report.meals} />
-                <ReportSummary total={report.total} />
+                <div className={styles.reportBody}>
+                    <ReportTotal />
+                    <ReportMeals />
+                    <ReportSummary />
 
-                {report.weight && report.steps && (
-                    <div className={styles.total}>
-                        <div>Вес: {report.weight} кг</div>
-                        <div>Шаги: {report.steps} шагов</div>
-                    </div>
-                )}
+                    {report.weight && report.steps && (
+                        <div className={styles.total}>
+                            <div>Вес: {report.weight} кг</div>
+                            <div>Шаги: {report.steps} шагов</div>
+                        </div>
+                    )}
+                </div>
             </div>
-        </div>
+        </ReportContext.Provider>
     );
 };

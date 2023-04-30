@@ -3,7 +3,7 @@ import { format } from 'date-fns';
 
 export default async function Home() {
     const d = new Date();
-    d.setDate(d.getDate() - 2);
+    d.setDate(d.getDate() - 1);
 
     const getReport = (userId: string) => {
         return `/report/${userId}?date=${format(d, 'yyMd')}`;
