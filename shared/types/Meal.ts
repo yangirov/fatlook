@@ -5,3 +5,10 @@ export type Meal = {
     total: FoodDetails;
     foods: FoodInfo[];
 };
+
+export const mealIconMap: { [key: string]: string } = {
+    Завтрак: '🌅',
+    Обед: '🕑',
+    Ужин: '🌇',
+    Перекус: '🍏'
+};
