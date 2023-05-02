@@ -1,0 +1,64 @@
+.pieChart {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+
+    &Circle {
+        position: relative;
+        width: var(--pieChartSize);
+        height: var(--pieChartSize);
+
+        &::before {
+            content: '';
+            display: block;
+            position: absolute;
+            z-index: 1;
+            width: calc(var(--pieChartSize) / 2);
+            height: calc(var(--pieChartSize) / 2);
+            background: var(--background);
+            border-radius: 50%;
+            top: calc(var(--pieChartSize) / 4);
+            left: calc(var(--pieChartSize) / 4);
+        }
+    }
+
+    &Slice {
+        position: absolute;
+        width: var(--pieChartSize);
+        height: var(--pieChartSize);
+        clip: rect(0, var(--pieChartSize), var(--pieChartSize), calc(var(--pieChartSize) / 2));
+
+        span {
+            display: block;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: var(--pieChartSize);
+            height: var(--pieChartSize);
+            border-radius: 50%;
+            clip: rect(0, var(--pieChartSize), var(--pieChartSize), calc(var(--pieChartSize) / 2));
+        }
+    }
+
+    &Legend {
+        margin-top: 10px;
+
+        &Item {
+            display: grid;
+            align-items: center;
+            grid-template-columns: 1fr 10px;
+
+            &Text {
+                text-align: right;
+            }
+
+            &Color {
+                margin-left: 5px;
+                display: inline-block;
+                width: 8px;
+                height: 8px;
+                border-radius: 50%;
+            }
+        }
+    }
+}

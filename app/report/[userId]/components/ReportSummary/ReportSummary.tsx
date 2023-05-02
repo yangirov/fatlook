@@ -1,14 +1,15 @@
 import { FC, useContext } from 'react';
 
-import { FoodUnit, PartialFoodDetailsKeys, unitMap } from '@/shared/types';
+import { REPORT_CALC_RATIO, REPORT_SUMMARY_COLORS, FoodUnit, PartialFoodDetailsKeys, UnitInfo, unitMap } from '@/shared/types';
+import { PieChart, PieChartData } from '@/shared/ui';
 
 import { ReportContext } from '../../Report';
 
 import styles from './ReportSummary.module.scss';
 
-const FormatUnit: FC<{ unitKey: string; unitValue: FoodUnit }> = ({ unitKey, unitValue }) => (
+const FormatUnit: FC<{ unit?: UnitInfo; value: FoodUnit }> = ({ unit, value }) => (
     <div>
-        {unitMap[unitKey].fullName}: {unitValue} {unitMap[unitKey].unitName}
+        {unit?.fullName}: {value} {unit?.unitName}
     </div>
 );
 
@@ -17,24 +18,28 @@ const ReportSummary: FC = () => {
         report: { total }
     } = useContext(ReportContext);
 
-    const { fat, nonSaturatedFat } = total;
-    const keys: PartialFoodDetailsKeys = ['cholesterol', 'sodium', 'carbohydrates', 'fiber', 'sugar', 'protein'];
+    const keys: PartialFoodDetailsKeys = ['allFat', 'cholesterol', 'sodium', 'carbohydrates', 'fiber', 'sugar', 'protein'];
 
-    // 1 г жира = 9,3 ккал; 1 г углеводов = 4,1 ккал; 1 г белка = 4,1 ккал
-    // 2400
-    // ж 115*9.3=1069
-    // уг 157*4.1=643
-    // блк 135*4.1=553
+    const pieChartItems: PartialFoodDetailsKeys = ['allFat', 'carbohydrates', 'protein'];
+    const pieChartData = pieChartItems.map<PieChartData>(key => {
+        const value = Number(total[key]);
+        const coef = Number(REPORT_CALC_RATIO[key]);
+
+        return {
+            color: REPORT_SUMMARY_COLORS[key],
+            name: unitMap[key]?.shortName ?? key.toString(),
+            value: Math.floor(value * coef)
+        };
+    });
 
     return (
         <div className={styles.reportSummary}>
             <div>
-                <div>Всего жиров: {(+(fat ?? 0) + +(nonSaturatedFat ?? 0)).toFixed(2)} г</div>
                 {keys.map(key => (
-                    <FormatUnit key={key} unitKey={key} unitValue={total[key]} />
+                    <FormatUnit key={key} unit={unitMap[key]} value={total[key]} />
                 ))}
             </div>
-            <div>111</div>
+            <PieChart data={pieChartData} />
         </div>
     );
 };

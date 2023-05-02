@@ -74,8 +74,16 @@ export const parseFatSecretCSV = (csv: string): ReportData => {
         return value.trim();
     };
 
+    const getAllFat = (rowIndex: number, fatIndex: number, nonSaturatedFatIndex: number) => {
+        const fat = Number(getValue(rowIndex, fatIndex) ?? 0);
+        const nonSaturatedFat = Number(getValue(rowIndex, nonSaturatedFatIndex) ?? 0);
+
+        return parseFloat((fat + nonSaturatedFat).toFixed(2));
+    };
+
     const getFromRow = (rowIndex: number): FoodDetails => ({
         kcal: getValue(rowIndex, kcalIndex),
+        allFat: getAllFat(rowIndex, fatIndex, nonSaturatedFatIndex),
         fat: getValue(rowIndex, fatIndex),
         nonSaturatedFat: getValue(rowIndex, nonSaturatedFatIndex),
         carbohydrates: getValue(rowIndex, carbohydratesIndex),

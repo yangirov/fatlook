@@ -1,3 +1,5 @@
+import { ObjectWithOptionalKeys } from '../utils/types';
+
 export type FoodUnit = string | number | null;
 
 export type FoodInfo = {
@@ -8,6 +10,7 @@ export type FoodInfo = {
 
 export type FoodDetails = {
     kcal: FoodUnit;
+    allFat: FoodUnit;
     fat: FoodUnit;
     nonSaturatedFat: FoodUnit;
     carbohydrates: FoodUnit;
@@ -21,16 +24,14 @@ export type FoodDetails = {
 
 export type PartialFoodDetailsKeys = Partial<keyof FoodDetails>[];
 
-type UnitInfo = {
+export type UnitInfo = {
     fullName: string;
     shortName: string;
     parseName: string;
     unitName: string;
 };
 
-type UnitMap = {
-    [key: string]: UnitInfo;
-};
+export type UnitMap = ObjectWithOptionalKeys<FoodDetails, UnitInfo>;
 
 const getUnitInfo = (params: string[]): UnitInfo => ({
     fullName: params[0],
@@ -41,6 +42,7 @@ const getUnitInfo = (params: string[]): UnitInfo => ({
 
 export const unitMap: UnitMap = {
     kcal: getUnitInfo(['Калории', '', 'Кал ( ккал)', 'г']),
+    allFat: getUnitInfo(['Всего жиров', 'Жиры', '', 'г']),
     fat: getUnitInfo(['Жир', '', 'Жир( г)', 'г']),
     nonSaturatedFat: getUnitInfo(['Н/жир', '', 'Н/жир( г)', 'г']),
     carbohydrates: getUnitInfo(['Углеводы', 'Углев', 'Углев( г)', 'г']),
