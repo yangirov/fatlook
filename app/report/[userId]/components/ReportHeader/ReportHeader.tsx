@@ -5,8 +5,10 @@ import classNames from 'classnames';
 
 import DatePicker from '@/shared/ui/DatePicker';
 import { Accordion, AccordionContext, IconButton } from '@/shared/ui';
-import { ArrowIcon, SettingsIcon } from '@/shared/icons';
+import { ArrowIcon } from '@/shared/icons';
 import { beautifyDate, formatDate, parseDate } from '@/shared/utils';
+
+import { ReportContext } from '../../Report';
 
 import styles from './ReportHeader.module.scss';
 
@@ -17,6 +19,10 @@ type HeaderProps = {
 };
 
 const Header: FC<HeaderProps> = ({ date, month, headerRef }) => {
+    const {
+        report: { name }
+    } = useContext(ReportContext);
+
     const { isOpen, setOpen } = useContext(AccordionContext);
 
     const onToggle = () => {
@@ -36,9 +42,11 @@ const Header: FC<HeaderProps> = ({ date, month, headerRef }) => {
 
     return (
         <div className={styles.reportHeaderControls}>
-            <IconButton href="/">
-                <ArrowIcon />
-            </IconButton>
+            <div className={styles.reportHeaderBack}>
+                <IconButton href="/">
+                    <ArrowIcon />
+                </IconButton>
+            </div>
 
             <div
                 onClick={onToggle}
@@ -49,9 +57,7 @@ const Header: FC<HeaderProps> = ({ date, month, headerRef }) => {
                 {isOpen && month ? month : beautifyDate(date)}
             </div>
 
-            <IconButton onClick={() => alert('Будут настройки')}>
-                <SettingsIcon />
-            </IconButton>
+            <div className={styles.reportHeaderUser}>{name}</div>
         </div>
     );
 };

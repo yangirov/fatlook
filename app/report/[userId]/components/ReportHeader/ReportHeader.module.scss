@@ -2,12 +2,22 @@
     position: fixed;
     top: 0;
     left: 0;
-    width: calc(100% - 20px);
+    width: calc(100% - 30px);
     text-align: center;
     background-color: var(--accent-green);
-    padding: 5px 10px;
+    padding: 5px 15px;
     color: var(--light);
     z-index: 1;
+
+    &Back {
+        width: 100px;
+    }
+
+    &User {
+        width: 100px;
+        color: #ccc;
+        margin-right: 15px;
+    }
 
     &Date {
         user-select: none;

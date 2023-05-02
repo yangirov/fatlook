@@ -11,10 +11,10 @@ import styles from './Settings.module.scss';
 
 const FATLOOK_USERS = 'FATLOOK_USERS';
 
-const getReport = (userId: string) => {
+const getReport = (name: string, userId: string) => {
     const yesterday = new Date();
     yesterday.setDate(yesterday.getDate() - 1);
-    return `/report/${userId}?date=${formatDate(yesterday)}`;
+    return `/report/${userId}?date=${formatDate(yesterday)}&name=${name}`;
 };
 
 export type UserReport = {
@@ -65,7 +65,7 @@ export const Settings: FC = () => {
                     <div>Нет подопечных</div>
                 ) : (
                     users.map(({ report, name }) => (
-                        <Link className={styles.userItem} key={report} href={getReport(report)}>
+                        <Link className={styles.userItem} key={report} href={getReport(name, report)}>
                             {name}
                         </Link>
                     ))
