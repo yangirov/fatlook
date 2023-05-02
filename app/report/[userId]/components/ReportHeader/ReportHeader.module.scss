@@ -2,21 +2,23 @@
     position: fixed;
     top: 0;
     left: 0;
-    width: calc(100% - 30px);
+    right: 0;
     text-align: center;
     background-color: var(--accent-green);
-    padding: 5px 15px;
+    padding: 5px 0;
     color: var(--light);
     z-index: 1;
 
     &Back {
         width: 100px;
+        display: flex;
+        justify-content: flex-start;
+        margin-left: 15px;
     }
 
     &User {
         width: 100px;
         color: #ccc;
-        margin-right: 15px;
     }
 
     &Date {
