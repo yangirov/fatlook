@@ -3,6 +3,10 @@
     justify-content: space-between;
     align-items: center;
     gap: 20px;
+
+    @media screen and (max-width: 375px) {
+        gap: 5px;
+    }
 }
 
 .datePicker {
@@ -10,6 +14,9 @@
     justify-content: space-between;
     margin-top: 10px;
     grid-template-columns: repeat(1, 300px);
-    grid-gap: 0 64px;
     font-size: var(--font-small);
+
+    @media screen and (max-width: 375px) {
+        grid-template-columns: repeat(1, 250px);
+    }
 }

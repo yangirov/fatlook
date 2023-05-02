@@ -7,11 +7,16 @@ import styles from './Accordion.module.scss';
 
 export const AccordionContext = createContext({} as AccordionContextType);
 
-const AccordionWrapper: FC<AccordionProps> = ({ children, className }) => {
+const AccordionWrapper: FC<AccordionProps> = ({ children, className, onChange }) => {
     const [isOpen, setOpen] = useState(false);
 
+    const handleToggle = () => {
+        if (onChange) onChange();
+        setOpen(prev => !prev);
+    };
+
     return (
-        <AccordionContext.Provider value={{ isOpen, setOpen }}>
+        <AccordionContext.Provider value={{ isOpen, setOpen: handleToggle }}>
             <div className={classNames(styles.accordion, className)}>{children}</div>
         </AccordionContext.Provider>
     );

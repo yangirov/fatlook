@@ -7,12 +7,12 @@
         position: relative;
         width: var(--pieChartSize);
         height: var(--pieChartSize);
+        z-index: -1;
 
-        &::before {
+        &::after {
             content: '';
             display: block;
             position: absolute;
-            z-index: 1;
             width: calc(var(--pieChartSize) / 2);
             height: calc(var(--pieChartSize) / 2);
             background: var(--background);

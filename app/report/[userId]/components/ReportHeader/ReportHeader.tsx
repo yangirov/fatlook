@@ -1,5 +1,5 @@
 'use client';
-import { FC, useContext, useEffect, useState } from 'react';
+import { FC, useContext, useEffect, useRef, useState } from 'react';
 import { useParams, useRouter, useSearchParams } from 'next/navigation';
 import classNames from 'classnames';
 
@@ -13,14 +13,26 @@ import styles from './ReportHeader.module.scss';
 type HeaderProps = {
     date: Date | null;
     month: string | null;
+    headerRef: React.MutableRefObject<HTMLElement | null>;
 };
 
-const Header: FC<HeaderProps> = ({ date, month }) => {
+const Header: FC<HeaderProps> = ({ date, month, headerRef }) => {
     const { isOpen, setOpen } = useContext(AccordionContext);
 
     const onToggle = () => {
         setOpen(prev => !prev);
     };
+
+    const handleClickOutside = (e: MouseEvent) => {
+        if (isOpen && e.target instanceof HTMLElement && !headerRef?.current?.contains(e.target)) {
+            onToggle();
+        }
+    };
+
+    useEffect(() => {
+        document.addEventListener('mousedown', handleClickOutside);
+        return () => document.removeEventListener('mousedown', handleClickOutside);
+    });
 
     return (
         <div className={styles.reportHeaderControls}>
@@ -83,10 +95,12 @@ const Content: FC<ContentProps> = ({ date, setMonth }) => {
 };
 
 const ReportHeader: FC = () => {
+    const headerRef = useRef(null);
     const searchParams = useSearchParams();
 
     const [month, setMonth] = useState<string | null>(null);
     const [date, setDate] = useState<Date | null>(null);
+    const [isOpen, setOpen] = useState(false);
 
     useEffect(() => {
         if (searchParams && searchParams.has('date')) {
@@ -97,17 +111,24 @@ const ReportHeader: FC = () => {
         }
     }, [searchParams]);
 
+    const onChange = () => {
+        setOpen(prev => !prev);
+    };
+
     return (
-        <header className={styles.reportHeader}>
-            <Accordion>
-                <Accordion.Header>
-                    <Header date={date} month={month} />
-                </Accordion.Header>
-                <Accordion.Content>
-                    <Content date={date} setMonth={setMonth} />
-                </Accordion.Content>
-            </Accordion>
-        </header>
+        <>
+            <header className={styles.reportHeader} ref={headerRef}>
+                <Accordion onChange={onChange}>
+                    <Accordion.Header>
+                        <Header date={date} month={month} headerRef={headerRef} />
+                    </Accordion.Header>
+                    <Accordion.Content>
+                        <Content date={date} setMonth={setMonth} />
+                    </Accordion.Content>
+                </Accordion>
+            </header>
+            <div className={classNames(styles.overlay, { [styles.overlayOpened]: isOpen })}></div>
+        </>
     );
 };
 
