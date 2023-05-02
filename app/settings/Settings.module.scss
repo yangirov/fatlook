@@ -8,3 +8,12 @@
     font-size: 1.2em;
     composes: link from 'styles/scaffold.scss';
 }
+
+.users {
+    margin: 10px 0;
+}
+
+.title {
+    composes: flexCenter from 'styles/scaffold.scss';
+    justify-content: space-between;
+}

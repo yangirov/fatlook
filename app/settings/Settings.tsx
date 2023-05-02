@@ -2,6 +2,7 @@
 import { FC, useEffect, useState } from 'react';
 import Link from 'next/link';
 
+import { Button } from '@/shared/ui';
 import { formatDate } from '@/shared/utils';
 
 import { AddUserForm } from './components/AddUserForm';
@@ -54,19 +55,25 @@ export const Settings: FC = () => {
 
     return (
         <div className={styles.container}>
-            <h2>Отчеты</h2>
+            <div className={styles.title}>
+                <h2>Отчеты </h2>
+                <Button onClick={onClear}>Очистить</Button>
+            </div>
 
-            {!users || users.length === 0 ? (
-                <div>Нет подопечных</div>
-            ) : (
-                users.map(({ report, name }) => (
-                    <Link className={styles.userItem} key={report} href={getReport(report)}>
-                        {name}
-                    </Link>
-                ))
-            )}
+            <div className={styles.users}>
+                {!users || users.length === 0 ? (
+                    <div>Нет подопечных</div>
+                ) : (
+                    users.map(({ report, name }) => (
+                        <Link className={styles.userItem} key={report} href={getReport(report)}>
+                            {name}
+                        </Link>
+                    ))
+                )}
+            </div>
+
             <hr />
-            <AddUserForm onAddUser={onAddUser} onClear={onClear} />
+            <AddUserForm onAddUser={onAddUser} />
         </div>
     );
 };

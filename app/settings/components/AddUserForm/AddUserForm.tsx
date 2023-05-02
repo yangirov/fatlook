@@ -12,10 +12,9 @@ const getReportId = (url: string) => {
 
 type AddUserFormProps = {
     onAddUser: (name: string, report: string) => void;
-    onClear: () => void;
 };
 
-export const AddUserForm: FC<AddUserFormProps> = ({ onAddUser, onClear }) => {
+export const AddUserForm: FC<AddUserFormProps> = ({ onAddUser }) => {
     const [name, setName] = useState('');
     const [report, setReport] = useState('');
 
@@ -36,7 +35,6 @@ export const AddUserForm: FC<AddUserFormProps> = ({ onAddUser, onClear }) => {
 
             <div className={styles.buttons}>
                 <Button onClick={handleAddUser}>Добавить</Button>
-                <Button onClick={onClear}>Очистить</Button>
             </div>
         </div>
     );
