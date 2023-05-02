@@ -76,10 +76,12 @@ const Content: FC<ContentProps> = ({ date, setMonth }) => {
         if (!date) return;
 
         if (params && searchParams) {
+            // TODO
             const queryParams = new URLSearchParams({
                 date: searchParams.get('date') ?? '',
                 steps: searchParams.get('steps') ?? '',
-                weight: searchParams.get('weight') ?? ''
+                weight: searchParams.get('weight') ?? '',
+                name: searchParams.get('name') ?? ''
             });
 
             const formattedDate = formatDate(date);

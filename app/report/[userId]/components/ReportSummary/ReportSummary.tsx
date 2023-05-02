@@ -9,7 +9,7 @@ import styles from './ReportSummary.module.scss';
 
 const FormatUnit: FC<{ unit?: UnitInfo; value: FoodUnit }> = ({ unit, value }) => (
     <div>
-        {unit?.fullName}: {value} {unit?.unitName}
+        {unit?.fullName}: {value ?? 0} {unit?.unitName}
     </div>
 );
 

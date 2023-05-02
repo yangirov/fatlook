@@ -28,6 +28,7 @@ export const PieChart: FC<PieChartProps> = ({ size, data }) => {
     const sizeStyle = { '--pieChartSize': `${size ?? 80}px` } as React.CSSProperties;
 
     const total = data.reduce((a, b) => a + b.value, 0);
+    if (total === 0) return null;
 
     let offset = 0;
     const items = data.reduce<PieChartItem[]>((acc, { color, name, value }) => {

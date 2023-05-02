@@ -26,7 +26,11 @@ export const Report: FC<ReportProps> = ({ report }) => {
     if (!report || isEmpty(report.meals)) {
         return (
             <div className={styles.container}>
-                <div className={styles.empty}>Ничего не найдено 🙄</div>
+                <ReportHeader />
+
+                <div className={styles.reportBody}>
+                    <div className={styles.empty}>Ничего не найдено 🙄</div>
+                </div>
             </div>
         );
     }
