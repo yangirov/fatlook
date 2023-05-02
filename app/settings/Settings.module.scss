@@ -1,2 +1,10 @@
-.settingsPage {
+.container {
+    composes: container from 'styles/scaffold.scss';
+}
+
+.userItem {
+    display: block;
+    margin: 10px 0;
+    font-size: 1.2em;
+    composes: link from 'styles/scaffold.scss';
 }

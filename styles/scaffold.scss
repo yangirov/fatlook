@@ -15,10 +15,17 @@
 
 .link {
     color: var(--green);
+    text-decoration: none;
 }
 
 .flexCenter {
     display: flex;
     align-items: center;
     justify-content: center;
+}
+
+.container {
+    max-width: var(--app-max-width);
+    margin: 0 auto 50px auto;
+    padding: 0 10px;
 }

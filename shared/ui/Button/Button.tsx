@@ -13,16 +13,7 @@ export type ButtonProps = Omit<ComponentPropsWithoutRef<'button'>, 'aria-pressed
     isPressed?: boolean;
 };
 
-export const Button: FC<ButtonProps> = ({
-    children = null,
-    className,
-    disabled = false,
-    href,
-    type = 'button',
-    isPressed,
-    onClick,
-    ...propsRest
-}) => {
+export const Button: FC<ButtonProps> = ({ children = null, className, disabled = false, href, type = 'button', isPressed, onClick, ...propsRest }) => {
     const [hasHover, setHasHover] = useState(false);
     const [isActive, setIsActive] = useState(false);
 
@@ -74,12 +65,7 @@ export const Button: FC<ButtonProps> = ({
 
     if (href) {
         return (
-            <Link
-                className={classNames(styles.linkRoot, className)}
-                href={href}
-                tabIndex={tabIndex}
-                {...commonMouseHandlers}
-            >
+            <Link className={classNames(styles.linkRoot, className)} href={href} tabIndex={tabIndex} {...commonMouseHandlers}>
                 {children}
             </Link>
         );
