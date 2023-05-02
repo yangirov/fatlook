@@ -29,10 +29,10 @@ export const AddUserForm: FC<AddUserFormProps> = ({ onAddUser, onClear }) => {
         <div className={styles.container}>
             <h3>Добавить</h3>
 
-            <div className={styles.inputs}>
+            <form className={styles.inputs} autoComplete="off">
                 <input className={styles.input} type="text" placeholder="Имя" name="name" required value={name} onChange={e => setName(e.target.value)} />
-                <input className={styles.input} type="еуч" placeholder="Ссылка на отчет FatSecret" name="url" required value={report} onChange={e => setReport(e.target.value)} />
-            </div>
+                <input className={styles.input} type="url" placeholder="Ссылка на отчет FatSecret" name="url" required value={report} onChange={e => setReport(e.target.value)} />
+            </form>
 
             <div className={styles.buttons}>
                 <Button onClick={handleAddUser}>Добавить</Button>
