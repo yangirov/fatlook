@@ -3,16 +3,15 @@ $border: calc(var(--border-radius) * 2);
 .reportMeal {
     background-color: var(--white);
     border-radius: $border;
-    margin-bottom: 20px;
-    box-shadow: 0 0 4px 4px var(--shadow-color);
+    margin-bottom: var(--gap-25);
+    box-shadow: 0 0 var(--gap-5) var(--gap-5) var(--shadow-color);
 
     &Header {
         display: flex;
         justify-content: space-between;
-        padding: 10px 15px 0 15px;
+        padding: var(--gap-10) var(--gap-15) 0 var(--gap-15);
 
         &Icon {
-            margin-top: 3px;
             font-size: 1.5rem;
         }
 
@@ -24,9 +23,10 @@ $border: calc(var(--border-radius) * 2);
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding-bottom: 10px;
+            padding-bottom: var(--gap-10);
             transition: border 0.3s ease;
             border-bottom: 1px solid transparent;
+            height: 30px;
 
             &Kcal {
                 font-weight: bold;
@@ -47,7 +47,7 @@ $border: calc(var(--border-radius) * 2);
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 5px 15px 5px 50px;
+            padding: var(--gap-5) var(--gap-15) var(--gap-5) var(--gap-50);
             font-size: var(--font-small);
             color: var(--gray);
             background-color: var(--white);
@@ -69,8 +69,8 @@ $border: calc(var(--border-radius) * 2);
     &Empty {
         font-size: var(--font-small);
         color: var(--gray);
-        padding: 5px 15px 5px 52px;
-        margin-bottom: 10px;
+        padding: var(--gap-5) var(--gap-15) var(--gap-5) var(--gap-50);
+        margin-bottom: var(--gap-10);
     }
 }
 

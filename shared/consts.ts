@@ -1,0 +1,1 @@
+export const FATLOOK_USERS = 'FATLOOK_USERS';

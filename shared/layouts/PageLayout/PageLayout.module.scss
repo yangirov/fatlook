@@ -9,11 +9,11 @@
     right: 0;
     text-align: center;
     background-color: var(--accent-green);
-    padding: 8px 0;
+    padding: var(--gap-10) 0;
     color: var(--light);
     z-index: 1;
 }
 
 .pageContent {
-    margin-top: 50px;
+    margin-top: var(--gap-50);
 }

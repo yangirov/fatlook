@@ -3,9 +3,9 @@
     display: flex;
     justify-content: space-between;
     font-size: var(--font-small);
-    padding-right: 10px;
+    padding-right: var(--gap-10);
 }
 
 .reportHealth {
-    margin-top: 20px;
+    margin-top: var(--gap-25);
 }

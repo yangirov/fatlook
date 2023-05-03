@@ -1,14 +1,14 @@
 .reportTotal {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(0, 1fr));
-    margin: 10px 0;
-    padding: 0 15px 0 50px;
+    margin: var(--gap-10) 0;
+    padding: 0 var(--gap-15) 0 var(--gap-50);
     font-size: var(--font-small);
 
     &Item {
         &Key {
             color: var(--gray);
-            margin-bottom: 5px;
+            margin-bottom: var(--gap-5);
         }
 
         &:last-child & {

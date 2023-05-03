@@ -1,9 +1,9 @@
 .reportHeader {
     &Back {
-        width: 100px;
+        width: var(--gap-100);
         display: flex;
         justify-content: flex-start;
-        margin-left: 15px;
+        margin-left: var(--gap-15);
     }
 
     &Date {
@@ -14,7 +14,7 @@
             content: '▾';
             position: relative;
             top: 0;
-            left: 5px;
+            left: var(--gap-5);
             transform: rotate(0deg);
             transition: all 0.3s ease;
             transition-property: transform, top;
@@ -29,7 +29,7 @@
     }
 
     &User {
-        width: 100px;
+        width: var(--gap-100);
         color: #ccc;
     }
 
@@ -40,8 +40,8 @@
     }
 
     &DatePicker {
+        margin-top: var(--gap-10);
         cursor: pointer;
-        background-color: var(--accent-green);
         composes: flexCenter from 'styles/scaffold.scss';
     }
 }

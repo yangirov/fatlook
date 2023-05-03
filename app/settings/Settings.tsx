@@ -2,14 +2,14 @@
 import { FC, useEffect, useState } from 'react';
 import Link from 'next/link';
 
-import { Button } from '@/shared/ui';
+import { Divider } from '@/shared/ui';
 import { formatDate } from '@/shared/utils';
+import { PageLayout } from '@/shared/layouts';
+import { FATLOOK_USERS } from '@/shared/consts';
 
 import { AddUserForm } from './components/AddUserForm';
 
 import styles from './Settings.module.scss';
-
-const FATLOOK_USERS = 'FATLOOK_USERS';
 
 const getReport = (name: string, userId: string) => {
     const yesterday = new Date();
@@ -54,26 +54,25 @@ export const Settings: FC = () => {
     };
 
     return (
-        <div className={styles.container}>
-            <div className={styles.title}>
-                <h2>Отчеты </h2>
-                <Button onClick={onClear}>Очистить</Button>
-            </div>
+        <PageLayout>
+            <PageLayout.Header>Отчеты</PageLayout.Header>
 
-            <div className={styles.users}>
-                {!users || users.length === 0 ? (
-                    <div>Нет подопечных</div>
-                ) : (
-                    users.map(({ report, name }) => (
-                        <Link className={styles.userItem} key={report} href={getReport(name, report)}>
-                            {name}
-                        </Link>
-                    ))
-                )}
-            </div>
-
-            <hr />
-            <AddUserForm onAddUser={onAddUser} />
-        </div>
+            <PageLayout.Content>
+                <div className={styles.users}>
+                    {!users || users.length === 0 ? (
+                        <div>Нет подопечных</div>
+                    ) : (
+                        users.map(({ report, name }) => (
+                            <Link className={styles.userItem} key={report} href={getReport(name, report)}>
+                                {name}
+                            </Link>
+                        ))
+                    )}
+                </div>
+                {/* <Button onClick={onClear}>Очистить</Button> */}
+                <Divider />
+                <AddUserForm onAddUser={onAddUser} />
+            </PageLayout.Content>
+        </PageLayout>
     );
 };

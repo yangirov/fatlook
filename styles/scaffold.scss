@@ -2,7 +2,7 @@
     display: block;
     font-size: inherit;
     border-style: none;
-    padding: 10px;
+    padding: var(--gap-10);
     color: var(--light);
     background-color: var(--accent-green);
     border-radius: var(--border-radius);
@@ -26,6 +26,6 @@
 
 .container {
     max-width: var(--app-max-width);
-    margin: 0 auto 50px auto;
-    padding: 0 10px;
+    margin: 0 auto var(--gap-50) auto;
+    padding: 0 var(--gap-10);
 }

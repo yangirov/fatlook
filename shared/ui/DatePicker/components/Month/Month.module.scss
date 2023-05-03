@@ -2,7 +2,7 @@
     &DayLabels {
         display: grid;
         grid-template-columns: repeat(7, 1fr);
-        margin-bottom: 10px;
+        margin-bottom: var(--gap-10);
         font-size: var(--font-small);
         color: #ccc;
     }

@@ -1,7 +1,8 @@
 .day {
-    text-align: center;
+    composes: flexCenter from 'styles/scaffold.scss';
+
     border-radius: 50%;
-    padding: 12px 0;
+    padding: 12px;
     color: var(--light);
 
     &Selected {

@@ -40,19 +40,19 @@
     }
 
     &Legend {
-        margin-top: 10px;
+        margin-top: var(--gap-10);
 
         &Item {
             display: grid;
             align-items: center;
-            grid-template-columns: 1fr 10px;
+            grid-template-columns: 1fr var(--gap-10);
 
             &Text {
                 text-align: right;
             }
 
             &Color {
-                margin-left: 5px;
+                margin-left: calc(var(--gap-10) / 2);
                 display: inline-block;
                 width: 8px;
                 height: 8px;

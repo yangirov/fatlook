@@ -1,16 +1,12 @@
-.container {
-    composes: container from 'styles/scaffold.scss';
-}
-
 .userItem {
     display: block;
-    margin: 10px 0;
-    font-size: 1.2em;
+    margin: var(--gap-10) 0;
+    font-size: 1.2rem;
     composes: link from 'styles/scaffold.scss';
 }
 
 .users {
-    margin: 10px 0;
+    margin: var(--gap-10) 0;
 }
 
 .title {

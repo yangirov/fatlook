@@ -2,7 +2,7 @@
     display: flex;
     align-items: center;
     border-top: 1px solid var(--border);
-    padding: 10px 15px 0 50px;
+    padding: var(--gap-10) var(--gap-15) 0 var(--gap-50);
 
     &Item {
         width: 100%;
@@ -12,13 +12,13 @@
             width: 90%;
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(0, 1fr));
-            margin: 10px 0;
+            margin: var(--gap-10) 0;
             font-size: var(--font-small);
             color: var(--gray);
         }
 
         &Weight {
-            margin-top: 5px;
+            margin-top: var(--gap-5);
             font-size: var(--font-small);
             color: var(--green);
         }
