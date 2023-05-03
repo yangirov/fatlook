@@ -1,8 +1,11 @@
 .userItem {
     display: block;
-    margin: var(--gap-10) 0;
+    margin-bottom: var(--gap-15);
     font-size: 1.2rem;
     composes: link from 'styles/scaffold.scss';
+    padding: var(--gap-10);
+    border: 1px solid #ccc;
+    border-radius: var(--border-radius);
 }
 
 .users {
