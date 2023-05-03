@@ -2,3 +2,24 @@
     composes: flexCenter from 'styles/scaffold.scss';
     min-height: 100vh;
 }
+
+.reportNavigation {
+    margin-top: var(--gap-25);
+    composes: flexCenter from 'styles/scaffold.scss';
+    gap: var(--gap-50);
+
+    &Link {
+        composes: flexCenter from 'styles/scaffold.scss';
+        flex-direction: column;
+        composes: link from 'styles/scaffold.scss';
+    }
+
+    &Icon {
+        font-size: 1.5rem;
+        margin-bottom: var(--gap-10);
+    }
+
+    &Text {
+        font-size: var(--font-small);
+    }
+}

@@ -1,7 +1,7 @@
 import { FC, useContext } from 'react';
 
 import { REPORT_CALC_RATIO, REPORT_SUMMARY_COLORS, FoodUnit, PartialFoodDetailsKeys, UnitInfo, unitMap } from '@/shared/types';
-import { Divider, PieChart, PieChartData } from '@/shared/ui';
+import { PieChart, PieChartData } from '@/shared/ui';
 
 import { ReportContext } from '../../Report';
 
@@ -47,7 +47,6 @@ const ReportSummary: FC = () => {
                 </div>
                 <PieChart data={pieChartData} className={styles.reportSummaryPieChart} />
             </div>
-            <Divider />
         </>
     );
 };
