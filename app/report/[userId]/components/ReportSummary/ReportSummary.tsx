@@ -45,7 +45,7 @@ const ReportSummary: FC = () => {
                         {steps && <div>Шаги: {steps} шагов</div>}
                     </div>
                 </div>
-                <PieChart data={pieChartData} />
+                <PieChart data={pieChartData} className={styles.reportSummaryPieChart} />
             </div>
             <Divider />
         </>

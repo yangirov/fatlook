@@ -3,6 +3,10 @@
     display: flex;
     justify-content: space-between;
     font-size: var(--font-small);
+
+    &PieChart {
+        margin-right: 20px;
+    }
 }
 
 .reportHealth {

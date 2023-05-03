@@ -1,4 +1,5 @@
 import { FC } from 'react';
+import classNames from 'classnames';
 
 import styles from './PieChart.module.scss';
 
@@ -17,6 +18,7 @@ type PieChartItem = {
 
 export type PieChartProps = {
     size?: number;
+    className?: string;
     data: PieChartData[];
 };
 
@@ -24,7 +26,7 @@ const sliceSize = (num: number, total: number) => (num / total) * 360;
 
 const getPercents = (num: number, total: number) => `${Math.round(((num / total) * 10000) / 100)}%`;
 
-export const PieChart: FC<PieChartProps> = ({ size, data }) => {
+export const PieChart: FC<PieChartProps> = ({ className, size, data }) => {
     const sizeStyle = { '--pieChartSize': `${size ?? 80}px` } as React.CSSProperties;
 
     const total = data.reduce((a, b) => a + b.value, 0);
@@ -62,7 +64,7 @@ export const PieChart: FC<PieChartProps> = ({ size, data }) => {
     }, []);
 
     return (
-        <div className={styles.pieChart} style={sizeStyle}>
+        <div className={classNames(styles.pieChart, className)} style={sizeStyle}>
             <div className={styles.pieChartCircle}>{items.map(({ pie }) => pie)}</div>
             <div className={styles.pieChartLegend}>{items.map(({ legend }) => legend)}</div>
         </div>
