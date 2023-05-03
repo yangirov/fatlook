@@ -19,6 +19,15 @@ export const usersSlice = createSlice({
         addUser: (state, action: PayloadAction<User>) => {
             state.users = [...state.users, action.payload];
         },
+        updateUser: (state, action: PayloadAction<User>) => {
+            state.users = state.users.map(user => {
+                if (user.report === action.payload.report) {
+                    return { ...action.payload, report: user.report };
+                }
+
+                return user;
+            });
+        },
         deleteUser: (state, action: PayloadAction<string>) => {
             state.users = state.users.filter(u => u.report !== action.payload);
         }
@@ -26,9 +35,9 @@ export const usersSlice = createSlice({
 });
 
 const selectUsers = (state: RootState) => state.users.users;
-const selectUserId = (state: RootState, reportId: string) => reportId;
-export const getUserById = createSelector([selectUsers, selectUserId], (users, reportId: string) => users.find(u => u.report === reportId));
+const selectUserId = (state: RootState, userId: string) => userId;
+export const getUserById = createSelector([selectUsers, selectUserId], (users, userId: string) => users.find(u => u.report === userId));
 
-export const { addUser, deleteUser } = usersSlice.actions;
+export const { addUser, updateUser, deleteUser } = usersSlice.actions;
 
 export default usersSlice.reducer;

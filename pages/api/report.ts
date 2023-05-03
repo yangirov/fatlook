@@ -13,6 +13,7 @@ const getReportFromFatSecret = async (req: NextApiRequest): Promise<ReportData |
     const { userId, date, weight, steps } = query;
 
     let report = {
+        userId: userId as string,
         weight: weight as string,
         steps: steps as string
     } as ReportData;

@@ -1,18 +1,18 @@
 'use client';
-import { FC } from 'react';
-
+import { FC, useState } from 'react';
+import { SlPencil, SlTrash } from 'react-icons/sl';
 import Link from 'next/link';
 
 import { Divider, IconButton } from '@/shared/ui';
 import { formatDate } from '@/shared/utils';
 import { PageLayout } from '@/shared/layouts';
 import { useAppSelector, useAppDispatch } from '@/shared/store';
+import { User } from '@/shared/types';
+import { addUser, deleteUser, updateUser } from '@/shared/store/usersReducer';
 
-import { AddUserForm } from './components/AddUserForm';
+import { UserForm } from './components/UserForm';
 
 import styles from './Settings.module.scss';
-import { addUser, deleteUser } from '@/shared/store/usersReducer';
-import { SlTrash } from 'react-icons/sl';
 
 const getReport = (userId: string) => {
     const yesterday = new Date();
@@ -24,14 +24,26 @@ export const Settings: FC = () => {
     const dispatch = useAppDispatch();
     const users = useAppSelector(state => state.users.users);
 
-    const onAddUser = (name: string, report: string) => {
-        dispatch(addUser({ name, report }));
+    const [user, setUser] = useState<User | null>(null);
+
+    const onSubmit = (dto: User) => {
+        if (user !== null) {
+            dispatch(updateUser(dto));
+            setUser(null);
+        } else {
+            dispatch(addUser(dto));
+        }
     };
 
-    const onDeleteUser = (name: string, reportId: string) => {
+    const onUpdateUser = (dto: User) => {
+        setUser(dto);
+    };
+
+    const onDeleteUser = (name: string, userId: string) => {
         const conf = confirm(`Удалить пользователя ${name}?`);
         if (conf) {
-            dispatch(deleteUser(reportId));
+            dispatch(deleteUser(userId));
+            setUser(null);
         }
     };
 
@@ -43,11 +55,14 @@ export const Settings: FC = () => {
                 {users.length === 0 && <div>Нет подопечных</div>}
 
                 <div className={styles.users}>
-                    {users?.map(({ report, name }) => (
+                    {users?.map(({ report, name, dailyAmount }) => (
                         <div key={name + report} className={styles.userItem}>
                             <Link className={styles.userItemLink} href={getReport(report)}>
                                 {name}
                             </Link>
+                            <IconButton className={styles.userItemDelete} onClick={() => onUpdateUser({ name, report, dailyAmount })}>
+                                <SlPencil />
+                            </IconButton>
                             <IconButton className={styles.userItemDelete} onClick={() => onDeleteUser(name, report)}>
                                 <SlTrash />
                             </IconButton>
@@ -56,7 +71,8 @@ export const Settings: FC = () => {
                 </div>
 
                 <Divider />
-                <AddUserForm onAddUser={onAddUser} />
+
+                <UserForm onSubmit={onSubmit} data={user} />
             </PageLayout.Content>
         </PageLayout>
     );

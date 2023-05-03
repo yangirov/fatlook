@@ -3,6 +3,7 @@ import { FoodDetails } from './Food';
 import { Meal } from './Meal';
 
 export type ReportData = {
+    userId: string;
     date: string;
     total: FoodDetails;
     meals: Meal[];

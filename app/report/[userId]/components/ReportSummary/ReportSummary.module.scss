@@ -1,14 +1,70 @@
-.reportSummary {
+.font {
     line-height: 1.5rem;
+    font-size: var(--font-small);
+    margin: var(--gap-15) 0;
+}
+
+.summary {
+    composes: font;
     display: flex;
     justify-content: space-between;
-    font-size: var(--font-small);
 
     &PieChart {
-        margin-right: 20px;
+        margin-right: var(--gap-10);
     }
 }
 
-.reportHealth {
-    margin-top: var(--gap-25);
+.health {
+    composes: font;
+}
+
+.daily {
+    composes: font;
+    display: flex;
+    justify-content: space-between;
+
+    &Title {
+        font-weight: bold;
+        font-size: 1rem;
+        margin-bottom: var(--gap-5);
+    }
+
+    &Info {
+        width: 70%;
+
+        div {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        &Bold {
+            font-weight: bold;
+
+            &Gray {
+                color: var(--gray);
+            }
+        }
+
+        &Percents {
+            font-style: italic;
+            color: var(--gray);
+        }
+    }
+
+    &Cube {
+        display: grid;
+        grid-template-columns: repeat(10, 6px);
+        grid-template-rows: repeat(10, 6px);
+        grid-gap: 2px;
+        direction: rtl;
+        margin-right: var(--gap-10);
+
+        &Item {
+            background-color: var(--gray);
+
+            &Filled {
+                background-color: var(--green);
+            }
+        }
+    }
 }

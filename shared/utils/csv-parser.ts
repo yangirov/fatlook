@@ -42,7 +42,7 @@ export const parseCSV = (str: string) => {
     return arr;
 };
 
-export const parseFatSecretCSV = (csv: string): ReportData => {
+export const parseFatSecretCSV = (csv: string): Omit<ReportData, 'userId'> => {
     const matrix = parseCSV(csv);
 
     const headerIndex = matrix.findIndex(line => line[0].startsWith('Дата'));

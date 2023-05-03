@@ -1,11 +1,14 @@
 import { FC, useContext } from 'react';
 
 import { REPORT_CALC_RATIO, REPORT_SUMMARY_COLORS, FoodUnit, PartialFoodDetailsKeys, UnitInfo, unitMap } from '@/shared/types';
-import { PieChart, PieChartData } from '@/shared/ui';
+import { Divider, PieChart, PieChartData } from '@/shared/ui';
 
 import { ReportContext } from '../../Report';
 
 import styles from './ReportSummary.module.scss';
+import { useAppSelector } from '@/shared/store';
+import { getUserById } from '@/shared/store/usersReducer';
+import classNames from 'classnames';
 
 const FormatUnit: FC<{ unit?: UnitInfo; value: FoodUnit }> = ({ unit, value }) => (
     <div>
@@ -15,8 +18,10 @@ const FormatUnit: FC<{ unit?: UnitInfo; value: FoodUnit }> = ({ unit, value }) =
 
 const ReportSummary: FC = () => {
     const {
-        report: { total, weight, steps }
+        report: { userId, total, weight, steps }
     } = useContext(ReportContext);
+
+    const user = useAppSelector(state => getUserById(state, userId));
 
     const keys: PartialFoodDetailsKeys = ['allFat', 'cholesterol', 'sodium', 'carbohydrates', 'fiber', 'sugar', 'protein'];
 
@@ -32,20 +37,59 @@ const ReportSummary: FC = () => {
         };
     });
 
+    const totalKcal = Number(total.kcal);
+    const rsk = user?.dailyAmount;
+
     return (
         <>
-            <div className={styles.reportSummary}>
+            <div className={styles.dailyTitle}>Сводка</div>
+
+            {rsk && (
+                <>
+                    <div className={styles.daily}>
+                        <div className={styles.dailyInfo}>
+                            <div>
+                                <span>Осталось Калорий</span>
+                                <span className={styles.dailyInfoBoldGray}>{Math.floor(+rsk - totalKcal)}</span>
+                            </div>
+                            <div>
+                                <span>Употреблено Калорий</span>
+                                <span className={styles.dailyInfoBold}>{totalKcal}</span>
+                            </div>
+                            <Divider />
+                            <div className={styles.dailyInfoPercents}>
+                                <span>{Math.floor((totalKcal / +rsk) * 100)}% от РСК</span>
+                                <span className={styles.dailyInfoBold}>{rsk}</span>
+                            </div>
+                        </div>
+
+                        <div className={styles.dailyCube}>
+                            {[...Array(100).keys()].map(x => (
+                                <div
+                                    key={x}
+                                    className={classNames(styles.dailyCubeItem, {
+                                        [styles.dailyCubeItemFilled]: +rsk - (totalKcal / 100) * x < totalKcal
+                                    })}
+                                ></div>
+                            ))}
+                        </div>
+                    </div>
+                    <Divider />
+                </>
+            )}
+
+            <div className={styles.summary}>
                 <div>
                     {keys.map(key => (
                         <FormatUnit key={key} unit={unitMap[key]} value={total[key]} />
                     ))}
-
-                    <div className={styles.reportHealth}>
-                        {weight && <div>Вес: {weight} кг</div>}
-                        {steps && <div>Шаги: {steps} шагов</div>}
-                    </div>
                 </div>
-                <PieChart data={pieChartData} className={styles.reportSummaryPieChart} />
+                <PieChart data={pieChartData} className={styles.summaryPieChart} />
+            </div>
+
+            <div className={styles.health}>
+                {weight && <div>Вес: {weight} кг</div>}
+                {steps && <div>Шаги: {steps} шагов</div>}
             </div>
         </>
     );
