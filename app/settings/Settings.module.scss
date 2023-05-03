@@ -4,7 +4,7 @@
     font-size: 1.2rem;
     composes: link from 'styles/scaffold.scss';
     padding: var(--gap-10);
-    border: 1px solid #ccc;
+    border: 1px solid var(--light-gray);
     border-radius: var(--border-radius);
 }
 

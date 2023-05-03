@@ -4,7 +4,7 @@
         grid-template-columns: repeat(7, 1fr);
         margin-bottom: var(--gap-10);
         font-size: var(--font-small);
-        color: #ccc;
+        color: var(--light-gray);
     }
 
     &Days {

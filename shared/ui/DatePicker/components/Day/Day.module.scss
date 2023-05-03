@@ -11,6 +11,6 @@
 
     &Disabled {
         pointer-events: none;
-        color: #ccc;
+        color: var(--light-gray);
     }
 }
