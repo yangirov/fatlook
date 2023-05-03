@@ -47,7 +47,7 @@ $border: calc(var(--border-radius) * 2);
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: var(--gap-5) var(--gap-15) var(--gap-5) var(--gap-50);
+            padding: calc(var(--gap-15) / 2) var(--gap-15) calc(var(--gap-15) / 2) var(--gap-50);
             font-size: var(--font-small);
             color: var(--gray);
             background-color: var(--white);
