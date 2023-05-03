@@ -1,6 +1,8 @@
 import { ReactNode } from 'react';
 import { Roboto } from 'next/font/google';
 
+import Providers from './provider';
+
 import '@/styles/globals.scss';
 
 const robotoFont = Roboto({
@@ -41,7 +43,9 @@ export default function RootLayout({ children }: { children: ReactNode }) {
 
                 <link rel="manifest" href={`${process.env.DOMAIN}manifest.json`} />
             </head>
-            <body className={robotoFont.className}>{children}</body>
+            <body className={robotoFont.className}>
+                <Providers>{children}</Providers>
+            </body>
         </html>
     );
 }

@@ -1,57 +1,35 @@
 'use client';
-import { FC, useEffect, useState } from 'react';
+import { FC } from 'react';
+
 import Link from 'next/link';
 
 import { Divider } from '@/shared/ui';
 import { formatDate } from '@/shared/utils';
 import { PageLayout } from '@/shared/layouts';
-import { FATLOOK_USERS } from '@/shared/consts';
+import { useAppSelector, useAppDispatch } from '@/shared/store';
 
 import { AddUserForm } from './components/AddUserForm';
 
 import styles from './Settings.module.scss';
+import { addUser } from '@/shared/store/usersReducer';
 
-const getReport = (name: string, userId: string) => {
+const getReport = (userId: string) => {
     const yesterday = new Date();
     yesterday.setDate(yesterday.getDate() - 1);
-    return `/report/${userId}?date=${formatDate(yesterday)}&name=${name}`;
-};
-
-export type UserReport = {
-    report: string;
-    name: string;
-    dailyAmount?: number;
+    return `/report/${userId}?date=${formatDate(yesterday)}`;
 };
 
 export const Settings: FC = () => {
-    const [users, setUsers] = useState<UserReport[]>();
-
-    useEffect(() => {
-        const value = localStorage.getItem(FATLOOK_USERS);
-        if (value) {
-            const users = JSON.parse(value);
-            setUsers(users as UserReport[]);
-        }
-    }, []);
+    const dispatch = useAppDispatch();
+    const users = useAppSelector(state => state.users.users);
 
     const onAddUser = (name: string, report: string) => {
-        setUsers(prev => {
-            const arr = [];
-            if (prev) {
-                arr.push(...prev);
-            }
-
-            arr.push({ name, report });
-            localStorage.setItem(FATLOOK_USERS, JSON.stringify(arr));
-
-            return arr;
-        });
+        dispatch(addUser({ name, report }));
     };
 
-    const onClear = () => {
-        localStorage.setItem(FATLOOK_USERS, '');
-        setUsers([]);
-    };
+    // const onClear = () => {
+    //     dispatch(clearUsers());
+    // };
 
     return (
         <PageLayout>
@@ -63,15 +41,16 @@ export const Settings: FC = () => {
                         <div>Нет подопечных</div>
                     ) : (
                         users.map(({ report, name }) => (
-                            <Link className={styles.userItem} key={report} href={getReport(name, report)}>
+                            <Link className={styles.userItem} key={report} href={getReport(report)}>
                                 {name}
                             </Link>
                         ))
                     )}
                 </div>
-                {/* <Button onClick={onClear}>Очистить</Button> */}
+
                 <Divider />
                 <AddUserForm onAddUser={onAddUser} />
+                {/* <Button onClick={onClear}>Очистить</Button> */}
             </PageLayout.Content>
         </PageLayout>
     );

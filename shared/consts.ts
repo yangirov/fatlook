@@ -1,1 +1,1 @@
-export const FATLOOK_USERS = 'FATLOOK_USERS';
+export const FATLOOK_STATE = 'FATLOOK_STATE';

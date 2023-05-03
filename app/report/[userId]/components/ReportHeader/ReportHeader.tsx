@@ -7,8 +7,8 @@ import classNames from 'classnames';
 import DatePicker from '@/shared/ui/DatePicker';
 import { Accordion, AccordionContext, IconButton, Overlay } from '@/shared/ui';
 import { beautifyDate, formatDate, parseDate } from '@/shared/utils';
-
-import { ReportContext } from '../../Report';
+import { useAppSelector } from '@/shared/store';
+import { getUserById } from '@/shared/store/usersReducer';
 
 import styles from './ReportHeader.module.scss';
 
@@ -18,9 +18,10 @@ type HeaderProps = {
 };
 
 const Header: FC<HeaderProps> = ({ date, month }) => {
-    const {
-        report: { name }
-    } = useContext(ReportContext);
+    const params = useParams();
+    const userId = params?.userId.toString() ?? '';
+
+    const user = useAppSelector(state => getUserById(state, userId));
 
     const { isOpen, setOpen } = useContext(AccordionContext);
 
@@ -46,7 +47,7 @@ const Header: FC<HeaderProps> = ({ date, month }) => {
                     {isOpen && month ? month : beautifyDate(date)}
                 </div>
 
-                <div className={styles.reportHeaderUser}>{name}</div>
+                <div className={styles.reportHeaderUser}>{user?.name}</div>
             </div>
             {isOpen && <Overlay onClose={onToggle} />}
         </>
