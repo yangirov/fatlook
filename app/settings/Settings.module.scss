@@ -1,11 +1,18 @@
 .userItem {
-    display: block;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
     margin-bottom: var(--gap-15);
-    font-size: 1.2rem;
-    composes: link from 'styles/scaffold.scss';
+
     padding: var(--gap-10);
     border: 1px solid var(--light-gray);
     border-radius: var(--border-radius);
+
+    &Link {
+        font-size: 1.2rem;
+        composes: link from 'styles/scaffold.scss';
+        flex: 0 0 80%;
+    }
 }
 
 .users {

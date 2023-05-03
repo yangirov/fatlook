@@ -3,7 +3,7 @@ import { FC } from 'react';
 
 import Link from 'next/link';
 
-import { Divider } from '@/shared/ui';
+import { Divider, IconButton } from '@/shared/ui';
 import { formatDate } from '@/shared/utils';
 import { PageLayout } from '@/shared/layouts';
 import { useAppSelector, useAppDispatch } from '@/shared/store';
@@ -11,7 +11,8 @@ import { useAppSelector, useAppDispatch } from '@/shared/store';
 import { AddUserForm } from './components/AddUserForm';
 
 import styles from './Settings.module.scss';
-import { addUser } from '@/shared/store/usersReducer';
+import { addUser, deleteUser } from '@/shared/store/usersReducer';
+import { SlTrash } from 'react-icons/sl';
 
 const getReport = (userId: string) => {
     const yesterday = new Date();
@@ -27,9 +28,12 @@ export const Settings: FC = () => {
         dispatch(addUser({ name, report }));
     };
 
-    // const onClear = () => {
-    //     dispatch(clearUsers());
-    // };
+    const onDeleteUser = (name: string, reportId: string) => {
+        const conf = confirm(`Удалить пользователя ${name}?`);
+        if (conf) {
+            dispatch(deleteUser(reportId));
+        }
+    };
 
     return (
         <PageLayout>
@@ -41,16 +45,20 @@ export const Settings: FC = () => {
                         <div>Нет подопечных</div>
                     ) : (
                         users.map(({ report, name }) => (
-                            <Link className={styles.userItem} key={report} href={getReport(report)}>
-                                {name}
-                            </Link>
+                            <div key={report} className={styles.userItem}>
+                                <Link className={styles.userItemLink} href={getReport(report)}>
+                                    {name}
+                                </Link>
+                                <IconButton className={styles.userItemDelete} onClick={() => onDeleteUser(name, report)}>
+                                    <SlTrash />
+                                </IconButton>
+                            </div>
                         ))
                     )}
                 </div>
 
                 <Divider />
                 <AddUserForm onAddUser={onAddUser} />
-                {/* <Button onClick={onClear}>Очистить</Button> */}
             </PageLayout.Content>
         </PageLayout>
     );
