@@ -14,6 +14,8 @@
     --green: #269c24;
     --darken-green: #248f22;
     --gray: #959595;
+
+    --icon-color: var(--white);
 }
 
 @media (prefers-color-scheme: dark) {
@@ -28,6 +30,8 @@
         --green: #13cb65;
         --darken-green: #248f22;
         --gray: #707070;
+
+        --icon-color: var(--dark);
     }
 }
 
@@ -38,4 +42,5 @@ body {
     font-size: 16px;
     min-width: 100vw;
     min-height: 100vh;
+    user-select: none;
 }

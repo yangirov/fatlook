@@ -1,9 +1,11 @@
 import { FC, useContext } from 'react';
 import classNames from 'classnames';
 
-import { ArrowIcon } from '@/shared/icons';
+import { Icon } from '@/shared/ui';
 import { Meal, mealIconMap } from '@/shared/types';
 import { Accordion, AccordionContext, Colors } from '@/shared/ui';
+
+import { SlArrowUp } from 'react-icons/sl';
 
 import { ReportContext } from '../../Report';
 import ReportFood from '../ReportFood';
@@ -28,7 +30,9 @@ const Toggler: FC = () => {
             })}
             onClick={onToggle}
         >
-            <ArrowIcon color={Colors.GREEN}></ArrowIcon>
+            <Icon>
+                <SlArrowUp color={Colors.GREEN} />
+            </Icon>
         </div>
     );
 };

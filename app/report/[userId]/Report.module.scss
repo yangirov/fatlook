@@ -1,11 +1,3 @@
-.container {
-    composes: container from 'styles/scaffold.scss';
-}
-
-.reportBody {
-    margin-top: 50px;
-}
-
 .empty {
     composes: flexCenter from 'styles/scaffold.scss';
     min-height: 100vh;

@@ -1,14 +1,4 @@
 .reportHeader {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    text-align: center;
-    background-color: var(--accent-green);
-    padding: 5px 0;
-    color: var(--light);
-    z-index: 1;
-
     &Back {
         width: 100px;
         display: flex;
@@ -16,13 +6,7 @@
         margin-left: 15px;
     }
 
-    &User {
-        width: 100px;
-        color: #ccc;
-    }
-
     &Date {
-        user-select: none;
         cursor: pointer;
 
         &:after {
@@ -44,6 +28,11 @@
         }
     }
 
+    &User {
+        width: 100px;
+        color: #ccc;
+    }
+
     &Controls {
         display: flex;
         justify-content: space-between;
@@ -54,25 +43,5 @@
         cursor: pointer;
         background-color: var(--accent-green);
         composes: flexCenter from 'styles/scaffold.scss';
-    }
-}
-
-.overlay {
-    position: fixed;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    background: rgba(0, 0, 0, 0.3);
-    visibility: hidden;
-    opacity: 0;
-    transition: opacity 0.5s ease;
-    pointer-events: none;
-    user-select: none;
-    overflow: hidden;
-
-    &Opened {
-        visibility: visible;
-        opacity: 1;
     }
 }

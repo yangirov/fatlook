@@ -2,16 +2,17 @@
 import { FC, createContext } from 'react';
 import { PartialFoodDetailsKeys, ReportData } from '@/shared/types';
 
+import { PageLayout } from '@/shared/layouts';
 import { isEmpty } from '@/shared/utils';
 
 import ReportHeader from './components/ReportHeader';
 import ReportSummary from './components/ReportSummary';
-import ReportMeals from './components/ReportMealsList';
+import ReportMeals from './components/ReportMeals';
 import ReportTotal from './components/ReportTotal';
 
 import styles from './Report.module.scss';
 
-export type ReportProps = {
+type ReportProps = {
     report?: ReportData;
 };
 
@@ -25,34 +26,30 @@ export const ReportContext = createContext<{ report: ReportData; visibleItems: P
 export const Report: FC<ReportProps> = ({ report }) => {
     if (!report || isEmpty(report.meals)) {
         return (
-            <div className={styles.container}>
-                <ReportHeader />
+            <PageLayout>
+                <PageLayout.Header>
+                    <ReportHeader />
+                </PageLayout.Header>
 
-                <div className={styles.reportBody}>
+                <PageLayout.Content>
                     <div className={styles.empty}>Ничего не найдено 🙄</div>
-                </div>
-            </div>
+                </PageLayout.Content>
+            </PageLayout>
         );
     }
-
     return (
         <ReportContext.Provider value={{ report, visibleItems }}>
-            <div className={styles.container}>
-                <ReportHeader />
+            <PageLayout>
+                <PageLayout.Header>
+                    <ReportHeader />
+                </PageLayout.Header>
 
-                <div className={styles.reportBody}>
+                <PageLayout.Content>
                     <ReportTotal />
                     <ReportMeals />
                     <ReportSummary />
-
-                    {report.weight && report.steps && (
-                        <div className={styles.total}>
-                            <div>Вес: {report.weight} кг</div>
-                            <div>Шаги: {report.steps} шагов</div>
-                        </div>
-                    )}
-                </div>
-            </div>
+                </PageLayout.Content>
+            </PageLayout>
         </ReportContext.Provider>
     );
 };

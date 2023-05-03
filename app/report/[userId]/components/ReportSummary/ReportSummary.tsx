@@ -1,7 +1,7 @@
 import { FC, useContext } from 'react';
 
 import { REPORT_CALC_RATIO, REPORT_SUMMARY_COLORS, FoodUnit, PartialFoodDetailsKeys, UnitInfo, unitMap } from '@/shared/types';
-import { PieChart, PieChartData } from '@/shared/ui';
+import { Divider, PieChart, PieChartData } from '@/shared/ui';
 
 import { ReportContext } from '../../Report';
 
@@ -15,7 +15,7 @@ const FormatUnit: FC<{ unit?: UnitInfo; value: FoodUnit }> = ({ unit, value }) =
 
 const ReportSummary: FC = () => {
     const {
-        report: { total }
+        report: { total, weight, steps }
     } = useContext(ReportContext);
 
     const keys: PartialFoodDetailsKeys = ['allFat', 'cholesterol', 'sodium', 'carbohydrates', 'fiber', 'sugar', 'protein'];
@@ -33,14 +33,22 @@ const ReportSummary: FC = () => {
     });
 
     return (
-        <div className={styles.reportSummary}>
-            <div>
-                {keys.map(key => (
-                    <FormatUnit key={key} unit={unitMap[key]} value={total[key]} />
-                ))}
+        <>
+            <div className={styles.reportSummary}>
+                <div>
+                    {keys.map(key => (
+                        <FormatUnit key={key} unit={unitMap[key]} value={total[key]} />
+                    ))}
+
+                    <div className={styles.reportHealth}>
+                        {weight && <div>Вес: {weight} кг</div>}
+                        {steps && <div>Шаги: {steps} шагов</div>}
+                    </div>
+                </div>
+                <PieChart data={pieChartData} />
             </div>
-            <PieChart data={pieChartData} />
-        </div>
+            <Divider />
+        </>
     );
 };
 

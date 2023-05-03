@@ -7,7 +7,6 @@
         position: relative;
         width: var(--pieChartSize);
         height: var(--pieChartSize);
-        z-index: -1;
 
         &::after {
             content: '';

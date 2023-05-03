@@ -7,9 +7,10 @@ const ReportMeals: FC = () => {
     const {
         report: { meals }
     } = useContext(ReportContext);
+
     return (
         <>
-            {meals.map(meal => (
+            {meals?.map(meal => (
                 <ReportMeal key={meal.name} meal={meal} />
             ))}
         </>

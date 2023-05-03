@@ -2,8 +2,9 @@
 import { FC, createContext, memo, useState } from 'react';
 import { useDatepicker, START_DATE, OnDatesChangeProps } from '@datepicker-react/hooks';
 import { addDays, addMonths, isAfter } from 'date-fns';
+import { SlArrowLeft, SlArrowRight } from 'react-icons/sl';
 
-import { ArrowIcon } from '@/shared/icons';
+import { Icon } from '../Icon';
 
 import Month from './components/Month';
 
@@ -105,7 +106,9 @@ const DatePicker: FC<DatePickerProps> = ({ date, onDateChange, onMonthChange }) 
         >
             <div className={styles.datePickerWrapper}>
                 <div onClick={handlePrevMonth}>
-                    <ArrowIcon />
+                    <Icon>
+                        <SlArrowLeft />
+                    </Icon>
                 </div>
                 <div className={styles.datePicker}>
                     {activeMonths.map(month => (
@@ -113,7 +116,9 @@ const DatePicker: FC<DatePickerProps> = ({ date, onDateChange, onMonthChange }) 
                     ))}
                 </div>
                 <div onClick={handleNextMonth}>
-                    <ArrowIcon style={{ transform: 'rotate(180deg)' }} />
+                    <Icon>
+                        <SlArrowRight />
+                    </Icon>
                 </div>
             </div>
         </DatePickerContext.Provider>

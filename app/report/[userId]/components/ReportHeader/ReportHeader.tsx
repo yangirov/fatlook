@@ -1,11 +1,11 @@
 'use client';
-import { FC, useContext, useEffect, useRef, useState } from 'react';
+import { FC, useContext, useEffect, useState } from 'react';
 import { useParams, useRouter, useSearchParams } from 'next/navigation';
+import { SlArrowLeft } from 'react-icons/sl';
 import classNames from 'classnames';
 
 import DatePicker from '@/shared/ui/DatePicker';
-import { Accordion, AccordionContext, IconButton } from '@/shared/ui';
-import { ArrowIcon } from '@/shared/icons';
+import { Accordion, AccordionContext, IconButton, Overlay } from '@/shared/ui';
 import { beautifyDate, formatDate, parseDate } from '@/shared/utils';
 
 import { ReportContext } from '../../Report';
@@ -15,10 +15,9 @@ import styles from './ReportHeader.module.scss';
 type HeaderProps = {
     date: Date | null;
     month: string | null;
-    headerRef: React.MutableRefObject<HTMLElement | null>;
 };
 
-const Header: FC<HeaderProps> = ({ date, month, headerRef }) => {
+const Header: FC<HeaderProps> = ({ date, month }) => {
     const {
         report: { name }
     } = useContext(ReportContext);
@@ -29,36 +28,28 @@ const Header: FC<HeaderProps> = ({ date, month, headerRef }) => {
         setOpen(prev => !prev);
     };
 
-    const handleClickOutside = (e: MouseEvent) => {
-        if (isOpen && e.target instanceof HTMLElement && !headerRef?.current?.contains(e.target)) {
-            onToggle();
-        }
-    };
-
-    useEffect(() => {
-        document.addEventListener('mousedown', handleClickOutside);
-        return () => document.removeEventListener('mousedown', handleClickOutside);
-    });
-
     return (
-        <div className={styles.reportHeaderControls}>
-            <div className={styles.reportHeaderBack}>
-                <IconButton href="/">
-                    <ArrowIcon />
-                </IconButton>
-            </div>
+        <>
+            <div className={styles.reportHeaderControls}>
+                <div className={styles.reportHeaderBack}>
+                    <IconButton href="/">
+                        <SlArrowLeft />
+                    </IconButton>
+                </div>
 
-            <div
-                onClick={onToggle}
-                className={classNames(styles.reportHeaderDate, {
-                    [styles.reportHeaderDateExpanded]: isOpen
-                })}
-            >
-                {isOpen && month ? month : beautifyDate(date)}
-            </div>
+                <div
+                    onClick={onToggle}
+                    className={classNames(styles.reportHeaderDate, {
+                        [styles.reportHeaderDateExpanded]: isOpen
+                    })}
+                >
+                    {isOpen && month ? month : beautifyDate(date)}
+                </div>
 
-            <div className={styles.reportHeaderUser}>{name}</div>
-        </div>
+                <div className={styles.reportHeaderUser}>{name}</div>
+            </div>
+            {isOpen && <Overlay onClose={onToggle} />}
+        </>
     );
 };
 
@@ -68,7 +59,9 @@ type ContentProps = {
 };
 
 const Content: FC<ContentProps> = ({ date, setMonth }) => {
-    const searchParams = useSearchParams();
+    // FIXME: https://github.com/vercel/next.js/discussions/41868
+    const searchParams = useSearchParams() as unknown as URLSearchParams;
+
     const router = useRouter();
     const params = useParams();
 
@@ -76,18 +69,12 @@ const Content: FC<ContentProps> = ({ date, setMonth }) => {
         if (!date) return;
 
         if (params && searchParams) {
-            // TODO
-            const queryParams = new URLSearchParams({
-                date: searchParams.get('date') ?? '',
-                steps: searchParams.get('steps') ?? '',
-                weight: searchParams.get('weight') ?? '',
-                name: searchParams.get('name') ?? ''
-            });
+            const sp = new URLSearchParams(searchParams);
 
             const formattedDate = formatDate(date);
-            queryParams.set('date', formattedDate);
+            sp.set('date', formattedDate);
 
-            router.push(`/report/${params?.userId}?${queryParams}`);
+            router.push(`/report/${params?.userId}?${sp}`);
         }
     };
 
@@ -103,40 +90,28 @@ const Content: FC<ContentProps> = ({ date, setMonth }) => {
 };
 
 const ReportHeader: FC = () => {
-    const headerRef = useRef(null);
     const searchParams = useSearchParams();
 
     const [month, setMonth] = useState<string | null>(null);
     const [date, setDate] = useState<Date | null>(null);
-    const [isOpen, setOpen] = useState(false);
 
     useEffect(() => {
         if (searchParams && searchParams.has('date')) {
             const queryDate = searchParams.get('date') ?? '';
             const parsedDate = parseDate(queryDate);
-
             setDate(parsedDate);
         }
     }, [searchParams]);
 
-    const onChange = () => {
-        setOpen(prev => !prev);
-    };
-
     return (
-        <>
-            <header className={styles.reportHeader} ref={headerRef}>
-                <Accordion onChange={onChange}>
-                    <Accordion.Header>
-                        <Header date={date} month={month} headerRef={headerRef} />
-                    </Accordion.Header>
-                    <Accordion.Content>
-                        <Content date={date} setMonth={setMonth} />
-                    </Accordion.Content>
-                </Accordion>
-            </header>
-            <div className={classNames(styles.overlay, { [styles.overlayOpened]: isOpen })}></div>
-        </>
+        <Accordion>
+            <Accordion.Header>
+                <Header date={date} month={month} />
+            </Accordion.Header>
+            <Accordion.Content>
+                <Content date={date} setMonth={setMonth} />
+            </Accordion.Content>
+        </Accordion>
     );
 };
 
