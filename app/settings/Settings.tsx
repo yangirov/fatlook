@@ -47,6 +47,10 @@ export const Settings: FC = () => {
         }
     };
 
+    const onCancelUpdate = () => {
+        setUser(null);
+    };
+
     return (
         <PageLayout>
             <PageLayout.Header>Отчеты</PageLayout.Header>
@@ -72,7 +76,7 @@ export const Settings: FC = () => {
 
                 <Divider />
 
-                <UserForm onSubmit={onSubmit} data={user} />
+                <UserForm onSubmit={onSubmit} onCancelUpdate={onCancelUpdate} data={user} />
             </PageLayout.Content>
         </PageLayout>
     );

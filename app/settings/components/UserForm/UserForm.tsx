@@ -14,9 +14,10 @@ const getUserId = (url: string) => {
 type UserFormProps = {
     data: User | null;
     onSubmit: (payload: User) => void;
+    onCancelUpdate: () => void;
 };
 
-export const UserForm: FC<UserFormProps> = ({ data, onSubmit }) => {
+export const UserForm: FC<UserFormProps> = ({ data, onSubmit, onCancelUpdate }) => {
     const [name, setName] = useState('');
     const [reportUrl, setReportUrl] = useState('');
     const [dailyAmount, setDailyAmount] = useState('');
@@ -29,6 +30,12 @@ export const UserForm: FC<UserFormProps> = ({ data, onSubmit }) => {
         }
     }, [data]);
 
+    const clearForm = () => {
+        setName('');
+        setReportUrl('');
+        setDailyAmount('');
+    };
+
     const handleUser = () => {
         onSubmit({
             name,
@@ -36,9 +43,7 @@ export const UserForm: FC<UserFormProps> = ({ data, onSubmit }) => {
             dailyAmount
         });
 
-        setName('');
-        setReportUrl('');
-        setDailyAmount('');
+        clearForm();
     };
 
     const actionText = data ? 'Обновить' : 'Добавить';
@@ -73,6 +78,16 @@ export const UserForm: FC<UserFormProps> = ({ data, onSubmit }) => {
 
             <div className={styles.buttons}>
                 <Button onClick={handleUser}>{actionText}</Button>
+                {data && (
+                    <Button
+                        onClick={() => {
+                            clearForm();
+                            onCancelUpdate();
+                        }}
+                    >
+                        Отмена
+                    </Button>
+                )}
             </div>
         </div>
     );
