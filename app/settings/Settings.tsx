@@ -40,21 +40,19 @@ export const Settings: FC = () => {
             <PageLayout.Header>Отчеты</PageLayout.Header>
 
             <PageLayout.Content>
+                {users.length === 0 && <div>Нет подопечных</div>}
+
                 <div className={styles.users}>
-                    {!users || users.length === 0 ? (
-                        <div>Нет подопечных</div>
-                    ) : (
-                        users.map(({ report, name }) => (
-                            <div key={report} className={styles.userItem}>
-                                <Link className={styles.userItemLink} href={getReport(report)}>
-                                    {name}
-                                </Link>
-                                <IconButton className={styles.userItemDelete} onClick={() => onDeleteUser(name, report)}>
-                                    <SlTrash />
-                                </IconButton>
-                            </div>
-                        ))
-                    )}
+                    {users?.map(({ report, name }) => (
+                        <div key={name + report} className={styles.userItem}>
+                            <Link className={styles.userItemLink} href={getReport(report)}>
+                                {name}
+                            </Link>
+                            <IconButton className={styles.userItemDelete} onClick={() => onDeleteUser(name, report)}>
+                                <SlTrash />
+                            </IconButton>
+                        </div>
+                    ))}
                 </div>
 
                 <Divider />

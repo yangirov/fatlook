@@ -7,8 +7,6 @@ import { User } from '../types';
 
 import usersReducer from './usersReducer';
 
-const IS_SERVER = typeof window === 'undefined';
-
 const rootReducer = combineReducers({
     users: usersReducer
 });
@@ -16,27 +14,21 @@ const rootReducer = combineReducers({
 const localStorageMiddleware: Middleware = ({ getState }) => {
     return next => action => {
         const result = next(action);
-
-        if (!IS_SERVER) {
-            localStorage.setItem(FATLOOK_STATE, JSON.stringify(getState()));
-        }
-
+        localStorage.setItem(FATLOOK_STATE, JSON.stringify(getState()));
         return result;
     };
 };
 
 const reHydrateStore = () => {
-    if (!IS_SERVER) {
-        // TODO: Remove after migration
-        if (localStorage.getItem('FATLOOK_USERS')) {
-            const state = { users: { users: JSON.parse(localStorage.getItem('FATLOOK_USERS') ?? '[]') as User[] } };
-            localStorage.setItem(FATLOOK_STATE, JSON.stringify(state));
-            localStorage.removeItem('FATLOOK_USERS');
-        }
+    // TODO: Remove after migration
+    if (localStorage.getItem('FATLOOK_USERS')) {
+        const state = { users: { users: JSON.parse(localStorage.getItem('FATLOOK_USERS') ?? '[]') as User[] } };
+        localStorage.setItem(FATLOOK_STATE, JSON.stringify(state));
+        localStorage.removeItem('FATLOOK_USERS');
+    }
 
-        if (localStorage.getItem(FATLOOK_STATE)) {
-            return JSON.parse(localStorage.getItem(FATLOOK_STATE) ?? '[]');
-        }
+    if (localStorage.getItem(FATLOOK_STATE)) {
+        return JSON.parse(localStorage.getItem(FATLOOK_STATE) ?? '');
     }
 };
 
