@@ -57,7 +57,7 @@
         grid-template-rows: repeat(10, 6px);
         grid-gap: 2px;
         direction: rtl;
-        margin-right: var(--gap-10);
+        margin-left: var(--gap-10);
 
         &Item {
             background-color: var(--gray);
