@@ -1,22 +1,13 @@
 import { FC } from 'react';
 import classNames from 'classnames';
 
+import { PieChartData, PieChartItem } from './types';
+
 import styles from './PieChart.module.scss';
 
 const colors = ['cornflowerblue', 'olivedrab', 'orange', 'tomato', 'crimson', 'purple', 'turquoise', 'forestgreen', 'navy', 'gray'];
 
-export type PieChartData = {
-    name: string;
-    color?: string;
-    value: number;
-};
-
-type PieChartItem = {
-    pie: React.ReactNode;
-    legend: React.ReactNode;
-};
-
-export type PieChartProps = {
+type PieChartProps = {
     size?: number;
     className?: string;
     data: PieChartData[];

@@ -1,0 +1,34 @@
+.modal {
+    display: flex;
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    z-index: 1000;
+
+    &Wrapper {
+        position: relative;
+        width: 100%;
+
+        margin-top: auto;
+        min-height: 60vh;
+        max-height: 100vh;
+        background-color: var(--white);
+
+        padding: var(--gap-15);
+        border-radius: var(--gap-10) var(--gap-10) 0 0;
+    }
+
+    &CloseButton {
+        position: absolute;
+        top: 0;
+        right: 0;
+
+        &Icon {
+            padding: var(--gap-10);
+            background-color: transparent;
+            color: var(--dark);
+        }
+    }
+}

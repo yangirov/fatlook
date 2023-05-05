@@ -3,7 +3,7 @@ import { ComponentPropsWithoutRef, FC, useEffect, useState } from 'react';
 import Link, { LinkProps } from 'next/link';
 
 import classNames from 'classnames';
-import { Spinner } from '../Spinner/Spinner';
+import { Spinner } from '../Spinner';
 
 import styles from './Button.module.scss';
 

@@ -3,14 +3,14 @@ import { FC, useState } from 'react';
 import { SlPencil, SlTrash } from 'react-icons/sl';
 import Link from 'next/link';
 
-import { Divider, IconButton } from '@/shared/ui';
+import { Button, IconButton } from '@/shared/ui';
 import { formatDate } from '@/shared/utils';
 import { PageLayout } from '@/shared/layouts';
 import { useAppSelector, useAppDispatch } from '@/shared/store';
 import { User } from '@/shared/types';
-import { addUser, deleteUser, updateUser } from '@/shared/store/usersReducer';
+import { deleteUser } from '@/shared/store/usersReducer';
 
-import { UserForm } from './components/UserForm';
+import { UserForm } from './components/AddUserForm';
 
 import styles from './Settings.module.scss';
 
@@ -25,30 +25,23 @@ export const Settings: FC = () => {
     const users = useAppSelector(state => state.users.users);
 
     const [user, setUser] = useState<User | null>(null);
+    const [isOpenUserForm, setIsOpenUserForm] = useState(false);
 
-    const onSubmit = (dto: User) => {
-        if (user !== null) {
-            dispatch(updateUser(dto));
-            setUser(null);
-        } else {
-            dispatch(addUser(dto));
-        }
+    const onToggleUserForm = () => {
+        setIsOpenUserForm(prev => !prev);
     };
 
-    const onUpdateUser = (dto: User) => {
-        setUser(dto);
+    const onUpdateUser = (user: User) => {
+        setUser(user);
+        onToggleUserForm();
     };
 
-    const onDeleteUser = (name: string, userId: string) => {
+    const onDeleteUser = (userId: string, name: string) => {
         const conf = confirm(`Удалить пользователя ${name}?`);
         if (conf) {
             dispatch(deleteUser(userId));
             setUser(null);
         }
-    };
-
-    const onCancelUpdate = () => {
-        setUser(null);
     };
 
     return (
@@ -59,24 +52,26 @@ export const Settings: FC = () => {
                 {users.length === 0 && <div>Нет подопечных</div>}
 
                 <div className={styles.users}>
-                    {users?.map(({ report, name, dailyAmount }) => (
-                        <div key={name + report} className={styles.userItem}>
-                            <Link className={styles.userItemLink} href={getReport(report)}>
+                    {users?.map(({ id, name, dailyAmount }) => (
+                        <div key={name + id} className={styles.userItem}>
+                            <Link className={styles.userItemLink} href={getReport(id)}>
                                 {name}
                             </Link>
-                            <IconButton className={styles.userItemDelete} onClick={() => onUpdateUser({ name, report, dailyAmount })}>
-                                <SlPencil />
-                            </IconButton>
-                            <IconButton className={styles.userItemDelete} onClick={() => onDeleteUser(name, report)}>
-                                <SlTrash />
-                            </IconButton>
+                            <div className={styles.userItemButtons}>
+                                <IconButton onClick={() => onUpdateUser({ id, name, dailyAmount })}>
+                                    <SlPencil />
+                                </IconButton>
+                                <IconButton onClick={() => onDeleteUser(id, name)}>
+                                    <SlTrash />
+                                </IconButton>
+                            </div>
                         </div>
                     ))}
                 </div>
 
-                <Divider />
+                <Button onClick={onToggleUserForm}>Добавить</Button>
 
-                <UserForm onSubmit={onSubmit} onCancelUpdate={onCancelUpdate} data={user} />
+                <UserForm user={user} onClearUser={() => setUser(null)} isOpen={isOpenUserForm} onToggle={onToggleUserForm} />
             </PageLayout.Content>
         </PageLayout>
     );

@@ -13,6 +13,11 @@
         composes: link from 'styles/scaffold.scss';
         flex: 0 0 80%;
     }
+
+    &Buttons {
+        display: flex;
+        gap: var(--gap-5);
+    }
 }
 
 .users {

@@ -5,9 +5,9 @@ import classNames from 'classnames';
 
 import styles from './Overlay.module.scss';
 
-export type OverlayProps = {
+type OverlayProps = {
     className?: string;
-    onClose: () => void;
+    onClose?: () => void;
 };
 
 export const Overlay: FC<OverlayProps> = ({ className, onClose }) => {

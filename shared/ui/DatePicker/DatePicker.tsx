@@ -11,13 +11,13 @@ import Month from './components/Month';
 import styles from './DatePicker.module.scss';
 import { formatDate } from '@/shared/utils';
 
-export type DatePickerProps = {
+type DatePickerProps = {
     date: Date | null;
     onDateChange: (date: Date | null) => void;
     onMonthChange: (month: string) => void;
 };
 
-export type DatePickerContextDefaultValue = {
+type DatePickerContextDefaultValue = {
     focusedDate: Date | null;
     isDateSelected: (date: Date) => boolean;
     isDateHovered: (date: Date) => boolean;

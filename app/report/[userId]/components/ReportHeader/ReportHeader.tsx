@@ -49,7 +49,7 @@ const Header: FC<HeaderProps> = ({ date, month }) => {
 
                 <div className={styles.reportHeaderUser}>{user?.name}</div>
             </div>
-            {isOpen && <Overlay onClose={onToggle} />}
+            {isOpen && <Overlay className={styles.reportHeaderOverlay} onClose={onToggle} />}
         </>
     );
 };

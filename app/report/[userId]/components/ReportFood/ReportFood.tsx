@@ -1,8 +1,7 @@
-import { FC, useContext } from 'react';
+import { FC } from 'react';
 
 import { FoodInfo } from '@/shared/types';
-
-import { ReportContext } from '../../Report';
+import { useAppSelector } from '@/shared/store';
 
 import styles from './ReportFood.module.scss';
 
@@ -11,7 +10,7 @@ export type ReportFoodProps = {
 };
 
 const ReportFood: FC<ReportFoodProps> = ({ food: { name, weight, details } }) => {
-    const { visibleItems } = useContext(ReportContext);
+    const visibleColumns = useAppSelector(state => state.report.visibleColumns);
 
     return (
         <div className={styles.reportFood}>
@@ -19,7 +18,7 @@ const ReportFood: FC<ReportFoodProps> = ({ food: { name, weight, details } }) =>
                 <div>{name}</div>
                 <div className={styles.reportFoodItemWeight}>{weight}</div>
                 <div className={styles.reportFoodItemTotal}>
-                    {visibleItems.map(k => (
+                    {visibleColumns.map(k => (
                         <div key={k}>{details[k] ?? 0}</div>
                     ))}
                 </div>

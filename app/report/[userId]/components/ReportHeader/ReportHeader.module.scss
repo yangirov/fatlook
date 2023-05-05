@@ -44,4 +44,8 @@
         cursor: pointer;
         composes: flexCenter from 'styles/scaffold.scss';
     }
+
+    &Overlay {
+        z-index: 1;
+    }
 }

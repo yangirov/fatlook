@@ -4,10 +4,10 @@ import classNames from 'classnames';
 import { Icon } from '@/shared/ui';
 import { Meal, mealIconMap } from '@/shared/types';
 import { Accordion, AccordionContext, Colors } from '@/shared/ui';
+import { useAppSelector } from '@/shared/store';
 
 import { SlArrowUp } from 'react-icons/sl';
 
-import { ReportContext } from '../../Report';
 import ReportFood from '../ReportFood';
 
 import styles from './ReportMeal.module.scss';
@@ -39,7 +39,7 @@ const Toggler: FC = () => {
 
 const HeaderInfo: FC<ReportMealProps> = ({ meal }) => {
     const { isOpen } = useContext(AccordionContext);
-    const { visibleItems } = useContext(ReportContext);
+    const visibleColumns = useAppSelector(state => state.report.visibleColumns);
 
     return (
         <>
@@ -68,7 +68,7 @@ const HeaderInfo: FC<ReportMealProps> = ({ meal }) => {
                     })}
                 >
                     <div className={styles.reportMealHeaderTotalItems}>
-                        {visibleItems.map(k => (
+                        {visibleColumns.map(k => (
                             <div key={k}>{meal.total[k] ?? 0}</div>
                         ))}
                     </div>

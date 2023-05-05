@@ -1,6 +1,7 @@
 import { FC, useContext } from 'react';
 
 import { PartialFoodDetailsKeys, unitMap } from '@/shared/types';
+import { useAppSelector } from '@/shared/store';
 
 import { ReportContext } from '../../Report';
 
@@ -8,11 +9,12 @@ import styles from './ReportTotal.module.scss';
 
 const ReportTotal: FC = () => {
     const {
-        visibleItems,
         report: { total }
     } = useContext(ReportContext);
 
-    const keys: PartialFoodDetailsKeys = [...visibleItems, 'kcal'];
+    const visibleColumns = useAppSelector(state => state.report.visibleColumns);
+
+    const keys: PartialFoodDetailsKeys = [...visibleColumns, 'kcal'];
 
     return (
         <div className={styles.reportTotal}>
