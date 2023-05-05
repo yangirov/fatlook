@@ -64,7 +64,7 @@ export const Report: FC<ReportProps> = ({ report }) => {
                     <Divider />
                     <div className={styles.reportNavigation}>
                         <Link href="#" onClick={comingSoon} className={styles.reportNavigationLink}>
-                            <Icon className={styles.reportNavigationIcon} color="var(--accent-green)">
+                            <Icon className={styles.reportNavigationIcon} color="var(--green)">
                                 <VscGraph />
                             </Icon>
                             <div className={styles.reportNavigationText}>Отчеты</div>
@@ -77,7 +77,7 @@ export const Report: FC<ReportProps> = ({ report }) => {
                             }}
                             className={styles.reportNavigationLink}
                         >
-                            <Icon className={styles.reportNavigationIcon} color="var(--accent-green)">
+                            <Icon className={styles.reportNavigationIcon} color="var(--green)">
                                 <SlSettings />
                             </Icon>
                             <div className={styles.reportNavigationText}>Настройки</div>
