@@ -1,5 +1,6 @@
 import { ReactNode } from 'react';
 import { Roboto } from 'next/font/google';
+import { Analytics } from '@vercel/analytics/react';
 
 import Providers from './provider';
 
@@ -45,6 +46,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
             </head>
             <body className={robotoFont.className}>
                 <Providers>{children}</Providers>
+                <Analytics />
             </body>
         </html>
     );
