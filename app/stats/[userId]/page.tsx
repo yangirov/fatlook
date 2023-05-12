@@ -1,10 +1,7 @@
-import { PageLayout } from '@/shared/layouts';
+import { RouteParams, getReportData } from '@/shared/utils';
+import { Stats } from './components/Stats';
 
-export default async function StatsPage() {
-    return (
-        <PageLayout>
-            <PageLayout.Header>Отчеты</PageLayout.Header>
-            <PageLayout.Content>Раздел в разработке</PageLayout.Content>
-        </PageLayout>
-    );
+export default async function StatsPage(params: RouteParams) {
+    const report = await getReportData(params);
+    return <Stats {...report} />;
 }

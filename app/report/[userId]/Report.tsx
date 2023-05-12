@@ -22,7 +22,7 @@ export const ReportContext = createContext<{ report: ReportData }>({
 });
 
 export const Report: FC<ReportProps> = ({ report }) => {
-    if (!report || isEmpty(report.meals)) {
+    if (!report || isEmpty(report.data)) {
         return (
             <PageLayout>
                 <PageLayout.Header>

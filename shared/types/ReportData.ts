@@ -6,7 +6,7 @@ export type ReportData = {
     userId: string;
     date: string;
     total: FoodDetails;
-    meals: Meal[];
+    data: { date: string; meals: Meal[] }[];
     weight?: string;
     steps?: string;
 };

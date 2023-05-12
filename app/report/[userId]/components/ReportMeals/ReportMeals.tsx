@@ -5,12 +5,12 @@ import ReportMeal from '../ReportMeal';
 
 const ReportMeals: FC = () => {
     const {
-        report: { meals }
+        report: { data }
     } = useContext(ReportContext);
 
     return (
         <>
-            {meals?.map(meal => (
+            {data[0].meals?.map(meal => (
                 <ReportMeal key={meal.name} meal={meal} />
             ))}
         </>

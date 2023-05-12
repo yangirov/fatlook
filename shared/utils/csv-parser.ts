@@ -1,4 +1,5 @@
 import { Meal, ReportData, FoodDetails, FoodInfo, FoodUnit } from '@/shared/types';
+import { formatDate, parseDate } from './dates';
 
 export const parseCSV = (str: string) => {
     const arr: string[][] = [];
@@ -97,39 +98,85 @@ export const parseFatSecretCSV = (csv: string): Omit<ReportData, 'userId'> => {
 
     const mealsNames = ['Завтрак', 'Обед', 'Ужин', 'Перекус'];
 
-    let currentMealIndex = 10;
-    const meals = mealsNames.reduce<Meal[]>((acc, meal, mealIndex) => {
-        const nextMeal = mealIndex !== mealsNames.length - 1 ? matrix.findIndex(l => l[0].trim().startsWith(mealsNames[mealIndex + 1])) : matrix.length - 1;
+    const getNextMeal = (mealIndex: number, start: number, end: number) => {
+        if (mealIndex === mealsNames.length - 1) {
+            return end;
+        }
 
-        for (let rowIndex = currentMealIndex; rowIndex < nextMeal; rowIndex++) {
-            const row = matrix[rowIndex];
+        for (let rowIndex = start; rowIndex < end; rowIndex++) {
+            const value = matrix[rowIndex][0].trim();
 
-            if (row[0].trim().startsWith(meal)) {
-                currentMealIndex = rowIndex;
-
-                acc.push({
-                    name: meal,
-                    total: getFromRow(rowIndex),
-                    foods: []
-                });
-            } else if (row.length === 1) {
-                continue;
-            } else {
-                const food: FoodInfo = {
-                    name: getValue(rowIndex, 0) as string,
-                    weight: getValue(rowIndex + 1, 0) as string,
-                    details: getFromRow(rowIndex)
-                };
-                acc[mealIndex]?.foods.push(food);
+            if (value.startsWith(mealsNames[mealIndex + 1])) {
+                return rowIndex;
             }
+        }
+
+        return matrix.length - 1;
+    };
+
+    const getMeals = (startIndex: number, endIndex: number) => {
+        let currentMealIndex = startIndex;
+        return mealsNames.reduce<Meal[]>((acc, meal, mealIndex) => {
+            const nextMeal = getNextMeal(mealIndex, startIndex, endIndex);
+
+            for (let rowIndex = currentMealIndex; rowIndex < nextMeal; rowIndex++) {
+                const row = matrix[rowIndex];
+
+                if (row[0].trim().startsWith(meal)) {
+                    currentMealIndex = rowIndex;
+
+                    acc.push({
+                        name: meal,
+                        total: getFromRow(rowIndex),
+                        foods: []
+                    });
+                } else if (row.length === 1) {
+                    continue;
+                } else {
+                    const food: FoodInfo = {
+                        name: getValue(rowIndex, 0) as string,
+                        weight: getValue(rowIndex + 1, 0) as string,
+                        details: getFromRow(rowIndex)
+                    };
+                    acc[mealIndex]?.foods.push(food);
+                }
+            }
+
+            return acc;
+        }, []);
+    };
+
+    const daysNames = ['понедельник', 'вторник', 'среда', 'четверг', 'пятница', 'суббота', 'воскресенье'];
+
+    const days = matrix.reduce<{ date: string; startIndex: number }[]>((acc, row, index) => {
+        const value = row[0];
+
+        if (daysNames.some(day => value.toLowerCase().startsWith(day))) {
+            const date = parseDate(value, 'EEEE, MMMM dd, yyyy');
+            acc.push({
+                date: formatDate(date),
+                startIndex: index + 1
+            });
         }
 
         return acc;
     }, []);
 
+    const daysRange = days.map((item, i) => {
+        const endIndex = i < days.length - 1 ? days[i + 1].startIndex - 2 : matrix.length - 1;
+        return { ...item, endIndex };
+    });
+
+    const data = daysRange.map(item => {
+        return {
+            date: item.date,
+            meals: getMeals(item.startIndex, item.endIndex)
+        };
+    });
+
     return {
         date: getValue(1, 1) as string,
         total: getFromRow(matrix.length - 1),
-        meals
+        data
     };
 };

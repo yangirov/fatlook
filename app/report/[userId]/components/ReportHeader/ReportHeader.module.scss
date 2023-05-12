@@ -1,9 +1,14 @@
 .reportHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 var(--gap-10);
+
     &Back {
         width: var(--gap-100);
         display: flex;
         justify-content: flex-start;
-        margin-left: var(--gap-15);
+        font-size: 1.2rem;
     }
 
     &Date {
@@ -29,23 +34,20 @@
     }
 
     &User {
-        width: var(--gap-100);
         color: var(--light-gray);
-    }
-
-    &Controls {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
+        width: var(--gap-100);
+        text-align: right;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
     }
 
     &DatePicker {
         margin-top: var(--gap-10);
-        cursor: pointer;
         composes: flexCenter from 'styles/scaffold.scss';
     }
 
     &Overlay {
-        z-index: 1;
+        z-index: 1 !important;
     }
 }

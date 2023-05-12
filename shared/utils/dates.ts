@@ -3,10 +3,21 @@ import { ru } from 'date-fns/locale';
 
 export const DEFAULT_DATE_FORMAT = 'yyMMd';
 
-export const formatDate = (date: Date, formatString = DEFAULT_DATE_FORMAT) =>
-    format(date, formatString, {
+type DateFormatOptions = {
+    locale?: Locale;
+    weekStartsOn?: 0 | 1 | 2 | 3 | 4 | 5 | 6;
+    firstWeekContainsDate?: number;
+    useAdditionalWeekYearTokens?: boolean;
+    useAdditionalDayOfYearTokens?: boolean;
+};
+
+export const formatDate = (
+    date: Date,
+    formatString = DEFAULT_DATE_FORMAT,
+    options: DateFormatOptions = {
         locale: ru
-    });
+    }
+) => format(date, formatString, options);
 
 export const beautifyDate = (d: Date | null) => {
     if (!d) return 'Нет даты';
@@ -27,7 +38,10 @@ export const beautifyDate = (d: Date | null) => {
 };
 
 export const parseDate = (dateString: string, formatString = DEFAULT_DATE_FORMAT) => {
-    const date = parse(dateString, formatString, new Date());
+    const date = parse(dateString, formatString, new Date(), {
+        locale: ru
+    });
+
     const formattedDate = format(date, "yyyy-MM-dd'T'HH:mm:ss.SSS");
     const parsedDate = new Date(Date.parse(`${formattedDate}Z`));
     return parsedDate;

@@ -1,7 +1,7 @@
 'use client';
 import { FC, useContext, useEffect, useState } from 'react';
 import { useParams, useRouter, useSearchParams } from 'next/navigation';
-import { SlArrowLeft } from 'react-icons/sl';
+import { MdArrowBack } from 'react-icons/md';
 import classNames from 'classnames';
 
 import DatePicker from '@/shared/ui/DatePicker';
@@ -10,8 +10,9 @@ import { beautifyDate, formatDate, parseDate } from '@/shared/utils';
 import { useAppSelector } from '@/shared/store';
 import { getUserById } from '@/shared/store/usersReducer';
 
-import styles from './ReportHeader.module.scss';
 import { ReportContext } from '../../Report';
+
+import styles from './ReportHeader.module.scss';
 
 type HeaderProps = {
     date: Date | null;
@@ -31,27 +32,25 @@ const Header: FC<HeaderProps> = ({ date, month }) => {
     };
 
     return (
-        <>
-            <div className={styles.reportHeaderControls}>
-                <div className={styles.reportHeaderBack}>
-                    <IconButton href="/">
-                        <SlArrowLeft />
-                    </IconButton>
-                </div>
-
-                <div
-                    onClick={onToggle}
-                    className={classNames(styles.reportHeaderDate, {
-                        [styles.reportHeaderDateExpanded]: isOpen
-                    })}
-                >
-                    {isOpen && month ? month : beautifyDate(date)}
-                </div>
-
-                <div className={styles.reportHeaderUser}>{user?.name}</div>
+        <div className={styles.reportHeader}>
+            <div className={styles.reportHeaderBack}>
+                <IconButton href="/">
+                    <MdArrowBack />
+                </IconButton>
             </div>
+
+            <div
+                onClick={onToggle}
+                className={classNames(styles.reportHeaderDate, {
+                    [styles.reportHeaderDateExpanded]: isOpen
+                })}
+            >
+                {isOpen && month ? month : beautifyDate(date)}
+            </div>
+
+            <div className={styles.reportHeaderUser}>{user?.name}</div>
             {isOpen && <Overlay className={styles.reportHeaderOverlay} onClose={onToggle} />}
-        </>
+        </div>
     );
 };
 
