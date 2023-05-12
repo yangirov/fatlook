@@ -11,6 +11,7 @@ import { useAppSelector } from '@/shared/store';
 import { getUserById } from '@/shared/store/usersReducer';
 
 import styles from './ReportHeader.module.scss';
+import { ReportContext } from '../../Report';
 
 type HeaderProps = {
     date: Date | null;
@@ -91,18 +92,17 @@ const Content: FC<ContentProps> = ({ date, setMonth }) => {
 };
 
 const ReportHeader: FC = () => {
-    const searchParams = useSearchParams();
+    const {
+        report: { date: reportDate }
+    } = useContext(ReportContext);
 
     const [month, setMonth] = useState<string | null>(null);
     const [date, setDate] = useState<Date | null>(null);
 
     useEffect(() => {
-        if (searchParams && searchParams.has('date')) {
-            const queryDate = searchParams.get('date') ?? '';
-            const parsedDate = parseDate(queryDate);
-            setDate(parsedDate);
-        }
-    }, [searchParams]);
+        const parsedDate = parseDate(reportDate);
+        setDate(parsedDate);
+    }, [reportDate]);
 
     return (
         <Accordion>

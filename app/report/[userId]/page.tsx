@@ -12,7 +12,7 @@ const getData = async (query: RouteParams) => {
 
     let report;
 
-    if (params && !isEmpty(params) && !isEmpty(searchParams)) {
+    if (params && !isEmpty(params)) {
         const queryString = new URLSearchParams({ userId: params.userId, ...searchParams });
         const response = await fetch(`${process.env.DOMAIN}/api/report?${queryString}`, {
             cache: 'no-store',

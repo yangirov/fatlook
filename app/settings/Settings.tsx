@@ -4,7 +4,6 @@ import { SlPencil, SlTrash } from 'react-icons/sl';
 import Link from 'next/link';
 
 import { Button, IconButton } from '@/shared/ui';
-import { formatDate } from '@/shared/utils';
 import { PageLayout } from '@/shared/layouts';
 import { useAppSelector, useAppDispatch } from '@/shared/store';
 import { User } from '@/shared/types';
@@ -13,12 +12,6 @@ import { deleteUser } from '@/shared/store/usersReducer';
 import { UserForm } from './components/AddUserForm';
 
 import styles from './Settings.module.scss';
-
-const getReport = (userId: string) => {
-    const yesterday = new Date();
-    yesterday.setDate(yesterday.getDate() - 1);
-    return `/report/${userId}?date=${formatDate(yesterday)}`;
-};
 
 export const Settings: FC = () => {
     const dispatch = useAppDispatch();
@@ -54,7 +47,7 @@ export const Settings: FC = () => {
                 <div className={styles.users}>
                     {users?.map(({ id, name, dailyAmount }) => (
                         <div key={name + id} className={styles.userItem}>
-                            <Link className={styles.userItemLink} href={getReport(id)}>
+                            <Link className={styles.userItemLink} href={`/report/${id}`}>
                                 {name}
                             </Link>
                             <div className={styles.userItemButtons}>

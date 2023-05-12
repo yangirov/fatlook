@@ -1,7 +1,7 @@
 import { NextApiRequest, NextApiResponse } from 'next';
 
 import { ReportData } from '@/shared/types';
-import { isEmpty, getFoodDiaryLink, parseFatSecretCSV } from '@/shared/utils';
+import { isEmpty, getFoodDiaryLink, parseFatSecretCSV, formatDate } from '@/shared/utils';
 
 const getReportFromFatSecret = async (req: NextApiRequest): Promise<ReportData | null> => {
     const { query } = req;
@@ -10,7 +10,8 @@ const getReportFromFatSecret = async (req: NextApiRequest): Promise<ReportData |
         return null;
     }
 
-    const { userId, date, weight, steps } = query;
+    const { userId, weight, steps } = query;
+    let { date } = query;
 
     let report = {
         userId: userId as string,
@@ -18,13 +19,19 @@ const getReportFromFatSecret = async (req: NextApiRequest): Promise<ReportData |
         steps: steps as string
     } as ReportData;
 
+    if (!date) {
+        const yesterday = new Date();
+        yesterday.setDate(yesterday.getDate() - 1);
+        date = formatDate(yesterday);
+    }
+
     if (userId && date) {
         const fatSecretReportUrl = getFoodDiaryLink(userId.toString(), date.toString());
 
         const response = await fetch(fatSecretReportUrl);
         const reportCsv = await response.text();
 
-        report = { ...report, ...parseFatSecretCSV(reportCsv) };
+        report = { ...report, ...parseFatSecretCSV(reportCsv), date: date.toString() };
     }
 
     return report;

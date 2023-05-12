@@ -2,6 +2,8 @@ import { ReactNode } from 'react';
 import { Roboto } from 'next/font/google';
 import { Analytics } from '@vercel/analytics/react';
 
+import { isDev } from '@/shared/utils';
+
 import Providers from './provider';
 
 import '@/styles/globals.scss';
@@ -46,7 +48,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
             </head>
             <body className={robotoFont.className}>
                 <Providers>{children}</Providers>
-                <Analytics />
+                {!isDev && <Analytics />}
             </body>
         </html>
     );
