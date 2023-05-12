@@ -1,5 +1,5 @@
 import { ReactNode } from 'react';
-import { Roboto } from 'next/font/google';
+import { Inter } from 'next/font/google';
 import { Analytics } from '@vercel/analytics/react';
 
 import { isDev } from '@/shared/utils';
@@ -8,7 +8,8 @@ import Providers from './provider';
 
 import '@/styles/globals.scss';
 
-const robotoFont = Roboto({
+const font = Inter({
+    preload: true,
     weight: ['400', '500'],
     style: ['normal'],
     subsets: ['cyrillic', 'latin']
@@ -44,9 +45,9 @@ export default function RootLayout({ children }: { children: ReactNode }) {
                 <meta name="theme-color" content="#259b23" />
                 <meta name="color-scheme" content="dark light" />
 
-                <link rel="manifest" href={`${process.env.DOMAIN}manifest.json`} />
+                <link rel="manifest" href={`${process.env.DOMAIN}/manifest.json`} />
             </head>
-            <body className={robotoFont.className}>
+            <body className={font.className}>
                 <Providers>{children}</Providers>
                 {!isDev && <Analytics />}
             </body>
