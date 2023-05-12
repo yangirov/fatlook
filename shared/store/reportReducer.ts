@@ -8,7 +8,7 @@ export interface ReportState {
 }
 
 const initialState: ReportState = {
-    visibleColumns: ['protein', 'fat', 'fiber', 'carbohydrates']
+    visibleColumns: ['protein', 'allFat', 'fiber', 'carbohydrates']
 };
 
 export const reportSlice = createSlice({
