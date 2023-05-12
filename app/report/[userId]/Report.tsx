@@ -9,7 +9,7 @@ import ReportHeader from './components/ReportHeader';
 import ReportSummary from './components/ReportSummary';
 import ReportMeals from './components/ReportMeals';
 import ReportTotal from './components/ReportTotal';
-import { ReportNavigation } from './components/ReportNavigation';
+import ReportNavigation from './components/ReportNavigation';
 
 import styles from './Report.module.scss';
 

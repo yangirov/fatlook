@@ -1,32 +1,30 @@
-import { FC, useState } from 'react';
-
+import { FC, useContext, useState } from 'react';
 import Link from 'next/link';
 import { VscGraph } from 'react-icons/vsc';
 import { SlSettings } from 'react-icons/sl';
 
 import { Divider, Icon } from '@/shared/ui';
 
-import styles from './ReportNavigation.module.scss';
+import { ReportContext } from '../../Report';
 import { ReportSettings } from '../ReportSettings';
+import styles from './ReportNavigation.module.scss';
 
-export const ReportNavigation: FC = () => {
+const ReportNavigation: FC = () => {
+    const {
+        report: { userId }
+    } = useContext(ReportContext);
+
     const [isOpen, setIsOpen] = useState(false);
 
     const onToggle = () => {
         setIsOpen(prev => !prev);
     };
 
-    const comingSoon = (e: React.MouseEvent) => {
-        e.preventDefault();
-
-        alert('В разработке');
-    };
-
     return (
         <>
             <Divider />
             <div className={styles.reportNavigation}>
-                <Link href="#" onClick={comingSoon} className={styles.reportNavigationLink}>
+                <Link href={`/stats/${userId}`} className={styles.reportNavigationLink}>
                     <Icon className={styles.reportNavigationIcon} color="var(--green)">
                         <VscGraph />
                     </Icon>
@@ -50,3 +48,5 @@ export const ReportNavigation: FC = () => {
         </>
     );
 };
+
+export default ReportNavigation;

@@ -1,5 +1,5 @@
-import { Spinner } from '@/shared/ui';
+import Loading from '@/app/loading';
 
-export default function Loading() {
-    return <Spinner wrapped={true} />;
+export default function LoadingPage() {
+    return <Loading />;
 }

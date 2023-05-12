@@ -1,1 +1,1 @@
-export * from './ReportNavigation';
+export { default } from './ReportNavigation';
