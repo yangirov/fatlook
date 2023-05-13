@@ -24,7 +24,7 @@ const ReportNavigation: FC = () => {
         <>
             <Divider />
             <div className={styles.reportNavigation}>
-                <Link href={`/stats/${userId}`} className={styles.reportNavigationLink}>
+                <Link href={`/stats/${userId}?type=week`} className={styles.reportNavigationLink}>
                     <Icon className={styles.reportNavigationIcon} color="var(--green)">
                         <VscGraph />
                     </Icon>

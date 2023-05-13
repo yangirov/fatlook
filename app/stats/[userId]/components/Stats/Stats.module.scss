@@ -1,2 +1,88 @@
 .stats {
 }
+
+.card {
+    background-color: var(--white);
+    padding: var(--gap-15);
+    margin-bottom: var(--gap-25);
+    border-radius: var(--border-radius);
+    box-shadow: 0 0 var(--gap-5) var(--gap-5) var(--shadow-color);
+
+    &Content {
+        &Item {
+            &:first-child {
+                font-size: var(--font-small);
+                opacity: 0.8;
+            }
+
+            &Info {
+                display: grid;
+                justify-content: space-between;
+                align-items: flex-end;
+                grid-template-columns: 1fr 70px 60px;
+                padding: var(--gap-10) 0;
+                grid-gap: var(--gap-10);
+
+                > div {
+                    text-align: right;
+                }
+
+                > div:first-child {
+                    text-align: left;
+                }
+            }
+        }
+    }
+}
+
+.chartCard {
+    composes: card;
+
+    &Title {
+        font-size: 1.5rem;
+        margin: var(--gap-5) 0;
+    }
+
+    &SubTitle {
+        font-size: var(--font-small);
+    }
+
+    &Daily {
+        display: flex;
+        justify-content: space-between;
+        font-size: var(--font-small);
+        color: var(--gray);
+    }
+
+    &Food {
+        display: flex;
+        align-items: center;
+        color: var(--green);
+
+        &Dot {
+            width: var(--gap-15);
+            height: var(--gap-15);
+            margin-right: var(--gap-10);
+        }
+
+        &:last-child {
+            margin-left: auto;
+        }
+    }
+}
+
+.foodCard {
+    composes: card;
+
+    &Title {
+        font-size: 1.2rem;
+        font-weight: bold;
+        margin-bottom: var(--gap-10);
+    }
+
+    .cardContentItem {
+        &:last-child {
+            font-weight: bold;
+        }
+    }
+}

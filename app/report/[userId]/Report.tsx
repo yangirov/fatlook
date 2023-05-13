@@ -4,14 +4,13 @@ import { ReportData } from '@/shared/types';
 
 import { PageLayout } from '@/shared/layouts';
 import { isEmpty } from '@/shared/utils';
+import { EmptyContent } from '@/shared/ui';
 
 import ReportHeader from './components/ReportHeader';
 import ReportSummary from './components/ReportSummary';
 import ReportMeals from './components/ReportMeals';
 import ReportTotal from './components/ReportTotal';
 import ReportNavigation from './components/ReportNavigation';
-
-import styles from './Report.module.scss';
 
 type ReportProps = {
     report?: ReportData;
@@ -30,7 +29,7 @@ export const Report: FC<ReportProps> = ({ report }) => {
                 </PageLayout.Header>
 
                 <PageLayout.Content>
-                    <div className={styles.empty}>Ничего не найдено 🙄</div>
+                    <EmptyContent />
                 </PageLayout.Content>
             </PageLayout>
         );

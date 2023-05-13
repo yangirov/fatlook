@@ -1,14 +1,15 @@
 import { FC, useContext } from 'react';
 
+import classNames from 'classnames';
+
 import { REPORT_CALC_RATIO, REPORT_SUMMARY_COLORS, FoodUnit, PartialFoodDetailsKeys, UnitInfo, unitMap } from '@/shared/types';
 import { Divider, PieChart, PieChartData } from '@/shared/ui';
-
-import { ReportContext } from '../../Report';
-
-import styles from './ReportSummary.module.scss';
 import { useAppSelector } from '@/shared/store';
 import { getUserById } from '@/shared/store/usersReducer';
-import classNames from 'classnames';
+import { getPercents } from '@/shared/utils';
+
+import { ReportContext } from '../../Report';
+import styles from './ReportSummary.module.scss';
 
 const FormatUnit: FC<{ unit?: UnitInfo; value: FoodUnit }> = ({ unit, value }) => (
     <div>
@@ -58,7 +59,7 @@ const ReportSummary: FC = () => {
                             </div>
                             <Divider />
                             <div className={styles.dailyInfoPercents}>
-                                <span>{Math.floor((totalKcal / +rsk) * 100)}% от РСК</span>
+                                <span>{getPercents(totalKcal, rsk)} от РСК</span>
                                 <span className={styles.dailyInfoBold}>{rsk}</span>
                             </div>
                         </div>
@@ -68,7 +69,7 @@ const ReportSummary: FC = () => {
                                 <div
                                     key={x}
                                     className={classNames(styles.dailyCubeItem, {
-                                        [styles.dailyCubeItemFilled]: +rsk - (totalKcal / 100) * x < totalKcal
+                                        [styles.dailyCubeItemFilled]: rsk - (totalKcal / 100) * x < totalKcal
                                     })}
                                 ></div>
                             ))}

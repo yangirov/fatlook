@@ -32,3 +32,8 @@ export const isEqual = (x: any, y: any) => {
 
     return true;
 };
+
+export const getPercents = (num: number, total: number, needSymbol = true) => {
+    const value = Math.round(((num / total) * 10000) / 100);
+    return needSymbol ? `${value}%` : value;
+};

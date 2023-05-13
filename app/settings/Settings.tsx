@@ -9,7 +9,7 @@ import { useAppSelector, useAppDispatch } from '@/shared/store';
 import { User } from '@/shared/types';
 import { deleteUser } from '@/shared/store/usersReducer';
 
-import { UserForm } from './components/AddUserForm';
+import { UserForm } from './components/UserForm';
 
 import styles from './Settings.module.scss';
 

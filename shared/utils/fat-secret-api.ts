@@ -1,4 +1,6 @@
-import { startOfMonth } from 'date-fns';
+import { startOfMonth, startOfWeek } from 'date-fns';
+import { ru } from 'date-fns/locale';
+
 import { ReportData } from '../types';
 import { isEmpty } from './common';
 import { parseDate, diffInDays, formatDate } from './dates';
@@ -41,6 +43,12 @@ export const getFoodDiaryLink = (userId: string, dateString: string, type: Repor
     if (type === REPORT_TYPES.MONTH) {
         dateString = formatDate(date, 'MMM_yy', {});
         daysDiff = diffInDays(startOfMonth(date), new Date(0)) + 1; // FIXME: This ugly hack
+    }
+
+    if (type === REPORT_TYPES.WEEK) {
+        const d = startOfWeek(date, { locale: ru });
+        dateString = formatDate(d);
+        daysDiff = diffInDays(d, new Date(0)) + 1; // FIXME: This ugly hack
     }
 
     const salt = (Math.random() + 1).toString(36).substring(7).toUpperCase();

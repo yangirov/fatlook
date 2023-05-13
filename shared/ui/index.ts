@@ -9,3 +9,4 @@ export * from './PieChart';
 export * from './Divider';
 export * from './Overlay';
 export * from './Modal';
+export * from './EmptyContent';

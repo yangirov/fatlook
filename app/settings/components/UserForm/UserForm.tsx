@@ -26,7 +26,7 @@ export const UserForm: FC<UserFormProps> = ({ isOpen, user, onToggle, onClearUse
 
     const [name, setName] = useState('');
     const [reportUrl, setReportUrl] = useState('');
-    const [dailyAmount, setDailyAmount] = useState('');
+    const [dailyAmount, setDailyAmount] = useState<number | undefined>(undefined);
 
     useEffect(() => {
         if (user) {
@@ -39,7 +39,7 @@ export const UserForm: FC<UserFormProps> = ({ isOpen, user, onToggle, onClearUse
     const clearForm = () => {
         setName('');
         setReportUrl('');
-        setDailyAmount('');
+        setDailyAmount(undefined);
 
         onClearUser();
     };
@@ -110,7 +110,7 @@ export const UserForm: FC<UserFormProps> = ({ isOpen, user, onToggle, onClearUse
                         placeholder="Цель по калориям (РСК)"
                         name="dailyAmount"
                         value={dailyAmount}
-                        onChange={e => setDailyAmount(e.target.value)}
+                        onChange={e => setDailyAmount(+e.target.value)}
                     />
                 </form>
 
