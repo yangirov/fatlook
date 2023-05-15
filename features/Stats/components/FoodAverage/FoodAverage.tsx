@@ -31,7 +31,9 @@ export const FoodAverage: FC = () => {
                             <Divider />
                             <div className={classNames(styles.foodAverageInfo, { [styles.foodAverageInfoNotImportant]: !importantColumns.includes(column) })}>
                                 <div className={styles.foodAverageInfoKey}>{foodKeysMap[column]?.fullName}</div>
-                                <div className={styles.foodAverageInfoValue}>{value}</div>
+                                <div className={styles.foodAverageInfoValue}>
+                                    {value} {foodKeysMap[column]?.unitName}
+                                </div>
                             </div>
                         </div>
                     );
