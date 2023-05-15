@@ -2,7 +2,6 @@
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(0, 1fr));
     gap: var(--gap-10);
-    background-color: var(--green);
 
     &Item {
         position: relative;
@@ -11,7 +10,7 @@
         white-space: nowrap;
         text-align: center;
         padding: var(--gap-10);
-        color: var(--yellow);
+        color: var(--green);
         text-transform: uppercase;
         cursor: pointer;
         user-select: none;
@@ -23,7 +22,7 @@
             left: 0;
             height: 3px;
             width: 0;
-            background: var(--yellow);
+            background: var(--green);
             transition: 0.3s;
         }
 

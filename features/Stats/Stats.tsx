@@ -68,7 +68,7 @@ export const Stats: FC<StatsProps> = ({ report }) => {
                     <StatsHeader />
                 </PageLayout.Header>
                 <PageLayout.Content>
-                    <Tabs navClassName={styles.statsTabs} contentClassName={styles.statsTabsContent}>
+                    <Tabs>
                         <Tab title="Средние планки">
                             <FoodAverage />
                         </Tab>
