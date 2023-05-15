@@ -1,4 +1,4 @@
-import { ObjectWithOptionalKeys } from '../utils/types';
+import { ObjectWithOptionalKeys } from '../utils';
 import { FoodDetails } from './Food';
 import { Meal } from './Meal';
 

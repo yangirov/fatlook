@@ -1,4 +1,4 @@
-export * from './colors';
+export * from '../colors';
 export * from './Accordion';
 export * from './Button';
 export * from './Icon';
@@ -10,3 +10,4 @@ export * from './Divider';
 export * from './Overlay';
 export * from './Modal';
 export * from './EmptyContent';
+export * from './BarChart';

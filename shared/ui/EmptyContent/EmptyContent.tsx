@@ -3,7 +3,7 @@ import { FC } from 'react';
 import styles from './EmptyContent.module.scss';
 
 type EmptyContentProps = {
-    text?: string;
+    children?: React.ReactNode;
 };
 
-export const EmptyContent: FC<EmptyContentProps> = ({ text }) => <div className={styles.emptyContent}>{text ? text : 'Ничего не найдено 🙄'}</div>;
+export const EmptyContent: FC<EmptyContentProps> = ({ children }) => <div className={styles.emptyContent}>{children ? children : 'Ничего не найдено 🙄'}</div>;

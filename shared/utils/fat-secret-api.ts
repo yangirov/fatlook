@@ -18,7 +18,7 @@ export type RouteParams = {
     searchParams?: { [key: string]: string };
 };
 
-export const getReportData = async (query: RouteParams) => {
+export const getReport = async (query: RouteParams) => {
     const { params, searchParams } = query;
 
     let report;
@@ -36,7 +36,7 @@ export const getReportData = async (query: RouteParams) => {
     return { report };
 };
 
-export const getFoodDiaryLink = (userId: string, dateString: string, type: ReportType): string => {
+export const getReportLink = (userId: string, dateString: string, type: ReportType): string => {
     const date = parseDate(dateString);
     let daysDiff = diffInDays(date, new Date(0));
 

@@ -1,7 +1,7 @@
-import { RouteParams, getReportData } from '@/shared/utils';
-import { Report } from './Report';
+import { RouteParams, getReport } from '@/shared/utils';
+import { Report } from '@/features/Report';
 
 export default async function ReportPage(params: RouteParams) {
-    const report = await getReportData(params);
+    const report = await getReport(params);
     return <Report {...report} />;
 }

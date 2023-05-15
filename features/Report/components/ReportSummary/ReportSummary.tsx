@@ -2,7 +2,7 @@ import { FC, useContext } from 'react';
 
 import classNames from 'classnames';
 
-import { REPORT_CALC_RATIO, REPORT_SUMMARY_COLORS, FoodUnit, PartialFoodDetailsKeys, UnitInfo, unitMap } from '@/shared/types';
+import { REPORT_CALC_RATIO, REPORT_SUMMARY_COLORS, PartialFoodDetailsKeys, FoodUnit, FoodKeys, foodKeysMap } from '@/shared/types';
 import { Divider, PieChart, PieChartData } from '@/shared/ui';
 import { useAppSelector } from '@/shared/store';
 import { getUserById } from '@/shared/store/usersReducer';
@@ -11,7 +11,7 @@ import { getPercents } from '@/shared/utils';
 import { ReportContext } from '../../Report';
 import styles from './ReportSummary.module.scss';
 
-const FormatUnit: FC<{ unit?: UnitInfo; value: FoodUnit }> = ({ unit, value }) => (
+const FormatUnit: FC<{ unit?: FoodKeys; value: FoodUnit }> = ({ unit, value }) => (
     <div>
         {unit?.fullName}: {value ?? 0} {unit?.unitName}
     </div>
@@ -29,12 +29,12 @@ const ReportSummary: FC = () => {
     const pieChartItems: PartialFoodDetailsKeys = ['allFat', 'carbohydrates', 'protein'];
     const pieChartData = pieChartItems.map<PieChartData>(key => {
         const value = Number(total[key]);
-        const coef = Number(REPORT_CALC_RATIO[key]);
+        const ratio = Number(REPORT_CALC_RATIO[key]);
 
         return {
             color: REPORT_SUMMARY_COLORS[key],
-            name: unitMap[key]?.shortName ?? key.toString(),
-            value: Math.floor(value * coef)
+            name: foodKeysMap[key]?.shortName ?? key.toString(),
+            value: Math.floor(value * ratio)
         };
     });
 
@@ -82,7 +82,7 @@ const ReportSummary: FC = () => {
             <div className={styles.summary}>
                 <div>
                     {keys.map(key => (
-                        <FormatUnit key={key} unit={unitMap[key]} value={total[key]} />
+                        <FormatUnit key={key} unit={foodKeysMap[key]} value={total[key]} />
                     ))}
                 </div>
                 <PieChart data={pieChartData} className={styles.summaryPieChart} />

@@ -4,7 +4,7 @@ import { FaCheck } from 'react-icons/fa';
 
 import { Divider, Icon, Modal } from '@/shared/ui';
 import { useAppDispatch, useAppSelector } from '@/shared/store';
-import { PartialFoodDetailsKeys, FoodDetails, unitMap } from '@/shared/types';
+import { PartialFoodDetailsKeys, FoodDetails, foodKeysMap } from '@/shared/types';
 import { changeColumns } from '@/shared/store/reportReducer';
 
 import styles from './ReportSettings.module.scss';
@@ -46,7 +46,7 @@ export const ReportSettings: FC<ReportSettingsProps> = ({ isOpen, onToggle }) =>
                 {allColumns.map((key, index) => (
                     <div key={key}>
                         <div className={styles.column} onClick={() => saveColumn(key)}>
-                            <div className={styles.columnName}>{unitMap[key]?.fullName}</div>
+                            <div className={styles.columnName}>{foodKeysMap[key]?.fullName}</div>
                             <div className={styles.columnCheckbox}>
                                 <Icon color={visibleColumns.includes(key) ? 'var(--green)' : 'var(--light-gray)'}>
                                     <FaCheck />

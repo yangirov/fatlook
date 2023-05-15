@@ -1,0 +1,20 @@
+svg {
+    background-color: #fff;
+    border: 1px solid #ccc;
+}
+
+rect {
+    fill: #007bff;
+    transition: height 0.3s ease;
+}
+
+rect:hover {
+    fill: #0056b3;
+}
+
+text {
+    font-family: sans-serif;
+    font-size: 12px;
+    fill: #000;
+    text-anchor: middle;
+}

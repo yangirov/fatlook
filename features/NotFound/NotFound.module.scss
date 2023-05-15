@@ -1,0 +1,21 @@
+.notFound {
+    composes: flexCenter from 'styles/scaffold.scss';
+    flex-direction: column;
+    font-size: 1.2rem;
+
+    &Title {
+        font-size: 5rem;
+        text-transform: uppercase;
+        margin-bottom: var(--gap-20);
+    }
+
+    &Text {
+        margin-bottom: var(--gap-20);
+    }
+
+    &Link {
+    }
+
+    &Image {
+    }
+}

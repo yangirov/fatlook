@@ -1,7 +1,7 @@
 import { NextApiRequest, NextApiResponse } from 'next';
 
 import { ReportData } from '@/shared/types';
-import { isEmpty, getFoodDiaryLink, parseFatSecretCSV, formatDate, REPORT_TYPES, ReportType } from '@/shared/utils';
+import { isEmpty, getReportLink, parseFatSecretCSV, formatDate, REPORT_TYPES, ReportType } from '@/shared/utils';
 
 const getReportFromFatSecret = async (req: NextApiRequest): Promise<ReportData | null> => {
     const { query } = req;
@@ -31,7 +31,7 @@ const getReportFromFatSecret = async (req: NextApiRequest): Promise<ReportData |
     }
 
     if (userId && date) {
-        const fatSecretReportUrl = getFoodDiaryLink(userId.toString(), date.toString(), reportType);
+        const fatSecretReportUrl = getReportLink(userId.toString(), date.toString(), reportType);
 
         const response = await fetch(fatSecretReportUrl);
         const reportCsv = await response.text();

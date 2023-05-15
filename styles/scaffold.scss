@@ -30,3 +30,35 @@
     margin: 0 auto var(--gap-50) auto;
     padding: 0 var(--gap-10);
 }
+
+.card {
+    background-color: var(--white);
+    padding: var(--gap-15);
+    margin-bottom: var(--gap-25);
+    border-radius: var(--border-radius);
+    box-shadow: 0 0 var(--gap-5) var(--gap-5) var(--shadow-color);
+}
+
+.cardItem {
+    &:first-child {
+        font-size: var(--font-small);
+        opacity: 0.8;
+    }
+}
+
+.cardInfo {
+    display: grid;
+    justify-content: space-between;
+    align-items: flex-end;
+    grid-template-columns: 1fr 70px 60px;
+    padding: var(--gap-10) 0;
+    grid-gap: var(--gap-10);
+
+    > div {
+        text-align: right;
+    }
+
+    > div:first-child {
+        text-align: left;
+    }
+}

@@ -1,7 +1,7 @@
-import { Meal, ReportData, FoodDetails, FoodInfo, FoodUnit } from '@/shared/types';
+import { Meal, ReportData, FoodDetails, FoodInfo } from '@/shared/types';
 import { formatDate, parseDate } from './dates';
 
-export const parseCSV = (str: string) => {
+const parseCSV = (str: string) => {
     const arr: string[][] = [];
 
     let quote = false;
@@ -60,7 +60,7 @@ export const parseFatSecretCSV = (csv: string): Omit<ReportData, 'userId'> => {
     const cholesterolIndex = findFoodUnitIndex('Холес( мг)');
     const kaliumIndex = findFoodUnitIndex('Калий( мг)');
 
-    const getValue = (rowIndex: number, columnIndex: number): FoodUnit => {
+    const getValue = (rowIndex: number, columnIndex: number) => {
         const value = matrix[rowIndex][columnIndex];
 
         if (!value) {
