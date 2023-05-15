@@ -1,11 +1,11 @@
 'use client';
 import { FC, createContext } from 'react';
+import { MdArrowBack } from 'react-icons/md';
+import { useParams, useRouter } from 'next/navigation';
 
 import { PageLayout } from '@/shared/layouts';
 import { ReportData } from '@/shared/types';
-
 import { useAppSelector } from '@/shared/store';
-import { useParams } from 'next/navigation';
 import { getUserById } from '@/shared/store/usersReducer';
 import { EmptyContent, Tab, Tabs } from '@/shared/ui';
 
@@ -26,6 +26,20 @@ export const StatsContext = createContext<{ data: StatsData }>({
     data: {} as StatsData
 });
 
+const StatsHeader: FC = () => {
+    const router = useRouter();
+
+    return (
+        <div className={styles.statsHeader}>
+            <div className={styles.statsHeaderBack}>
+                <MdArrowBack onClick={() => router.back()} />
+            </div>
+            <div>Отчет за неделю</div>
+            <div></div>
+        </div>
+    );
+};
+
 export const Stats: FC<StatsProps> = ({ report }) => {
     const params = useParams();
     const userId = params?.userId.toString() ?? '';
@@ -34,13 +48,25 @@ export const Stats: FC<StatsProps> = ({ report }) => {
     const data = mapStats(report, user?.dailyAmount);
 
     if (!data) {
-        return <EmptyContent />;
+        return (
+            <PageLayout>
+                <PageLayout.Header>
+                    <StatsHeader />
+                </PageLayout.Header>
+
+                <PageLayout.Content>
+                    <EmptyContent />
+                </PageLayout.Content>
+            </PageLayout>
+        );
     }
 
     return (
         <StatsContext.Provider value={{ data }}>
             <PageLayout>
-                <PageLayout.Header>Отчет за неделю</PageLayout.Header>
+                <PageLayout.Header>
+                    <StatsHeader />
+                </PageLayout.Header>
                 <PageLayout.Content>
                     <Tabs navClassName={styles.statsTabs} contentClassName={styles.statsTabsContent}>
                         <Tab title="Средние планки">
