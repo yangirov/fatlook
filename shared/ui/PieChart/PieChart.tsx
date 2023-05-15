@@ -1,13 +1,11 @@
 import { FC } from 'react';
 import classNames from 'classnames';
 
-import { getPercents } from '@/shared/utils';
+import { getColor, getPercents } from '@/shared/utils';
 
 import { PieChartData, PieChartItem } from './types';
 
 import styles from './PieChart.module.scss';
-
-const colors = ['cornflowerblue', 'olivedrab', 'orange', 'tomato', 'crimson', 'purple', 'turquoise', 'forestgreen', 'navy', 'gray'];
 
 type PieChartProps = {
     size?: number;
@@ -31,14 +29,10 @@ export const PieChart: FC<PieChartProps> = ({ className, size, data }) => {
         const oldOffset = offset;
         offset += size;
 
-        if (!color) {
-            color = colors[Math.floor(Math.random() * colors.length)];
-        }
-
         acc.push({
             pie: (
                 <div key={name} className={styles.pieChartSlice} style={{ transform: `rotate(${oldOffset}deg) translate3d(0,0,0)` }}>
-                    <span style={{ transform: `rotate(${sizeRotation}deg) translate3d(0,0,0)`, backgroundColor: color }}></span>
+                    <span style={{ transform: `rotate(${sizeRotation}deg) translate3d(0,0,0)`, backgroundColor: color ?? getColor() }}></span>
                 </div>
             ),
             legend: (

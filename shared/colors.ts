@@ -3,3 +3,5 @@ export enum Colors {
     GREEN = 'var(--green)',
     LIGHT = 'var(--light)'
 }
+
+export const DEFAULT_CHART_COLORS = ['cornflowerblue', 'olivedrab', 'orange', 'tomato', 'crimson', 'purple', 'turquoise', 'forestgreen', 'navy', 'gray'];

@@ -1,3 +1,5 @@
+import { ChartData } from '@/shared/ui';
+
 type FoodDto<T extends 'count' | 'percents'> = {
     name: string;
     kcal: number;
@@ -10,10 +12,7 @@ export type EatenFood = { [key: string]: FoodDtoWithCount };
 export type StatsData = {
     allEatenFood: FoodDtoWithCount;
     eatenFood: FoodDtoWithCount[];
-    chartData: {
-        date: string;
-        chart: FoodDtoWithCount[];
-    }[];
-    allChartData: FoodDtoWithPercents[];
+    chartData: ChartData[];
+    allMealData: FoodDtoWithPercents[];
     dailyAmount: number;
 };

@@ -1,5 +1,7 @@
 import { capitalizeFirstLetter, formatDate, getPercents, parseDate } from '@/shared/utils';
 import { FoodInfo, ReportData } from '@/shared/types';
+import { ChartData } from '@/shared/ui';
+
 import { EatenFood, FoodDtoWithCount, FoodDtoWithPercents, StatsData } from './types';
 
 export const mapStats = (report?: ReportData, dailyAmount?: number): StatsData => {
@@ -34,13 +36,12 @@ export const mapStats = (report?: ReportData, dailyAmount?: number): StatsData =
 
     eatenFood.push(allEatenFood);
 
-    const chartData = report.data.reduce<{ date: string; chart: FoodDtoWithCount[] }[]>((acc, item) => {
+    const chartData = report.data.reduce<ChartData[]>((acc, item) => {
         const d = parseDate(item.date);
         const info = {
-            date: `${capitalizeFirstLetter(formatDate(d, 'EEEEEE'))} ${formatDate(d, 'd')}`,
-            chart: item.meals.reduce<FoodDtoWithCount[]>((acc, meal) => {
-                const kcal = Number(meal.total.kcal);
-                acc.push({ name: meal.name, count: +getPercents(kcal, dailyAmount, false), kcal });
+            label: `${capitalizeFirstLetter(formatDate(d, 'EEEEEE'))} ${formatDate(d, 'd')}`,
+            values: item.meals.reduce<number[]>((acc, meal) => {
+                acc.push(Number(meal.total.kcal));
                 return acc;
             }, [])
         };
@@ -49,25 +50,29 @@ export const mapStats = (report?: ReportData, dailyAmount?: number): StatsData =
         return acc;
     }, []);
 
-    const totalChartData = chartData.reduce<{ [key: string]: { name: string; kcal: number } }>((acc, meal) => {
-        meal.chart.forEach(({ name, kcal }) => {
+    const mealData = report.data.reduce<{ [key: string]: { name: string; kcal: number } }>((acc, meal) => {
+        meal.meals.forEach(({ name, total: { kcal } }) => {
+            if (!kcal) {
+                kcal = 0;
+            }
+
             if (!acc[name]) {
-                acc[name] = { name, kcal };
+                acc[name] = { name, kcal: +kcal };
             } else {
-                acc[name].kcal += kcal;
+                acc[name].kcal += +kcal;
             }
         });
 
         return acc;
     }, {});
 
-    const allChartData = Object.values(totalChartData).map<FoodDtoWithPercents>(item => ({ ...item, percents: getPercents(item.kcal, allEatenFood.kcal).toString() }));
+    const allMealData = Object.values(mealData).map<FoodDtoWithPercents>(item => ({ ...item, percents: getPercents(item.kcal, allEatenFood.kcal).toString() }));
 
     return {
         allEatenFood,
         eatenFood,
         chartData,
-        allChartData,
+        allMealData,
         dailyAmount
     };
 };

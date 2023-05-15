@@ -1,20 +1,33 @@
-svg {
-    background-color: #fff;
-    border: 1px solid #ccc;
-}
+.barChart {
+    &SvgWrapper {
+        position: relative;
+    }
 
-rect {
-    fill: #007bff;
-    transition: height 0.3s ease;
-}
+    &Svg {
+        background-color: var(--white);
+        background-image: repeating-linear-gradient(var(--light-gray) 0 1px, transparent 1px 100%), repeating-linear-gradient(90deg, var(--light-gray) 0 1px, transparent 1px 100%);
+    }
 
-rect:hover {
-    fill: #0056b3;
-}
+    &Rect {
+        margin: 0 var(--gap-5);
+        transition: height 0.3s ease;
+    }
 
-text {
-    font-family: sans-serif;
-    font-size: 12px;
-    fill: #000;
-    text-anchor: middle;
+    &Line {
+        display: block;
+        position: absolute;
+        width: 100%;
+        border-bottom: 3px dashed var(--dark);
+    }
+
+    &Days {
+        display: flex;
+        align-items: center;
+
+        &Item {
+            text-align: center;
+            font-size: var(--font-small);
+            color: var(--gray);
+        }
+    }
 }

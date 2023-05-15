@@ -1,30 +1,68 @@
 import React, { FC } from 'react';
 
+import styles from './BarChart.module.scss';
+import { getColor, getPercents } from '@/shared/utils';
+
+export type ChartData = {
+    label: string;
+    values: number[];
+};
+
 type BarChartProps = {
-    data: number[][];
+    colors?: string[];
+    data: ChartData[];
     width: number;
     height: number;
 };
 
-export const BarChart: FC<BarChartProps> = ({ data, width, height }) => {
-    const maxValue = Math.max(...data.map(d => Math.max(...d)));
+export const BarChart: FC<BarChartProps> = ({ colors, data, width, height }) => {
+    const values = data.map(d => d.values.reduce((a, b) => a + b));
+
+    const maxValue = Math.max(...values);
+
+    const middleValue = values.reduce((a, b) => a + b) / data.length;
+    const middleLine = (+getPercents(middleValue, maxValue, false) / 100) * height;
+
     const barWidth = width / data.length;
+    const barHeight = height / Math.floor(data[0].values.length / 2) ?? 2;
+
+    const cumulativeHeight = new Array(data.length).fill(0);
 
     return (
-        <svg width={width} height={height}>
-            {data.map((values, index) => {
-                const segmentHeight = height / values.length;
-                return values.map((value, i) => (
-                    <rect
-                        key={`${index}-${i}`}
-                        x={index * barWidth}
-                        y={height - (i + 1) * segmentHeight}
-                        width={barWidth}
-                        height={segmentHeight}
-                        fill={`rgba(0, 123, 255, ${value / maxValue})`}
-                    />
-                ));
-            })}
-        </svg>
+        <div className={styles.barChart}>
+            <div className={styles.barChartSvgWrapper} style={{ width, height }}>
+                <div className={styles.barChartLine} style={{ bottom: middleLine }}></div>
+
+                <svg className={styles.barChartSvg} width={width} height={height} style={{ backgroundSize: `${barWidth}px ${barHeight}px` }}>
+                    {data.map(({ values }, index) => {
+                        return values.map((value, i) => {
+                            const segmentHeight = (value / maxValue) * height;
+                            const y = height - cumulativeHeight[index] - segmentHeight;
+                            cumulativeHeight[index] += segmentHeight;
+
+                            return (
+                                <rect
+                                    className={styles.barChartRect}
+                                    key={`${index}-${i}`}
+                                    x={index * barWidth + 5}
+                                    y={y + 1}
+                                    width={barWidth - 10}
+                                    height={segmentHeight - 1}
+                                    fill={getColor(colors, i)}
+                                />
+                            );
+                        });
+                    })}
+                </svg>
+            </div>
+
+            <div className={styles.barChartDays}>
+                {data.map(({ label }, index) => (
+                    <div key={label + index} style={{ width: barWidth }} className={styles.barChartDaysItem}>
+                        {label}
+                    </div>
+                ))}
+            </div>
+        </div>
     );
 };

@@ -1,4 +1,4 @@
-.chartCard {
+.amountCard {
     composes: card from 'styles/scaffold.scss';
 
     &Item {
@@ -39,5 +39,9 @@
         &:last-child {
             margin-left: auto;
         }
+    }
+
+    &Chart {
+        margin: var(--gap-10) 0;
     }
 }

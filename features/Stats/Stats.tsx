@@ -29,6 +29,7 @@ export const Stats: FC<StatsProps> = ({ report }) => {
     const params = useParams();
     const userId = params?.userId.toString() ?? '';
     const user = useAppSelector(state => getUserById(state, userId));
+
     const data = mapStats(report, user?.dailyAmount);
 
     if (!data) {
