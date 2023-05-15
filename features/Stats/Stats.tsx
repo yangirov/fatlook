@@ -7,13 +7,14 @@ import { ReportData } from '@/shared/types';
 import { useAppSelector } from '@/shared/store';
 import { useParams } from 'next/navigation';
 import { getUserById } from '@/shared/store/usersReducer';
-import { EmptyContent } from '@/shared/ui';
+import { EmptyContent, Tab, Tabs } from '@/shared/ui';
 
 import { mapStats } from './mapper';
 import { StatsData } from './types';
-import { FoodCard } from './components/FoodCard';
 
+import { FoodCard } from './components/FoodCard';
 import { FoodAmount } from './components/FoodAmount';
+import { FoodAverage } from './components/FoodAverage';
 
 import styles from './Stats.module.scss';
 
@@ -41,8 +42,15 @@ export const Stats: FC<StatsProps> = ({ report }) => {
             <PageLayout>
                 <PageLayout.Header>Отчет за неделю</PageLayout.Header>
                 <PageLayout.Content>
-                    <FoodAmount />
-                    <FoodCard />
+                    <Tabs navClassName={styles.statsTabs} contentClassName={styles.statsTabsContent}>
+                        <Tab title="Средние планки">
+                            <FoodAverage />
+                        </Tab>
+                        <Tab title="Калории">
+                            <FoodAmount />
+                            <FoodCard />
+                        </Tab>
+                    </Tabs>
                 </PageLayout.Content>
             </PageLayout>
         </StatsContext.Provider>

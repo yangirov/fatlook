@@ -11,3 +11,4 @@ export * from './Overlay';
 export * from './Modal';
 export * from './EmptyContent';
 export * from './BarChart';
+export * from './Tabs';

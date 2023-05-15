@@ -9,14 +9,11 @@ import styles from './FoodAmount.module.scss';
 
 export const FoodAmount: FC = () => {
     const {
-        data: { allEatenFood, allMealData: allChartData, dailyAmount, chartData }
+        data: { allEatenFood, allMealData, dailyAmount, chartData }
     } = useContext(StatsContext);
 
     const chartRef = useRef<HTMLDivElement>(null);
-
     const chartMealColors = Object.values(mealColors).map(m => m.color);
-
-    console.log(chartData);
 
     return (
         <div className={styles.amountCard}>
@@ -41,7 +38,7 @@ export const FoodAmount: FC = () => {
                     </div>
                 </div>
 
-                {allChartData.map(({ name, percents, kcal }) => (
+                {allMealData.map(({ name, percents, kcal }) => (
                     <div key={name} className={styles.amountCardItem}>
                         <Divider />
                         <div className={styles.amountCardInfo}>

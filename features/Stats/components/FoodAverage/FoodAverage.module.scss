@@ -1,0 +1,36 @@
+.foodAverage {
+    composes: card from 'styles/scaffold.scss';
+
+    &Title {
+        composes: cardTitle from 'styles/scaffold.scss';
+    }
+
+    &Item {
+        margin: var(--gap-15) 0;
+    }
+
+    &Info {
+        opacity: 1;
+
+        &Key {
+            color: var(--gray);
+        }
+
+        &Value {
+            font-weight: bold;
+            font-size: 1.2rem;
+            margin-top: var(--gap-5);
+        }
+
+        &NotImportant {
+            opacity: 0.75;
+            margin-left: var(--gap-15);
+        }
+
+        &NotImportant & {
+            &Value {
+                font-size: var(--font-normal);
+            }
+        }
+    }
+}

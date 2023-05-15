@@ -1,3 +1,4 @@
+import { FoodDetails } from '@/shared/types';
 import { ChartData } from '@/shared/ui';
 
 type FoodDto<T extends 'count' | 'percents'> = {
@@ -15,4 +16,5 @@ export type StatsData = {
     chartData: ChartData[];
     allMealData: FoodDtoWithPercents[];
     dailyAmount: number;
+    totalPeriodData: { count: number; data: FoodDetails };
 };

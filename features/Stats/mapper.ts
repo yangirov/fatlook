@@ -68,11 +68,14 @@ export const mapStats = (report?: ReportData, dailyAmount?: number): StatsData =
 
     const allMealData = Object.values(mealData).map<FoodDtoWithPercents>(item => ({ ...item, percents: getPercents(item.kcal, allEatenFood.kcal).toString() }));
 
+    const totalPeriodData = { count: report.data.length, data: report.total };
+
     return {
         allEatenFood,
         eatenFood,
         chartData,
         allMealData,
-        dailyAmount
+        dailyAmount,
+        totalPeriodData
     };
 };

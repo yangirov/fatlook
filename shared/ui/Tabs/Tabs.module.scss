@@ -1,0 +1,44 @@
+.tabs {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(0, 1fr));
+    gap: var(--gap-10);
+    background-color: var(--green);
+
+    &Item {
+        position: relative;
+        text-overflow: ellipsis;
+        overflow: hidden;
+        white-space: nowrap;
+        text-align: center;
+        padding: var(--gap-10);
+        color: var(--yellow);
+        text-transform: uppercase;
+        cursor: pointer;
+        user-select: none;
+
+        &:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            height: 3px;
+            width: 0;
+            background: var(--yellow);
+            transition: 0.3s;
+        }
+
+        &:hover {
+            cursor: pointer;
+        }
+
+        &Selected {
+            &:after {
+                width: 100%;
+            }
+        }
+    }
+
+    &Content {
+        margin-top: var(--gap-10);
+    }
+}

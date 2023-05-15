@@ -2,9 +2,7 @@
     composes: card from 'styles/scaffold.scss';
 
     &Title {
-        font-size: 1.2rem;
-        font-weight: bold;
-        margin-bottom: var(--gap-10);
+        composes: cardTitle from 'styles/scaffold.scss';
     }
 
     &Item {
