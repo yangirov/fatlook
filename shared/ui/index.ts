@@ -12,3 +12,4 @@ export * from './EmptyContent';
 export * from './BarChart';
 export * from './Tabs';
 export * from './ToggleSwitch';
+export * from './SnackBar';

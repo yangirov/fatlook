@@ -4,6 +4,7 @@ import { FC, useEffect, useState } from 'react';
 import { Provider } from 'react-redux';
 
 import { store } from '@/shared/store';
+import { SnackBarContextProvider } from '@/shared/ui/';
 
 const Providers: FC<{ children: React.ReactNode }> = ({ children }) => {
     const [showChild, setShowChild] = useState(false);
@@ -19,7 +20,11 @@ const Providers: FC<{ children: React.ReactNode }> = ({ children }) => {
     if (typeof window === 'undefined') {
         return <></>;
     } else {
-        return <Provider store={store}>{children}</Provider>;
+        return (
+            <Provider store={store}>
+                <SnackBarContextProvider>{children}</SnackBarContextProvider>
+            </Provider>
+        );
     }
 };
 

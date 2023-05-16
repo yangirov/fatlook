@@ -1,5 +1,7 @@
-import React, { FC } from 'react';
+import React, { FC, useContext } from 'react';
 import classNames from 'classnames';
+
+import { SnackBar, SnackBarContext } from '../../ui';
 
 import styles from './PageLayout.module.scss';
 
@@ -15,7 +17,16 @@ const PageLayoutHeader: FC<PageLayoutProps> = ({ children }) => {
     return <header className={classNames(styles.pageHeader)}>{children}</header>;
 };
 
-const PageLayoutContent: FC<PageLayoutProps> = ({ children }) => <div className={styles.pageContent}>{children}</div>;
+const PageLayoutContent: FC<PageLayoutProps> = ({ children }) => {
+    const snackBarContext = useContext(SnackBarContext);
+
+    return (
+        <div className={styles.pageContent}>
+            {children}
+            {snackBarContext.isVisible && <SnackBar />}
+        </div>
+    );
+};
 
 const PageLayoutComposition = {
     Header: PageLayoutHeader,

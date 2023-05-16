@@ -3,7 +3,7 @@ import Link from 'next/link';
 import { VscGraph } from 'react-icons/vsc';
 import { SlSettings, SlShare } from 'react-icons/sl';
 
-import { Divider, Icon } from '@/shared/ui';
+import { Divider, Icon, SnackBarContext } from '@/shared/ui';
 
 import { ReportContext } from '../../Report';
 import { ReportSettings } from '../ReportSettings';
@@ -14,6 +14,8 @@ const ReportNavigation: FC = () => {
     const {
         report: { userId }
     } = useContext(ReportContext);
+
+    const snackBarContext = useContext(SnackBarContext);
 
     const [isOpen, setIsOpen] = useState(false);
 
@@ -28,10 +30,13 @@ const ReportNavigation: FC = () => {
                     url: location.href,
                     title: 'Отчет'
                 })
-                .then(() => console.log)
+                .then(console.log)
                 .catch(console.error);
         } else {
-            navigator.clipboard.writeText(location.href);
+            navigator.clipboard
+                .writeText(location.href)
+                .then(() => snackBarContext.onShow('Ссылка скопирована в буфер обмена', 100000))
+                .catch(console.error);
         }
     };
 
