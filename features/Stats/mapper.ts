@@ -1,5 +1,5 @@
-import { capitalizeFirstLetter, formatDate, getPercents, parseDate } from '@/shared/utils';
-import { FoodInfo, ReportData } from '@/shared/types';
+import { Entries, capitalizeFirstLetter, formatDate, getPercents, parseDate } from '@/shared/utils';
+import { FoodDetails, FoodInfo, ReportData } from '@/shared/types';
 import { ChartData } from '@/shared/ui';
 
 import { EatenFood, FoodDtoWithCount, FoodDtoWithPercents, StatsData } from './types';
@@ -70,12 +70,30 @@ export const mapStats = (report?: ReportData, dailyAmount?: number): StatsData =
 
     const totalPeriodData = { count: report.data.length, data: report.total };
 
+    const foodDetails = report.data.reduce<{ [key: string]: FoodDetails }>((acc, item) => {
+        item.meals.forEach(meal => {
+            if (!acc[item.date]) {
+                acc[item.date] = { ...meal.total };
+            } else {
+                const items = Object.entries(meal.total) as Entries<FoodDetails>;
+                items.forEach(([key, value]) => {
+                    if (value) {
+                        acc[item.date][key] = Math.floor(Number(acc[item.date][key] || 0) + Number(value));
+                    }
+                });
+            }
+        });
+
+        return acc;
+    }, {});
+
     return {
         allEatenFood,
         eatenFood,
         chartData,
         allMealData,
         dailyAmount,
-        totalPeriodData
+        totalPeriodData,
+        foodDetails
     };
 };

@@ -23,6 +23,7 @@
     &Days {
         display: flex;
         align-items: center;
+        margin-top: var(--gap-5);
 
         &Item {
             text-align: center;

@@ -17,4 +17,5 @@ export type StatsData = {
     allMealData: FoodDtoWithPercents[];
     dailyAmount: number;
     totalPeriodData: { count: number; data: FoodDetails };
+    foodDetails: { [key: string]: FoodDetails };
 };

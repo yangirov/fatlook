@@ -1,0 +1,96 @@
+.toggleSwitch {
+    position: relative;
+
+    &Wrapper {
+        display: flex;
+        align-items: center;
+        gap: var(--gap-10);
+    }
+
+    &Text {
+        font-size: var(--font-small);
+        color: var(--gray);
+    }
+
+    &Checkbox {
+        display: none;
+    }
+
+    &Label {
+        width: 75px;
+        display: block;
+        overflow: hidden;
+        cursor: pointer;
+        border: 0 solid var(--gray);
+        border-radius: var(--gap-20);
+    }
+
+    &Inner {
+        display: block;
+        width: 200%;
+        margin-left: -100%;
+        transition: margin 0.3s ease-in 0s;
+
+        &:before,
+        &:after {
+            display: block;
+            float: left;
+            width: 50%;
+            height: 30px;
+            line-height: 30px;
+            font-size: var(--font-small);
+            color: white;
+            font-weight: bold;
+            box-sizing: border-box;
+        }
+
+        &:before {
+            content: 'Вкл';
+            padding-left: var(--gap-10);
+            background-color: var(--green);
+            color: var(--white);
+        }
+    }
+
+    &Disabled {
+        cursor: not-allowed;
+
+        &:before,
+        &:after {
+            cursor: not-allowed;
+        }
+    }
+
+    &Inner:after {
+        content: 'Выкл';
+        padding-right: var(--gap-10);
+        background-color: var(--gray);
+        color: var(--white);
+        text-align: right;
+    }
+
+    &Circle {
+        display: block;
+        width: 20px;
+        margin: 5px;
+        background: var(--white);
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        right: 45px;
+        border: 0 solid var(--gray);
+        border-radius: 50%;
+        transition: all 0.3s ease-in 0s;
+        transition-property: margin right;
+    }
+
+    &Checkbox:checked + &Label & {
+        &Inner {
+            margin-left: 0;
+        }
+
+        &Circle {
+            right: 0px;
+        }
+    }
+}

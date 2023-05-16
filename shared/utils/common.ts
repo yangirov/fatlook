@@ -1,5 +1,9 @@
 import { DEFAULT_CHART_COLORS } from '../colors';
 
+export const isNumeric = (value: unknown): boolean => {
+    return typeof value === 'number' || /^\d+(\.\d+)?$/.test(value as string);
+};
+
 export const isEmpty = (obj: unknown) => {
     if (Array.isArray(obj)) {
         return obj.length === 0;

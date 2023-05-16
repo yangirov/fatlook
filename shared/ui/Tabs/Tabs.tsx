@@ -11,15 +11,16 @@ export const Tab: FC<TabProps> = ({ children }) => {
 };
 
 export type TabsProps = {
+    className?: string;
     children: React.ReactElement<TabProps>[];
 };
 
-export const Tabs: FC<TabsProps> = ({ children }) => {
+export const Tabs: FC<TabsProps> = ({ className, children }) => {
     const [selected, setSelected] = useState(0);
 
     return (
         <>
-            <nav className={classNames(styles.tabs)}>
+            <nav className={classNames(styles.tabs, className)}>
                 {children.map((tab, index) => {
                     return (
                         <div key={index} className={classNames(styles.tabsItem, { [styles.tabsItemSelected]: index === selected })} onClick={() => setSelected(index)}>
@@ -28,7 +29,7 @@ export const Tabs: FC<TabsProps> = ({ children }) => {
                     );
                 })}
             </nav>
-            <div className={classNames(styles.tabsContent)}>{children[selected]}</div>
+            <div className={styles.tabsContent}>{children[selected]}</div>
         </>
     );
 };
