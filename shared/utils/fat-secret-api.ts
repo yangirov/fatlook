@@ -21,7 +21,7 @@ export type RouteParams = {
 export const getReport = async (query: RouteParams) => {
     const { params, searchParams } = query;
 
-    let report;
+    let report = {} as ReportData;
 
     if (params && !isEmpty(params)) {
         const queryString = new URLSearchParams({ userId: params.userId, ...searchParams });
