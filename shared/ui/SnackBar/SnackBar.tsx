@@ -8,8 +8,8 @@ import styles from './SnackBar.module.scss';
 type SnackBarContextProps = {
     isVisible: boolean;
     message?: string;
-    onShow: (message: string, delay?: number) => void;
-    onClose: () => void;
+    show: (message: string, delay?: number) => void;
+    close: () => void;
 };
 
 export const SnackBarContext = createContext<SnackBarContextProps>({} as SnackBarContextProps);
@@ -21,7 +21,7 @@ export const SnackBar: FC = () => {
         <div className={styles.snackBar}>
             <div className={styles.snackBarInner}>
                 <div className={styles.snackBarLabel}>{snackBarContext.message}</div>
-                <div className={styles.snackBarClose} onClick={snackBarContext.onClose}>
+                <div className={styles.snackBarClose} onClick={snackBarContext.close}>
                     <MdClose />
                 </div>
             </div>
@@ -55,8 +55,8 @@ export const SnackBarContextProvider: FC<{ children: React.ReactNode }> = ({ chi
             value={{
                 message,
                 isVisible,
-                onShow,
-                onClose
+                show: onShow,
+                close: onClose
             }}
         >
             {children}

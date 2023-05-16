@@ -35,7 +35,7 @@ const ReportNavigation: FC = () => {
         } else {
             navigator.clipboard
                 .writeText(location.href)
-                .then(() => snackBarContext.onShow('Ссылка скопирована в буфер обмена', 100000))
+                .then(() => snackBarContext.show('Ссылка скопирована в буфер обмена'))
                 .catch(console.error);
         }
     };
