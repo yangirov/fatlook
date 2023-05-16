@@ -4,9 +4,13 @@ import { ChartData } from '@/shared/ui';
 
 import { EatenFood, FoodDtoWithCount, FoodDtoWithPercents, StatsData } from './types';
 
-export const mapStats = (report?: ReportData, dailyAmount?: number): StatsData => {
-    if (!report || !dailyAmount) {
-        return {} as StatsData;
+export const mapStats = (report?: ReportData, dailyAmount?: number): StatsData | null => {
+    if (!report) {
+        return null;
+    }
+
+    if (!dailyAmount) {
+        throw new Error('Заполните РСК для подопечного');
     }
 
     const foodData = report.data.reduce<FoodInfo[]>((acc, item) => {

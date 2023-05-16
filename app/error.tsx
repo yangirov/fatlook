@@ -1,10 +1,7 @@
 'use client';
 
-export default function Error({ error }: { error: Error }) {
-    return (
-        <>
-            <p>Ошибка приложения 🙁</p>
-            {error && <p>{error.message}</p>}
-        </>
-    );
+import { Error } from '@/features/Error';
+
+export default function CustomError({ error }: { error: Error }) {
+    return <Error error={error} />;
 }

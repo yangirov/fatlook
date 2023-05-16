@@ -13,11 +13,10 @@ export const FoodAverage: FC = () => {
     const [isMedianMode, setIsMedianMode] = useState(false);
 
     const {
-        data: {
-            totalData: { data, count },
-            foodDetails
-        }
+        data: { totalData, foodDetails }
     } = useContext(StatsContext);
+
+    const { data, count } = totalData;
 
     const importantColumns: PartialFoodDetailsKeys = ['protein', 'allFat', 'carbohydrates', 'fiber'];
     const columns: PartialFoodDetailsKeys = ['protein', 'allFat', 'fat', 'nonSaturatedFat', 'carbohydrates', 'fiber', 'sugar', 'sodium', 'cholesterol', 'kalium'];
