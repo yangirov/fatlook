@@ -3,7 +3,7 @@ import classNames from 'classnames';
 import { SlArrowUp } from 'react-icons/sl';
 
 import { Icon } from '@/shared/ui';
-import { Meal, mealIconMap } from '@/shared/types';
+import { Meal, MEAL_ICONS } from '@/shared/types';
 import { Accordion, AccordionContext } from '@/shared/ui';
 import { useAppSelector } from '@/shared/store';
 import { Colors } from '@/shared/colors';
@@ -44,7 +44,7 @@ const HeaderInfo: FC<ReportMealProps> = ({ meal }) => {
     return (
         <>
             <div className={styles.reportMealHeader}>
-                <div className={styles.reportMealHeaderIcon}>{mealIconMap[meal.name]}</div>
+                <div className={styles.reportMealHeaderIcon}>{MEAL_ICONS[meal.name]}</div>
                 <div className={styles.reportMealHeaderInfo}>
                     <div
                         className={classNames(styles.reportMealHeaderTitle, {

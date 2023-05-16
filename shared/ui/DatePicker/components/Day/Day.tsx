@@ -5,9 +5,10 @@ import classNames from 'classnames';
 import { formatDate } from '@/shared/utils';
 
 import { DatePickerContext } from '../../DatePicker';
+
 import styles from './Day.module.scss';
 
-export type DayProps = { date: Date };
+type DayProps = { date: Date };
 
 const Day: FC<DayProps> = ({ date }) => {
     const dayRef = useRef(null);

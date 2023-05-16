@@ -52,7 +52,6 @@ const ModalWrapper: FC<ModalProps> = ({ isOpen, children, onToggle }: ModalProps
         <Transition unmountOnExit mountOnEnter appear in={isOpen} timeout={duration} nodeRef={modalRef}>
             {state => (
                 <>
-                    <Overlay />
                     <div
                         className={styles.modal}
                         style={{
@@ -71,6 +70,7 @@ const ModalWrapper: FC<ModalProps> = ({ isOpen, children, onToggle }: ModalProps
                             <div className={styles.modalContent}>{children}</div>
                         </div>
                     </div>
+                    <Overlay />
                 </>
             )}
         </Transition>

@@ -50,6 +50,14 @@
             background-color: var(--green);
             color: var(--white);
         }
+
+        &::after {
+            content: 'Выкл';
+            padding-right: var(--gap-10);
+            background-color: var(--gray);
+            color: var(--white);
+            text-align: right;
+        }
     }
 
     &Disabled {
@@ -59,14 +67,6 @@
         &:after {
             cursor: not-allowed;
         }
-    }
-
-    &Inner:after {
-        content: 'Выкл';
-        padding-right: var(--gap-10);
-        background-color: var(--gray);
-        color: var(--white);
-        text-align: right;
     }
 
     &Circle {

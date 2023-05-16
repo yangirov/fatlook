@@ -1,5 +1,5 @@
 import { FoodDetails } from './types';
-import { ObjectWithOptionalKeys } from './utils';
+import { ObjectWithOptionalKeys, isEmpty } from './utils';
 
 export enum Colors {
     WHITE = 'var(--white)',
@@ -18,8 +18,22 @@ export const MEAL_COLORS: { [key: string]: { color: string; key: string } } = {
     Перекус: getUnitInfo('#935ac1', 'snack')
 };
 
-export const REPORT_SUMMARY_COLORS: ObjectWithOptionalKeys<FoodDetails, string> = {
+export const UNIT_COLORS: ObjectWithOptionalKeys<FoodDetails, string> = {
     allFat: '#fb8681',
     protein: '#f8c44a',
     carbohydrates: '#75c3da'
+};
+
+export const getColor = (colors?: string[], index?: number) => {
+    if (!colors || isEmpty(colors)) {
+        colors = DEFAULT_CHART_COLORS;
+    }
+
+    const randomColor = colors[Math.floor(Math.random() * colors.length)];
+
+    if (index === undefined) {
+        return randomColor;
+    }
+
+    return index < colors.length ? colors[index] : randomColor;
 };

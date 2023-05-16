@@ -1,16 +1,24 @@
 import { FC } from 'react';
 import classNames from 'classnames';
 
-import { getColor, getPercents } from '@/shared/utils';
-
-import { PieChartData, PieChartItem } from './types';
+import { getPercents } from '@/shared/utils';
+import { getColor } from '@/shared/colors';
 
 import styles from './PieChart.module.scss';
+
+type PieChartItem = {
+    pie: React.ReactNode;
+    legend: React.ReactNode;
+};
 
 type PieChartProps = {
     size?: number;
     className?: string;
-    data: PieChartData[];
+    data: {
+        name: string;
+        value: number;
+        color?: string;
+    }[];
 };
 
 const sliceSize = (num: number, total: number) => (num / total) * 360;
@@ -19,7 +27,9 @@ export const PieChart: FC<PieChartProps> = ({ className, size, data }) => {
     const sizeStyle = { '--pieChartSize': `${size ?? 80}px` } as React.CSSProperties;
 
     const total = data.reduce((a, b) => a + b.value, 0);
-    if (total === 0) return null;
+    if (total === 0) {
+        return null;
+    }
 
     let offset = 0;
     const items = data.reduce<PieChartItem[]>((acc, { color, name, value }) => {

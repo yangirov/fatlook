@@ -1,11 +1,5 @@
 export type FoodUnit = string | number | null;
 
-export type FoodInfo = {
-    name: string;
-    weight: string;
-    details: FoodDetails;
-};
-
 export type FoodDetails = {
     kcal: FoodUnit;
     allFat: FoodUnit;
@@ -19,6 +13,12 @@ export type FoodDetails = {
     cholesterol: FoodUnit;
     kalium: FoodUnit;
     [key: string]: FoodUnit;
+};
+
+export type FoodInfo = {
+    name: string;
+    weight: string;
+    details: FoodDetails;
 };
 
 export type PartialFoodDetailsKeys = Partial<keyof FoodDetails>[];

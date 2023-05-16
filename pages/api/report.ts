@@ -3,6 +3,7 @@ import { NextApiRequest, NextApiResponse } from 'next';
 import { ReportData } from '@/shared/types';
 import { isEmpty, getReportLink, parseFatSecretCSV, formatDate, REPORT_TYPES, ReportType } from '@/shared/utils';
 
+// TODO: Refactor
 const getReportFromFatSecret = async (req: NextApiRequest): Promise<ReportData | null> => {
     const { query } = req;
 

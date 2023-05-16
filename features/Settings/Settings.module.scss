@@ -1,10 +1,12 @@
 .userItem {
-    display: flex;
+    display: grid;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: var(--gap-15);
+    grid-template-columns: 1fr 90px;
 
     padding: var(--gap-10);
+    margin-bottom: var(--gap-15);
+
     border: 1px solid var(--light-gray);
     border-radius: var(--border-radius);
 

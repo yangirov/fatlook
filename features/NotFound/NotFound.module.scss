@@ -1,5 +1,6 @@
 .notFound {
     composes: flexCenter from 'styles/scaffold.scss';
+
     flex-direction: column;
     font-size: 1.2rem;
 
@@ -13,9 +14,9 @@
         margin-bottom: var(--gap-20);
     }
 
-    &Link {
-    }
-
     &Image {
+        @media (prefers-color-scheme: dark) {
+            filter: invert(1);
+        }
     }
 }

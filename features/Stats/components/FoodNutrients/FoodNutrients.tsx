@@ -2,7 +2,7 @@ import { FC, useContext, useRef } from 'react';
 
 import { BarChart, ChartData, Divider } from '@/shared/ui';
 import { foodKeysMap } from '@/shared/types';
-import { REPORT_SUMMARY_COLORS } from '@/shared/colors';
+import { UNIT_COLORS } from '@/shared/colors';
 import { capitalizeFirstLetter, formatDate, getPercents, parseDate } from '@/shared/utils';
 
 import { FoodCard } from '../FoodCard';
@@ -29,7 +29,7 @@ export const FoodNutrients: FC = () => {
         percents: getPercents(Number(totalData.data[f]), legendTotalSum)
     }));
 
-    const chartNutrientColors = Object.values(REPORT_SUMMARY_COLORS).map(x => x ?? 'var(--gray)');
+    const chartNutrientColors = Object.values(UNIT_COLORS).map(x => x ?? 'var(--gray)');
     const chartData = Object.entries(foodDetails).reduce<ChartData[]>((acc, [field, value]) => {
         const d = parseDate(field);
         const data = {
@@ -64,7 +64,7 @@ export const FoodNutrients: FC = () => {
                             <Divider />
                             <div className={styles.nutrientsInfo}>
                                 <div className={styles.nutrientsFood}>
-                                    <div className={styles.nutrientsFoodDot} style={{ backgroundColor: REPORT_SUMMARY_COLORS[key] }}></div>
+                                    <div className={styles.nutrientsFoodDot} style={{ backgroundColor: UNIT_COLORS[key] }}></div>
                                     <div>{foodKeysMap[key]?.fullName}</div>
                                 </div>
                                 <div>{percents}</div>

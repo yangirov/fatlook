@@ -1,7 +1,9 @@
 import React, { FC } from 'react';
 
+import { getPercents } from '@/shared/utils';
+import { getColor } from '@/shared/colors';
+
 import styles from './BarChart.module.scss';
-import { getColor, getPercents } from '@/shared/utils';
 
 export type ChartData = {
     label: string;
@@ -18,11 +20,10 @@ type BarChartProps = {
 
 export const BarChart: FC<BarChartProps> = ({ colors, data, width, height, hasMiddleLine = false }) => {
     const values = data.map(d => d.values.reduce((a, b) => a + b));
-
     const maxValue = Math.max(...values);
 
     const middleValue = values.reduce((a, b) => a + b) / data.length;
-    const middleLine = (+getPercents(middleValue, maxValue, false) / 100) * height;
+    const middleLine = (Number(getPercents(middleValue, maxValue, false)) / 100) * height;
 
     const barWidth = width / data.length;
     const barHeight = height / Math.floor(data[0].values.length / 2) ?? 2;
@@ -39,6 +40,7 @@ export const BarChart: FC<BarChartProps> = ({ colors, data, width, height, hasMi
                         return values.map((value, i) => {
                             const segmentHeight = (value / maxValue) * height;
                             const y = height - cumulativeHeight[index] - segmentHeight;
+
                             cumulativeHeight[index] += segmentHeight;
 
                             return (
@@ -46,9 +48,9 @@ export const BarChart: FC<BarChartProps> = ({ colors, data, width, height, hasMi
                                     className={styles.barChartRect}
                                     key={`${index}-${i}`}
                                     x={index * barWidth + 5}
-                                    y={y + 1}
+                                    y={y}
                                     width={barWidth - 10}
-                                    height={segmentHeight - 1}
+                                    height={segmentHeight}
                                     fill={getColor(colors, i)}
                                 />
                             );
@@ -57,9 +59,9 @@ export const BarChart: FC<BarChartProps> = ({ colors, data, width, height, hasMi
                 </svg>
             </div>
 
-            <div className={styles.barChartDays}>
-                {data.map(({ label }, index) => (
-                    <div key={label + index} style={{ width: barWidth }} className={styles.barChartDaysItem}>
+            <div className={styles.barChartLabels}>
+                {data.map(({ label }) => (
+                    <div key={label} style={{ width: barWidth }} className={styles.barChartLabelsItem}>
                         {label}
                     </div>
                 ))}

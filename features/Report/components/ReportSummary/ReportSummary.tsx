@@ -3,8 +3,8 @@ import { FC, useContext } from 'react';
 import classNames from 'classnames';
 
 import { REPORT_CALC_RATIO, PartialFoodDetailsKeys, FoodUnit, FoodKeys, foodKeysMap } from '@/shared/types';
-import { REPORT_SUMMARY_COLORS } from '@/shared/colors';
-import { Divider, PieChart, PieChartData } from '@/shared/ui';
+import { UNIT_COLORS } from '@/shared/colors';
+import { Divider, PieChart } from '@/shared/ui';
 import { useAppSelector } from '@/shared/store';
 import { getUserById } from '@/shared/store/usersReducer';
 import { getPercents } from '@/shared/utils';
@@ -28,12 +28,12 @@ const ReportSummary: FC = () => {
     const keys: PartialFoodDetailsKeys = ['allFat', 'cholesterol', 'sodium', 'carbohydrates', 'fiber', 'sugar', 'protein'];
 
     const pieChartItems: PartialFoodDetailsKeys = ['allFat', 'carbohydrates', 'protein'];
-    const pieChartData = pieChartItems.map<PieChartData>(key => {
+    const pieChartData = pieChartItems.map(key => {
         const value = Number(total[key]);
         const ratio = Number(REPORT_CALC_RATIO[key]);
 
         return {
-            color: REPORT_SUMMARY_COLORS[key],
+            color: UNIT_COLORS[key],
             name: foodKeysMap[key]?.shortName ?? key.toString(),
             value: Math.floor(value * ratio)
         };

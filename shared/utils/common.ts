@@ -1,5 +1,3 @@
-import { DEFAULT_CHART_COLORS } from '../colors';
-
 export const isNumeric = (value: unknown): boolean => {
     return typeof value === 'number' || /^\d+(\.\d+)?$/.test(value as string);
 };
@@ -42,18 +40,4 @@ export const isEqual = (x: any, y: any) => {
 export const getPercents = (num: number, total: number, needSymbol = true) => {
     const value = Math.round(((num / total) * 10000) / 100);
     return needSymbol ? `${value}%` : value;
-};
-
-export const getColor = (colors?: string[], index?: number) => {
-    if (!colors || isEmpty(colors)) {
-        colors = DEFAULT_CHART_COLORS;
-    }
-
-    const randomColor = colors[Math.floor(Math.random() * colors.length)];
-
-    if (index === undefined) {
-        return randomColor;
-    }
-
-    return index < colors.length ? colors[index] : randomColor;
 };

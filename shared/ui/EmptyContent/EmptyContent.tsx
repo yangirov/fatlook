@@ -6,4 +6,4 @@ type EmptyContentProps = {
     children?: React.ReactNode;
 };
 
-export const EmptyContent: FC<EmptyContentProps> = ({ children }) => <div className={styles.emptyContent}>{children ? children : 'Ничего не найдено 🙄'}</div>;
+export const EmptyContent: FC<EmptyContentProps> = ({ children }) => <div className={styles.emptyContent}>{children ?? 'Ничего не найдено 🙄'}</div>;

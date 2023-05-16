@@ -10,7 +10,7 @@ export const Tab: FC<TabProps> = ({ children }) => {
     return <div>{children}</div>;
 };
 
-export type TabsProps = {
+type TabsProps = {
     className?: string;
     children: React.ReactElement<TabProps>[];
 };

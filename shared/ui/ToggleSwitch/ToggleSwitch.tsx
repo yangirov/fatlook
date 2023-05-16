@@ -1,11 +1,11 @@
 import { FC } from 'react';
-
-import styles from './ToggleSwitch.module.scss';
 import classNames from 'classnames';
 
+import styles from './ToggleSwitch.module.scss';
+
 export type ToggleSwitchProps = {
-    checked: boolean;
     onChange: (state: boolean) => void;
+    checked: boolean;
     name?: string;
     text?: string;
     disabled?: boolean;

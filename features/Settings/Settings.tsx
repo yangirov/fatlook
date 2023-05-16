@@ -30,8 +30,8 @@ export const Settings: FC = () => {
     };
 
     const onDeleteUser = (userId: string, name: string) => {
-        const conf = confirm(`Удалить пользователя ${name}?`);
-        if (conf) {
+        const confirmDialog = confirm(`Удалить пользователя ${name}?`);
+        if (confirmDialog) {
             dispatch(deleteUser(userId));
             setUser(null);
         }
@@ -42,7 +42,7 @@ export const Settings: FC = () => {
             <PageLayout.Header>Отчеты</PageLayout.Header>
 
             <PageLayout.Content>
-                {users.length === 0 && <div>Нет подопечных</div>}
+                {users.length === 0 && <div>Нет подопечных. Добавим?</div>}
 
                 <div className={styles.users}>
                     {users?.map(({ id, name, dailyAmount }) => (

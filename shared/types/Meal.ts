@@ -6,7 +6,7 @@ export type Meal = {
     foods: FoodInfo[];
 };
 
-export const mealIconMap: { [key: string]: string } = {
+export const MEAL_ICONS: { [key: string]: string } = {
     Завтрак: '🌅',
     Обед: '🕑',
     Ужин: '🌇',
