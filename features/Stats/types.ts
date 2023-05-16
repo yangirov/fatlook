@@ -1,21 +1,30 @@
 import { FoodDetails } from '@/shared/types';
 import { ChartData } from '@/shared/ui';
 
-type FoodDto<T extends 'count' | 'percents'> = {
+export type FoodDtoWithPercents = {
     name: string;
     kcal: number;
-} & (T extends 'count' ? { count: number } : T extends 'percents' ? { percents: string } : never);
+    percents: string;
+};
 
-export type FoodDtoWithPercents = FoodDto<'percents'>;
-export type FoodDtoWithCount = FoodDto<'count'>;
+export type FoodDtoWithCount = {
+    name: string;
+    count: string | number;
+    kcal: number;
+    fat: number;
+    protein: number;
+    carbohydrates: number;
+    [key: string]: string | number;
+};
+
 export type EatenFood = { [key: string]: FoodDtoWithCount };
 
 export type StatsData = {
     allEatenFood: FoodDtoWithCount;
     eatenFood: FoodDtoWithCount[];
     chartData: ChartData[];
-    allMealData: FoodDtoWithPercents[];
+    allMeals: FoodDtoWithPercents[];
     dailyAmount: number;
-    totalPeriodData: { count: number; data: FoodDetails };
+    totalData: { count: number; data: FoodDetails };
     foodDetails: { [key: string]: FoodDetails };
 };

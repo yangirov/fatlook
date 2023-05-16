@@ -12,9 +12,9 @@ import { EmptyContent, Tab, Tabs } from '@/shared/ui';
 import { mapStats } from './mapper';
 import { StatsData } from './types';
 
-import { FoodCard } from './components/FoodCard';
-import { FoodAmount } from './components/FoodAmount';
 import { FoodAverage } from './components/FoodAverage';
+import { FoodCalories } from './components/FoodCalories';
+import { FoodNutrients } from './components/FoodNutrients';
 
 import styles from './Stats.module.scss';
 
@@ -73,8 +73,10 @@ export const Stats: FC<StatsProps> = ({ report }) => {
                             <FoodAverage />
                         </Tab>
                         <Tab title="Калории">
-                            <FoodAmount />
-                            <FoodCard />
+                            <FoodCalories />
+                        </Tab>
+                        <Tab title="Макроэлементы">
+                            <FoodNutrients />
                         </Tab>
                     </Tabs>
                 </PageLayout.Content>

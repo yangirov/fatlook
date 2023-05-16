@@ -1,36 +1,38 @@
-import { FC, useContext } from 'react';
+import { FC } from 'react';
 
 import { Divider } from '@/shared/ui';
 
-import { StatsContext } from '../../Stats';
+import { FoodDtoWithCount } from '../../types';
 
 import styles from './FoodCard.module.scss';
 
-export const FoodCard: FC = () => {
-    const {
-        data: { eatenFood }
-    } = useContext(StatsContext);
+type FoodCardProps = {
+    title: string;
+    columns: { [key in Partial<keyof FoodDtoWithCount>]: string };
+    items: FoodDtoWithCount[];
+};
 
+export const FoodCard: FC<FoodCardProps> = ({ title, columns, items }) => {
     return (
         <div className={styles.foodCard}>
-            <div className={styles.foodCardTitle}>Съеденная пища</div>
+            <div className={styles.foodCardTitle}>{title}</div>
 
             <div className={styles.foodCardContent}>
                 <div className={styles.foodCardItem}>
                     <div className={styles.foodCardInfo}>
-                        <div>Продукты</div>
-                        <div>Кол-во приемов</div>
-                        <div>Калории</div>
+                        {Object.values(columns).map((c, index) => (
+                            <div key={c + index}>{c}</div>
+                        ))}
                     </div>
                 </div>
 
-                {eatenFood.map(({ name, count, kcal }) => (
-                    <div key={name} className={styles.foodCardItem}>
+                {items.map(item => (
+                    <div key={item.name} className={styles.foodCardItem}>
                         <Divider />
                         <div className={styles.foodCardInfo}>
-                            <div>{name}</div>
-                            <div>{`x${count}=`}</div>
-                            <div>{kcal}</div>
+                            {Object.keys(columns).map((c, index) => (
+                                <div key={c + index}>{item[c]}</div>
+                            ))}
                         </div>
                     </div>
                 ))}

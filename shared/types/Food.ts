@@ -18,6 +18,7 @@ export type FoodDetails = {
     sodium: FoodUnit;
     cholesterol: FoodUnit;
     kalium: FoodUnit;
+    [key: string]: FoodUnit;
 };
 
 export type PartialFoodDetailsKeys = Partial<keyof FoodDetails>[];

@@ -1,0 +1,33 @@
+.nutrients {
+    composes: card from 'styles/scaffold.scss';
+
+    &Title {
+        composes: cardSubTitle from 'styles/scaffold.scss';
+        margin-bottom: var(--gap-10);
+        font-weight: bold;
+    }
+
+    &Content {
+        margin-top: var(--gap-10);
+    }
+
+    &Item {
+        composes: cardItem from 'styles/scaffold.scss';
+    }
+
+    &Info {
+        composes: cardInfo from 'styles/scaffold.scss';
+    }
+
+    &Food {
+        display: flex;
+        align-items: center;
+        color: var(--green);
+
+        &Dot {
+            width: var(--gap-15);
+            height: var(--gap-15);
+            margin-right: var(--gap-10);
+        }
+    }
+}

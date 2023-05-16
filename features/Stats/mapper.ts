@@ -14,21 +14,24 @@ export const mapStats = (report?: ReportData, dailyAmount?: number): StatsData =
         return acc;
     }, []);
 
-    const allEatenFood: FoodDtoWithCount = { name: 'Всего', count: 0, kcal: 0 };
-
-    const foods = foodData.reduce<EatenFood>((acc, { name, details: { kcal } }) => {
+    const allEatenFood: FoodDtoWithCount = { name: 'Всего', count: 0, kcal: 0, fat: 0, protein: 0, carbohydrates: 0 };
+    const mapItem = (acc: EatenFood, name: string, payload: FoodDetails): EatenFood => {
         if (!acc[name]) {
-            acc[name] = { name, count: 1, kcal: Number(kcal) };
+            acc[name] = { name, count: 1, kcal: 0, fat: 0, protein: 0, carbohydrates: 0 };
         } else {
-            acc[name].count += 1;
-            acc[name].kcal += Number(kcal);
+            acc[name].count = Number(acc[name].count) + 1;
         }
 
-        allEatenFood.count += 1;
-        allEatenFood.kcal += Number(kcal);
+        ['kcal', 'fat', 'protein', 'carbohydrates'].forEach(field => {
+            acc[name][field] = Math.floor(Number(acc[name][field] ?? 0) + Number(payload[field]));
+            allEatenFood[field] = Math.floor(Number(allEatenFood[field] ?? 0) + Number(payload[field]));
+        });
 
+        allEatenFood.count = Number(allEatenFood.count) + 1;
         return acc;
-    }, {});
+    };
+
+    const foods = foodData.reduce<EatenFood>((acc, { name, details }) => mapItem(acc, name, details), {});
 
     const eatenFood: FoodDtoWithCount[] = Object.keys(foods)
         .sort((a, b) => foods[b].kcal - foods[a].kcal)
@@ -52,9 +55,7 @@ export const mapStats = (report?: ReportData, dailyAmount?: number): StatsData =
 
     const mealData = report.data.reduce<{ [key: string]: { name: string; kcal: number } }>((acc, meal) => {
         meal.meals.forEach(({ name, total: { kcal } }) => {
-            if (!kcal) {
-                kcal = 0;
-            }
+            if (!kcal) kcal = 0;
 
             if (!acc[name]) {
                 acc[name] = { name, kcal: +kcal };
@@ -66,9 +67,9 @@ export const mapStats = (report?: ReportData, dailyAmount?: number): StatsData =
         return acc;
     }, {});
 
-    const allMealData = Object.values(mealData).map<FoodDtoWithPercents>(item => ({ ...item, percents: getPercents(item.kcal, allEatenFood.kcal).toString() }));
+    const allMeals = Object.values(mealData).map<FoodDtoWithPercents>(item => ({ ...item, percents: getPercents(item.kcal, allEatenFood.kcal).toString() }));
 
-    const totalPeriodData = { count: report.data.length, data: report.total };
+    const totalData = { count: report.data.length, data: report.total };
 
     const foodDetails = report.data.reduce<{ [key: string]: FoodDetails }>((acc, item) => {
         item.meals.forEach(meal => {
@@ -91,9 +92,9 @@ export const mapStats = (report?: ReportData, dailyAmount?: number): StatsData =
         allEatenFood,
         eatenFood,
         chartData,
-        allMealData,
+        allMeals,
         dailyAmount,
-        totalPeriodData,
+        totalData,
         foodDetails
     };
 };

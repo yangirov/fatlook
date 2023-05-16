@@ -16,9 +16,3 @@ export const REPORT_CALC_RATIO: ObjectWithOptionalKeys<FoodDetails, number> = {
     protein: 4.1,
     carbohydrates: 4.1
 };
-
-export const REPORT_SUMMARY_COLORS: ObjectWithOptionalKeys<FoodDetails, string> = {
-    allFat: '#fb8681',
-    protein: '#f8c44a',
-    carbohydrates: '#75c3da'
-};

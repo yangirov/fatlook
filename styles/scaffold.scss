@@ -50,9 +50,9 @@
     display: grid;
     justify-content: space-between;
     align-items: flex-end;
-    grid-template-columns: 1fr 70px 60px;
+    grid-template-columns: 200px repeat(auto-fit, minmax(0, 1fr));
     padding: var(--gap-10) 0;
-    grid-gap: var(--gap-10);
+    grid-gap: var(--gap-5);
 
     > div {
         text-align: right;

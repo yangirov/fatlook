@@ -1,19 +1,19 @@
 import { FC, useContext, useRef } from 'react';
 
 import { BarChart, Divider } from '@/shared/ui';
-import { mealColors } from '@/shared/types';
+import { MEAL_COLORS } from '@/shared/colors';
 
-import { StatsContext } from '../../Stats';
+import { StatsContext } from '../../../../Stats';
 
 import styles from './FoodAmount.module.scss';
 
 export const FoodAmount: FC = () => {
     const {
-        data: { allEatenFood, allMealData, dailyAmount, chartData }
+        data: { allEatenFood, allMeals, dailyAmount, chartData }
     } = useContext(StatsContext);
 
     const chartRef = useRef<HTMLDivElement>(null);
-    const chartMealColors = Object.values(mealColors).map(m => m.color);
+    const chartMealColors = Object.values(MEAL_COLORS).map(m => m.color);
 
     return (
         <div className={styles.amountCard}>
@@ -26,7 +26,7 @@ export const FoodAmount: FC = () => {
             </div>
 
             <div className={styles.amountCardChart} ref={chartRef}>
-                <BarChart data={chartData} colors={chartMealColors} width={chartRef?.current?.offsetWidth ?? 350} height={125} />
+                <BarChart hasMiddleLine={true} data={chartData} colors={chartMealColors} width={chartRef?.current?.offsetWidth ?? 350} height={125} />
             </div>
 
             <div className={styles.amountCardContent}>
@@ -38,12 +38,12 @@ export const FoodAmount: FC = () => {
                     </div>
                 </div>
 
-                {allMealData.map(({ name, percents, kcal }) => (
+                {allMeals.map(({ name, percents, kcal }) => (
                     <div key={name} className={styles.amountCardItem}>
                         <Divider />
                         <div className={styles.amountCardInfo}>
                             <div className={styles.amountCardFood}>
-                                <div className={styles.amountCardFoodDot} style={{ backgroundColor: mealColors[name].color }}></div>
+                                <div className={styles.amountCardFoodDot} style={{ backgroundColor: MEAL_COLORS[name]?.color }}></div>
                                 <div>{name}</div>
                             </div>
                             <div>({percents})</div>

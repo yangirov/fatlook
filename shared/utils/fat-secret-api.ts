@@ -4,6 +4,7 @@ import { ru } from 'date-fns/locale';
 import { ReportData } from '../types';
 import { isEmpty } from './common';
 import { parseDate, diffInDays, formatDate } from './dates';
+import { isDev } from './isDev';
 
 export type ReportType = 'day' | 'week' | 'month';
 
@@ -26,8 +27,8 @@ export const getReport = async (query: RouteParams) => {
     if (params && !isEmpty(params)) {
         const queryString = new URLSearchParams({ userId: params.userId, ...searchParams });
         const response = await fetch(`${process.env.DOMAIN}/api/report?${queryString}`, {
-            cache: 'no-store',
-            next: { revalidate: 0 }
+            cache: isDev ? 'default' : 'no-store',
+            next: { revalidate: isDev ? 60 : 30 }
         });
         const json = await response.json();
         report = json as ReportData;

@@ -14,7 +14,7 @@ export const FoodAverage: FC = () => {
 
     const {
         data: {
-            totalPeriodData: { data, count },
+            totalData: { data, count },
             foodDetails
         }
     } = useContext(StatsContext);

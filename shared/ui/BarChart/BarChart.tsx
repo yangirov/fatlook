@@ -13,9 +13,10 @@ type BarChartProps = {
     data: ChartData[];
     width: number;
     height: number;
+    hasMiddleLine?: boolean;
 };
 
-export const BarChart: FC<BarChartProps> = ({ colors, data, width, height }) => {
+export const BarChart: FC<BarChartProps> = ({ colors, data, width, height, hasMiddleLine = false }) => {
     const values = data.map(d => d.values.reduce((a, b) => a + b));
 
     const maxValue = Math.max(...values);
@@ -31,7 +32,7 @@ export const BarChart: FC<BarChartProps> = ({ colors, data, width, height }) => 
     return (
         <div className={styles.barChart}>
             <div className={styles.barChartSvgWrapper} style={{ width, height }}>
-                <div className={styles.barChartLine} style={{ bottom: middleLine }}></div>
+                {hasMiddleLine && <div className={styles.barChartLine} style={{ bottom: middleLine }}></div>}
 
                 <svg className={styles.barChartSvg} width={width} height={height} style={{ backgroundSize: `${barWidth}px ${barHeight}px` }}>
                     {data.map(({ values }, index) => {
