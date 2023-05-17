@@ -3,6 +3,7 @@ import { FC, createContext, useContext, useState } from 'react';
 import classNames from 'classnames';
 
 import { AccordionContextType, AccordionProps, FCWithChild } from './types';
+
 import styles from './Accordion.module.scss';
 
 export const AccordionContext = createContext({} as AccordionContextType);

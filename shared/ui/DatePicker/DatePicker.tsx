@@ -9,6 +9,7 @@ import { formatDate } from '@/shared/utils';
 import { Icon } from '../Icon';
 
 import Month from './components/Month';
+
 import styles from './DatePicker.module.scss';
 
 type DatePickerProps = {

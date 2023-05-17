@@ -10,6 +10,7 @@ import { User } from '@/shared/types';
 import { deleteUser } from '@/shared/store/usersReducer';
 
 import { UserForm } from './entities/UserForm';
+
 import styles from './Settings.module.scss';
 
 export const Settings: FC = () => {

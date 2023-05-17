@@ -21,9 +21,14 @@
                                 "pattern": "@/**",
                                 "group": "external",
                                 "position": "after"
+                            },
+                            {
+                                "pattern": "{.,..}/*.module.scss",
+                                "group": "unknown",
+                                "position": "after"
                             }
                         ],
-                        "groups": ["builtin", "external", "parent", "sibling", "index"]
+                        "groups": ["builtin", "external", "parent", "sibling", "index", "unknown"]
                     }
                 ]
             }

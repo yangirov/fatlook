@@ -5,6 +5,7 @@ import { StatsContext } from '../../Stats';
 import { FoodDtoWithCount } from '../../types';
 
 import { FoodAmount } from './components/FoodAmount';
+
 import styles from './FoodCalories.module.scss';
 
 export const FoodCalories: FC = () => {

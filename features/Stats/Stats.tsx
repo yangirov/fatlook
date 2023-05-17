@@ -15,6 +15,7 @@ import { FoodAverage } from './entities/FoodAverage';
 import { FoodCalories } from './entities/FoodCalories';
 import { FoodNutrients } from './entities/FoodNutrients';
 import { FoodNutrientsSummary } from './entities/FoodNutrientsSummary';
+
 import styles from './Stats.module.scss';
 
 export type StatsProps = {

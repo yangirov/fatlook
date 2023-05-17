@@ -1,4 +1,4 @@
-import { FC, MouseEventHandler, useContext, useState } from 'react';
+import { FC, useContext, useState } from 'react';
 import Link from 'next/link';
 import { VscGraph } from 'react-icons/vsc';
 import { SlSettings, SlShare } from 'react-icons/sl';
