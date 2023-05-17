@@ -1,7 +1,7 @@
 import { FC, useContext, useRef } from 'react';
 
 import { BarChart, ChartData, Divider } from '@/shared/ui';
-import { foodKeysMap } from '@/shared/types';
+import { foodKeysMap, nutrientsGoals } from '@/shared/types';
 import { UNIT_COLORS } from '@/shared/colors';
 import { capitalizeFirstLetter, formatDate, getPercents, parseDate } from '@/shared/utils';
 
@@ -9,12 +9,6 @@ import { FoodCard } from '../FoodCard';
 import { StatsContext } from '../../Stats';
 
 import styles from './FoodNutrients.module.scss';
-
-const nutrientsGoals: { [key: string]: string } = {
-    carbohydrates: '50%',
-    allFat: '30%',
-    protein: '20%'
-};
 
 export const FoodNutrients: FC = () => {
     const chartRef = useRef<HTMLDivElement>(null);

@@ -15,6 +15,7 @@ import { StatsData } from './types';
 import { FoodAverage } from './components/FoodAverage';
 import { FoodCalories } from './components/FoodCalories';
 import { FoodNutrients } from './components/FoodNutrients';
+import { NutrientsSummary } from './components/NutrientsSummary';
 
 import styles from './Stats.module.scss';
 
@@ -77,6 +78,9 @@ export const Stats: FC<StatsProps> = ({ report }) => {
                         </Tab>
                         <Tab title="Макроэлементы">
                             <FoodNutrients />
+                        </Tab>
+                        <Tab title="Питательные вещества">
+                            <NutrientsSummary />
                         </Tab>
                     </Tabs>
                 </PageLayout.Content>

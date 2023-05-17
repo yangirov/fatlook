@@ -4,6 +4,7 @@ import { FoodAmount } from './components/FoodAmount';
 import { FoodCard } from '../FoodCard';
 
 import { StatsContext } from '../../Stats';
+import { FoodDtoWithCount } from '../../types';
 
 import styles from './FoodCalories.module.scss';
 
@@ -12,7 +13,7 @@ export const FoodCalories: FC = () => {
         data: { eatenFood }
     } = useContext(StatsContext);
 
-    const items = eatenFood.map(f => ({ ...f, count: `=x${f.count}` }));
+    const items = eatenFood.map(f => ({ ...f, count: `=x${f.count}` })) as FoodDtoWithCount[];
 
     return (
         <div className={styles.foodCalories}>

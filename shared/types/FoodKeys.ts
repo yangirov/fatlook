@@ -30,3 +30,9 @@ export const foodKeysMap: FoodKeysMap = {
     cholesterol: getUnitInfo('Холестерин', 'Холес', 'Холес( мг)', 'мг'),
     kalium: getUnitInfo('Калий', null, 'Калий( мг)', 'н')
 };
+
+export const nutrientsGoals: { [key: string]: string } = {
+    carbohydrates: '50%',
+    allFat: '30%',
+    protein: '20%'
+};

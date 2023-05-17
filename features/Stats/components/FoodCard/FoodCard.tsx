@@ -2,17 +2,17 @@ import { FC } from 'react';
 
 import { Divider } from '@/shared/ui';
 
-import { FoodDtoWithCount } from '../../types';
-
 import styles from './FoodCard.module.scss';
 
-type FoodCardProps = {
+type FoodCardBase = { name: string; [key: string]: string | number };
+
+type FoodCardProps<T extends FoodCardBase> = {
     title: string;
-    columns: { [key in Partial<keyof FoodDtoWithCount>]: string };
-    items: FoodDtoWithCount[];
+    columns: { [key in Partial<keyof T>]: string };
+    items: T[];
 };
 
-export const FoodCard: FC<FoodCardProps> = ({ title, columns, items }) => {
+export const FoodCard = <T extends FoodCardBase>({ title, columns, items }: FoodCardProps<T>) => {
     return (
         <div className={styles.foodCard}>
             <div className={styles.foodCardTitle}>{title}</div>
