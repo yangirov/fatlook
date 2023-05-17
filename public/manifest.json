@@ -45,7 +45,7 @@
     "display_override": ["window-controls-overlay"],
     "protocol_handlers": [
         {
-            "protocol": "fatlook",
+            "protocol": "web+fatlook",
             "url": "/?from=%s"
         }
     ],
