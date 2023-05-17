@@ -1,6 +1,4 @@
 .nutrients {
-    composes: card from 'styles/scaffold.scss';
-
     &Title {
         composes: cardSubTitle from 'styles/scaffold.scss';
         margin-bottom: var(--gap-10);

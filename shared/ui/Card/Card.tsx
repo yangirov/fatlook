@@ -4,7 +4,7 @@ import classNames from 'classnames';
 import styles from './Card.module.scss';
 
 export type CardProps = {
-    title: string;
+    title?: string;
     children: React.ReactNode;
     extraClassNames?: {
         wrapper?: string;
@@ -16,7 +16,7 @@ export type CardProps = {
 export const Card: FC<CardProps> = ({ children, title, extraClassNames }) => {
     return (
         <div className={classNames(styles.card, extraClassNames?.wrapper)}>
-            <div className={classNames(styles.cardTitle, extraClassNames?.title)}>{title}</div>
+            {title && <div className={classNames(styles.cardTitle, extraClassNames?.title)}>{title}</div>}
             <div className={classNames(styles.cardContent, extraClassNames?.content)}>{children}</div>
         </div>
     );

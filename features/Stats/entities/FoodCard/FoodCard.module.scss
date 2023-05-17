@@ -1,6 +1,4 @@
 .foodCard {
-    composes: card from 'styles/scaffold.scss';
-
     &Title {
         composes: cardTitle from 'styles/scaffold.scss';
     }

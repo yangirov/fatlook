@@ -1,6 +1,4 @@
 .foodAverage {
-    composes: card from 'styles/scaffold.scss';
-
     &Header {
         display: flex;
         align-items: center;

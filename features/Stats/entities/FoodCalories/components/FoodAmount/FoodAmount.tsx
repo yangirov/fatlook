@@ -1,6 +1,6 @@
 import { FC, useContext, useRef } from 'react';
 
-import { BarChart, Divider } from '@/shared/ui';
+import { BarChart, Card, Divider } from '@/shared/ui';
 import { MEAL_COLORS } from '@/shared/colors';
 
 import { StatsContext } from '../../../../Stats';
@@ -16,7 +16,7 @@ export const FoodAmount: FC = () => {
     const chartMealColors = Object.values(MEAL_COLORS).map(m => m.color);
 
     return (
-        <div className={styles.amountCard}>
+        <Card>
             <div className={styles.amountCardSubTitle}>Калории</div>
             <div className={styles.amountCardTitle}>{allEatenFood.kcal}</div>
 
@@ -61,6 +61,6 @@ export const FoodAmount: FC = () => {
                     </div>
                 ))}
             </div>
-        </div>
+        </Card>
     );
 };

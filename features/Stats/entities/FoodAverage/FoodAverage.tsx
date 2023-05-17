@@ -3,7 +3,7 @@ import { FC, useContext, useState } from 'react';
 import classNames from 'classnames';
 
 import { FoodDetails, PartialFoodDetailsKeys, foodKeysMap } from '@/shared/types';
-import { Divider, ToggleSwitch } from '@/shared/ui';
+import { Card, Divider, ToggleSwitch } from '@/shared/ui';
 
 import { StatsContext } from '../../Stats';
 
@@ -50,7 +50,7 @@ export const FoodAverage: FC = () => {
     }, {} as FoodDetails);
 
     return (
-        <div className={styles.foodAverage}>
+        <Card>
             <div className={styles.foodAverageHeader}>
                 <div className={styles.foodAverageTitle}>{isMedianMode ? 'Медиана' : 'Среднее'}</div>
                 <ToggleSwitch text="Медиана" checked={isMedianMode} onChange={setIsMedianMode} />
@@ -77,6 +77,6 @@ export const FoodAverage: FC = () => {
                     );
                 })}
             </div>
-        </div>
+        </Card>
     );
 };

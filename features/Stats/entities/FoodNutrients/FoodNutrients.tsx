@@ -1,6 +1,6 @@
 import { FC, useContext, useRef } from 'react';
 
-import { BarChart, ChartData, Divider } from '@/shared/ui';
+import { BarChart, Card, ChartData, Divider } from '@/shared/ui';
 import { foodKeysMap, nutrientsGoals } from '@/shared/types';
 import { UNIT_COLORS } from '@/shared/colors';
 import { capitalizeFirstLetter, formatDate, getPercents, parseDate } from '@/shared/utils';
@@ -37,7 +37,7 @@ export const FoodNutrients: FC = () => {
 
     return (
         <>
-            <div className={styles.nutrients}>
+            <Card>
                 <div className={styles.nutrientsTitle}>Макроэлементы</div>
 
                 <div className={styles.nutrientsChart} ref={chartRef}>
@@ -75,7 +75,7 @@ export const FoodNutrients: FC = () => {
                         </div>
                     ))}
                 </div>
-            </div>
+            </Card>
 
             <FoodCard
                 title="Съеденная пища"

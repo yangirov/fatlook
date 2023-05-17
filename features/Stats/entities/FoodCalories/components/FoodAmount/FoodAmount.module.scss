@@ -1,6 +1,4 @@
 .amountCard {
-    composes: card from 'styles/scaffold.scss';
-
     &Item {
         composes: cardItem from 'styles/scaffold.scss';
     }
