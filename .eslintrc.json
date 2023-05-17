@@ -11,6 +11,20 @@
                     {
                         "usePrettierrc": true
                     }
+                ],
+                "import/order": [
+                    "error",
+                    {
+                        "newlines-between": "always",
+                        "pathGroups": [
+                            {
+                                "pattern": "@/**",
+                                "group": "external",
+                                "position": "after"
+                            }
+                        ],
+                        "groups": ["builtin", "external", "parent", "sibling", "index"]
+                    }
                 ]
             }
         }
