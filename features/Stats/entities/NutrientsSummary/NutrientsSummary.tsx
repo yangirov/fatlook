@@ -10,7 +10,7 @@ import styles from './NutrientsSummary.module.scss';
 
 type CardInfo = {
     name: string;
-    all: string | number;
+    all: string;
 };
 
 export const NutrientsSummary: FC = () => {
@@ -23,7 +23,7 @@ export const NutrientsSummary: FC = () => {
     const items = (Object.entries(data) as Entries<FoodDetails>).reduce<CardInfo[]>((acc, [key, value]) => {
         const dto: CardInfo = {
             name: foodKeysMap[key]?.fullName ?? '-',
-            all: value !== null ? value : '-',
+            all: value !== null ? `${value} ${foodKeysMap[key]?.unitName}` : '-',
         };
 
         acc.push(dto);

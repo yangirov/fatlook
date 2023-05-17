@@ -19,6 +19,14 @@ type FoodCardProps<T extends FoodCardBase> = {
 export const FoodCard = <T extends FoodCardBase>({ title, columns, items, extraClassNames }: FoodCardProps<T>) => {
     return (
         <Card title={title}>
+            <div className={classNames(styles.foodCardItem, extraClassNames?.item)}>
+                <div className={classNames(styles.foodCardInfo, extraClassNames?.itemInfo)}>
+                    {Object.values(columns).map((c, index) => (
+                        <div key={c + index}>{c}</div>
+                    ))}
+                </div>
+            </div>
+
             {items.map(item => (
                 <div key={item.name} className={classNames(styles.foodCardItem, extraClassNames?.item)}>
                     <Divider />

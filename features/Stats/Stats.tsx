@@ -33,7 +33,7 @@ const StatsHeader: FC = () => {
             <div className={styles.statsHeaderBack}>
                 <MdArrowBack onClick={() => router.back()} />
             </div>
-            <div>Отчет за неделю</div>
+            <div>Отчеты</div>
             <div></div>
         </div>
     );

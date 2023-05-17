@@ -9,7 +9,7 @@ import styles from './FoodAmount.module.scss';
 
 export const FoodAmount: FC = () => {
     const {
-        data: { allEatenFood, allMeals, dailyAmount, chartData },
+        data: { allEatenFood, totalData, allMeals, dailyAmount, chartData },
     } = useContext(StatsContext);
 
     const chartRef = useRef<HTMLDivElement>(null);
@@ -21,7 +21,7 @@ export const FoodAmount: FC = () => {
             <div className={styles.amountCardTitle}>{allEatenFood.kcal}</div>
 
             <div className={styles.amountCardDaily}>
-                <div>Среднесуточная норма: {Math.floor(allEatenFood.kcal / 6)}</div>
+                <div>Среднесуточная норма: {Math.floor(allEatenFood.kcal / totalData.count)}</div>
                 <div>Цель: {dailyAmount}</div>
             </div>
 
