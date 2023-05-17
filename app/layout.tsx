@@ -36,10 +36,12 @@ export default function RootLayout({ children }: { children: ReactNode }) {
 
                 <title>FatLook – отчеты из FatSecret</title>
 
+                <link rel="apple-touch-icon" href="/favicon/apple-touch-icon.png" />
+
                 <link rel="shortcut icon" href="/favicon.ico" sizes="any" />
                 <link rel="icon" type="image/png" sizes="32x32" href="/favicon/icon-32x32.png" />
                 <link rel="icon" type="image/png" sizes="16x16" href="/favicon/icon-16x16.png" />
-                <link rel="apple-touch-icon" href="/favicon/apple-touch-icon.png" />
+
                 <link rel="mask-icon" href="/icons/safari-pinned-tab.svg" color={APP.TILE_COLOR} />
 
                 <meta name="application-name" content={APP.NAME} />
@@ -69,8 +71,6 @@ export default function RootLayout({ children }: { children: ReactNode }) {
 
                 <meta name="mobile-web-app-capable" content="yes" />
                 <meta name="format-detection" content="telephone=no" />
-
-                <link rel="manifest" href="/manifest.json" />
 
                 <meta name="apple-mobile-web-app-title" content={APP.NAME} />
                 <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -248,6 +248,8 @@ export default function RootLayout({ children }: { children: ReactNode }) {
                     media="screen and (device-width: 744px) and (device-height: 1133px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)"
                     href="media/apple-splash-screens/8.3__iPad_Mini_portrait.png"
                 />
+
+                <link rel="manifest" href="/manifest.json" />
             </head>
             <body className={font.className}>
                 <Providers>{children}</Providers>

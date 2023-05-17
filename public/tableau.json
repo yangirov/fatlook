@@ -1,0 +1,9 @@
+{
+    "version": "1.2",
+    "api_version": 3,
+    "layout": {
+        "logo": "https://fatlook.vercel.app/tableau.png",
+        "color": "#ececf4",
+        "show_title": "none"
+    }
+}
