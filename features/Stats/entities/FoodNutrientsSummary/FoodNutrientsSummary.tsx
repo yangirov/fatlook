@@ -6,14 +6,14 @@ import { Entries } from '@/shared/utils';
 import { StatsContext } from '../../Stats';
 import { FoodCard } from '../FoodCard';
 
-import styles from './NutrientsSummary.module.scss';
+import styles from './FoodNutrientsSummary.module.scss';
 
 type CardInfo = {
     name: string;
     all: string;
 };
 
-export const NutrientsSummary: FC = () => {
+export const FoodNutrientsSummary: FC = () => {
     const {
         data: {
             totalData: { data },

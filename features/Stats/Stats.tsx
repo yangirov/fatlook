@@ -14,7 +14,7 @@ import { StatsData } from './types';
 import { FoodAverage } from './entities/FoodAverage';
 import { FoodCalories } from './entities/FoodCalories';
 import { FoodNutrients } from './entities/FoodNutrients';
-import { NutrientsSummary } from './entities/NutrientsSummary';
+import { FoodNutrientsSummary } from './entities/FoodNutrientsSummary';
 import styles from './Stats.module.scss';
 
 export type StatsProps = {
@@ -78,7 +78,7 @@ export const Stats: FC<StatsProps> = ({ report }) => {
                             <FoodNutrients />
                         </Tab>
                         <Tab title="Питательные вещества">
-                            <NutrientsSummary />
+                            <FoodNutrientsSummary />
                         </Tab>
                     </Tabs>
                 </PageLayout.Content>

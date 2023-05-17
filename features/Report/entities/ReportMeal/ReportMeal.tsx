@@ -16,68 +16,43 @@ export type ReportMealProps = {
     meal: Meal;
 };
 
-const Toggler: FC = () => {
+const ReportMealHeader: FC<ReportMealProps> = ({ meal }) => {
     const { isOpen, setOpen } = useContext(AccordionContext);
-
-    const onToggle = () => {
-        setOpen(prev => !prev);
-    };
-
-    return (
-        <div
-            className={classNames(styles.mealToggler, {
-                [styles.mealTogglerCollapsed]: !isOpen,
-            })}
-            onClick={onToggle}
-        >
-            <Icon>
-                <SlArrowUp color={Colors.GREEN} />
-            </Icon>
-        </div>
-    );
-};
-
-const HeaderInfo: FC<ReportMealProps> = ({ meal }) => {
-    const { isOpen } = useContext(AccordionContext);
     const visibleColumns = useAppSelector(state => state.report.visibleColumns);
 
     return (
-        <>
-            <div className={styles.reportMealHeader}>
-                <div className={styles.reportMealHeaderIcon}>{MEAL_ICONS[meal.name]}</div>
-                <div className={styles.reportMealHeaderInfo}>
-                    <div
-                        className={classNames(styles.reportMealHeaderTitle, {
-                            [styles.reportMealHeaderTitleExpanded]: isOpen,
-                        })}
-                    >
+        <div className={classNames(styles.reportMealHeader, { [styles.reportMealHeaderExpanded]: isOpen })}>
+            <div className={styles.reportMealHeaderPrime}>
+                <div className={styles.reportMealHeaderPrimeIcon}>{MEAL_ICONS[meal.name]}</div>
+                <div className={styles.reportMealHeaderPrimeInfo}>
+                    <div className={styles.reportMealHeaderPrimeTitle}>
                         <div>{meal.name}</div>
                         {meal.total.kcal && (
                             <div>
-                                <div className={styles.reportMealHeaderTitleKcal}>{meal.total.kcal}</div>
-                                <div className={styles.reportMealHeaderTitleKcalText}>Калории</div>
+                                <div className={styles.reportMealHeaderPrimeTitleKcal}>{meal.total.kcal}</div>
+                                <div className={styles.reportMealHeaderPrimeTitleKcalText}>Калории</div>
                             </div>
                         )}
                     </div>
                 </div>
             </div>
             {meal.foods.length !== 0 ? (
-                <div
-                    className={classNames(styles.reportMealHeaderTotal, {
-                        [styles.reportMealHeaderTotalCollapsed]: !isOpen,
-                    })}
-                >
+                <div className={styles.reportMealHeaderTotal} onClick={() => setOpen(prev => !prev)}>
                     <div className={styles.reportMealHeaderTotalItems}>
                         {visibleColumns.map(k => (
                             <div key={k}>{meal.total[k] ?? 0}</div>
                         ))}
                     </div>
-                    <Toggler></Toggler>
+                    <div className={styles.reportMealHeaderTotalToggler}>
+                        <Icon>
+                            <SlArrowUp color={Colors.GREEN} />
+                        </Icon>
+                    </div>
                 </div>
             ) : (
                 <div className={styles.reportMealEmpty}>Пусто</div>
             )}
-        </>
+        </div>
     );
 };
 
@@ -86,7 +61,7 @@ const ReportMeal: FC<ReportMealProps> = ({ meal }) => {
         <div className={styles.reportMeal}>
             <Accordion>
                 <Accordion.Header>
-                    <HeaderInfo meal={meal} />
+                    <ReportMealHeader meal={meal} />
                 </Accordion.Header>
                 <Accordion.Content>
                     {meal.foods.map(food => (

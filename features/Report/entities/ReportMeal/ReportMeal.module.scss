@@ -7,61 +7,78 @@ $border: calc(var(--border-radius) * 2);
     box-shadow: 0 0 var(--gap-5) var(--gap-5) var(--shadow-color);
 
     &Header {
-        display: flex;
-        justify-content: space-between;
-        padding: var(--gap-10) var(--gap-15) 0 var(--gap-15);
+        &Expanded & {
+            &Prime {
+                &Title {
+                    border-bottom: 1px solid var(--border);
+                }
+            }
 
-        &Icon {
-            font-size: 1.5rem;
+            &Total {
+                background-color: var(--white);
+
+                &Toggler {
+                    transform: rotate(0deg);
+                }
+            }
         }
 
-        &Info {
-            flex: 0 0 90%;
-        }
-
-        &Title {
+        &Prime {
             display: flex;
             justify-content: space-between;
-            align-items: center;
-            padding-bottom: var(--gap-10);
-            transition: border 0.3s ease;
-            border-bottom: 1px solid transparent;
-            height: 30px;
+            padding: var(--gap-10) var(--gap-15) 0 var(--gap-15);
 
-            &Kcal {
-                font-weight: bold;
-                text-align: right;
+            &Icon {
+                font-size: 1.5rem;
             }
 
-            &KcalText {
-                font-size: var(--font-small);
-                color: var(--gray);
+            &Info {
+                flex: 0 0 90%;
             }
 
-            &Expanded {
-                border-bottom: 1px solid var(--border);
+            &Title {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                padding-bottom: var(--gap-10);
+                transition: border 0.3s ease;
+                border-bottom: 1px solid transparent;
+                height: 30px;
+
+                &Kcal {
+                    font-weight: bold;
+                    text-align: right;
+                }
+
+                &KcalText {
+                    font-size: var(--font-small);
+                    color: var(--gray);
+                }
             }
         }
 
         &Total {
+            cursor: pointer;
             display: flex;
             justify-content: space-between;
             align-items: center;
             padding: calc(var(--gap-15) / 2) var(--gap-15) calc(var(--gap-15) / 2) var(--gap-50);
             font-size: var(--font-small);
             color: var(--gray);
-            background-color: var(--white);
+
             transition: background-color 0.3s ease;
             border-radius: 0 0 $border $border;
-
-            &Collapsed {
-                background-color: var(--background);
-            }
+            background-color: var(--background);
 
             &Items {
                 width: 80%;
                 display: grid;
                 grid-template-columns: repeat(auto-fit, minmax(0, 1fr));
+            }
+
+            &Toggler {
+                transform: rotate(180deg);
+                transition: transform 0.3s ease;
             }
         }
     }
@@ -71,13 +88,5 @@ $border: calc(var(--border-radius) * 2);
         color: var(--gray);
         padding: 0 var(--gap-15) 0 var(--gap-50);
         margin-bottom: var(--gap-10);
-    }
-}
-
-.mealToggler {
-    transition: transform 0.3s ease;
-
-    &Collapsed {
-        transform: rotate(180deg);
     }
 }
