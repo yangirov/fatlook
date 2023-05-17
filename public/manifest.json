@@ -2,6 +2,7 @@
     "theme_color": "#009e00",
     "background_color": "#ececf4",
     "display": "standalone",
+    "orientation": "portrait",
     "scope": "/",
     "start_url": "/",
     "name": "FatLook – отчеты из FatSecret",
@@ -19,6 +20,48 @@
             "sizes": "512x512",
             "type": "image/png",
             "purpose": "any"
+        }
+    ],
+    "screenshots": [
+        {
+            "src": "/screens/1.png",
+            "type": "image/png",
+            "sizes": "425x943",
+            "form_factor": "narrow"
+        },
+        {
+            "src": "/screens/2.png",
+            "type": "image/png",
+            "sizes": "425x943",
+            "form_factor": "narrow"
+        },
+        {
+            "src": "/screens/3.png",
+            "type": "image/png",
+            "sizes": "425x943",
+            "form_factor": "narrow"
+        }
+    ],
+    "display_override": ["window-controls-overlay"],
+    "protocol_handlers": [
+        {
+            "protocol": "fatlook",
+            "url": "/?from=%s"
+        }
+    ],
+    "shortcuts": [
+        {
+            "name": "Открыть FatLook",
+            "url": "/"
+        }
+    ],
+    "launch_handler": {
+        "client_mode": "focus-existing"
+    },
+    "capture_links": "existing_client_event",
+    "url_handlers": [
+        {
+            "origin": "https://fatlook.vercel.app"
         }
     ]
 }

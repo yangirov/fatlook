@@ -20,13 +20,17 @@ export default function RootLayout({ children }: { children: ReactNode }) {
         <html lang="ru">
             <head>
                 <meta charSet="UTF-8" />
-                <meta
-                    name="viewport"
-                    content="width=device-width, initial-scale=1, viewport-fit=cover, user-scalable=no"
-                />
+                <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+                <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
                 <title>FatLook – отчеты из FatSecret</title>
+
+                <link rel="icon" type="image/svg+xml" href={`${process.env.DOMAIN}/favicon/logo.svg`} />
+                <link rel="shortcut icon" href={`${process.env.DOMAIN}/favicon/favicon.ico`} sizes="any" />
+                <link rel="apple-touch-icon" href={`${process.env.DOMAIN}/favicon/icon-512x512.png`} />
+
                 <meta name="description" content="Приложение для построения удобных отчетов питания из FatSecret" />
+                <meta name="author" content="Emil Yangirov" />
 
                 <meta property="og:type" content="website" />
                 <meta property="og:title" content="FatLook – отчеты из FatSecret" />
@@ -37,15 +41,10 @@ export default function RootLayout({ children }: { children: ReactNode }) {
                 <meta property="og:url" content={process.env.DOMAIN} />
                 <meta property="og:image" content={`${process.env.DOMAIN}/media/preview.png`} />
 
-                <link rel="shortcut icon" href={`${process.env.DOMAIN}/favicon/favicon.ico`} sizes="any" />
-                <link rel="icon" type="image/svg+xml" href={`${process.env.DOMAIN}/favicon/logo.svg`} />
-                <link rel="apple-touch-icon" href={`${process.env.DOMAIN}/favicon/icon-512x512.png`} />
-
                 <meta name="mobile-web-app-capable" content="yes" />
                 <meta name="apple-touch-fullscreen" content="yes" />
                 <meta name="apple-mobile-web-app-capable" content="yes" />
                 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
-
                 <link rel="apple-touch-startup-image" href={`${process.env.DOMAIN}/media/splashscreen.png`} />
 
                 <meta name="theme-color" content="#259b23" />
