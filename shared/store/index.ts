@@ -11,7 +11,7 @@ const IS_SERVER = typeof window === 'undefined';
 
 const rootReducer = combineReducers({
     users: usersReducer,
-    report: reportReducer
+    report: reportReducer,
 });
 
 const localStorageMiddleware: Middleware = ({ getState }) => {
@@ -39,7 +39,7 @@ const reHydrateStore = () => {
 export const store = configureStore({
     reducer: rootReducer,
     preloadedState: reHydrateStore(),
-    middleware: getDefaultMiddleware => getDefaultMiddleware().concat(localStorageMiddleware)
+    middleware: getDefaultMiddleware => getDefaultMiddleware().concat(localStorageMiddleware),
 });
 
 export type RootState = ReturnType<typeof store.getState>;

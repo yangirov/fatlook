@@ -17,7 +17,7 @@ const Month: FC<MonthProps> = ({ year, month, firstDayOfWeek }) => {
     const { days } = useMonth({
         year,
         month,
-        firstDayOfWeek
+        firstDayOfWeek,
     });
 
     return (
@@ -28,7 +28,11 @@ const Month: FC<MonthProps> = ({ year, month, firstDayOfWeek }) => {
                 ))}
             </div>
 
-            <div className={styles.monthDays}>{days.map((day, index) => (typeof day !== 'number' ? <Day key={day.dayLabel} date={day.date} /> : <div key={index}></div>))}</div>
+            <div className={styles.monthDays}>
+                {days.map((day, index) =>
+                    typeof day !== 'number' ? <Day key={day.dayLabel} date={day.date} /> : <div key={index}></div>
+                )}
+            </div>
         </>
     );
 };

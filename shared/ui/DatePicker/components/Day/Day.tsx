@@ -13,8 +13,17 @@ type DayProps = { date: Date };
 const Day: FC<DayProps> = ({ date }) => {
     const dayRef = useRef(null);
 
-    const { focusedDate, isDateFocused, isDateSelected, isDateHovered, isDateBlocked, isFirstOrLastSelectedDate, onDateSelect, onDateFocus, onDateHover } =
-        useContext(DatePickerContext);
+    const {
+        focusedDate,
+        isDateFocused,
+        isDateSelected,
+        isDateHovered,
+        isDateBlocked,
+        isFirstOrLastSelectedDate,
+        onDateSelect,
+        onDateFocus,
+        onDateHover,
+    } = useContext(DatePickerContext);
 
     const { isSelected, isSelectedStartOrEnd, disabledDate, onClick, onMouseEnter, tabIndex } = useDay({
         date,
@@ -27,7 +36,7 @@ const Day: FC<DayProps> = ({ date }) => {
         onDateFocus,
         onDateSelect,
         onDateHover,
-        dayRef
+        dayRef,
     });
 
     return (
@@ -38,7 +47,7 @@ const Day: FC<DayProps> = ({ date }) => {
             ref={dayRef}
             className={classNames(styles.day, {
                 [styles.daySelected]: isSelected || isSelectedStartOrEnd,
-                [styles.dayDisabled]: disabledDate
+                [styles.dayDisabled]: disabledDate,
             })}
         >
             {formatDate(date, 'd')}

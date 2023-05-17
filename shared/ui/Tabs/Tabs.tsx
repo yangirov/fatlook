@@ -23,7 +23,11 @@ export const Tabs: FC<TabsProps> = ({ className, children }) => {
             <nav className={classNames(styles.tabs, className)}>
                 {children.map((tab, index) => {
                     return (
-                        <div key={index} className={classNames(styles.tabsItem, { [styles.tabsItemSelected]: index === selected })} onClick={() => setSelected(index)}>
+                        <div
+                            key={index}
+                            className={classNames(styles.tabsItem, { [styles.tabsItemSelected]: index === selected })}
+                            onClick={() => setSelected(index)}
+                        >
                             <span>{tab.props.title}</span>
                         </div>
                     );

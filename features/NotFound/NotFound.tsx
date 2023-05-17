@@ -1,5 +1,4 @@
 import { FC } from 'react';
-
 import Image from 'next/image';
 
 import { Button, EmptyContent } from '@/shared/ui';

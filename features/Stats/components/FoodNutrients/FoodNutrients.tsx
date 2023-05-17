@@ -13,14 +13,14 @@ import styles from './FoodNutrients.module.scss';
 export const FoodNutrients: FC = () => {
     const chartRef = useRef<HTMLDivElement>(null);
     const {
-        data: { eatenFood, totalData, foodDetails }
+        data: { eatenFood, totalData, foodDetails },
     } = useContext(StatsContext);
 
     const legendKeys = ['carbohydrates', 'allFat', 'protein'];
     const legendTotalSum = legendKeys.reduce((a, b) => a + Number(totalData.data[b]), 0);
     const nutrientsData = legendKeys.map(f => ({
         key: f,
-        percents: getPercents(Number(totalData.data[f]), legendTotalSum)
+        percents: getPercents(Number(totalData.data[f]), legendTotalSum),
     }));
 
     const chartNutrientColors = Object.values(UNIT_COLORS).map(x => x ?? 'var(--gray)');
@@ -28,7 +28,7 @@ export const FoodNutrients: FC = () => {
         const d = parseDate(field);
         const data = {
             label: `${capitalizeFirstLetter(formatDate(d, 'EEEEEE'))} ${formatDate(d, 'd')}`,
-            values: legendKeys.map(k => Number(value[k]))
+            values: legendKeys.map(k => Number(value[k])),
         };
 
         acc.push(data);
@@ -41,7 +41,12 @@ export const FoodNutrients: FC = () => {
                 <div className={styles.nutrientsTitle}>Макроэлементы</div>
 
                 <div className={styles.nutrientsChart} ref={chartRef}>
-                    <BarChart data={chartData} colors={chartNutrientColors} width={chartRef?.current?.offsetWidth ?? 350} height={125} />
+                    <BarChart
+                        data={chartData}
+                        colors={chartNutrientColors}
+                        width={chartRef?.current?.offsetWidth ?? 350}
+                        height={125}
+                    />
                 </div>
 
                 <div className={styles.nutrientsContent}>
@@ -58,7 +63,10 @@ export const FoodNutrients: FC = () => {
                             <Divider />
                             <div className={styles.nutrientsInfo}>
                                 <div className={styles.nutrientsFood}>
-                                    <div className={styles.nutrientsFoodDot} style={{ backgroundColor: UNIT_COLORS[key] }}></div>
+                                    <div
+                                        className={styles.nutrientsFoodDot}
+                                        style={{ backgroundColor: UNIT_COLORS[key] }}
+                                    ></div>
                                     <div>{foodKeysMap[key]?.fullName}</div>
                                 </div>
                                 <div>{percents}</div>
@@ -69,7 +77,11 @@ export const FoodNutrients: FC = () => {
                 </div>
             </div>
 
-            <FoodCard title="Съеденная пища" columns={{ name: 'Продукты', carbohydrates: 'Углев (г)', fat: 'Жиры (г)', protein: 'Белк (г)' }} items={eatenFood} />
+            <FoodCard
+                title="Съеденная пища"
+                columns={{ name: 'Продукты', carbohydrates: 'Углев (г)', fat: 'Жиры (г)', protein: 'Белк (г)' }}
+                items={eatenFood}
+            />
         </>
     );
 };

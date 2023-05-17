@@ -12,7 +12,7 @@ export const Spinner: FC<SpinnerProps> = ({ className, wrapped }) => {
     return (
         <div
             className={classNames({
-                [styles.spinnerWrapper]: wrapped === true
+                [styles.spinnerWrapper]: wrapped === true,
             })}
         >
             <div className={classNames(styles.spinner, className)} />

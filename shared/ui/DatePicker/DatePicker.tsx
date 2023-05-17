@@ -4,12 +4,12 @@ import { useDatepicker, START_DATE, OnDatesChangeProps } from '@datepicker-react
 import { addDays, addMonths, isAfter } from 'date-fns';
 import { SlArrowLeft, SlArrowRight } from 'react-icons/sl';
 
+import { formatDate } from '@/shared/utils';
+
 import { Icon } from '../Icon';
 
 import Month from './components/Month';
-
 import styles from './DatePicker.module.scss';
-import { formatDate } from '@/shared/utils';
 
 type DatePickerProps = {
     date: Date | null;
@@ -35,7 +35,7 @@ const DatePicker: FC<DatePickerProps> = ({ date, onDateChange, onMonthChange }) 
     const [state, setState] = useState<OnDatesChangeProps>({
         startDate: date,
         endDate: null,
-        focusedInput: START_DATE
+        focusedInput: START_DATE,
     });
 
     const handleDateChange = (data: OnDatesChangeProps) => {
@@ -63,14 +63,14 @@ const DatePicker: FC<DatePickerProps> = ({ date, onDateChange, onMonthChange }) 
         onDateSelect,
         onDateFocus,
         goToPreviousMonths,
-        goToNextMonths
+        goToNextMonths,
     } = useDatepicker({
         startDate: state.startDate,
         endDate: null,
         focusedInput: state.focusedInput,
         onDatesChange: handleDateChange,
         isDateBlocked: isDisabledDate,
-        numberOfMonths: 1
+        numberOfMonths: 1,
     });
 
     const handleMonthChange = (addedMonths: number) => {
@@ -101,7 +101,7 @@ const DatePicker: FC<DatePickerProps> = ({ date, onDateChange, onMonthChange }) 
                 isFirstOrLastSelectedDate,
                 onDateSelect,
                 onDateFocus,
-                onDateHover
+                onDateHover,
             }}
         >
             <div className={styles.datePickerWrapper}>
@@ -112,7 +112,12 @@ const DatePicker: FC<DatePickerProps> = ({ date, onDateChange, onMonthChange }) 
                 </div>
                 <div className={styles.datePicker}>
                     {activeMonths.map(month => (
-                        <Month key={month.month} year={month.year} month={month.month} firstDayOfWeek={firstDayOfWeek} />
+                        <Month
+                            key={month.month}
+                            year={month.year}
+                            month={month.month}
+                            firstDayOfWeek={firstDayOfWeek}
+                        />
                     ))}
                 </div>
                 <div onClick={handleNextMonth}>

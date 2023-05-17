@@ -5,9 +5,9 @@ import { MdClose } from 'react-icons/md';
 import { Transition, TransitionStatus } from 'react-transition-group';
 
 import { IconButton } from '../IconButton';
+import { Overlay } from '../Overlay';
 
 import styles from './Modal.module.scss';
-import { Overlay } from '../Overlay';
 
 export type ModalProps = {
     children: React.ReactNode;
@@ -20,14 +20,14 @@ const duration = 200;
 const defaultStyle = {
     transition: `transform ${duration}ms ease-in-out`,
     transform: 'translateY(100%)',
-    opacity: 0
+    opacity: 0,
 };
 
 const transitionStyles: { [key in TransitionStatus]?: React.CSSProperties } = {
     entering: { transform: 'translateY(100%)', opacity: 0 },
     entered: { transform: 'translateY(0)', opacity: 1 },
     exited: { transform: 'translateY(100%)', opacity: 0 },
-    exiting: { transform: 'translateY(100%)', opacity: 0 }
+    exiting: { transform: 'translateY(100%)', opacity: 0 },
 };
 
 const ModalWrapper: FC<ModalProps> = ({ isOpen, children, onToggle }: ModalProps) => {
@@ -56,7 +56,7 @@ const ModalWrapper: FC<ModalProps> = ({ isOpen, children, onToggle }: ModalProps
                         className={styles.modal}
                         style={{
                             ...defaultStyle,
-                            ...(transitionStyles[state] || {})
+                            ...(transitionStyles[state] || {}),
                         }}
                         ref={modalRef}
                     >

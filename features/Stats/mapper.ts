@@ -50,7 +50,7 @@ export const mapStats = (report?: ReportData, dailyAmount?: number): StatsData |
             values: item.meals.reduce<number[]>((acc, meal) => {
                 acc.push(Number(meal.total.kcal));
                 return acc;
-            }, [])
+            }, []),
         };
 
         acc.push(info);
@@ -71,7 +71,10 @@ export const mapStats = (report?: ReportData, dailyAmount?: number): StatsData |
         return acc;
     }, {});
 
-    const allMeals = Object.values(mealData).map<FoodDtoWithPercents>(item => ({ ...item, percents: getPercents(item.kcal, allEatenFood.kcal).toString() }));
+    const allMeals = Object.values(mealData).map<FoodDtoWithPercents>(item => ({
+        ...item,
+        percents: getPercents(item.kcal, allEatenFood.kcal).toString(),
+    }));
 
     const totalData = { count: report.data.length, data: report.total };
 
@@ -99,6 +102,6 @@ export const mapStats = (report?: ReportData, dailyAmount?: number): StatsData |
         allMeals,
         dailyAmount,
         totalData,
-        foodDetails
+        foodDetails,
     };
 };

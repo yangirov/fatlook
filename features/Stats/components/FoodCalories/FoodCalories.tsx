@@ -1,16 +1,15 @@
 import { FC, useContext } from 'react';
 
-import { FoodAmount } from './components/FoodAmount';
 import { FoodCard } from '../FoodCard';
-
 import { StatsContext } from '../../Stats';
 import { FoodDtoWithCount } from '../../types';
 
+import { FoodAmount } from './components/FoodAmount';
 import styles from './FoodCalories.module.scss';
 
 export const FoodCalories: FC = () => {
     const {
-        data: { eatenFood }
+        data: { eatenFood },
     } = useContext(StatsContext);
 
     const items = eatenFood.map(f => ({ ...f, count: `=x${f.count}` })) as FoodDtoWithCount[];
@@ -18,7 +17,11 @@ export const FoodCalories: FC = () => {
     return (
         <div className={styles.foodCalories}>
             <FoodAmount />
-            <FoodCard title="Съеденная пища" columns={{ name: 'Продукты', count: 'Кол-во приемов', kcal: 'Калории' }} items={items} />
+            <FoodCard
+                title="Съеденная пища"
+                columns={{ name: 'Продукты', count: 'Кол-во приемов', kcal: 'Калории' }}
+                items={items}
+            />
         </div>
     );
 };

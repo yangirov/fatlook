@@ -26,7 +26,7 @@ const Toggler: FC = () => {
     return (
         <div
             className={classNames(styles.mealToggler, {
-                [styles.mealTogglerCollapsed]: !isOpen
+                [styles.mealTogglerCollapsed]: !isOpen,
             })}
             onClick={onToggle}
         >
@@ -48,7 +48,7 @@ const HeaderInfo: FC<ReportMealProps> = ({ meal }) => {
                 <div className={styles.reportMealHeaderInfo}>
                     <div
                         className={classNames(styles.reportMealHeaderTitle, {
-                            [styles.reportMealHeaderTitleExpanded]: isOpen
+                            [styles.reportMealHeaderTitleExpanded]: isOpen,
                         })}
                     >
                         <div>{meal.name}</div>
@@ -64,7 +64,7 @@ const HeaderInfo: FC<ReportMealProps> = ({ meal }) => {
             {meal.foods.length !== 0 ? (
                 <div
                     className={classNames(styles.reportMealHeaderTotal, {
-                        [styles.reportMealHeaderTotalCollapsed]: !isOpen
+                        [styles.reportMealHeaderTotalCollapsed]: !isOpen,
                     })}
                 >
                     <div className={styles.reportMealHeaderTotalItems}>

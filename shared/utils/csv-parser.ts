@@ -1,4 +1,5 @@
 import { Meal, ReportData, FoodDetails, FoodInfo } from '@/shared/types';
+
 import { formatDate, parseDate } from './dates';
 
 const parseCSV = (str: string) => {
@@ -93,7 +94,7 @@ export const parseFatSecretCSV = (csv: string): Omit<ReportData, 'userId'> => {
         protein: getValue(rowIndex, proteinIndex),
         sodium: getValue(rowIndex, sodiumIndex),
         cholesterol: getValue(rowIndex, cholesterolIndex),
-        kalium: getValue(rowIndex, kaliumIndex)
+        kalium: getValue(rowIndex, kaliumIndex),
     });
 
     const mealsNames = ['Завтрак', 'Обед', 'Ужин', 'Перекус'];
@@ -128,7 +129,7 @@ export const parseFatSecretCSV = (csv: string): Omit<ReportData, 'userId'> => {
                     acc.push({
                         name: meal,
                         total: getFromRow(rowIndex),
-                        foods: []
+                        foods: [],
                     });
                 } else if (row.length === 1) {
                     continue;
@@ -136,7 +137,7 @@ export const parseFatSecretCSV = (csv: string): Omit<ReportData, 'userId'> => {
                     const food: FoodInfo = {
                         name: getValue(rowIndex, 0) as string,
                         weight: getValue(rowIndex + 1, 0) as string,
-                        details: getFromRow(rowIndex)
+                        details: getFromRow(rowIndex),
                     };
                     acc[mealIndex]?.foods.push(food);
                 }
@@ -155,7 +156,7 @@ export const parseFatSecretCSV = (csv: string): Omit<ReportData, 'userId'> => {
             const date = parseDate(value, 'EEEE, MMMM dd, yyyy');
             acc.push({
                 date: formatDate(date),
-                startIndex: index + 1
+                startIndex: index + 1,
             });
         }
 
@@ -170,13 +171,13 @@ export const parseFatSecretCSV = (csv: string): Omit<ReportData, 'userId'> => {
     const data = daysRange.map(item => {
         return {
             date: item.date,
-            meals: getMeals(item.startIndex, item.endIndex)
+            meals: getMeals(item.startIndex, item.endIndex),
         };
     });
 
     return {
         date: getValue(1, 1) as string,
         total: getFromRow(matrix.length - 1),
-        data
+        data,
     };
 };

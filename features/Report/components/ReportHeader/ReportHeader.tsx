@@ -42,7 +42,7 @@ const Header: FC<HeaderProps> = ({ date, month }) => {
             <div
                 onClick={onToggle}
                 className={classNames(styles.reportHeaderDate, {
-                    [styles.reportHeaderDateExpanded]: isOpen
+                    [styles.reportHeaderDateExpanded]: isOpen,
                 })}
             >
                 {isOpen && month ? month : beautifyDate(date)}
@@ -92,7 +92,7 @@ const Content: FC<ContentProps> = ({ date, setMonth }) => {
 
 const ReportHeader: FC = () => {
     const {
-        report: { date: reportDate }
+        report: { date: reportDate },
     } = useContext(ReportContext);
 
     const [month, setMonth] = useState<string | null>(null);

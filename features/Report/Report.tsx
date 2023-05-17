@@ -17,7 +17,7 @@ type ReportProps = {
 };
 
 export const ReportContext = createContext<{ report: ReportData }>({
-    report: {} as ReportData
+    report: {} as ReportData,
 });
 
 export const Report: FC<ReportProps> = ({ report }) => {

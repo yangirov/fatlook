@@ -41,8 +41,17 @@ export const PieChart: FC<PieChartProps> = ({ className, size, data }) => {
 
         acc.push({
             pie: (
-                <div key={name} className={styles.pieChartSlice} style={{ transform: `rotate(${oldOffset}deg) translate3d(0,0,0)` }}>
-                    <span style={{ transform: `rotate(${sizeRotation}deg) translate3d(0,0,0)`, backgroundColor: color ?? getColor() }}></span>
+                <div
+                    key={name}
+                    className={styles.pieChartSlice}
+                    style={{ transform: `rotate(${oldOffset}deg) translate3d(0,0,0)` }}
+                >
+                    <span
+                        style={{
+                            transform: `rotate(${sizeRotation}deg) translate3d(0,0,0)`,
+                            backgroundColor: color ?? getColor(),
+                        }}
+                    ></span>
                 </div>
             ),
             legend: (
@@ -52,7 +61,7 @@ export const PieChart: FC<PieChartProps> = ({ className, size, data }) => {
                     </span>
                     <span className={styles.pieChartLegendItemColor} style={{ backgroundColor: color }}></span>
                 </div>
-            )
+            ),
         });
 
         return acc;

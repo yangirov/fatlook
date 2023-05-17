@@ -1,8 +1,8 @@
 'use client';
 import { ComponentPropsWithoutRef, FC, useEffect, useState } from 'react';
 import Link, { LinkProps } from 'next/link';
-
 import classNames from 'classnames';
+
 import { Spinner } from '../Spinner';
 
 import styles from './Button.module.scss';
@@ -13,7 +13,16 @@ export type ButtonProps = Omit<ComponentPropsWithoutRef<'button'>, 'aria-pressed
     isPressed?: boolean;
 };
 
-export const Button: FC<ButtonProps> = ({ children = null, className, disabled = false, href, type = 'button', isPressed, onClick, ...propsRest }) => {
+export const Button: FC<ButtonProps> = ({
+    children = null,
+    className,
+    disabled = false,
+    href,
+    type = 'button',
+    isPressed,
+    onClick,
+    ...propsRest
+}) => {
     const [hasHover, setHasHover] = useState(false);
     const [isActive, setIsActive] = useState(false);
 
@@ -24,7 +33,7 @@ export const Button: FC<ButtonProps> = ({ children = null, className, disabled =
                 [styles.active]: isActive && !disabled,
                 [styles.disabled]: disabled,
                 [styles.hasHover]: hasHover && !disabled,
-                [styles.loading]: children === 'loading'
+                [styles.loading]: children === 'loading',
             },
             className
         );
@@ -60,12 +69,17 @@ export const Button: FC<ButtonProps> = ({ children = null, className, disabled =
             if (!disabled) {
                 setIsActive(true);
             }
-        }
+        },
     };
 
     if (href) {
         return (
-            <Link className={classNames(styles.linkRoot, className)} href={href} tabIndex={tabIndex} {...commonMouseHandlers}>
+            <Link
+                className={classNames(styles.linkRoot, className)}
+                href={href}
+                tabIndex={tabIndex}
+                {...commonMouseHandlers}
+            >
                 {children}
             </Link>
         );

@@ -35,7 +35,12 @@ export const BarChart: FC<BarChartProps> = ({ colors, data, width, height, hasMi
             <div className={styles.barChartSvgWrapper} style={{ width, height }}>
                 {hasMiddleLine && <div className={styles.barChartLine} style={{ bottom: middleLine }}></div>}
 
-                <svg className={styles.barChartSvg} width={width} height={height} style={{ backgroundSize: `${barWidth}px ${barHeight}px` }}>
+                <svg
+                    className={styles.barChartSvg}
+                    width={width}
+                    height={height}
+                    style={{ backgroundSize: `${barWidth}px ${barHeight}px` }}
+                >
                     {data.map(({ values }, index) => {
                         return values.map((value, i) => {
                             const segmentHeight = (value / maxValue) * height;

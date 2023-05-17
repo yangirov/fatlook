@@ -56,7 +56,7 @@ export const SnackBarContextProvider: FC<{ children: React.ReactNode }> = ({ chi
                 message,
                 isVisible,
                 show: onShow,
-                close: onClose
+                close: onClose,
             }}
         >
             {children}

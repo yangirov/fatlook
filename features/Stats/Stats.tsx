@@ -11,12 +11,10 @@ import { EmptyContent, Tab, Tabs } from '@/shared/ui';
 
 import { mapStats } from './mapper';
 import { StatsData } from './types';
-
 import { FoodAverage } from './components/FoodAverage';
 import { FoodCalories } from './components/FoodCalories';
 import { FoodNutrients } from './components/FoodNutrients';
 import { NutrientsSummary } from './components/NutrientsSummary';
-
 import styles from './Stats.module.scss';
 
 export type StatsProps = {
@@ -24,7 +22,7 @@ export type StatsProps = {
 };
 
 export const StatsContext = createContext<{ data: StatsData }>({
-    data: {} as StatsData
+    data: {} as StatsData,
 });
 
 const StatsHeader: FC = () => {

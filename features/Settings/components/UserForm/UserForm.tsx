@@ -4,9 +4,9 @@ import { Button, Modal } from '@/shared/ui';
 import { User } from '@/shared/types';
 import { useAppDispatch } from '@/shared/store';
 import { addUser, updateUser } from '@/shared/store/usersReducer';
+import { isEqual } from '@/shared/utils';
 
 import styles from './UserForm.module.css';
-import { isEqual } from '@/shared/utils';
 
 const getUserId = (url: string) => {
     const regex = /\/export\/(\d+)\//;
@@ -48,7 +48,7 @@ export const UserForm: FC<UserFormProps> = ({ isOpen, user, onToggle, onClearUse
         const dto = {
             name,
             id: user ? reportUrl : getUserId(reportUrl),
-            dailyAmount
+            dailyAmount,
         };
 
         if (user !== null) {
@@ -91,7 +91,15 @@ export const UserForm: FC<UserFormProps> = ({ isOpen, user, onToggle, onClearUse
                 <h3>{actionText}</h3>
 
                 <form className={styles.inputs} autoComplete="off">
-                    <input className={styles.input} type="text" placeholder="Имя" name="name" required value={name} onChange={e => setName(e.target.value)} />
+                    <input
+                        className={styles.input}
+                        type="text"
+                        placeholder="Имя"
+                        name="name"
+                        required
+                        value={name}
+                        onChange={e => setName(e.target.value)}
+                    />
 
                     <input
                         className={styles.input}

@@ -10,7 +10,6 @@ import { User } from '@/shared/types';
 import { deleteUser } from '@/shared/store/usersReducer';
 
 import { UserForm } from './components/UserForm';
-
 import styles from './Settings.module.scss';
 
 export const Settings: FC = () => {
@@ -64,7 +63,12 @@ export const Settings: FC = () => {
 
                 <Button onClick={onToggleUserForm}>Добавить</Button>
 
-                <UserForm user={user} onClearUser={() => setUser(null)} isOpen={isOpenUserForm} onToggle={onToggleUserForm} />
+                <UserForm
+                    user={user}
+                    onClearUser={() => setUser(null)}
+                    isOpen={isOpenUserForm}
+                    onToggle={onToggleUserForm}
+                />
             </PageLayout.Content>
         </PageLayout>
     );

@@ -1,5 +1,4 @@
 import { FC, useState } from 'react';
-
 import { FaCheck } from 'react-icons/fa';
 
 import { Divider, Icon, Modal } from '@/shared/ui';
@@ -14,7 +13,18 @@ type ReportSettingsProps = {
     onToggle: () => void;
 };
 
-const allColumns: PartialFoodDetailsKeys = ['allFat', 'fat', 'nonSaturatedFat', 'carbohydrates', 'fiber', 'sugar', 'protein', 'sodium', 'cholesterol', 'kalium'];
+const allColumns: PartialFoodDetailsKeys = [
+    'allFat',
+    'fat',
+    'nonSaturatedFat',
+    'carbohydrates',
+    'fiber',
+    'sugar',
+    'protein',
+    'sodium',
+    'cholesterol',
+    'kalium',
+];
 
 export const ReportSettings: FC<ReportSettingsProps> = ({ isOpen, onToggle }) => {
     const [error, setError] = useState<string | null>(null);

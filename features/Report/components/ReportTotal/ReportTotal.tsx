@@ -9,7 +9,7 @@ import styles from './ReportTotal.module.scss';
 
 const ReportTotal: FC = () => {
     const {
-        report: { total }
+        report: { total },
     } = useContext(ReportContext);
 
     const visibleColumns = useAppSelector(state => state.report.visibleColumns);

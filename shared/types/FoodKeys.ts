@@ -1,4 +1,5 @@
 import { ObjectWithOptionalKeys } from '../utils';
+
 import { FoodDetails } from './Food';
 
 export type FoodKeys = {
@@ -14,7 +15,7 @@ const getUnitInfo = (fullName: string, shortName: string | null, parseName: stri
     fullName,
     shortName: shortName ?? fullName,
     parseName,
-    unitName
+    unitName,
 });
 
 export const foodKeysMap: FoodKeysMap = {
@@ -28,11 +29,11 @@ export const foodKeysMap: FoodKeysMap = {
     protein: getUnitInfo('Белок', 'Белк', 'Белк( г)', 'г'),
     sodium: getUnitInfo('Натрий', 'Натр', 'Натри( мг)', 'мг'),
     cholesterol: getUnitInfo('Холестерин', 'Холес', 'Холес( мг)', 'мг'),
-    kalium: getUnitInfo('Калий', null, 'Калий( мг)', 'н')
+    kalium: getUnitInfo('Калий', null, 'Калий( мг)', 'н'),
 };
 
 export const nutrientsGoals: { [key: string]: string } = {
     carbohydrates: '50%',
     allFat: '30%',
-    protein: '20%'
+    protein: '20%',
 };

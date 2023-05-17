@@ -2,6 +2,7 @@
 import { PayloadAction, createSelector, createSlice } from '@reduxjs/toolkit';
 
 import { User } from '../types';
+
 import { RootState } from '.';
 
 export interface UsersState {
@@ -9,7 +10,7 @@ export interface UsersState {
 }
 
 const initialState: UsersState = {
-    users: []
+    users: [],
 };
 
 export const usersSlice = createSlice({
@@ -30,14 +31,16 @@ export const usersSlice = createSlice({
         },
         deleteUser: (state, action: PayloadAction<string>) => {
             state.users = state.users.filter(u => u.id !== action.payload);
-        }
-    }
+        },
+    },
 });
 
 const selectUsers = (state: RootState) => state.users.users;
 const selectUserId = (state: RootState, userId: string) => userId;
 
-export const getUserById = createSelector([selectUsers, selectUserId], (users, userId: string) => users.find(u => u.id === userId));
+export const getUserById = createSelector([selectUsers, selectUserId], (users, userId: string) =>
+    users.find(u => u.id === userId)
+);
 
 export const { addUser, updateUser, deleteUser } = usersSlice.actions;
 export default usersSlice.reducer;

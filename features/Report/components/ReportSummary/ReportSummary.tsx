@@ -1,5 +1,4 @@
 import { FC, useContext } from 'react';
-
 import classNames from 'classnames';
 
 import { REPORT_CALC_RATIO, PartialFoodDetailsKeys, FoodUnit, FoodKeys, foodKeysMap } from '@/shared/types';
@@ -10,6 +9,7 @@ import { getUserById } from '@/shared/store/usersReducer';
 import { getPercents } from '@/shared/utils';
 
 import { ReportContext } from '../../Report';
+
 import styles from './ReportSummary.module.scss';
 
 const FormatUnit: FC<{ unit?: FoodKeys; value: FoodUnit }> = ({ unit, value }) => (
@@ -20,12 +20,20 @@ const FormatUnit: FC<{ unit?: FoodKeys; value: FoodUnit }> = ({ unit, value }) =
 
 const ReportSummary: FC = () => {
     const {
-        report: { userId, total, weight, steps }
+        report: { userId, total, weight, steps },
     } = useContext(ReportContext);
 
     const user = useAppSelector(state => getUserById(state, userId));
 
-    const keys: PartialFoodDetailsKeys = ['allFat', 'cholesterol', 'sodium', 'carbohydrates', 'fiber', 'sugar', 'protein'];
+    const keys: PartialFoodDetailsKeys = [
+        'allFat',
+        'cholesterol',
+        'sodium',
+        'carbohydrates',
+        'fiber',
+        'sugar',
+        'protein',
+    ];
 
     const pieChartItems: PartialFoodDetailsKeys = ['allFat', 'carbohydrates', 'protein'];
     const pieChartData = pieChartItems.map(key => {
@@ -35,7 +43,7 @@ const ReportSummary: FC = () => {
         return {
             color: UNIT_COLORS[key],
             name: foodKeysMap[key]?.shortName ?? key.toString(),
-            value: Math.floor(value * ratio)
+            value: Math.floor(value * ratio),
         };
     });
 
@@ -70,7 +78,7 @@ const ReportSummary: FC = () => {
                                 <div
                                     key={x}
                                     className={classNames(styles.dailyCubeItem, {
-                                        [styles.dailyCubeItemFilled]: rsk - (totalKcal / 100) * x < totalKcal
+                                        [styles.dailyCubeItemFilled]: rsk - (totalKcal / 100) * x < totalKcal,
                                     })}
                                 ></div>
                             ))}

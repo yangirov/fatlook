@@ -30,7 +30,7 @@ const AccordionContent: FC<FCWithChild> = ({ children }) => {
     return (
         <div
             className={classNames(styles.accordionContent, {
-                [styles.accordionContentCollapsed]: !isOpen
+                [styles.accordionContentCollapsed]: !isOpen,
             })}
         >
             {children}
@@ -40,7 +40,7 @@ const AccordionContent: FC<FCWithChild> = ({ children }) => {
 
 const accordionComposition = {
     Header: AccordionHeader,
-    Content: AccordionContent
+    Content: AccordionContent,
 };
 
 export const Accordion = Object.assign(AccordionWrapper, accordionComposition);

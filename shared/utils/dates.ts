@@ -15,7 +15,7 @@ export const formatDate = (
     date: Date,
     formatString = DEFAULT_DATE_FORMAT,
     options: DateFormatOptions = {
-        locale: ru
+        locale: ru,
     }
 ) => format(date, formatString, options);
 
@@ -39,7 +39,7 @@ export const beautifyDate = (d: Date | null) => {
 
 export const parseDate = (dateString: string, formatString = DEFAULT_DATE_FORMAT) => {
     const date = parse(dateString, formatString, new Date(), {
-        locale: ru
+        locale: ru,
     });
 
     const formattedDate = format(date, "yyyy-MM-dd'T'HH:mm:ss.SSS");

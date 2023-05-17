@@ -5,7 +5,7 @@ import ReportMeal from '../ReportMeal';
 
 const ReportMeals: FC = () => {
     const {
-        report: { data }
+        report: { data },
     } = useContext(ReportContext);
 
     return (

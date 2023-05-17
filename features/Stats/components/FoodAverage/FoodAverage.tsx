@@ -13,13 +13,24 @@ export const FoodAverage: FC = () => {
     const [isMedianMode, setIsMedianMode] = useState(false);
 
     const {
-        data: { totalData, foodDetails }
+        data: { totalData, foodDetails },
     } = useContext(StatsContext);
 
     const { data, count } = totalData;
 
     const importantColumns: PartialFoodDetailsKeys = ['protein', 'allFat', 'carbohydrates', 'fiber'];
-    const columns: PartialFoodDetailsKeys = ['protein', 'allFat', 'fat', 'nonSaturatedFat', 'carbohydrates', 'fiber', 'sugar', 'sodium', 'cholesterol', 'kalium'];
+    const columns: PartialFoodDetailsKeys = [
+        'protein',
+        'allFat',
+        'fat',
+        'nonSaturatedFat',
+        'carbohydrates',
+        'fiber',
+        'sugar',
+        'sodium',
+        'cholesterol',
+        'kalium',
+    ];
 
     const median = columns.reduce((acc, fieldKey) => {
         const values = Object.keys(foodDetails)
@@ -52,7 +63,11 @@ export const FoodAverage: FC = () => {
                     return (
                         <div key={column} className={styles.foodAverageItem}>
                             <Divider />
-                            <div className={classNames(styles.foodAverageInfo, { [styles.foodAverageInfoNotImportant]: !importantColumns.includes(column) })}>
+                            <div
+                                className={classNames(styles.foodAverageInfo, {
+                                    [styles.foodAverageInfoNotImportant]: !importantColumns.includes(column),
+                                })}
+                            >
                                 <div className={styles.foodAverageInfoKey}>{foodKeysMap[column]?.fullName}</div>
                                 <div className={styles.foodAverageInfoValue}>
                                     {value} {foodKeysMap[column]?.unitName}
