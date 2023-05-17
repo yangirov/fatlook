@@ -9,7 +9,7 @@ import styles from './FoodAmount.module.scss';
 
 export const FoodAmount: FC = () => {
     const {
-        data: { allEatenFood, allMeals, dailyAmount, chartData }
+        data: { allEatenFood, allMeals, dailyAmount, chartData },
     } = useContext(StatsContext);
 
     const chartRef = useRef<HTMLDivElement>(null);
@@ -26,7 +26,13 @@ export const FoodAmount: FC = () => {
             </div>
 
             <div className={styles.amountCardChart} ref={chartRef}>
-                <BarChart hasMiddleLine={true} data={chartData} colors={chartMealColors} width={chartRef?.current?.offsetWidth ?? 350} height={125} />
+                <BarChart
+                    hasMiddleLine={true}
+                    data={chartData}
+                    colors={chartMealColors}
+                    width={chartRef?.current?.offsetWidth ?? 350}
+                    height={125}
+                />
             </div>
 
             <div className={styles.amountCardContent}>
@@ -43,7 +49,10 @@ export const FoodAmount: FC = () => {
                         <Divider />
                         <div className={styles.amountCardInfo}>
                             <div className={styles.amountCardFood}>
-                                <div className={styles.amountCardFoodDot} style={{ backgroundColor: MEAL_COLORS[name]?.color }}></div>
+                                <div
+                                    className={styles.amountCardFoodDot}
+                                    style={{ backgroundColor: MEAL_COLORS[name]?.color }}
+                                ></div>
                                 <div>{name}</div>
                             </div>
                             <div>({percents})</div>

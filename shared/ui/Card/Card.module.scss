@@ -1,0 +1,11 @@
+.card {
+    composes: card from 'styles/scaffold.scss';
+
+    &Title {
+        composes: cardTitle from 'styles/scaffold.scss';
+    }
+
+    &Content {
+        margin-top: var(--gap-10);
+    }
+}

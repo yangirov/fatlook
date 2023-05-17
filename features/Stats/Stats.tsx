@@ -11,10 +11,10 @@ import { EmptyContent, Tab, Tabs } from '@/shared/ui';
 
 import { mapStats } from './mapper';
 import { StatsData } from './types';
-import { FoodAverage } from './components/FoodAverage';
-import { FoodCalories } from './components/FoodCalories';
-import { FoodNutrients } from './components/FoodNutrients';
-import { NutrientsSummary } from './components/NutrientsSummary';
+import { FoodAverage } from './entities/FoodAverage';
+import { FoodCalories } from './entities/FoodCalories';
+import { FoodNutrients } from './entities/FoodNutrients';
+import { NutrientsSummary } from './entities/NutrientsSummary';
 import styles from './Stats.module.scss';
 
 export type StatsProps = {

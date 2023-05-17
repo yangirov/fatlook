@@ -1,4 +1,4 @@
-import { FC, useContext, useState } from 'react';
+import { FC, MouseEventHandler, useContext, useState } from 'react';
 import Link from 'next/link';
 import { VscGraph } from 'react-icons/vsc';
 import { SlSettings, SlShare } from 'react-icons/sl';
@@ -23,7 +23,8 @@ const ReportNavigation: FC = () => {
         setIsOpen(prev => !prev);
     };
 
-    const onShare = () => {
+    const onShare = (e: React.MouseEvent) => {
+        e.preventDefault();
         sharePage.share('Отчет');
     };
 
@@ -50,12 +51,12 @@ const ReportNavigation: FC = () => {
                     </Icon>
                     <div className={styles.reportNavigationText}>Настройки</div>
                 </Link>
-                <div className={styles.reportNavigationLink} onClick={onShare}>
+                <Link href="" onClick={onShare} className={styles.reportNavigationLink}>
                     <Icon className={styles.reportNavigationIcon} color="var(--green)">
                         <SlShare />
                     </Icon>
                     <div className={styles.reportNavigationText}>Поделиться</div>
-                </div>
+                </Link>
             </div>
             <ReportSettings isOpen={isOpen} onToggle={onToggle} />
         </>

@@ -6,11 +6,11 @@ import { PageLayout } from '@/shared/layouts';
 import { isEmpty } from '@/shared/utils';
 import { EmptyContent } from '@/shared/ui';
 
-import ReportHeader from './components/ReportHeader';
-import ReportSummary from './components/ReportSummary';
-import ReportMeals from './components/ReportMeals';
-import ReportTotal from './components/ReportTotal';
-import ReportNavigation from './components/ReportNavigation';
+import ReportHeader from './entities/ReportHeader';
+import ReportSummary from './entities/ReportSummary';
+import ReportMeals from './entities/ReportMeals';
+import ReportTotal from './entities/ReportTotal';
+import ReportNavigation from './entities/ReportNavigation';
 
 type ReportProps = {
     report: ReportData;

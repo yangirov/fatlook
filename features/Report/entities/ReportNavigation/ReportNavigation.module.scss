@@ -1,11 +1,11 @@
 .reportNavigation {
     margin-top: var(--gap-25);
-    composes: flexCenter from 'styles/scaffold.scss';
-    gap: var(--gap-50);
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--gap-15);
 
     &Link {
-        composes: flexCenter from 'styles/scaffold.scss';
-        flex-direction: column;
+        text-align: center;
         composes: link from 'styles/scaffold.scss';
     }
 
