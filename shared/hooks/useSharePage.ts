@@ -5,7 +5,7 @@ import { SnackBarContext } from '../ui';
 export const useSharePage = () => {
     const snackBarContext = useContext(SnackBarContext);
 
-    const onShare = (title: string, text?: string) => {
+    const share = (title: string, text?: string) => {
         if (navigator.share) {
             navigator
                 .share({
@@ -23,5 +23,5 @@ export const useSharePage = () => {
         }
     };
 
-    return [onShare];
+    return [share];
 };

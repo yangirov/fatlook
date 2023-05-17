@@ -16,7 +16,7 @@ const ReportNavigation: FC = () => {
         report: { userId }
     } = useContext(ReportContext);
 
-    const [onShow] = useSharePage();
+    const [share] = useSharePage();
     const [isOpen, setIsOpen] = useState(false);
 
     const onToggle = () => {
@@ -24,7 +24,7 @@ const ReportNavigation: FC = () => {
     };
 
     const onShare = () => {
-        onShow('Отчет');
+        share('Отчет');
     };
 
     return (
