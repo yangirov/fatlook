@@ -1,4 +1,4 @@
-import { startOfMonth, startOfWeek } from 'date-fns';
+import { endOfWeek, startOfMonth, startOfWeek } from 'date-fns';
 import { ru } from 'date-fns/locale';
 
 import { ReportData } from '../types';
@@ -43,13 +43,14 @@ export const getReportLink = (userId: string, dateString: string, type: ReportTy
 
     if (type === REPORT_TYPES.MONTH) {
         dateString = formatDate(date, 'MMM_yy', {});
-        daysDiff = diffInDays(startOfMonth(date), new Date(0)) + 1; // FIXME: This ugly hack
+        daysDiff = diffInDays(startOfMonth(date), new Date(0));
     }
 
     if (type === REPORT_TYPES.WEEK) {
-        const d = startOfWeek(date, { locale: ru });
-        dateString = formatDate(d);
-        daysDiff = diffInDays(d, new Date(0)) + 1; // FIXME: This ugly hack
+        const start = startOfWeek(date, { locale: ru });
+        const end = endOfWeek(start, { locale: ru });
+        dateString = formatDate(start);
+        daysDiff = diffInDays(start, end);
     }
 
     const salt = (Math.random() + 1).toString(36).substring(7).toUpperCase();

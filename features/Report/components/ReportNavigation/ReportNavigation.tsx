@@ -3,20 +3,20 @@ import Link from 'next/link';
 import { VscGraph } from 'react-icons/vsc';
 import { SlSettings, SlShare } from 'react-icons/sl';
 
-import { Divider, Icon, SnackBarContext } from '@/shared/ui';
+import { Divider, Icon } from '@/shared/ui';
 
 import { ReportContext } from '../../Report';
 import { ReportSettings } from '../ReportSettings';
 
 import styles from './ReportNavigation.module.scss';
+import { useSharePage } from '@/shared/hooks';
 
 const ReportNavigation: FC = () => {
     const {
         report: { userId }
     } = useContext(ReportContext);
 
-    const snackBarContext = useContext(SnackBarContext);
-
+    const [onShow] = useSharePage();
     const [isOpen, setIsOpen] = useState(false);
 
     const onToggle = () => {
@@ -24,20 +24,7 @@ const ReportNavigation: FC = () => {
     };
 
     const onShare = () => {
-        if (navigator.share) {
-            navigator
-                .share({
-                    url: location.href,
-                    title: 'Отчет'
-                })
-                .then(console.log)
-                .catch(console.error);
-        } else {
-            navigator.clipboard
-                .writeText(location.href)
-                .then(() => snackBarContext.show('Ссылка скопирована в буфер обмена'))
-                .catch(console.error);
-        }
+        onShow('Отчет');
     };
 
     return (
