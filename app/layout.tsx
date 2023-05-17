@@ -249,6 +249,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
                     href="media/apple-splash-screens/8.3__iPad_Mini_portrait.png"
                 />
 
+                <link rel="yandex-tableau-widget" href="/tableau.json" />
                 <link rel="manifest" href="/manifest.json" />
             </head>
             <body className={font.className}>
