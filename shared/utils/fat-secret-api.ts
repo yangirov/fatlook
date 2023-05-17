@@ -43,14 +43,13 @@ export const getReportLink = (userId: string, dateString: string, type: ReportTy
 
     if (type === REPORT_TYPES.MONTH) {
         dateString = formatDate(date, 'MMM_yy', {});
-        daysDiff = diffInDays(startOfMonth(date), new Date(0));
+        daysDiff = diffInDays(startOfMonth(date), new Date(0)) + 1;
     }
 
     if (type === REPORT_TYPES.WEEK) {
         const start = startOfWeek(date, { locale: ru });
-        const end = endOfWeek(start, { locale: ru });
         dateString = formatDate(start);
-        daysDiff = diffInDays(start, end);
+        daysDiff = diffInDays(start, new Date(0)) + 1;
     }
 
     const salt = (Math.random() + 1).toString(36).substring(7).toUpperCase();
