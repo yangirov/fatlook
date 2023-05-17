@@ -71,7 +71,7 @@
     &Circle {
         display: block;
         width: 20px;
-        margin: 5px;
+        margin: var(--gap-5);
         background: var(--white);
         position: absolute;
         top: 0;

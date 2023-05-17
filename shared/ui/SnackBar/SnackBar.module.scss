@@ -22,8 +22,8 @@
 
     &Close {
         cursor: pointer;
-        margin-top: 5px;
-        margin-left: 5px;
+        margin-top: var(--gap-5);
+        margin-left: var(--gap-5);
     }
 }
 
