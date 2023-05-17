@@ -1,4 +1,4 @@
-import { FC } from 'react';
+import classNames from 'classnames';
 
 import { Divider } from '@/shared/ui';
 
@@ -10,24 +10,21 @@ type FoodCardProps<T extends FoodCardBase> = {
     title: string;
     columns: { [key in Partial<keyof T>]: string };
     items: T[];
+    extraClassNames?: {
+        wrapper?: string;
+        content?: string;
+        item?: string;
+    };
 };
 
-export const FoodCard = <T extends FoodCardBase>({ title, columns, items }: FoodCardProps<T>) => {
+export const FoodCard = <T extends FoodCardBase>({ title, columns, items, extraClassNames }: FoodCardProps<T>) => {
     return (
-        <div className={styles.foodCard}>
+        <div className={classNames(styles.foodCard, extraClassNames?.wrapper)}>
             <div className={styles.foodCardTitle}>{title}</div>
 
-            <div className={styles.foodCardContent}>
-                <div className={styles.foodCardItem}>
-                    <div className={styles.foodCardInfo}>
-                        {Object.values(columns).map((c, index) => (
-                            <div key={c + index}>{c}</div>
-                        ))}
-                    </div>
-                </div>
-
+            <div className={classNames(styles.foodCardContent, extraClassNames?.content)}>
                 {items.map(item => (
-                    <div key={item.name} className={styles.foodCardItem}>
+                    <div key={item.name} className={classNames(styles.foodCardItem, extraClassNames?.item)}>
                         <Divider />
                         <div className={styles.foodCardInfo}>
                             {Object.keys(columns).map((c, index) => (

@@ -30,7 +30,7 @@ const PageLayoutContent: FC<PageLayoutProps> = ({ children }) => {
 
 const PageLayoutComposition = {
     Header: PageLayoutHeader,
-    Content: PageLayoutContent
+    Content: PageLayoutContent,
 };
 
 export const PageLayout = Object.assign(PageLayoutWrapper, PageLayoutComposition);

@@ -4,19 +4,19 @@ import { VscGraph } from 'react-icons/vsc';
 import { SlSettings, SlShare } from 'react-icons/sl';
 
 import { Divider, Icon } from '@/shared/ui';
+import { useSharePage } from '@/shared/hooks';
 
 import { ReportContext } from '../../Report';
 import { ReportSettings } from '../ReportSettings';
 
 import styles from './ReportNavigation.module.scss';
-import { useSharePage } from '@/shared/hooks';
 
 const ReportNavigation: FC = () => {
     const {
-        report: { userId }
+        report: { userId },
     } = useContext(ReportContext);
 
-    const [share] = useSharePage();
+    const sharePage = useSharePage();
     const [isOpen, setIsOpen] = useState(false);
 
     const onToggle = () => {
@@ -24,7 +24,7 @@ const ReportNavigation: FC = () => {
     };
 
     const onShare = () => {
-        share('Отчет');
+        sharePage.share('Отчет');
     };
 
     return (

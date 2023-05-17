@@ -1,2 +1,7 @@
 .nutrientsSummary {
+    &Item {
+        &:last-child {
+            font-weight: normal;
+        }
+    }
 }

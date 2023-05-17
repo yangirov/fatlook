@@ -5,7 +5,13 @@
         {
             "files": ["*.ts", "*.tsx", "*.js"],
             "rules": {
-                "prettier/prettier": "error"
+                "prettier/prettier": [
+                    "error",
+                    {},
+                    {
+                        "usePrettierrc": true
+                    }
+                ]
             }
         }
     ]

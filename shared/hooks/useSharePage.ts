@@ -1,9 +1,7 @@
-import { useContext } from 'react';
-
-import { SnackBarContext } from '../ui';
+import { useSnackBar } from './useSnackBar';
 
 export const useSharePage = () => {
-    const snackBarContext = useContext(SnackBarContext);
+    const snackBar = useSnackBar();
 
     const share = (title: string, text?: string) => {
         if (navigator.share) {
@@ -11,17 +9,17 @@ export const useSharePage = () => {
                 .share({
                     url: location.href,
                     title,
-                    text
+                    text,
                 })
                 .then(console.log)
                 .catch(console.error);
         } else {
             navigator.clipboard
                 .writeText(location.href)
-                .then(() => snackBarContext.show('Ссылка скопирована в буфер обмена'))
+                .then(() => snackBar.show('Ссылка скопирована в буфер обмена'))
                 .catch(console.error);
         }
     };
 
-    return [share];
+    return { share };
 };

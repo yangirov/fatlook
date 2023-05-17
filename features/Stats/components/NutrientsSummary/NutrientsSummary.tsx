@@ -16,19 +16,26 @@ type CardInfo = {
 export const NutrientsSummary: FC = () => {
     const {
         data: {
-            totalData: { data }
-        }
+            totalData: { data },
+        },
     } = useContext(StatsContext);
 
     const items = (Object.entries(data) as Entries<FoodDetails>).reduce<CardInfo[]>((acc, [key, value]) => {
         const dto: CardInfo = {
             name: foodKeysMap[key]?.fullName ?? '-',
-            all: value !== null ? value : '-'
+            all: value !== null ? value : '-',
         };
 
         acc.push(dto);
         return acc;
     }, []);
 
-    return <FoodCard title="Питательные вещества" columns={{ name: 'Питательное вещество', all: 'Всего' }} items={items} />;
+    return (
+        <FoodCard
+            extraClassNames={{ item: styles.nutrientsSummaryItem }}
+            title="Питательные вещества"
+            columns={{ name: 'Питательное вещество', all: 'Всего' }}
+            items={items}
+        />
+    );
 };
