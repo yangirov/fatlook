@@ -24,7 +24,7 @@
             height: 3px;
             width: 0;
             background: var(--green);
-            transition: 0.3s;
+            transition: width var(--animation-default);
         }
 
         &:hover {

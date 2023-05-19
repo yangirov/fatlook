@@ -20,7 +20,7 @@ export type ModalProps = {
 const duration = 200;
 
 const defaultStyle = {
-    transition: `transform ${duration}ms ease-in-out`,
+    transition: `transform ${duration}ms ease`,
     transform: 'translateY(100%)',
     opacity: 0,
 };

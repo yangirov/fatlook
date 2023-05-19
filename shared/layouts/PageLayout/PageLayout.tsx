@@ -22,10 +22,13 @@ const PageLayoutHeader: FC<PageLayoutProps> = ({ children, onBack }) => {
     const router = useRouter();
 
     const isHomePage = pathname === '/';
+    const isReportPage = pathname?.includes('/report');
 
     const onBackArrowClick = () => {
         if (onBack) {
             onBack();
+        } else if (isReportPage) {
+            router.push('/');
         } else {
             router.back();
         }

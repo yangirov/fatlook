@@ -29,7 +29,7 @@
         display: block;
         width: 200%;
         margin-left: -100%;
-        transition: margin 0.3s ease-in 0s;
+        transition: margin var(--animation-default);
 
         &:before,
         &:after {
@@ -79,7 +79,7 @@
         right: 45px;
         border: 0 solid var(--gray);
         border-radius: 50%;
-        transition: all 0.3s ease-in 0s;
+        transition: all var(--animation-default);
         transition-property: margin right;
     }
 

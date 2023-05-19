@@ -6,7 +6,7 @@
     bottom: var(--gap-10);
     width: 100vw;
     min-height: 40px;
-    animation: 300ms ease-out forwards slide-up;
+    animation: var(--animation-delay) ease forwards slide-up;
 
     &Inner {
         display: flex;

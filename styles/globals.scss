@@ -30,6 +30,9 @@
     --yellow: #ffff09;
 
     --icon-color: var(--white);
+
+    --animation-delay: 0.4s;
+    --animation-default: var(--animation-default);
 }
 
 @media (prefers-color-scheme: dark) {

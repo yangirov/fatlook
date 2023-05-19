@@ -10,17 +10,11 @@
             repeating-linear-gradient(90deg, var(--light-gray) 0 1px, transparent 1px 100%);
     }
 
-    &Rect {
-        margin: 0 var(--gap-5);
-        transition: height 0.3s ease;
-    }
-
     &Line {
         display: block;
         position: absolute;
         width: 100%;
-        border-bottom: 3px dashed var(--dark);
-    }
+        border-bottom: 3px dashed var(--dark); }
 
     &Labels {
         display: flex;

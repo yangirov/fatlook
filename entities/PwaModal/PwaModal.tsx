@@ -89,17 +89,17 @@ export const PwaModal: FC = () => {
         localStorage.setItem(PWA_INSTALL_PROPOSAL, JSON.stringify(nextProposalDate));
     };
 
-    if (isDesktop) return null;
+    if (!isVisible) return null;
 
-    if (isAndroid && window.matchMedia('(display-mode: standalone)').matches) return null;
+    if (isDesktop) return null;
 
     if (isIOS && (navigator as ExtendedNavigator).standalone) return null;
 
-    if (!promptInstall && isAndroid) return null;
+    if (isAndroid && window.matchMedia('(display-mode: standalone)').matches) return null;
 
-    if (!supportsPWA && isAndroid) return null;
+    if (isAndroid && !promptInstall) return null;
 
-    if (!isVisible) return null;
+    if (isAndroid && !supportsPWA) return null;
 
     return (
         <Modal
