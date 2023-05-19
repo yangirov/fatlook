@@ -1,0 +1,65 @@
+.pwaModal {
+    --iosBottom: 20px;
+
+    min-height: 250px !important;
+
+    &IsIos {
+        position: relative;
+        margin-bottom: var(--iosBottom);
+        border-radius: var(--gap-10) !important;
+
+        &:after {
+            content: '';
+            position: fixed;
+            border-top: solid 15px var(--white);
+            border-left: solid 12px transparent;
+            border-right: solid 12px transparent;
+            bottom: calc(var(--iosBottom) - 15px);
+            left: 50%;
+            margin-left: -13px;
+            width: 0;
+            height: 0;
+        }
+    }
+
+    &Wrapper {
+        position: relative;
+        max-width: 60vh;
+        composes: flexCenter from 'styles/scaffold.scss';
+        flex-direction: column;
+    }
+
+    &Icon {
+        height: 67px;
+        width: 67px;
+    }
+
+    &Text {
+        margin-top: 40px;
+        text-align: center;
+        max-width: 70%;
+
+        &Title {
+            white-space: nowrap;
+            font-size: 1.4rem;
+        }
+
+        &SubTitle {
+            margin-top: var(--gap-15);
+            font-size: var(--font-small);
+        }
+    }
+
+    &Buttons {
+        margin: 45px 0;
+    }
+
+    &Ios {
+        text-align: center;
+
+        &Icon {
+            font-size: 2rem;
+            color: var(--dark);
+        }
+    }
+}

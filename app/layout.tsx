@@ -2,6 +2,7 @@ import { ReactNode } from 'react';
 import { Inter } from 'next/font/google';
 import { Analytics } from '@vercel/analytics/react';
 
+import { PwaModal } from '@/entities/PwaModal';
 import { isDev } from '@/shared/utils';
 
 import Providers from './provider';
@@ -253,6 +254,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
                 <link rel="manifest" href="/manifest.json" />
             </head>
             <body className={font.className}>
+                <PwaModal />
                 <Providers>{children}</Providers>
                 {!isDev && <Analytics />}
             </body>

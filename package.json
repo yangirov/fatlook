@@ -9,7 +9,8 @@
         "start": "next start",
         "lint": "next lint",
         "prepare": "husky install",
-        "scaffold": "node .scaffold"
+        "scaffold": "node .scaffold",
+        "tunnel": "npx ngrok http 3000"
     },
     "dependencies": {
         "@datepicker-react/hooks": "^2.8.4",

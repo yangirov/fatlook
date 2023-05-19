@@ -1,16 +1,18 @@
 'use client';
+import React from 'react';
 import { FC, ReactNode, useEffect, useRef } from 'react';
 import { createPortal } from 'react-dom';
 import { MdClose } from 'react-icons/md';
 import { Transition, TransitionStatus } from 'react-transition-group';
-import React from 'react';
+import classNames from 'classnames';
 
 import { Overlay } from '../Overlay';
 
 import styles from './Modal.module.scss';
 
 export type ModalProps = {
-    children: ReactNode[];
+    className?: string;
+    children: React.ReactNode[];
     isOpen: boolean;
     onToggle: () => void;
 };
@@ -30,7 +32,7 @@ const transitionStyles: { [key in TransitionStatus]?: React.CSSProperties } = {
     exiting: { transform: 'translateY(100%)', opacity: 0 },
 };
 
-const ModalWrapper: FC<ModalProps> = ({ isOpen, children, onToggle }: ModalProps) => {
+const ModalWrapper: FC<ModalProps> = ({ className, isOpen, children, onToggle }: ModalProps) => {
     const modalRef = useRef<HTMLDivElement>(null);
     const wrapperRef = useRef<HTMLDivElement>(null);
 
@@ -78,7 +80,7 @@ const ModalWrapper: FC<ModalProps> = ({ isOpen, children, onToggle }: ModalProps
                         }}
                         ref={modalRef}
                     >
-                        <div className={styles.modalWrapper} ref={wrapperRef}>
+                        <div className={classNames(styles.modalWrapper, className)} ref={wrapperRef}>
                             <div className={styles.modalHeader}>
                                 {modalTitle}
                                 <div onClick={onToggle} className={styles.modalHeaderIcon}>
