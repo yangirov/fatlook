@@ -1,15 +1,14 @@
 .spinner {
     width: var(--gap-50);
     height: var(--gap-50);
-    border: var(--gap-10) solid var(--green);
-    border-radius: 50%;
-    border-bottom-color: transparent;
-    animation: rotation 1s linear infinite;
     margin: 0 auto;
+    border: var(--gap-10) solid var(--green);
+    border-bottom-color: transparent;
+    border-radius: 50%;
+    animation: rotation 1s linear infinite;
 
     &Wrapper {
-        composes: flexCenter from 'styles/scaffold.scss';
-
+        composes: flex-center from 'styles/scaffold.scss';
         width: 100vw;
         height: 100vh;
     }

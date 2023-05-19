@@ -1,6 +1,6 @@
 .nutrients {
     &Title {
-        composes: cardSubTitle from 'styles/scaffold.scss';
+        composes: cardsubtitle from 'styles/scaffold.scss';
         margin-bottom: var(--gap-10);
         font-weight: bold;
     }
@@ -10,11 +10,11 @@
     }
 
     &Item {
-        composes: cardItem from 'styles/scaffold.scss';
+        composes: card-item from 'styles/scaffold.scss';
     }
 
     &Info {
-        composes: cardInfo from 'styles/scaffold.scss';
+        composes: card-info from 'styles/scaffold.scss';
     }
 
     &Food {

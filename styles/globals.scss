@@ -1,13 +1,10 @@
 :root {
     --app-max-width: 400px;
-
     --font-bold: 500;
     --font-normal: 1rem;
     --font-small: 0.9rem;
-
     --border-radius: 3px;
     --border-width: 6px;
-
     --gap-5: 5px;
     --gap-10: 10px;
     --gap-15: 15px;
@@ -15,12 +12,11 @@
     --gap-25: 25px;
     --gap-50: 50px;
     --gap-100: 100px;
-
     --background: #ececf4;
-    --white: #ffffff;
+    --white: #fff;
     --dark: #272727;
-    --light: #ffffff;
-    --shadow-color: rgba(0, 0, 0, 0.05);
+    --light: #fff;
+    --shadow-color: rgb(0 0 0 / 5%);
     --border: #e1e1e1;
     --accent-green: #259b23;
     --green: #269c24;
@@ -28,9 +24,8 @@
     --gray: #959595;
     --light-gray: #dedede;
     --yellow: #ffff09;
-
+    --red: #f03;
     --icon-color: var(--white);
-
     --animation-delay: 0.4s;
     --animation-type: ease;
 }
@@ -39,24 +34,23 @@
     :root {
         --background: #040c19;
         --white: #272727;
-        --dark: #ffffff;
-        --light: #ffffff;
-        --shadow-color: rgba(0, 0, 0, 0.05);
+        --dark: #fff;
+        --light: #fff;
+        --shadow-color: rgb(0 0 0 / 5%);
         --border: #5f6170;
         --accent-green: #272f3c;
         --green: #13cb65;
         --darken-green: #248f22;
         --gray: #707070;
-
         --icon-color: var(--dark);
     }
 }
 
 body {
-    background-color: var(--background);
-    padding: 0;
     margin: 0;
+    padding: 0;
     font-size: 16px;
+    background-color: var(--background);
 }
 
 input {

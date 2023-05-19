@@ -5,19 +5,19 @@
 .pageHeader {
     position: fixed;
     top: 0;
-    left: 0;
     right: 0;
-    background-color: var(--accent-green);
-    color: var(--light);
+    left: 0;
     z-index: 2;
+    color: var(--light);
+    background-color: var(--accent-green);
 
     &Wrapper {
-        cursor: pointer;
         display: grid;
         grid-template-columns: repeat(3, 1fr);
-        justify-content: space-between;
         align-items: flex-start;
+        justify-content: space-between;
         padding: 8px var(--gap-10);
+        cursor: pointer;
     }
 
     &Left {

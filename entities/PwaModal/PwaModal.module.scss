@@ -1,47 +1,47 @@
 .pwaModal {
-    --iosBottom: 20px;
+    --ios-bottom: 20px;
 
     min-height: 250px !important;
 
     &IsIos {
         position: relative;
-        margin-bottom: var(--iosBottom);
+        margin-bottom: var(--ios-bottom);
         border-radius: var(--gap-10) !important;
 
-        &:after {
-            content: '';
+        &::after {
             position: fixed;
-            border-top: solid 15px var(--white);
-            border-left: solid 12px transparent;
-            border-right: solid 12px transparent;
-            bottom: calc(var(--iosBottom) - 15px);
+            bottom: calc(var(--ios-bottom) - 15px);
             left: 50%;
-            margin-left: -13px;
             width: 0;
             height: 0;
+            margin-left: -13px;
+            border-top: solid 15px var(--white);
+            border-right: solid 12px transparent;
+            border-left: solid 12px transparent;
+            content: '';
         }
     }
 
     &Wrapper {
+        composes: flex-center from 'styles/scaffold.scss';
         position: relative;
-        max-width: 60vh;
-        composes: flexCenter from 'styles/scaffold.scss';
         flex-direction: column;
+        max-width: 60vh;
     }
 
     &Icon {
-        height: 67px;
         width: 67px;
+        height: 67px;
     }
 
     &Text {
+        max-width: 70%;
         margin-top: 40px;
         text-align: center;
-        max-width: 70%;
 
         &Title {
-            white-space: nowrap;
             font-size: 1.4rem;
+            white-space: nowrap;
         }
 
         &SubTitle {
@@ -58,8 +58,8 @@
         text-align: center;
 
         &Icon {
-            font-size: 2rem;
             color: var(--dark);
+            font-size: 2rem;
         }
     }
 }

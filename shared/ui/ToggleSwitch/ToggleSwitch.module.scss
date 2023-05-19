@@ -3,13 +3,13 @@
 
     &Wrapper {
         display: flex;
-        align-items: center;
         gap: var(--gap-10);
+        align-items: center;
     }
 
     &Text {
-        font-size: var(--font-small);
         color: var(--gray);
+        font-size: var(--font-small);
     }
 
     &Checkbox {
@@ -17,12 +17,12 @@
     }
 
     &Label {
-        width: 70px;
         display: block;
+        width: 70px;
         overflow: hidden;
-        cursor: pointer;
         border: 0 solid var(--gray);
         border-radius: var(--gap-20);
+        cursor: pointer;
     }
 
     &Inner {
@@ -31,36 +31,36 @@
         margin-left: -100%;
         transition: margin var(--animation-delay) var(--animation-type);
 
-        &:before,
-        &:after {
+        &::before,
+        &::after {
             display: block;
             float: left;
+            box-sizing: border-box;
             width: 50%;
             height: 30px;
-            line-height: 30px;
-            color: white;
-            box-sizing: border-box;
+            color: var(--white);
             font-size: var(--font-small);
             font-size: 0.8em;
+            line-height: 30px;
         }
 
-        &:before {
-            content: '';
+        &::before {
             padding-left: var(--gap-10);
-            background-color: var(--green);
             color: var(--white);
+            background-color: var(--green);
+            content: '';
         }
 
         &::after {
-            content: '';
             padding-right: var(--gap-10);
-            background-color: var(--gray);
             color: var(--white);
             text-align: right;
+            background-color: var(--gray);
+            content: '';
         }
 
         &WithText {
-            &:before {
+            &::before {
                 content: 'Вкл';
             }
 
@@ -73,21 +73,21 @@
     &Disabled {
         cursor: not-allowed;
 
-        &:before,
-        &:after {
+        &::before,
+        &::after {
             cursor: not-allowed;
         }
     }
 
     &Circle {
+        position: absolute;
+        top: 0;
+        right: 40px;
+        bottom: 0;
         display: block;
         width: 20px;
         margin: var(--gap-5);
         background: var(--white);
-        position: absolute;
-        top: 0;
-        bottom: 0;
-        right: 40px;
         border: 0 solid var(--gray);
         border-radius: 50%;
         transition: all var(--animation-delay) var(--animation-type);
@@ -100,7 +100,7 @@
         }
 
         &Circle {
-            right: 0px;
+            right: 0;
         }
     }
 }

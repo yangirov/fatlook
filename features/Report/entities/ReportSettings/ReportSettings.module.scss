@@ -1,22 +1,22 @@
 .reportSettings {
     &Title {
-        font-size: 1.2rem;
-        font-weight: var(--font-bold);
         margin-bottom: var(--gap-25);
+        font-weight: var(--font-bold);
+        font-size: 1.2rem;
     }
 
     &Error {
         max-width: 80%;
-        color: red;
         margin-bottom: var(--gap-10);
+        color: var(--red);
     }
 }
 
 .column {
-    cursor: pointer;
-    padding: var(--gap-5) 0;
     display: flex;
     justify-content: space-between;
+    padding: var(--gap-5) 0;
+    cursor: pointer;
 
     &Checkbox {
         font-size: 1.2rem;

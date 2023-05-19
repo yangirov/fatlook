@@ -1,11 +1,11 @@
 .error {
-    composes: flexCenter from 'styles/scaffold.scss';
+    composes: flex-center from 'styles/scaffold.scss';
     flex-direction: column;
     font-size: 1.2rem;
 
     &Title {
-        font-weight: bold;
         margin-bottom: var(--gap-20);
+        font-weight: bold;
     }
 
     &Text {

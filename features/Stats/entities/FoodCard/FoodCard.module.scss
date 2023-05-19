@@ -1,10 +1,10 @@
 .foodCard {
     &Title {
-        composes: cardTitle from 'styles/scaffold.scss';
+        composes: card-title from 'styles/scaffold.scss';
     }
 
     &Item {
-        composes: cardItem from 'styles/scaffold.scss';
+        composes: card-item from 'styles/scaffold.scss';
 
         &:last-child {
             font-weight: bold;
@@ -12,6 +12,6 @@
     }
 
     &Info {
-        composes: cardInfo from 'styles/scaffold.scss';
+        composes: card-info from 'styles/scaffold.scss';
     }
 }

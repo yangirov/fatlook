@@ -1,15 +1,15 @@
 .amountCard {
     &Item {
-        composes: cardItem from 'styles/scaffold.scss';
+        composes: card-item from 'styles/scaffold.scss';
     }
 
     &Info {
-        composes: cardInfo from 'styles/scaffold.scss';
+        composes: card-info from 'styles/scaffold.scss';
     }
 
     &Title {
-        font-size: 1.5rem;
         margin: var(--gap-5) 0;
+        font-size: 1.5rem;
     }
 
     &SubTitle {
@@ -19,8 +19,8 @@
     &Daily {
         display: flex;
         justify-content: space-between;
-        font-size: var(--font-small);
         color: var(--gray);
+        font-size: var(--font-small);
     }
 
     &Food {

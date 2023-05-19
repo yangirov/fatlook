@@ -7,7 +7,7 @@
     }
 
     &Title {
-        composes: cardTitle from 'styles/scaffold.scss';
+        composes: card-title from 'styles/scaffold.scss';
         margin-bottom: 0;
     }
 
@@ -23,14 +23,14 @@
         }
 
         &Value {
+            margin-top: var(--gap-5);
             font-weight: bold;
             font-size: 1.2rem;
-            margin-top: var(--gap-5);
         }
 
         &NotImportant {
-            opacity: 0.75;
             margin-left: var(--gap-15);
+            opacity: 0.75;
         }
 
         &NotImportant & {

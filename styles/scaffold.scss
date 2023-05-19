@@ -1,10 +1,10 @@
 .button {
     display: block;
-    font-size: inherit;
-    border-style: none;
     padding: var(--gap-10);
     color: var(--light);
+    font-size: inherit;
     background-color: var(--accent-green);
+    border-style: none;
     border-radius: var(--border-radius);
     cursor: pointer;
 
@@ -14,12 +14,12 @@
 }
 
 .link {
-    cursor: pointer;
     color: var(--green);
     text-decoration: none;
+    cursor: pointer;
 }
 
-.flexCenter {
+.flex-center {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -32,27 +32,27 @@
 }
 
 .card {
-    background-color: var(--white);
-    padding: var(--gap-15);
     margin-bottom: var(--gap-25);
+    padding: var(--gap-15);
+    background-color: var(--white);
     border-radius: var(--border-radius);
     box-shadow: 0 0 var(--gap-5) var(--gap-5) var(--shadow-color);
 }
 
-.cardItem {
+.card-item {
     &:first-child {
         font-size: var(--font-small);
         opacity: 0.8;
     }
 }
 
-.cardInfo {
+.card-info {
     display: grid;
-    justify-content: space-between;
-    align-items: flex-end;
-    grid-template-columns: 200px repeat(auto-fit, minmax(0, 1fr));
-    padding: var(--gap-10) 0;
     grid-gap: var(--gap-5);
+    grid-template-columns: 200px repeat(auto-fit, minmax(0, 1fr));
+    align-items: flex-end;
+    justify-content: space-between;
+    padding: var(--gap-10) 0;
 
     > div {
         text-align: right;
@@ -63,8 +63,8 @@
     }
 }
 
-.cardTitle {
-    font-size: 1.2rem;
-    font-weight: bold;
+.card-title {
     margin-bottom: var(--gap-10);
+    font-weight: bold;
+    font-size: 1.2rem;
 }

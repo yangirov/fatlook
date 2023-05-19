@@ -1,0 +1,15 @@
+{
+    "extends": [
+        "stylelint-config-standard",
+        "stylelint-config-rational-order",
+        "stylelint-prettier/recommended",
+        "stylelint-config-sass-guidelines"
+    ],
+    "plugins": ["stylelint-order", "stylelint-scss"],
+    "rules": {
+        "no-empty-source": null,
+        "selector-class-pattern": null,
+        "property-no-unknown": [true, { "ignoreProperties": ["composes"] }],
+        "max-nesting-depth": 5
+    }
+}

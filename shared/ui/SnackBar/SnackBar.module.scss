@@ -1,39 +1,39 @@
 .snackBar {
-    display: flex;
-    justify-content: center;
-    align-items: center;
     position: fixed;
     bottom: var(--gap-10);
+    display: flex;
+    align-items: center;
+    justify-content: center;
     width: 100vw;
     min-height: 40px;
     animation: var(--animation-delay) ease forwards slide-up;
 
     &Inner {
         display: flex;
-        justify-content: space-between;
         align-items: center;
+        justify-content: space-between;
         min-width: 200px;
-
-        border-radius: var(--border-radius);
+        padding: var(--gap-10);
         color: var(--white);
         background-color: var(--green);
-        padding: var(--gap-10);
+        border-radius: var(--border-radius);
     }
 
     &Close {
-        cursor: pointer;
         margin-top: var(--gap-5);
         margin-left: var(--gap-5);
+        cursor: pointer;
     }
 }
 
 @keyframes slide-up {
     from {
-        opacity: 0;
         transform: translateY(3rem);
+        opacity: 0;
     }
+
     to {
-        opacity: 1;
         transform: translateY(0);
+        opacity: 1;
     }
 }

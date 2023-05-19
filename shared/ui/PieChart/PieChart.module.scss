@@ -1,7 +1,7 @@
 .pieChart {
     display: flex;
-    align-items: center;
     flex-direction: column;
+    align-items: center;
 
     &CenterOuter {
         fill: var(--background);
@@ -16,18 +16,18 @@
 
         &Item {
             display: grid;
-            align-items: center;
             grid-template-columns: 1fr var(--gap-10);
+            align-items: center;
 
             &Text {
                 text-align: right;
             }
 
             &Color {
-                margin-left: calc(var(--gap-10) / 2);
                 display: inline-block;
                 width: 8px;
                 height: 8px;
+                margin-left: calc(var(--gap-10) / 2);
                 border-radius: 50%;
             }
         }

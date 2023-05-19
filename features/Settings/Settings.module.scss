@@ -1,18 +1,16 @@
 .userItem {
     display: grid;
-    justify-content: space-between;
-    align-items: center;
     grid-template-columns: 1fr minmax(0, 80px);
-
-    padding: var(--gap-10);
+    align-items: center;
+    justify-content: space-between;
     margin-bottom: var(--gap-15);
-
+    padding: var(--gap-10);
     border: 1px solid var(--light-gray);
     border-radius: var(--border-radius);
 
     &Link {
-        font-size: 1.2rem;
         composes: link from 'styles/scaffold.scss';
+        font-size: 1.2rem;
     }
 
     &Buttons {

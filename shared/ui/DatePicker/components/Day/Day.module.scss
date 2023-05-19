@@ -1,24 +1,22 @@
 .day {
-    cursor: pointer;
-    user-select: none;
-
-    composes: flexCenter from 'styles/scaffold.scss';
-
-    border-radius: 50%;
+    composes: flex-center from 'styles/scaffold.scss';
     padding: 8px;
     color: var(--light);
+    border-radius: 50%;
+    cursor: pointer;
+    user-select: none;
 
     &Selected {
         background: var(--darken-green);
     }
 
     &Disabled {
-        pointer-events: none;
         color: var(--light-gray);
+        pointer-events: none;
     }
 
     &Today {
-        background: var(--white);
         color: var(--green);
+        background: var(--white);
     }
 }

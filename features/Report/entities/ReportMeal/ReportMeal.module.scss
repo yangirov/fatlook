@@ -1,28 +1,12 @@
 $border: calc(var(--border-radius) * 2);
 
 .reportMeal {
+    margin-bottom: var(--gap-25);
     background-color: var(--white);
     border-radius: $border;
-    margin-bottom: var(--gap-25);
     box-shadow: 0 0 var(--gap-5) var(--gap-5) var(--shadow-color);
 
     &Header {
-        &Expanded & {
-            &Prime {
-                &Title {
-                    border-bottom: 1px solid var(--border);
-                }
-            }
-
-            &Total {
-                background-color: var(--white);
-
-                &Toggler {
-                    transform: rotate(0deg);
-                }
-            }
-        }
-
         &Prime {
             display: flex;
             justify-content: space-between;
@@ -38,12 +22,12 @@ $border: calc(var(--border-radius) * 2);
 
             &Title {
                 display: flex;
-                justify-content: space-between;
                 align-items: center;
-                padding-bottom: var(--gap-10);
-                transition: border var(--animation-delay) var(--animation-type);
-                border-bottom: 1px solid transparent;
+                justify-content: space-between;
                 height: 30px;
+                padding-bottom: var(--gap-10);
+                border-bottom: 1px solid transparent;
+                transition: border var(--animation-delay) var(--animation-type);
 
                 &Kcal {
                     font-weight: bold;
@@ -51,29 +35,28 @@ $border: calc(var(--border-radius) * 2);
                 }
 
                 &KcalText {
-                    font-size: var(--font-small);
                     color: var(--gray);
+                    font-size: var(--font-small);
                 }
             }
         }
 
         &Total {
-            cursor: pointer;
             display: flex;
-            justify-content: space-between;
             align-items: center;
+            justify-content: space-between;
             padding: calc(var(--gap-15) / 2) var(--gap-15) calc(var(--gap-15) / 2) var(--gap-50);
-            font-size: var(--font-small);
             color: var(--gray);
-
-            transition: background-color var(--animation-delay) var(--animation-type);
-            border-radius: 0 0 $border $border;
+            font-size: var(--font-small);
             background-color: var(--background);
+            border-radius: 0 0 $border $border;
+            cursor: pointer;
+            transition: background-color var(--animation-delay) var(--animation-type);
 
             &Items {
-                width: 80%;
                 display: grid;
                 grid-template-columns: repeat(auto-fit, minmax(0, 1fr));
+                width: 80%;
             }
 
             &Toggler {
@@ -81,12 +64,28 @@ $border: calc(var(--border-radius) * 2);
                 transition: transform var(--animation-delay) var(--animation-type);
             }
         }
+
+        &Expanded & {
+            &Prime {
+                &Title {
+                    border-bottom: 1px solid var(--border);
+                }
+            }
+
+            &Total {
+                background-color: var(--white);
+
+                &Toggler {
+                    transform: rotate(0deg);
+                }
+            }
+        }
     }
 
     &Empty {
-        font-size: var(--font-small);
-        color: var(--gray);
-        padding: 0 var(--gap-15) 0 var(--gap-50);
         margin-bottom: var(--gap-10);
+        padding: 0 var(--gap-15) 0 var(--gap-50);
+        color: var(--gray);
+        font-size: var(--font-small);
     }
 }

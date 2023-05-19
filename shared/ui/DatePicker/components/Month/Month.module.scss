@@ -3,14 +3,14 @@
         display: grid;
         grid-template-columns: repeat(7, 1fr);
         margin-bottom: var(--gap-10);
-        font-size: var(--font-small);
         color: var(--light-gray);
+        font-size: var(--font-small);
         text-align: center;
     }
 
     &Days {
         display: grid;
-        grid-template-columns: repeat(7, 1fr);
         grid-gap: var(--gap-5);
+        grid-template-columns: repeat(7, 1fr);
     }
 }

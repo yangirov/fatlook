@@ -7,8 +7,8 @@
 
     &Item {
         &Key {
-            color: var(--gray);
             margin-bottom: var(--gap-5);
+            color: var(--gray);
         }
 
         &:last-child & {

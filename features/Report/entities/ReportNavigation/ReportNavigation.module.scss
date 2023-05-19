@@ -1,17 +1,17 @@
 .reportNavigation {
-    margin-top: var(--gap-25);
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: var(--gap-15);
+    margin-top: var(--gap-25);
 
     &Link {
-        text-align: center;
         composes: link from 'styles/scaffold.scss';
+        text-align: center;
     }
 
     &Icon {
-        font-size: 1.5rem;
         margin-bottom: var(--gap-10);
+        font-size: 1.5rem;
     }
 
     &Text {

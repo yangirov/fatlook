@@ -1,26 +1,26 @@
 .reportFood {
     display: flex;
     align-items: center;
-    border-top: 1px solid var(--border);
     padding: var(--gap-10) var(--gap-15) 0 var(--gap-50);
+    border-top: 1px solid var(--border);
 
     &Item {
-        width: 100%;
         flex: 0 0 90%;
+        width: 100%;
 
         &Total {
-            width: 90%;
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(0, 1fr));
+            width: 90%;
             margin: var(--gap-10) 0;
-            font-size: var(--font-small);
             color: var(--gray);
+            font-size: var(--font-small);
         }
 
         &Weight {
             margin-top: var(--gap-5);
-            font-size: var(--font-small);
             color: var(--green);
+            font-size: var(--font-small);
         }
 
         &Kcal {

@@ -5,16 +5,17 @@
 
     &Svg {
         background-color: var(--white);
-        border: 1px solid var(--light-gray);
         background-image: repeating-linear-gradient(var(--light-gray) 0 1px, transparent 1px 100%),
             repeating-linear-gradient(90deg, var(--light-gray) 0 1px, transparent 1px 100%);
+        border: 1px solid var(--light-gray);
     }
 
     &Line {
-        display: block;
         position: absolute;
+        display: block;
         width: 100%;
-        border-bottom: 3px dashed var(--dark); }
+        border-bottom: 3px dashed var(--dark);
+    }
 
     &Labels {
         display: flex;
@@ -22,9 +23,9 @@
         margin-top: var(--gap-5);
 
         &Item {
-            text-align: center;
-            font-size: var(--font-small);
             color: var(--gray);
+            font-size: var(--font-small);
+            text-align: center;
         }
     }
 }

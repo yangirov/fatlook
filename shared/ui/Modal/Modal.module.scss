@@ -1,38 +1,33 @@
 .modal {
-    display: flex;
     position: fixed;
-    top: 0;
-    left: 0;
-    bottom: 0;
-    right: 0;
+    inset: 0;
     z-index: 1000;
+    display: flex;
 
     &Wrapper {
         position: relative;
         width: 100%;
-
-        margin-top: auto;
         min-height: 50vh;
         max-height: 95vh;
-        background-color: var(--white);
-
-        border-radius: var(--gap-10) var(--gap-10) 0 0;
+        margin-top: auto;
         overflow-y: auto;
+        background-color: var(--white);
+        border-radius: var(--gap-10) var(--gap-10) 0 0;
     }
 
     &Header {
         position: sticky;
         top: 0;
-        background-color: var(--white);
         display: flex;
-        justify-content: space-between;
         align-items: center;
+        justify-content: space-between;
         padding: var(--gap-15);
+        background-color: var(--white);
 
         &Icon {
-            cursor: pointer;
-            background-color: transparent;
             color: var(--dark);
+            background-color: transparent;
+            cursor: pointer;
         }
     }
 

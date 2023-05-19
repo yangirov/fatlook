@@ -1,15 +1,15 @@
 .accordion {
     &Header {
-        cursor: pointer;
         display: block;
+        cursor: pointer;
     }
 
     &Content {
         display: block;
-        overflow: hidden;
-        transition: max-height var(--animation-delay) cubic-bezier(1, 0, 1, 0);
         height: auto;
         max-height: 9999px;
+        overflow: hidden;
+        transition: max-height var(--animation-delay) cubic-bezier(1, 0, 1, 0);
 
         &Collapsed {
             max-height: 0;

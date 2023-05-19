@@ -2,7 +2,7 @@
     composes: card from 'styles/scaffold.scss';
 
     &Title {
-        composes: cardTitle from 'styles/scaffold.scss';
+        composes: card-title from 'styles/scaffold.scss';
     }
 
     &Content {
