@@ -55,10 +55,6 @@ export const PieChart: FC<PieChartProps> = ({ className, size = 80, data }) => {
                         );
                     })}
                     <circle className={styles.pieChartCenterOuter} cx={0} cy={0} r={radius / 2} />
-                    <path
-                        className={styles.pieChartCenterInner}
-                        d={`M 0 0 L 0 -${radius / 2} A ${radius / 2} ${radius / 2} 0 1 1 0 ${radius / 2} Z`}
-                    />
                 </g>
             </svg>
             <div className={styles.pieChartLegend}>
