@@ -20,6 +20,10 @@ interface BeforeInstallPromptEvent extends Event {
     prompt(): Promise<void>;
 }
 
+interface ExtendedNavigator extends Navigator {
+    standalone?: boolean;
+}
+
 declare global {
     interface WindowEventMap {
         beforeinstallprompt: BeforeInstallPromptEvent;
@@ -86,6 +90,10 @@ export const PwaModal: FC = () => {
     };
 
     if (isDesktop) return null;
+
+    if (isAndroid && window.matchMedia('(display-mode: standalone)').matches) return null;
+
+    if (isIOS && (navigator as ExtendedNavigator).standalone) return null;
 
     if (!promptInstall && isAndroid) return null;
 
