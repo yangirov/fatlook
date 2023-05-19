@@ -1,0 +1,18 @@
+{
+    "javascript.updateImportsOnFileMove.enabled": "always",
+    "typescript.updateImportsOnFileMove.enabled": "always",
+
+    "typescript.tsdk": "node_modules/typescript/lib",
+    "typescript.enablePromptUseWorkspaceTsdk": true,
+
+    "scss.validate": false,
+    "css.validate": false,
+
+    "stylelint.enable": true,
+    "stylelint.validate": ["css", "scss"],
+
+    "editor.codeActionsOnSave": {
+        "source.fixAll.eslint": true,
+        "source.fixAll.stylelint": true
+    }
+}
