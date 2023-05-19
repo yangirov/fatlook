@@ -10,7 +10,7 @@ export const mapStats = (report?: ReportData, dailyAmount?: number): StatsData |
     }
 
     if (!dailyAmount) {
-        throw new Error('Заполните РСК для подопечного');
+        throw new Error('Заполните РСК для клиента');
     }
 
     const foodData = report.data.reduce<FoodInfo[]>((acc, item) => {

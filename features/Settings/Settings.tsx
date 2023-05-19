@@ -42,7 +42,7 @@ export const Settings: FC = () => {
             <PageLayout.Header>Отчеты</PageLayout.Header>
 
             <PageLayout.Content>
-                {users.length === 0 && <div>Нет подопечных. Добавим?</div>}
+                {users.length === 0 && <div>Нет клиентов. Добавим?</div>}
 
                 <div className={styles.users}>
                     {users?.map(({ id, name, dailyAmount }) => (
@@ -62,7 +62,7 @@ export const Settings: FC = () => {
                     ))}
                 </div>
 
-                <Button onClick={onToggleUserForm}>Добавить</Button>
+                <Button onClick={onToggleUserForm}>Добавить клиента</Button>
 
                 <UserForm
                     user={user}

@@ -87,7 +87,7 @@ export const UserForm: FC<UserFormProps> = ({ isOpen, user, onToggle, onClearUse
 
     return (
         <Modal isOpen={isOpen} onToggle={onModalToggle}>
-            <Modal.Title>{actionText}</Modal.Title>
+            <Modal.Title>{actionText} клиента</Modal.Title>
 
             <Modal.Content>
                 <form className={styles.inputs} autoComplete="off">
