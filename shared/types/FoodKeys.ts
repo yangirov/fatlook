@@ -19,7 +19,7 @@ const getUnitInfo = (fullName: string, shortName: string | null, parseName: stri
 });
 
 export const foodKeysMap: FoodKeysMap = {
-    kcal: getUnitInfo('Калории', null, 'Кал ( ккал)', 'г'),
+    kcal: getUnitInfo('Калории', null, 'Кал ( ккал)', 'ккал'),
     allFat: getUnitInfo('Всего жиров', 'Жиры', '', 'г'),
     fat: getUnitInfo('Жир', null, 'Жир( г)', 'г'),
     nonSaturatedFat: getUnitInfo('Н/жир', null, 'Н/жир( г)', 'г'),

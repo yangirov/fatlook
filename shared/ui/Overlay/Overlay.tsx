@@ -6,9 +6,9 @@ import styles from './Overlay.module.scss';
 
 type OverlayProps = {
     className?: string;
-    onClose?: () => void;
+    onClick?: () => void;
 };
 
-export const Overlay: FC<OverlayProps> = ({ className, onClose }) => {
-    return createPortal(<div className={classNames(styles.overlay, className)} onClick={onClose} />, document.body);
+export const Overlay: FC<OverlayProps> = ({ className, onClick }) => {
+    return createPortal(<div className={classNames(styles.overlay, className)} onClick={onClick} />, document.body);
 };

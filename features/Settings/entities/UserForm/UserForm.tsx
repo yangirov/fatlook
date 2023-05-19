@@ -87,9 +87,9 @@ export const UserForm: FC<UserFormProps> = ({ isOpen, user, onToggle, onClearUse
 
     return (
         <Modal isOpen={isOpen} onToggle={onModalToggle}>
-            <div className={styles.reportSettings}>
-                <h3>{actionText}</h3>
+            <Modal.Title>{actionText}</Modal.Title>
 
+            <Modal.Content>
                 <form className={styles.inputs} autoComplete="off">
                     <input
                         className={styles.input}
@@ -127,7 +127,7 @@ export const UserForm: FC<UserFormProps> = ({ isOpen, user, onToggle, onClearUse
                         {actionText}
                     </Button>
                 </div>
-            </div>
+            </Modal.Content>
         </Modal>
     );
 };

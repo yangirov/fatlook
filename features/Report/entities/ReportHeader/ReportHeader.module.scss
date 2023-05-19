@@ -1,19 +1,5 @@
 .reportHeader {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 0 var(--gap-10);
-
-    &Back {
-        width: var(--gap-100);
-        display: flex;
-        justify-content: flex-start;
-        font-size: 1.2rem;
-    }
-
     &Date {
-        cursor: pointer;
-
         &:after {
             display: inline-block;
             content: '▾';
@@ -33,21 +19,18 @@
         }
     }
 
-    &User {
-        color: var(--light-gray);
-        width: var(--gap-100);
-        text-align: right;
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
-    }
-
     &DatePicker {
-        margin-top: var(--gap-10);
-        composes: flexCenter from 'styles/scaffold.scss';
+        margin: var(--gap-10);
     }
 
     &Overlay {
         z-index: 1 !important;
+    }
+
+    &Content {
+        position: fixed;
+        left: 0;
+        right: 0;
+        background: var(--accent-green);
     }
 }

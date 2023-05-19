@@ -26,20 +26,6 @@ export const StatsContext = createContext<{ data: StatsData }>({
     data: {} as StatsData,
 });
 
-const StatsHeader: FC = () => {
-    const router = useRouter();
-
-    return (
-        <div className={styles.statsHeader}>
-            <div className={styles.statsHeaderBack}>
-                <MdArrowBack onClick={() => router.back()} />
-            </div>
-            <div>Отчеты</div>
-            <div></div>
-        </div>
-    );
-};
-
 export const Stats: FC<StatsProps> = ({ report }) => {
     const params = useParams();
     const userId = params?.userId.toString() ?? '';
@@ -50,10 +36,7 @@ export const Stats: FC<StatsProps> = ({ report }) => {
     if (!data) {
         return (
             <PageLayout>
-                <PageLayout.Header>
-                    <StatsHeader />
-                </PageLayout.Header>
-
+                <PageLayout.Header>Отчеты</PageLayout.Header>
                 <PageLayout.Content>
                     <EmptyContent />
                 </PageLayout.Content>
@@ -64,9 +47,7 @@ export const Stats: FC<StatsProps> = ({ report }) => {
     return (
         <StatsContext.Provider value={{ data }}>
             <PageLayout>
-                <PageLayout.Header>
-                    <StatsHeader />
-                </PageLayout.Header>
+                <PageLayout.Header>Отчеты</PageLayout.Header>
                 <PageLayout.Content>
                     <Tabs>
                         <Tab title="Планки">

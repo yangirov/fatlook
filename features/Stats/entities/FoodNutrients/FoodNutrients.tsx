@@ -1,4 +1,4 @@
-import { FC, useContext, useRef } from 'react';
+import { FC, useContext, useLayoutEffect, useRef, useState } from 'react';
 
 import { BarChart, Card, ChartData, Divider } from '@/shared/ui';
 import { foodKeysMap, nutrientsGoals } from '@/shared/types';
@@ -35,18 +35,22 @@ export const FoodNutrients: FC = () => {
         return acc;
     }, []);
 
+    const [barWidth, setBarWidth] = useState<number | null>(null);
+    useLayoutEffect(() => {
+        if (chartRef && chartRef.current) {
+            setBarWidth(chartRef.current.offsetWidth);
+        }
+    }, [chartRef]);
+
     return (
         <>
             <Card>
                 <div className={styles.nutrientsTitle}>Макроэлементы</div>
 
                 <div className={styles.nutrientsChart} ref={chartRef}>
-                    <BarChart
-                        data={chartData}
-                        colors={chartNutrientColors}
-                        width={chartRef?.current?.offsetWidth ?? 350}
-                        height={125}
-                    />
+                    {barWidth && (
+                        <BarChart data={chartData} colors={chartNutrientColors} width={barWidth} height={125} />
+                    )}
                 </div>
 
                 <div className={styles.nutrientsContent}>

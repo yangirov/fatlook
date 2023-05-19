@@ -1,6 +1,7 @@
 import { FC, useRef, useContext, memo } from 'react';
 import { useDay } from '@datepicker-react/hooks';
 import classNames from 'classnames';
+import { isToday } from 'date-fns';
 
 import { formatDate } from '@/shared/utils';
 
@@ -48,6 +49,7 @@ const Day: FC<DayProps> = ({ date }) => {
             className={classNames(styles.day, {
                 [styles.daySelected]: isSelected || isSelectedStartOrEnd,
                 [styles.dayDisabled]: disabledDate,
+                [styles.dayToday]: isToday(date),
             })}
         >
             {formatDate(date, 'd')}

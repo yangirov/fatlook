@@ -6,11 +6,6 @@ import { getColor } from '@/shared/colors';
 
 import styles from './PieChart.module.scss';
 
-type PieChartItem = {
-    pie: React.ReactNode;
-    legend: React.ReactNode;
-};
-
 type PieChartProps = {
     size?: number;
     className?: string;
@@ -21,56 +16,66 @@ type PieChartProps = {
     }[];
 };
 
-const sliceSize = (num: number, total: number) => (num / total) * 360;
-
-export const PieChart: FC<PieChartProps> = ({ className, size, data }) => {
-    const sizeStyle = { '--pieChartSize': `${size ?? 80}px` } as React.CSSProperties;
+export const PieChart: FC<PieChartProps> = ({ className, size = 80, data }) => {
+    const sizeStyle = { '--pieChartSize': `${size}px` } as React.CSSProperties;
 
     const total = data.reduce((a, b) => a + b.value, 0);
     if (total === 0) {
         return null;
     }
 
+    const radius = size / 2;
     let offset = 0;
-    const items = data.reduce<PieChartItem[]>((acc, { color, name, value }) => {
-        const size = sliceSize(value, total);
-        const sizeRotation = -179 + size;
-
-        const oldOffset = offset;
-        offset += size;
-
-        acc.push({
-            pie: (
-                <div
-                    key={name}
-                    className={styles.pieChartSlice}
-                    style={{ transform: `rotate(${oldOffset}deg) translate3d(0,0,0)` }}
-                >
-                    <span
-                        style={{
-                            transform: `rotate(${sizeRotation}deg) translate3d(0,0,0)`,
-                            backgroundColor: color ?? getColor(),
-                        }}
-                    ></span>
-                </div>
-            ),
-            legend: (
-                <div key={name} className={styles.pieChartLegendItem}>
-                    <span className={styles.pieChartLegendItemText}>
-                        {name}: {getPercents(value, total)}
-                    </span>
-                    <span className={styles.pieChartLegendItemColor} style={{ backgroundColor: color }}></span>
-                </div>
-            ),
-        });
-
-        return acc;
-    }, []);
 
     return (
         <div className={classNames(styles.pieChart, className)} style={sizeStyle}>
-            <div className={styles.pieChartCircle}>{items.map(({ pie }) => pie)}</div>
-            <div className={styles.pieChartLegend}>{items.map(({ legend }) => legend)}</div>
+            <svg className={styles.pieChartSvg} width={size} height={size}>
+                <g transform={`translate(${radius},${radius})`}>
+                    {data.map(({ color, name, value }) => {
+                        const percentage = value / total;
+                        const angle = 2 * Math.PI * percentage;
+                        const largeArcFlag = percentage > 0.5 ? 1 : 0;
+
+                        const startAngle = offset * Math.PI * 2;
+                        const endAngle = startAngle + angle;
+
+                        const startX = radius * Math.sin(startAngle);
+                        const startY = -radius * Math.cos(startAngle);
+                        const endX = radius * Math.sin(endAngle);
+                        const endY = -radius * Math.cos(endAngle);
+
+                        offset += percentage;
+
+                        return (
+                            <path
+                                key={name}
+                                d={`M 0 0 L ${startX} ${startY} A ${radius} ${radius} 0 ${largeArcFlag} 1 ${endX} ${endY} Z`}
+                                fill={color ?? getColor()}
+                            />
+                        );
+                    })}
+                    <circle className={styles.pieChartCenterOuter} cx={0} cy={0} r={radius / 2} />
+                    <path
+                        className={styles.pieChartCenterInner}
+                        d={`M 0 0 L 0 -${radius / 2} A ${radius / 2} ${radius / 2} 0 1 1 0 ${radius / 2} Z`}
+                    />
+                </g>
+            </svg>
+            <div className={styles.pieChartLegend}>
+                {data.map(({ color, name, value }) => {
+                    return (
+                        <div key={name} className={styles.pieChartLegendItem}>
+                            <span className={styles.pieChartLegendItemText}>
+                                {name}: {getPercents(value, total)}
+                            </span>
+                            <span
+                                className={styles.pieChartLegendItemColor}
+                                style={{ backgroundColor: color ?? getColor() }}
+                            ></span>
+                        </div>
+                    );
+                })}
+            </div>
         </div>
     );
 };

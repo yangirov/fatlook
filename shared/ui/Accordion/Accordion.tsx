@@ -25,12 +25,12 @@ const AccordionWrapper: FC<AccordionProps> = ({ children, className, onChange })
 
 const AccordionHeader: FC<FCWithChild> = ({ children }) => <>{children}</>;
 
-const AccordionContent: FC<FCWithChild> = ({ children }) => {
+const AccordionContent: FC<FCWithChild> = ({ children, className }) => {
     const { isOpen } = useContext(AccordionContext);
 
     return (
         <div
-            className={classNames(styles.accordionContent, {
+            className={classNames(styles.accordionContent, className, {
                 [styles.accordionContentCollapsed]: !isOpen,
             })}
         >

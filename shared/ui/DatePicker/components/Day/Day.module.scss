@@ -1,8 +1,12 @@
 .day {
+    cursor: pointer;
+    user-select: none;
+
     composes: flexCenter from 'styles/scaffold.scss';
+    justify-self: end;
 
     border-radius: 50%;
-    padding: 12px;
+    padding: 8px;
     color: var(--light);
 
     &Selected {
@@ -12,5 +16,10 @@
     &Disabled {
         pointer-events: none;
         color: var(--light-gray);
+    }
+
+    &Today {
+        background: var(--white);
+        color: var(--dark);
     }
 }

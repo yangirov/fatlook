@@ -12,23 +12,36 @@
         width: 100%;
 
         margin-top: auto;
-        min-height: 60vh;
-        max-height: 100vh;
+        min-height: 50vh;
+        max-height: 95vh;
         background-color: var(--white);
 
-        padding: var(--gap-15);
         border-radius: var(--gap-10) var(--gap-10) 0 0;
+        overflow-y: auto;
     }
 
-    &CloseButton {
-        position: absolute;
+    &Header {
+        position: sticky;
         top: 0;
-        right: 0;
+        background-color: var(--white);
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: var(--gap-15);
 
         &Icon {
-            padding: var(--gap-10);
+            cursor: pointer;
             background-color: transparent;
             color: var(--dark);
         }
+    }
+
+    &Title {
+        font-size: 1.2rem;
+    }
+
+    &Content {
+        padding: 0 var(--gap-15);
+        overflow-y: auto;
     }
 }

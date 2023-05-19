@@ -1,0 +1,23 @@
+.userSelector {
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    user-select: none;
+
+    &Name {
+        white-space: nowrap;
+    }
+
+    &Toggler {
+        margin-left: var(--gap-5);
+    }
+
+    &Item {
+        cursor: pointer;
+        padding: var(--gap-10);
+        border: 1px solid var(--border);
+        border-radius: var(--border-radius);
+        margin-bottom: var(--gap-10);
+        composes: link from 'styles/scaffold.scss';
+    }
+}

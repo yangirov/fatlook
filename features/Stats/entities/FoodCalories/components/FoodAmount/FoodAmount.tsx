@@ -1,4 +1,4 @@
-import { FC, useContext, useRef } from 'react';
+import { FC, useContext, useLayoutEffect, useRef, useState } from 'react';
 
 import { BarChart, Card, Divider } from '@/shared/ui';
 import { MEAL_COLORS } from '@/shared/colors';
@@ -15,6 +15,13 @@ export const FoodAmount: FC = () => {
     const chartRef = useRef<HTMLDivElement>(null);
     const chartMealColors = Object.values(MEAL_COLORS).map(m => m.color);
 
+    const [barWidth, setBarWidth] = useState<number | null>(null);
+    useLayoutEffect(() => {
+        if (chartRef && chartRef.current) {
+            setBarWidth(chartRef.current.offsetWidth);
+        }
+    }, [chartRef]);
+
     return (
         <Card>
             <div className={styles.amountCardSubTitle}>Калории</div>
@@ -26,13 +33,15 @@ export const FoodAmount: FC = () => {
             </div>
 
             <div className={styles.amountCardChart} ref={chartRef}>
-                <BarChart
-                    hasMiddleLine={true}
-                    data={chartData}
-                    colors={chartMealColors}
-                    width={chartRef?.current?.offsetWidth ?? 350}
-                    height={125}
-                />
+                {barWidth && (
+                    <BarChart
+                        hasMiddleLine={true}
+                        data={chartData}
+                        colors={chartMealColors}
+                        width={barWidth}
+                        height={125}
+                    />
+                )}
             </div>
 
             <div className={styles.amountCardContent}>

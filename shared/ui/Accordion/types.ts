@@ -6,7 +6,7 @@ export type AccordionProps = {
     onChange?: () => void;
 };
 
-export type FCWithChild = { children: React.ReactNode };
+export type FCWithChild = { className?: string; children: React.ReactNode };
 
 export type AccordionContextType = {
     isOpen: boolean;

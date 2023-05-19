@@ -1,5 +1,6 @@
 'use client';
 import { FC, createContext } from 'react';
+import { useRouter } from 'next/navigation';
 
 import { ReportData } from '@/shared/types';
 import { PageLayout } from '@/shared/layouts';
@@ -21,9 +22,11 @@ export const ReportContext = createContext<{ report: ReportData }>({
 });
 
 export const Report: FC<ReportProps> = ({ report }) => {
+    const router = useRouter();
+
     return (
         <ReportContext.Provider value={{ report }}>
-            <PageLayout>
+            <PageLayout onBack={() => router.push('/')}>
                 <PageLayout.Header>
                     <ReportHeader />
                 </PageLayout.Header>

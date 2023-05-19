@@ -10,14 +10,7 @@
 }
 
 .datePicker {
-    display: grid;
-    justify-content: space-between;
     margin-top: var(--gap-10);
-    grid-template-columns: repeat(1, 300px);
     font-size: var(--font-small);
-    cursor: pointer;
-
-    @media screen and (max-width: 375px) {
-        grid-template-columns: repeat(1, 2var (--gap-50));
-    }
+    background: var(--accent-green);
 }

@@ -49,8 +49,9 @@ export const ReportSettings: FC<ReportSettingsProps> = ({ isOpen, onToggle }) =>
 
     return (
         <Modal isOpen={isOpen} onToggle={onToggle}>
-            <div className={styles.reportSettings}>
-                <div className={styles.reportSettingsTitle}>Отображаемые колонки</div>
+            <Modal.Title>Отображаемые колонки</Modal.Title>
+
+            <Modal.Content>
                 <div className={styles.reportSettingsError}>{error}</div>
 
                 {allColumns.map((key, index) => (
@@ -66,7 +67,7 @@ export const ReportSettings: FC<ReportSettingsProps> = ({ isOpen, onToggle }) =>
                         {allColumns.length - 1 !== index && <Divider />}
                     </div>
                 ))}
-            </div>
+            </Modal.Content>
         </Modal>
     );
 };

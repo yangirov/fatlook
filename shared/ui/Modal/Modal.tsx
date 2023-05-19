@@ -1,16 +1,16 @@
 'use client';
-import { FC, useEffect, useRef } from 'react';
+import { FC, ReactNode, useEffect, useRef } from 'react';
 import { createPortal } from 'react-dom';
 import { MdClose } from 'react-icons/md';
 import { Transition, TransitionStatus } from 'react-transition-group';
+import React from 'react';
 
-import { IconButton } from '../IconButton';
 import { Overlay } from '../Overlay';
 
 import styles from './Modal.module.scss';
 
 export type ModalProps = {
-    children: React.ReactNode;
+    children: ReactNode[];
     isOpen: boolean;
     onToggle: () => void;
 };
@@ -48,6 +48,24 @@ const ModalWrapper: FC<ModalProps> = ({ isOpen, children, onToggle }: ModalProps
         };
     }, [onToggle]);
 
+    let modalTitle: ReactNode = null;
+    let modalContent: ReactNode = null;
+
+    React.Children.forEach(children, child => {
+        if (React.isValidElement(child)) {
+            switch (child.type) {
+                case ModalTitle:
+                    modalTitle = child;
+                    break;
+                case ModalContent:
+                    modalContent = child;
+                    break;
+                default:
+                    break;
+            }
+        }
+    });
+
     return (
         <Transition unmountOnExit mountOnEnter appear in={isOpen} timeout={duration} nodeRef={modalRef}>
             {state => (
@@ -61,13 +79,14 @@ const ModalWrapper: FC<ModalProps> = ({ isOpen, children, onToggle }: ModalProps
                         ref={modalRef}
                     >
                         <div className={styles.modalWrapper} ref={wrapperRef}>
-                            <div className={styles.modalCloseButton}>
-                                <IconButton onClick={onToggle} className={styles.modalCloseButtonIcon}>
+                            <div className={styles.modalHeader}>
+                                {modalTitle}
+                                <div onClick={onToggle} className={styles.modalHeaderIcon}>
                                     <MdClose color="var(--green)" size={30} />
-                                </IconButton>
+                                </div>
                             </div>
 
-                            <div className={styles.modalContent}>{children}</div>
+                            {modalContent}
                         </div>
                     </div>
                     <Overlay />
@@ -77,4 +96,19 @@ const ModalWrapper: FC<ModalProps> = ({ isOpen, children, onToggle }: ModalProps
     );
 };
 
-export const Modal: FC<ModalProps> = props => createPortal(<ModalWrapper {...props} />, document.body);
+const ModalTitle: FC<{ children: React.ReactNode }> = ({ children }) => (
+    <div className={styles.modalTitle}>{children}</div>
+);
+
+const ModalContent: FC<{ children: React.ReactNode }> = ({ children }) => (
+    <div className={styles.modalContent}>{children}</div>
+);
+
+const ModalPortal: FC<ModalProps> = props => createPortal(<ModalWrapper {...props} />, document.body);
+
+const modalComposition = {
+    Title: ModalTitle,
+    Content: ModalContent,
+};
+
+export const Modal = Object.assign(ModalPortal, modalComposition);

@@ -7,11 +7,33 @@
     top: 0;
     left: 0;
     right: 0;
-    text-align: center;
     background-color: var(--accent-green);
-    padding: var(--gap-10) 0;
     color: var(--light);
     z-index: 2;
+
+    &Wrapper {
+        cursor: pointer;
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        justify-content: space-between;
+        align-items: flex-start;
+        padding: 8px var(--gap-10);
+        font-size: var(--font-small);
+    }
+
+    &Left {
+        display: flex;
+        align-items: center;
+        font-size: 1.2rem;
+    }
+
+    &Center {
+        justify-self: center;
+    }
+
+    &Right {
+        justify-self: end;
+    }
 }
 
 .pageContent {

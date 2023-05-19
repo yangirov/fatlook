@@ -1,14 +1,11 @@
 'use client';
-import { FC, useContext, useEffect, useState } from 'react';
+import { FC, useContext, useEffect, useRef, useState } from 'react';
 import { useParams, useRouter, useSearchParams } from 'next/navigation';
-import { MdArrowBack } from 'react-icons/md';
 import classNames from 'classnames';
 
 import DatePicker from '@/shared/ui/DatePicker';
-import { Accordion, AccordionContext, IconButton, Overlay } from '@/shared/ui';
+import { Accordion, AccordionContext, Overlay } from '@/shared/ui';
 import { beautifyDate, formatDate, parseDate } from '@/shared/utils';
-import { useAppSelector } from '@/shared/store';
-import { getUserById } from '@/shared/store/usersReducer';
 
 import { ReportContext } from '../../Report';
 
@@ -20,25 +17,12 @@ type HeaderProps = {
 };
 
 const Header: FC<HeaderProps> = ({ date, month }) => {
-    const params = useParams();
-    const userId = params?.userId.toString() ?? '';
-
-    const user = useAppSelector(state => getUserById(state, userId));
-
     const { isOpen, setOpen } = useContext(AccordionContext);
 
-    const onToggle = () => {
-        setOpen(prev => !prev);
-    };
+    const onToggle = () => setOpen(prev => !prev);
 
     return (
-        <div className={styles.reportHeader}>
-            <div className={styles.reportHeaderBack}>
-                <IconButton href="/">
-                    <MdArrowBack />
-                </IconButton>
-            </div>
-
+        <>
             <div
                 onClick={onToggle}
                 className={classNames(styles.reportHeaderDate, {
@@ -47,10 +31,8 @@ const Header: FC<HeaderProps> = ({ date, month }) => {
             >
                 {isOpen && month ? month : beautifyDate(date)}
             </div>
-
-            <div className={styles.reportHeaderUser}>{user?.name}</div>
-            {isOpen && <Overlay className={styles.reportHeaderOverlay} onClose={onToggle} />}
-        </div>
+            {isOpen && <Overlay className={styles.reportHeaderOverlay} onClick={onToggle} />}
+        </>
     );
 };
 
@@ -108,7 +90,7 @@ const ReportHeader: FC = () => {
             <Accordion.Header>
                 <Header date={date} month={month} />
             </Accordion.Header>
-            <Accordion.Content>
+            <Accordion.Content className={styles.reportHeaderContent}>
                 <Content date={date} setMonth={setMonth} />
             </Accordion.Content>
         </Accordion>
