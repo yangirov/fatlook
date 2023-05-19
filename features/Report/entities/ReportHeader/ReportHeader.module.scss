@@ -7,7 +7,7 @@
             top: 0;
             left: var(--gap-5);
             transform: rotate(0deg);
-            transition: all var(--animation-default);
+            transition: all var(--animation-delay) var(--animation-type);
             transition-property: transform, top;
         }
 

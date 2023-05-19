@@ -9,9 +9,10 @@ export type ToggleSwitchProps = {
     name?: string;
     text?: string;
     disabled?: boolean;
+    withText?: boolean;
 };
 
-export const ToggleSwitch: FC<ToggleSwitchProps> = ({ checked, onChange, name, disabled, text }) => {
+export const ToggleSwitch: FC<ToggleSwitchProps> = ({ checked, onChange, name, disabled, text, withText = true }) => {
     if (!name) {
         name = (Math.random() + 1).toString(36).substring(7).toUpperCase();
     }
@@ -31,7 +32,11 @@ export const ToggleSwitch: FC<ToggleSwitchProps> = ({ checked, onChange, name, d
                 />
 
                 <label className={styles.toggleSwitchLabel} htmlFor={name}>
-                    <span className={styles.toggleSwitchInner}></span>
+                    <span
+                        className={classNames(styles.toggleSwitchInner, {
+                            [styles.toggleSwitchInnerWithText]: withText === true,
+                        })}
+                    ></span>
                     <span className={styles.toggleSwitchCircle}></span>
                 </label>
             </div>
