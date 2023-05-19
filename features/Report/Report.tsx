@@ -1,17 +1,18 @@
 'use client';
 import { FC, createContext } from 'react';
+
 import { useRouter } from 'next/navigation';
 
-import { ReportData } from '@/shared/types';
 import { PageLayout } from '@/shared/layouts';
-import { isEmpty } from '@/shared/utils';
+import { ReportData } from '@/shared/types';
 import { EmptyContent } from '@/shared/ui';
+import { isEmpty } from '@/shared/utils';
 
 import ReportHeader from './entities/ReportHeader';
-import ReportSummary from './entities/ReportSummary';
 import ReportMeals from './entities/ReportMeals';
-import ReportTotal from './entities/ReportTotal';
 import ReportNavigation from './entities/ReportNavigation';
+import ReportSummary from './entities/ReportSummary';
+import ReportTotal from './entities/ReportTotal';
 
 type ReportProps = {
     report: ReportData;

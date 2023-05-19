@@ -1,9 +1,9 @@
 import { FC, useEffect, useState } from 'react';
 
-import { Button, Modal } from '@/shared/ui';
-import { User } from '@/shared/types';
 import { useAppDispatch } from '@/shared/store';
 import { addUser, updateUser } from '@/shared/store/usersReducer';
+import { User } from '@/shared/types';
+import { Button, Modal } from '@/shared/ui';
 import { isEqual } from '@/shared/utils';
 
 import styles from './UserForm.module.css';

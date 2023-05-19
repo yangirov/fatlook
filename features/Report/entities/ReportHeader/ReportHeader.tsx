@@ -1,10 +1,11 @@
 'use client';
-import { FC, useContext, useEffect, useRef, useState } from 'react';
-import { useParams, useRouter, useSearchParams } from 'next/navigation';
-import classNames from 'classnames';
+import { FC, useContext, useEffect, useState } from 'react';
 
-import DatePicker from '@/shared/ui/DatePicker';
+import classNames from 'classnames';
+import { useParams, useRouter, useSearchParams } from 'next/navigation';
+
 import { Accordion, AccordionContext, Overlay } from '@/shared/ui';
+import DatePicker from '@/shared/ui/DatePicker';
 import { beautifyDate, formatDate, parseDate } from '@/shared/utils';
 
 import { ReportContext } from '../../Report';

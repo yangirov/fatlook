@@ -1,5 +1,6 @@
 'use client';
 import { FC, useContext, useState } from 'react';
+
 import classNames from 'classnames';
 
 import { FoodDetails, PartialFoodDetailsKeys, foodKeysMap } from '@/shared/types';

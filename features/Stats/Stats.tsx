@@ -1,20 +1,20 @@
 'use client';
 import { FC, createContext } from 'react';
-import { MdArrowBack } from 'react-icons/md';
-import { useParams, useRouter } from 'next/navigation';
+
+import { useParams } from 'next/navigation';
 
 import { PageLayout } from '@/shared/layouts';
-import { ReportData } from '@/shared/types';
 import { useAppSelector } from '@/shared/store';
 import { getUserById } from '@/shared/store/usersReducer';
+import { ReportData } from '@/shared/types';
 import { EmptyContent, Tab, Tabs } from '@/shared/ui';
 
-import { mapStats } from './mapper';
-import { StatsData } from './types';
 import { FoodAverage } from './entities/FoodAverage';
 import { FoodCalories } from './entities/FoodCalories';
 import { FoodNutrients } from './entities/FoodNutrients';
 import { FoodNutrientsSummary } from './entities/FoodNutrientsSummary';
+import { mapStats } from './mapper';
+import { StatsData } from './types';
 
 import styles from './Stats.module.scss';
 

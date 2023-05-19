@@ -1,7 +1,8 @@
 'use client';
 import { ComponentPropsWithoutRef, FC, useEffect, useState } from 'react';
-import Link, { LinkProps } from 'next/link';
+
 import classNames from 'classnames';
+import Link, { LinkProps } from 'next/link';
 
 import { Spinner } from '../Spinner';
 

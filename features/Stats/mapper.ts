@@ -1,6 +1,6 @@
-import { Entries, capitalizeFirstLetter, formatDate, getPercents, parseDate } from '@/shared/utils';
 import { FoodDetails, FoodInfo, ReportData } from '@/shared/types';
 import { ChartData } from '@/shared/ui';
+import { Entries, capitalizeFirstLetter, formatDate, getPercents, parseDate } from '@/shared/utils';
 
 import { EatenFood, FoodDtoWithCount, FoodDtoWithPercents, StatsData } from './types';
 

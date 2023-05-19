@@ -1,10 +1,11 @@
 import { FC, useState } from 'react';
+
 import { FaCheck } from 'react-icons/fa';
 
-import { Divider, Icon, Modal } from '@/shared/ui';
 import { useAppDispatch, useAppSelector } from '@/shared/store';
-import { PartialFoodDetailsKeys, FoodDetails, foodKeysMap } from '@/shared/types';
 import { changeColumns } from '@/shared/store/reportReducer';
+import { PartialFoodDetailsKeys, FoodDetails, foodKeysMap } from '@/shared/types';
+import { Divider, Icon, Modal } from '@/shared/ui';
 
 import styles from './ReportSettings.module.scss';
 

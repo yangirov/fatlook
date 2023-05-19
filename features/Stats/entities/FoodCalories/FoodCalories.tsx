@@ -1,8 +1,8 @@
 import { FC, useContext } from 'react';
 
-import { FoodCard } from '../FoodCard';
 import { StatsContext } from '../../Stats';
 import { FoodDtoWithCount } from '../../types';
+import { FoodCard } from '../FoodCard';
 
 import { FoodAmount } from './components/FoodAmount';
 

@@ -1,6 +1,7 @@
 import { FC } from 'react';
-import { createPortal } from 'react-dom';
+
 import classNames from 'classnames';
+import { createPortal } from 'react-dom';
 
 import styles from './Overlay.module.scss';
 

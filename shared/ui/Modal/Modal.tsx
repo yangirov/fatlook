@@ -1,10 +1,11 @@
 'use client';
 import React from 'react';
 import { FC, ReactNode, useEffect, useRef } from 'react';
+
+import classNames from 'classnames';
 import { createPortal } from 'react-dom';
 import { MdClose } from 'react-icons/md';
 import { Transition, TransitionStatus } from 'react-transition-group';
-import classNames from 'classnames';
 
 import { Overlay } from '../Overlay';
 

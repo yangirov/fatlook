@@ -18,7 +18,7 @@ export const ${name}: FC<${name}Props> = ({ prop }) => (
     {prop}
   </div>
 );`,
-    scss: name => `.${lowercaseFirstLetter(name)} {}`
+    scss: name => `.${lowercaseFirstLetter(name)} {}`,
 };
 
 const fileExists = path => file => fs.existsSync(`${path}/${file}`);
@@ -46,7 +46,7 @@ function createFiles(folderPath, folderName) {
     const files = {
         index: 'index.ts',
         component: `${name}.tsx`,
-        scss: `${name}.module.scss`
+        scss: `${name}.module.scss`,
     };
 
     if (name !== 'components') {

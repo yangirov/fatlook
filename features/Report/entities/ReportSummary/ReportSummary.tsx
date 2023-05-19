@@ -1,11 +1,12 @@
 import { FC, useContext } from 'react';
+
 import classNames from 'classnames';
 
-import { REPORT_CALC_RATIO, PartialFoodDetailsKeys, FoodUnit, FoodKeys, foodKeysMap } from '@/shared/types';
 import { UNIT_COLORS } from '@/shared/colors';
-import { Divider, PieChart } from '@/shared/ui';
 import { useAppSelector } from '@/shared/store';
 import { getUserById } from '@/shared/store/usersReducer';
+import { REPORT_CALC_RATIO, PartialFoodDetailsKeys, FoodUnit, FoodKeys, foodKeysMap } from '@/shared/types';
+import { Divider, PieChart } from '@/shared/ui';
 import { getPercents } from '@/shared/utils';
 
 import { ReportContext } from '../../Report';

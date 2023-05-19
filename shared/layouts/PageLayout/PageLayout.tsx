@@ -1,6 +1,7 @@
 import React, { FC, useContext } from 'react';
-import { MdArrowBack } from 'react-icons/md';
+
 import { usePathname, useRouter } from 'next/navigation';
+import { MdArrowBack } from 'react-icons/md';
 
 import { UserSelector } from '@/entities/UserSelector';
 

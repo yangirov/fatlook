@@ -1,6 +1,7 @@
 'use client';
 
 import { FC, useEffect, useState } from 'react';
+
 import { Provider } from 'react-redux';
 
 import { store } from '@/shared/store';

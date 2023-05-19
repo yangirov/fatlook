@@ -1,8 +1,9 @@
 import React, { FC } from 'react';
+
 import classNames from 'classnames';
 
-import { Icon } from '../Icon';
 import { Button, ButtonProps } from '../Button';
+import { Icon } from '../Icon';
 
 import styles from './IconButton.module.scss';
 

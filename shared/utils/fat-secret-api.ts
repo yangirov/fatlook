@@ -1,4 +1,4 @@
-import { endOfWeek, startOfMonth, startOfWeek } from 'date-fns';
+import { startOfMonth, startOfWeek } from 'date-fns';
 import { ru } from 'date-fns/locale';
 
 import { ReportData } from '../types';

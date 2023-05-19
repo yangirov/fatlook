@@ -1,10 +1,11 @@
 import { FC, useContext, useState } from 'react';
-import Link from 'next/link';
-import { VscGraph } from 'react-icons/vsc';
-import { SlSettings, SlShare } from 'react-icons/sl';
 
-import { Divider, Icon } from '@/shared/ui';
+import Link from 'next/link';
+import { SlSettings, SlShare } from 'react-icons/sl';
+import { VscGraph } from 'react-icons/vsc';
+
 import { useSharePage } from '@/shared/hooks';
+import { Divider, Icon } from '@/shared/ui';
 
 import { ReportContext } from '../../Report';
 import { ReportSettings } from '../ReportSettings';

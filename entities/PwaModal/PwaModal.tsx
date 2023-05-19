@@ -1,9 +1,10 @@
 'use client';
 import { FC, useEffect, useLayoutEffect, useState } from 'react';
-import { addDays } from 'date-fns';
-import { FiShare } from 'react-icons/fi';
+
 import classNames from 'classnames';
+import { addDays } from 'date-fns';
 import Image from 'next/image';
+import { FiShare } from 'react-icons/fi';
 
 import { PWA_INSTALL_PROPOSAL } from '@/shared/consts';
 import { useDeviceDetect } from '@/shared/hooks';

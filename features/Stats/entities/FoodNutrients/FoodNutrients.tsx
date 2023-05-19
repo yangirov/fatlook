@@ -1,12 +1,12 @@
 import { FC, useContext, useLayoutEffect, useRef, useState } from 'react';
 
-import { BarChart, Card, ChartData, Divider } from '@/shared/ui';
-import { foodKeysMap, nutrientsGoals } from '@/shared/types';
 import { UNIT_COLORS } from '@/shared/colors';
+import { foodKeysMap, nutrientsGoals } from '@/shared/types';
+import { BarChart, Card, ChartData, Divider } from '@/shared/ui';
 import { capitalizeFirstLetter, formatDate, getPercents, parseDate } from '@/shared/utils';
 
-import { FoodCard } from '../FoodCard';
 import { StatsContext } from '../../Stats';
+import { FoodCard } from '../FoodCard';
 
 import styles from './FoodNutrients.module.scss';
 

@@ -1,12 +1,13 @@
 import { FC, useContext } from 'react';
+
 import classNames from 'classnames';
 import { SlArrowUp } from 'react-icons/sl';
 
-import { Icon } from '@/shared/ui';
-import { Meal, MEAL_ICONS } from '@/shared/types';
-import { Accordion, AccordionContext } from '@/shared/ui';
-import { useAppSelector } from '@/shared/store';
 import { Colors } from '@/shared/colors';
+import { useAppSelector } from '@/shared/store';
+import { Meal, MEAL_ICONS } from '@/shared/types';
+import { Icon } from '@/shared/ui';
+import { Accordion, AccordionContext } from '@/shared/ui';
 
 import ReportFood from '../ReportFood';
 

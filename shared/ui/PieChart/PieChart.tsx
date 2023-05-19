@@ -1,8 +1,9 @@
 import { FC } from 'react';
+
 import classNames from 'classnames';
 
-import { getPercents } from '@/shared/utils';
 import { getColor } from '@/shared/colors';
+import { getPercents } from '@/shared/utils';
 
 import styles from './PieChart.module.scss';
 

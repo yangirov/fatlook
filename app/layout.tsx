@@ -1,6 +1,7 @@
 import { ReactNode } from 'react';
-import { Inter } from 'next/font/google';
+
 import { Analytics } from '@vercel/analytics/react';
+import { Inter } from 'next/font/google';
 
 import { PwaModal } from '@/entities/PwaModal';
 import { isDev } from '@/shared/utils';

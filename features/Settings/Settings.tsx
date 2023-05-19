@@ -1,13 +1,14 @@
 'use client';
 import { FC, useState } from 'react';
-import { SlPencil, SlTrash } from 'react-icons/sl';
-import Link from 'next/link';
 
-import { Button, IconButton } from '@/shared/ui';
+import Link from 'next/link';
+import { SlPencil, SlTrash } from 'react-icons/sl';
+
 import { PageLayout } from '@/shared/layouts';
 import { useAppSelector, useAppDispatch } from '@/shared/store';
-import { User } from '@/shared/types';
 import { deleteUser } from '@/shared/store/usersReducer';
+import { User } from '@/shared/types';
+import { Button, IconButton } from '@/shared/ui';
 
 import { UserForm } from './entities/UserForm';
 
