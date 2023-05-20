@@ -41,15 +41,17 @@ const getVisibleFromLocalState = () => {
 };
 
 export const PwaModal: FC = () => {
+    const [isVisible, setVisible] = useState(false);
     const [supportsPWA, setSupportsPWA] = useState(false);
     const [promptInstall, setPromptInstall] = useState<BeforeInstallPromptEvent | null>(null);
 
-    const [isVisible, setVisible] = useState(false);
+    const [isAndroidPWA, setIsAndroidPWA] = useState(false);
+
     const { isDesktop, isAndroid, isIOS } = useDeviceDetect();
 
     useLayoutEffect(() => {
-        const state = getVisibleFromLocalState();
-        setVisible(state);
+        setVisible(getVisibleFromLocalState());
+        setIsAndroidPWA(window.matchMedia('(display-mode: standalone)').matches);
     }, []);
 
     useEffect(() => {
@@ -90,17 +92,17 @@ export const PwaModal: FC = () => {
         localStorage.setItem(PWA_INSTALL_PROPOSAL, JSON.stringify(nextProposalDate));
     };
 
-    if (!isVisible) return null;
-
     if (isDesktop) return null;
 
     if (isIOS && (navigator as ExtendedNavigator).standalone) return null;
 
-    if (isAndroid && window.matchMedia('(display-mode: standalone)').matches) return null;
+    if (isAndroid && isAndroidPWA) return null;
 
     if (isAndroid && !promptInstall) return null;
 
     if (isAndroid && !supportsPWA) return null;
+
+    if (!isVisible) return null;
 
     return (
         <Modal
@@ -118,9 +120,14 @@ export const PwaModal: FC = () => {
                     <div className={styles.pwaModalText}>
                         <div className={styles.pwaModalTextTitle}>Установи приложение</div>
                         <div className={styles.pwaModalTextSubTitle}>
-                            {isAndroid
-                                ? 'Так приложение появится на домашнем экране'
-                                : 'Нажми на эту кнопку и выбери «На экран домой»'}
+                            {isAndroid ? (
+                                <p>Так приложение появится на домашнем экране</p>
+                            ) : (
+                                <p>
+                                    Нажми на эту кнопку и выбери <br />
+                                    «На экран домой»
+                                </p>
+                            )}
                         </div>
                     </div>
 

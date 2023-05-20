@@ -10,6 +10,12 @@
     "short_name": "FatLook",
     "icons": [
         {
+            "src": "/favicon/icon-96x96.png",
+            "sizes": "96x96",
+            "type": "image/png",
+            "purpose": "any"
+        },
+        {
             "src": "/favicon/icon-192x192.png",
             "sizes": "192x192",
             "type": "image/png",
@@ -52,7 +58,14 @@
     "shortcuts": [
         {
             "name": "Открыть FatLook",
-            "url": "/"
+            "url": "/",
+            "icons": [
+                {
+                    "src": "/favicon/icon-96x96.png",
+                    "sizes": "96x96",
+                    "type": "image/png"
+                }
+            ]
         }
     ],
     "launch_handler": {
