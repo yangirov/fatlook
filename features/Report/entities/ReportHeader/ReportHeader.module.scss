@@ -1,5 +1,7 @@
 .reportHeader {
     &Date {
+        white-space: nowrap;
+
         &::after {
             position: relative;
             top: 0;

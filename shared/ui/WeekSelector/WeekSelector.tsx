@@ -3,6 +3,7 @@ import { FC, useEffect, useState } from 'react';
 
 import { addDays, endOfWeek, startOfWeek } from 'date-fns';
 import { ru } from 'date-fns/locale';
+import { RxTriangleLeft, RxTriangleRight } from 'react-icons/rx';
 
 import { formatDate } from '@/shared/utils';
 
@@ -58,11 +59,11 @@ export const WeekSelector: FC<WeekSelectorProps> = ({ date, onChange }) => {
     return (
         <div className={styles.weekSelector}>
             <div className={styles.weekSelectorArrow} onClick={onPrevWeek}>
-                ◀
+                <RxTriangleLeft />
             </div>
             <div className={styles.weekSelectorContent}>{weekName}</div>
             <div className={styles.weekSelectorArrow} onClick={onNextWeek}>
-                ▶
+                <RxTriangleRight />
             </div>
         </div>
     );
