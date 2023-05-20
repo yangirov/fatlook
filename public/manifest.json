@@ -52,7 +52,7 @@
     "protocol_handlers": [
         {
             "protocol": "web+fatlook",
-            "url": "/?from=%s"
+            "url": "%s"
         }
     ],
     "shortcuts": [
