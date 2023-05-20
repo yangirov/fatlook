@@ -1,0 +1,34 @@
+.weekSelector {
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    justify-content: space-between;
+    margin-bottom: var(--gap-10);
+    background-color: var(--white);
+    border-radius: var(--border-radius);
+    box-shadow: 0 1px 3px 1px var(--shadow-color);
+
+    &Arrow {
+        composes: flex-center from 'styles/scaffold.scss';
+        padding: 0 var(--gap-15);
+        color: var(--gray);
+        font-size: 0.7rem;
+        cursor: pointer;
+        user-select: none;
+
+        &:first-child {
+            border-right: 1px solid var(--gray);
+        }
+
+        &:last-child {
+            border-left: 1px solid var(--gray);
+        }
+    }
+
+    &Content {
+        justify-self: center;
+        padding: 8px var(--gap-5);
+        font-size: var(--font-small);
+        cursor: pointer;
+        user-select: none;
+    }
+}

@@ -43,7 +43,6 @@ type ContentProps = {
 };
 
 const Content: FC<ContentProps> = ({ date, setMonth }) => {
-    // FIXME: https://github.com/vercel/next.js/discussions/41868
     const searchParams = useSearchParams() as unknown as URLSearchParams;
 
     const router = useRouter();

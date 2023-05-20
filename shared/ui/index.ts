@@ -10,6 +10,7 @@ export * from './Overlay';
 export * from './Modal';
 export * from './EmptyContent';
 export * from './BarChart';
+export * from './WeekSelector';
 export * from './Tabs';
 export * from './ToggleSwitch';
 export * from './SnackBar';

@@ -1,6 +1,6 @@
 import React, { FC, useContext } from 'react';
 
-import { usePathname, useRouter } from 'next/navigation';
+import { useParams, usePathname, useRouter } from 'next/navigation';
 import { MdArrowBack } from 'react-icons/md';
 
 import { UserSelector } from '@/entities/UserSelector';
@@ -21,17 +21,27 @@ export const PageLayoutWrapper: FC<PageLayoutProps> = ({ children }) => {
 const PageLayoutHeader: FC<PageLayoutProps> = ({ children, onBack }) => {
     const pathname = usePathname();
     const router = useRouter();
+    const params = useParams();
 
     const isHomePage = pathname === '/';
     const isReportPage = pathname?.includes('/report');
+    const isStatsPage = pathname?.includes('/stats');
 
     const onBackArrowClick = () => {
         if (onBack) {
             onBack();
-        } else if (isReportPage) {
-            router.push('/');
         } else {
-            router.back();
+            switch (true) {
+                case isReportPage:
+                    router.push('/');
+                    break;
+                case isStatsPage:
+                    router.push(`/report/${params?.userId}`);
+                    break;
+                default:
+                    router.back();
+                    break;
+            }
         }
     };
 

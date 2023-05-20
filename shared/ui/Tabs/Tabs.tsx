@@ -1,7 +1,9 @@
 'use client';
-import { FC, useState } from 'react';
+import { FC, useEffect, useState } from 'react';
 
 import classNames from 'classnames';
+
+import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 
 import styles from './Tabs.module.scss';
 
@@ -16,8 +18,32 @@ type TabsProps = {
     children: React.ReactElement<TabProps>[];
 };
 
+const QUERY_PARAM_TAB = 'tab';
+
 export const Tabs: FC<TabsProps> = ({ className, children }) => {
     const [selected, setSelected] = useState(0);
+
+    const router = useRouter();
+    const pathname = usePathname();
+    const searchParams = useSearchParams() as unknown as URLSearchParams;
+
+    useEffect(() => {
+        if (searchParams?.get(QUERY_PARAM_TAB)) {
+            const tabIndex = Number(searchParams?.get(QUERY_PARAM_TAB));
+            setSelected(tabIndex);
+        }
+    }, [searchParams]);
+
+    const createQueryString = (name: string, value: string) => {
+        const params = new URLSearchParams(searchParams);
+        params.set(name, value);
+
+        return params.toString();
+    };
+
+    const selectTab = (index: number) => {
+        router.push(pathname + '?' + createQueryString(QUERY_PARAM_TAB, `${index}`));
+    };
 
     return (
         <>
@@ -27,7 +53,7 @@ export const Tabs: FC<TabsProps> = ({ className, children }) => {
                         <div
                             key={index}
                             className={classNames(styles.tabsItem, { [styles.tabsItemSelected]: index === selected })}
-                            onClick={() => setSelected(index)}
+                            onClick={() => selectTab(index)}
                         >
                             <span>{tab.props.title}</span>
                         </div>

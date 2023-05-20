@@ -1,11 +1,11 @@
 import { FoodDetails, FoodInfo, ReportData } from '@/shared/types';
 import { ChartData } from '@/shared/ui';
-import { Entries, capitalizeFirstLetter, formatDate, getPercents, parseDate } from '@/shared/utils';
+import { Entries, capitalizeFirstLetter, formatDate, getPercents, isEmpty, parseDate } from '@/shared/utils';
 
 import { EatenFood, FoodDtoWithCount, FoodDtoWithPercents, StatsData } from './types';
 
 export const mapStats = (report?: ReportData, dailyAmount?: number): StatsData | null => {
-    if (!report) {
+    if (!report || isEmpty(report.data)) {
         return null;
     }
 

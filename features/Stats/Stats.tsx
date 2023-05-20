@@ -1,13 +1,15 @@
 'use client';
-import { FC, createContext } from 'react';
+import { FC, createContext, useEffect, useState } from 'react';
 
-import { useParams } from 'next/navigation';
+import { useParams, useRouter, useSearchParams } from 'next/navigation';
 
 import { PageLayout } from '@/shared/layouts';
 import { useAppSelector } from '@/shared/store';
 import { getUserById } from '@/shared/store/usersReducer';
 import { ReportData } from '@/shared/types';
-import { EmptyContent, Tab, Tabs } from '@/shared/ui';
+import { EmptyContent, Tab, Tabs, WeekSelector } from '@/shared/ui';
+
+import { formatDate, parseDate } from '@/shared/utils';
 
 import { FoodAverage } from './entities/FoodAverage';
 import { FoodCalories } from './entities/FoodCalories';
@@ -27,9 +29,30 @@ export const StatsContext = createContext<{ data: StatsData }>({
 });
 
 export const Stats: FC<StatsProps> = ({ report }) => {
+    const [date, setDate] = useState<Date>();
+
+    const router = useRouter();
+    const searchParams = useSearchParams() as unknown as URLSearchParams;
+
     const params = useParams();
     const userId = params?.userId.toString() ?? '';
     const user = useAppSelector(state => getUserById(state, userId));
+
+    useEffect(() => {
+        if (report) {
+            const parsedDate = parseDate(report.date);
+            setDate(parsedDate);
+        }
+    }, [report]);
+
+    const onWeekChange = (date: Date) => {
+        const sp = new URLSearchParams(searchParams);
+
+        const formattedDate = formatDate(date);
+        sp.set('date', formattedDate);
+
+        router.push(`/stats/${params?.userId}?${sp}`);
+    };
 
     const data = mapStats(report, user?.dailyAmount);
 
@@ -38,6 +61,7 @@ export const Stats: FC<StatsProps> = ({ report }) => {
             <PageLayout>
                 <PageLayout.Header>Отчеты</PageLayout.Header>
                 <PageLayout.Content>
+                    {date && <WeekSelector date={date} onChange={onWeekChange} />}
                     <EmptyContent />
                 </PageLayout.Content>
             </PageLayout>
@@ -49,6 +73,7 @@ export const Stats: FC<StatsProps> = ({ report }) => {
             <PageLayout>
                 <PageLayout.Header>Отчеты</PageLayout.Header>
                 <PageLayout.Content>
+                    {date && <WeekSelector date={date} onChange={onWeekChange} />}
                     <Tabs>
                         <Tab title="Планки">
                             <FoodAverage />

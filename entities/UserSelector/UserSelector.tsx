@@ -1,9 +1,10 @@
 import { FC, useState } from 'react';
+
 import { usePathname, useSearchParams, useParams, useRouter } from 'next/navigation';
 
 import { useAppSelector } from '@/shared/store';
-import { Modal } from '@/shared/ui';
 import { getUserById } from '@/shared/store/usersReducer';
+import { Modal } from '@/shared/ui';
 
 import styles from './UserSelector.module.scss';
 
