@@ -19,7 +19,12 @@
                         "groups": ["builtin", "external", "parent", "sibling", "index", "unknown"],
                         "pathGroups": [
                             {
-                                "pattern": "react",
+                                "pattern": "react*",
+                                "group": "external",
+                                "position": "before"
+                            },
+                            {
+                                "pattern": "expo*",
                                 "group": "external",
                                 "position": "before"
                             },

@@ -16,7 +16,8 @@
         "incremental": true,
         "strictNullChecks": true,
         "paths": {
-            "@/web/*": ["./web/*"]
+            "@/web/*": ["./web/*"],
+            "@/mobile/*": ["./mobile/*"]
         }
     },
     "include": ["**/*.ts", "**/*.tsx"],
