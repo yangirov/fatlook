@@ -14,15 +14,11 @@
         "isolatedModules": true,
         "jsx": "preserve",
         "incremental": true,
-        "plugins": [
-            {
-                "name": "next"
-            }
-        ],
+        "strictNullChecks": true,
         "paths": {
-            "@/*": ["./*"]
+            "@/web/*": ["./web/*"]
         }
     },
-    "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "./custom.d.ts"],
+    "include": ["**/*.ts", "**/*.tsx"],
     "exclude": ["node_modules"]
 }

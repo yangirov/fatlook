@@ -8,5 +8,5 @@ module.exports = {
 
     '**/*.(md|json)': filenames => `npx prettier --write ${filenames.join(' ')}`,
 
-    '*.(css|scss)': ['stylelint --fix'],
+    '**/*.(css|scss)': ['stylelint --fix'],
 };
