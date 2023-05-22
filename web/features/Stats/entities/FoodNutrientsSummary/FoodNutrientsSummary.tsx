@@ -1,4 +1,3 @@
-'use client';
 import { FC, useContext } from 'react';
 
 import { FoodDetails, foodKeysMap } from '@/web/shared/types';

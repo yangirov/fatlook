@@ -24,16 +24,6 @@
                                 "position": "before"
                             },
                             {
-                                "pattern": "react-native",
-                                "group": "external",
-                                "position": "before"
-                            },
-                            {
-                                "pattern": "expo*",
-                                "group": "external",
-                                "position": "before"
-                            },
-                            {
                                 "pattern": "@/**",
                                 "group": "external",
                                 "position": "after"

@@ -1,4 +1,3 @@
-'use client';
 import { FC, useContext, useLayoutEffect, useRef, useState } from 'react';
 
 import { UNIT_COLORS } from '@/web/shared/colors';

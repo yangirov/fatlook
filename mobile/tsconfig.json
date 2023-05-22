@@ -1,8 +1,9 @@
 {
-    "extends": "../tsconfig.json",
+    "extends": ["@tsconfig/react-native/tsconfig.json", "../tsconfig.json"],
     "compilerOptions": {
+        "types": ["react-native"],
         "paths": {
-            "@/mobile/*": ["./*"]
+            "@/mobile/*": ["./src/*"]
         }
     }
 }
