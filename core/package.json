@@ -3,8 +3,8 @@
     "version": "0.1.0",
     "private": true,
     "scripts": {},
-    "peerDependencies": {
-        "date-fns": "*",
-        "@types/date-fns": "*"
+    "dependencies": {
+        "date-fns": "^2.29.3",
+        "@types/date-fns": "^2.6.0"
     }
 }
