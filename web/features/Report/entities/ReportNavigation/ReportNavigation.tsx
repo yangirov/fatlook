@@ -5,7 +5,7 @@ import { useRouter } from 'next/navigation';
 import { SlSettings, SlShare } from 'react-icons/sl';
 import { VscGraph } from 'react-icons/vsc';
 
-import { useSharePage } from '@/web/shared/hooks';
+import { useSharePage, useWebViewStatus } from '@/web/shared/hooks';
 import { Divider, Icon } from '@/web/shared/ui';
 
 import { ReportContext } from '../../Report';
@@ -14,6 +14,7 @@ import { ReportSettings } from '../ReportSettings';
 import styles from './ReportNavigation.module.scss';
 
 const ReportNavigation: FC = () => {
+    const isWebView = useWebViewStatus();
     const router = useRouter();
 
     const {
@@ -59,12 +60,14 @@ const ReportNavigation: FC = () => {
                     </Icon>
                     <div className={styles.reportNavigationText}>Настройки</div>
                 </Link>
-                <Link href="" onClick={onShare} className={styles.reportNavigationLink}>
-                    <Icon className={styles.reportNavigationIcon} color="var(--green)">
-                        <SlShare />
-                    </Icon>
-                    <div className={styles.reportNavigationText}>Поделиться</div>
-                </Link>
+                {!isWebView && (
+                    <Link href="" onClick={onShare} className={styles.reportNavigationLink}>
+                        <Icon className={styles.reportNavigationIcon} color="var(--green)">
+                            <SlShare />
+                        </Icon>
+                        <div className={styles.reportNavigationText}>Поделиться</div>
+                    </Link>
+                )}
             </div>
             <ReportSettings isOpen={isOpen} onToggle={onToggle} />
         </>
