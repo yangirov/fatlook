@@ -1,6 +1,7 @@
 import { FC, useContext, useLayoutEffect, useRef, useState } from 'react';
 
 import { MEAL_COLORS } from '@/web/shared/colors';
+import { useCurrentUser } from '@/web/shared/hooks';
 import { BarChart, Card, Divider } from '@/web/shared/ui';
 
 import { StatsContext } from '../../../../Stats';
@@ -8,8 +9,10 @@ import { StatsContext } from '../../../../Stats';
 import styles from './FoodAmount.module.scss';
 
 export const FoodAmount: FC = () => {
+    const user = useCurrentUser();
+
     const {
-        data: { allEatenFood, totalData, allMeals, dailyAmount, chartData },
+        stats: { allEatenFood, totalData, allMeals, chartData },
     } = useContext(StatsContext);
 
     const chartRef = useRef<HTMLDivElement>(null);
@@ -29,7 +32,7 @@ export const FoodAmount: FC = () => {
 
             <div className={styles.amountCardDaily}>
                 <div>Среднесуточная норма: {Math.floor(allEatenFood.kcal / totalData.count)}</div>
-                <div>Цель: {dailyAmount}</div>
+                <div>Цель: {user?.dailyAmount}</div>
             </div>
 
             <div className={styles.amountCardChart} ref={chartRef}>

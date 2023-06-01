@@ -3,10 +3,10 @@ import { FC, createContext } from 'react';
 
 import { useRouter } from 'next/navigation';
 
+import { ReportData } from '@/core/types';
+import { isEmpty } from '@/core/utils';
 import { PageLayout } from '@/web/shared/layouts';
-import { ReportData } from '@/web/shared/types';
 import { EmptyContent } from '@/web/shared/ui';
-import { isEmpty } from '@/web/shared/utils';
 
 import ReportHeader from './entities/ReportHeader';
 import ReportMeals from './entities/ReportMeals';
@@ -14,13 +14,15 @@ import ReportNavigation from './entities/ReportNavigation';
 import ReportSummary from './entities/ReportSummary';
 import ReportTotal from './entities/ReportTotal';
 
-type ReportProps = {
-    report: ReportData;
-};
+import styles from './Report.module.scss';
 
 export const ReportContext = createContext<{ report: ReportData }>({
     report: {} as ReportData,
 });
+
+type ReportProps = {
+    report: ReportData;
+};
 
 export const Report: FC<ReportProps> = ({ report }) => {
     const router = useRouter();

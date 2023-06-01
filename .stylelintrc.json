@@ -10,6 +10,7 @@
         "no-empty-source": null,
         "selector-class-pattern": null,
         "property-no-unknown": [true, { "ignoreProperties": ["composes"] }],
-        "max-nesting-depth": 5
+        "max-nesting-depth": 5,
+        "scss/at-extend-no-missing-placeholder": null
     }
 }

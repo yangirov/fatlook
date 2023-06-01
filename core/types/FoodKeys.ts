@@ -22,7 +22,7 @@ export const foodKeysMap: FoodKeysMap = {
     kcal: getUnitInfo('Калории', null, 'Кал ( ккал)', 'ккал'),
     allFat: getUnitInfo('Всего жиров', 'Жиры', '', 'г'),
     fat: getUnitInfo('Жир', null, 'Жир( г)', 'г'),
-    nonSaturatedFat: getUnitInfo('Н/жир', null, 'Н/жир( г)', 'г'),
+    saturatedFat: getUnitInfo('Н/жир', null, 'Н/жир( г)', 'г'),
     carbohydrates: getUnitInfo('Углеводы', 'Углев', 'Углев( г)', 'г'),
     fiber: getUnitInfo('Клетчатка', 'Клетч', 'Клетч( г)', 'г'),
     sugar: getUnitInfo('Сахар', null, 'Сахар( г)', 'г'),

@@ -1,5 +1,5 @@
-import { FoodDetails } from './types';
-import { ObjectWithOptionalKeys, isEmpty } from './utils';
+import { FoodDetails } from '@/core/types';
+import { ObjectWithOptionalKeys, isEmpty } from '@/core/utils';
 
 export enum Colors {
     WHITE = 'var(--white)',

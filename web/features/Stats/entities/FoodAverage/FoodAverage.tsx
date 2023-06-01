@@ -2,7 +2,7 @@ import { FC, useContext, useState } from 'react';
 
 import classNames from 'classnames';
 
-import { FoodDetails, PartialFoodDetailsKeys, foodKeysMap } from '@/web/shared/types';
+import { FoodDetails, PartialFoodDetailsKeys, foodKeysMap } from '@/core/types';
 import { Card, Divider, ToggleSwitch } from '@/web/shared/ui';
 
 import { StatsContext } from '../../Stats';
@@ -13,7 +13,7 @@ export const FoodAverage: FC = () => {
     const [isMedianMode, setIsMedianMode] = useState(false);
 
     const {
-        data: { totalData, foodDetails },
+        stats: { totalData, foodDetails },
     } = useContext(StatsContext);
 
     const { data, count } = totalData;
@@ -23,7 +23,7 @@ export const FoodAverage: FC = () => {
         'protein',
         'allFat',
         'fat',
-        'nonSaturatedFat',
+        'saturatedFat',
         'carbohydrates',
         'fiber',
         'sugar',

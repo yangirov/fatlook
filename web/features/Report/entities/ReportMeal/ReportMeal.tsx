@@ -3,9 +3,9 @@ import { FC, useContext } from 'react';
 import classNames from 'classnames';
 import { SlArrowUp } from 'react-icons/sl';
 
+import { Meal, MEAL_ICONS } from '@/core/types';
 import { Colors } from '@/web/shared/colors';
 import { useAppSelector } from '@/web/shared/store';
-import { Meal, MEAL_ICONS } from '@/web/shared/types';
 import { Icon } from '@/web/shared/ui';
 import { Accordion, AccordionContext } from '@/web/shared/ui';
 

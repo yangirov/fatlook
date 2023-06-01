@@ -37,7 +37,7 @@
 		13B07FB61A68108700A75B9A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = fatlook/Info.plist; sourceTree = "<group>"; };
 		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = fatlook/main.m; sourceTree = "<group>"; };
 		19F6CBCC0A4E27FBF8BF4A61 /* libPods-fatlook-fatlookTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-fatlook-fatlookTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		2072D37E2A1B545000A231A1 /* fatlook.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; name = fatlook.entitlements; path = fatlook/fatlook.entitlements; sourceTree = "<group>"; };
+		206013482A261003003B5D56 /* fatlook.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; name = fatlook.entitlements; path = fatlook/fatlook.entitlements; sourceTree = "<group>"; };
 		3B4392A12AC88292D35C810B /* Pods-fatlook.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-fatlook.debug.xcconfig"; path = "Target Support Files/Pods-fatlook/Pods-fatlook.debug.xcconfig"; sourceTree = "<group>"; };
 		5709B34CF0A7D63546082F79 /* Pods-fatlook.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-fatlook.release.xcconfig"; path = "Target Support Files/Pods-fatlook/Pods-fatlook.release.xcconfig"; sourceTree = "<group>"; };
 		5B7EB9410499542E8C5724F5 /* Pods-fatlook-fatlookTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-fatlook-fatlookTests.debug.xcconfig"; path = "Target Support Files/Pods-fatlook-fatlookTests/Pods-fatlook-fatlookTests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -87,7 +87,7 @@
 		13B07FAE1A68108700A75B9A /* fatlook */ = {
 			isa = PBXGroup;
 			children = (
-				2072D37E2A1B545000A231A1 /* fatlook.entitlements */,
+				206013482A261003003B5D56 /* fatlook.entitlements */,
 				13B07FAF1A68108700A75B9A /* AppDelegate.h */,
 				13B07FB01A68108700A75B9A /* AppDelegate.mm */,
 				13B07FB51A68108700A75B9A /* Images.xcassets */,
@@ -489,8 +489,11 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = fatlook/fatlook.entitlements;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = QP59D3B88J;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = fatlook/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = FatLook;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.healthcare-fitness";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -517,7 +520,10 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = fatlook/fatlook.entitlements;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = QP59D3B88J;
 				INFOPLIST_FILE = fatlook/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = FatLook;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.healthcare-fitness";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

@@ -4,9 +4,9 @@ import { FC, useContext, useEffect, useState } from 'react';
 import classNames from 'classnames';
 import { useParams, useRouter, useSearchParams } from 'next/navigation';
 
+import { beautifyDate, formatDate, parseDate } from '@/core/utils';
 import { Accordion, AccordionContext, Overlay } from '@/web/shared/ui';
 import DatePicker from '@/web/shared/ui/DatePicker';
-import { beautifyDate, formatDate, parseDate } from '@/web/shared/utils';
 
 import { ReportContext } from '../../Report';
 
@@ -72,7 +72,7 @@ const Content: FC<ContentProps> = ({ date, setMonth }) => {
     );
 };
 
-const ReportHeader: FC = () => {
+const ReportHeader: FC<{ defaultDate?: string }> = ({ defaultDate }) => {
     const {
         report: { date: reportDate },
     } = useContext(ReportContext);
@@ -81,9 +81,9 @@ const ReportHeader: FC = () => {
     const [date, setDate] = useState<Date | null>(null);
 
     useEffect(() => {
-        const parsedDate = parseDate(reportDate);
+        const parsedDate = defaultDate ? parseDate(defaultDate) : parseDate(reportDate);
         setDate(parsedDate);
-    }, [reportDate]);
+    }, [defaultDate, reportDate]);
 
     return (
         <Accordion>

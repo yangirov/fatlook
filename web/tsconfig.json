@@ -6,10 +6,12 @@
                 "name": "next"
             }
         ],
+        "strictNullChecks": true,
         "paths": {
+            "@/core/*": ["../core/*"],
+            "@/mobile/*": ["../mobile/src/*"],
             "@/web/*": ["./*"]
-        },
-        "strictNullChecks": true
+        }
     },
     "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "custom.d.ts"],
     "exclude": ["node_modules"]

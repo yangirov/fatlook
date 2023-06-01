@@ -1,9 +1,13 @@
 {
     "extends": ["@tsconfig/react-native/tsconfig.json", "../tsconfig.json"],
     "compilerOptions": {
+        "baseUrl": ".",
         "types": ["react-native"],
+        "typeRoots": ["./src/shared/types"],
         "paths": {
-            "@/mobile/*": ["./src/*"]
+            "@/core/*": ["../core/*"],
+            "@/mobile/*": ["./src/*"],
+            "@/mobile-styles": ["./src/styles/styles.module.scss"]
         }
     }
 }

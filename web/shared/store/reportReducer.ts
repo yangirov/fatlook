@@ -1,7 +1,7 @@
 'use client';
 import { PayloadAction, createSlice } from '@reduxjs/toolkit';
 
-import { FoodDetails, PartialFoodDetailsKeys } from '../types';
+import { FoodDetails, PartialFoodDetailsKeys } from '@/core/types';
 
 export interface ReportState {
     visibleColumns: PartialFoodDetailsKeys;

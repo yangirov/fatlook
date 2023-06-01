@@ -1,6 +1,7 @@
 import { FC, useContext, useState } from 'react';
 
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 import { SlSettings, SlShare } from 'react-icons/sl';
 import { VscGraph } from 'react-icons/vsc';
 
@@ -13,6 +14,8 @@ import { ReportSettings } from '../ReportSettings';
 import styles from './ReportNavigation.module.scss';
 
 const ReportNavigation: FC = () => {
+    const router = useRouter();
+
     const {
         report: { userId },
     } = useContext(ReportContext);
@@ -24,6 +27,17 @@ const ReportNavigation: FC = () => {
         setIsOpen(prev => !prev);
     };
 
+    const onStats = (e: React.MouseEvent) => {
+        e.preventDefault();
+        const statsUrl = `/stats/${userId}?type=week`;
+        router.push(statsUrl);
+    };
+
+    const onSettings = (e: React.MouseEvent) => {
+        e.preventDefault();
+        onToggle();
+    };
+
     const onShare = (e: React.MouseEvent) => {
         e.preventDefault();
         sharePage.share('Отчет');
@@ -33,20 +47,13 @@ const ReportNavigation: FC = () => {
         <>
             <Divider />
             <div className={styles.reportNavigation}>
-                <Link href={`/stats/${userId}?type=week`} className={styles.reportNavigationLink}>
+                <Link href="#" onClick={onStats} className={styles.reportNavigationLink}>
                     <Icon className={styles.reportNavigationIcon} color="var(--green)">
                         <VscGraph />
                     </Icon>
                     <div className={styles.reportNavigationText}>Отчеты</div>
                 </Link>
-                <Link
-                    href="#"
-                    onClick={e => {
-                        e.preventDefault();
-                        onToggle();
-                    }}
-                    className={styles.reportNavigationLink}
-                >
+                <Link href="#" onClick={onSettings} className={styles.reportNavigationLink}>
                     <Icon className={styles.reportNavigationIcon} color="var(--green)">
                         <SlSettings />
                     </Icon>

@@ -5,7 +5,7 @@ import { addDays, endOfWeek, startOfWeek } from 'date-fns';
 import { ru } from 'date-fns/locale';
 import { RxTriangleLeft, RxTriangleRight } from 'react-icons/rx';
 
-import { formatDate } from '@/web/shared/utils';
+import { formatDate } from '@/core/utils';
 
 import styles from './WeekSelector.module.scss';
 

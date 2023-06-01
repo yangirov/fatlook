@@ -4,7 +4,7 @@ export type FoodDetails = {
     kcal: FoodUnit;
     allFat: FoodUnit;
     fat: FoodUnit;
-    nonSaturatedFat: FoodUnit;
+    saturatedFat: FoodUnit;
     carbohydrates: FoodUnit;
     fiber: FoodUnit;
     sugar: FoodUnit;

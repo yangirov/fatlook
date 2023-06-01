@@ -1,16 +1,22 @@
-import { FoodDetails, FoodInfo, ReportData } from '@/web/shared/types';
+import { NextApiRequest, NextApiResponse } from 'next';
+
+import { EatenFood, FoodDetails, FoodDtoWithCount, FoodDtoWithPercents, FoodInfo, StatsData } from '@/core/types';
+import { Entries, capitalizeFirstLetter, formatDate, getPercents, isEmpty, parseDate } from '@/core/utils';
 import { ChartData } from '@/web/shared/ui';
-import { Entries, capitalizeFirstLetter, formatDate, getPercents, isEmpty, parseDate } from '@/web/shared/utils';
 
-import { EatenFood, FoodDtoWithCount, FoodDtoWithPercents, StatsData } from './types';
+import { getReportFromFatSecret } from './report';
 
-export const mapStats = (report?: ReportData, dailyAmount?: number): StatsData | null => {
-    if (!report || isEmpty(report.data)) {
-        return null;
+export const getStatsData = async (req: NextApiRequest): Promise<StatsData | undefined> => {
+    const { query } = req;
+
+    if (!query || isEmpty(query)) {
+        return undefined;
     }
 
-    if (!dailyAmount) {
-        throw new Error('Заполните РСК для клиента');
+    const report = await getReportFromFatSecret(req);
+
+    if (!report || isEmpty(report.data)) {
+        return undefined;
     }
 
     const foodData = report.data.reduce<FoodInfo[]>((acc, item) => {
@@ -96,12 +102,21 @@ export const mapStats = (report?: ReportData, dailyAmount?: number): StatsData |
     }, {});
 
     return {
+        date: report.date,
         allEatenFood,
         eatenFood,
         chartData,
         allMeals,
-        dailyAmount,
         totalData,
         foodDetails,
     };
 };
+
+export default async function handler(req: NextApiRequest, res: NextApiResponse) {
+    try {
+        const stats = await getStatsData(req);
+        res.status(200).json(stats);
+    } catch (error) {
+        res.status(500).json({ error: 'Ошибка при загрузке отчета' });
+    }
+}

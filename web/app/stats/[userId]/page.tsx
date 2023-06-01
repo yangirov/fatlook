@@ -1,7 +1,7 @@
 import { Stats } from '@/web/features/Stats';
-import { RouteParams, getReport } from '@/web/shared/utils';
+import { RouteParams, getStats } from '@/web/shared/api';
 
-export default async function StatsPage(params: RouteParams) {
-    const report = await getReport(params);
-    return <Stats {...report} />;
+export default async function StatsPage(routeParams: RouteParams) {
+    const stats = await getStats(routeParams);
+    return <Stats {...stats} />;
 }

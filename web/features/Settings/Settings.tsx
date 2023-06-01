@@ -4,15 +4,17 @@ import { FC, useState } from 'react';
 import Link from 'next/link';
 import { SlPencil, SlTrash } from 'react-icons/sl';
 
+import { User } from '@/core/types';
 import { PageLayout } from '@/web/shared/layouts';
 import { useAppSelector, useAppDispatch } from '@/web/shared/store';
 import { deleteUser } from '@/web/shared/store/usersReducer';
-import { User } from '@/web/shared/types';
 import { Button, IconButton } from '@/web/shared/ui';
 
 import { UserForm } from './entities/UserForm';
 
 import styles from './Settings.module.scss';
+
+const INSTRUCTIONS_LINK = process.env.NEXT_PUBLIC_FAT_SECRET_INSTRUCTIONS ?? null;
 
 export const Settings: FC = () => {
     const dispatch = useAppDispatch();
@@ -64,6 +66,17 @@ export const Settings: FC = () => {
                 </div>
 
                 <Button onClick={onToggleUserForm}>Добавить клиента</Button>
+
+                {INSTRUCTIONS_LINK && (
+                    <Link
+                        className={styles.instructionsLink}
+                        href={INSTRUCTIONS_LINK}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                    >
+                        Как получить ссылку на отчет FatSecret
+                    </Link>
+                )}
 
                 <UserForm
                     user={user}

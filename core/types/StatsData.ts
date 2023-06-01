@@ -1,5 +1,4 @@
-import { FoodDetails } from '@/web/shared/types';
-import { ChartData } from '@/web/shared/ui';
+import { FoodDetails } from './Food';
 
 export type FoodDtoWithPercents = {
     name: string;
@@ -20,11 +19,14 @@ export type FoodDtoWithCount = {
 export type EatenFood = { [key: string]: FoodDtoWithCount };
 
 export type StatsData = {
+    date: string;
     allEatenFood: FoodDtoWithCount;
     eatenFood: FoodDtoWithCount[];
-    chartData: ChartData[];
+    chartData: {
+        label: string;
+        values: number[];
+    }[];
     allMeals: FoodDtoWithPercents[];
-    dailyAmount: number;
     totalData: { count: number; data: FoodDetails };
     foodDetails: { [key: string]: FoodDetails };
 };

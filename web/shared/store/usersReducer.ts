@@ -1,9 +1,9 @@
 'use client';
 import { PayloadAction, createSelector, createSlice } from '@reduxjs/toolkit';
 
-import { User } from '../types';
+import { User } from '@/core/types';
 
-import { RootState } from '.';
+import { RootState } from '../store';
 
 export interface UsersState {
     users: User[];
@@ -40,6 +40,11 @@ const selectUserId = (state: RootState, userId?: string) => userId;
 
 export const getUserById = createSelector([selectUsers, selectUserId], (users, userId) =>
     users.find(u => u.id === userId)
+);
+
+export const getUserDailyAmount = createSelector(
+    [selectUsers, selectUserId],
+    (users, userId) => users.find(u => u.id === userId)?.dailyAmount
 );
 
 export const { addUser, updateUser, deleteUser } = usersSlice.actions;

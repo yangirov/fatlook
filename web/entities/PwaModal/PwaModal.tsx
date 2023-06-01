@@ -44,14 +44,13 @@ export const PwaModal: FC = () => {
     const [isVisible, setVisible] = useState(false);
     const [supportsPWA, setSupportsPWA] = useState(false);
     const [promptInstall, setPromptInstall] = useState<BeforeInstallPromptEvent | null>(null);
-
     const [isAndroidPWA, setIsAndroidPWA] = useState(false);
 
     const { isDesktop, isAndroid, isIOS } = useDeviceDetect();
 
     useLayoutEffect(() => {
-        setVisible(getVisibleFromLocalState());
         setIsAndroidPWA(window.matchMedia('(display-mode: standalone)').matches);
+        setVisible(getVisibleFromLocalState());
     }, []);
 
     useEffect(() => {
@@ -92,17 +91,16 @@ export const PwaModal: FC = () => {
         localStorage.setItem(PWA_INSTALL_PROPOSAL, JSON.stringify(nextProposalDate));
     };
 
-    if (isDesktop) return null;
-
-    if (isIOS && (navigator as ExtendedNavigator).standalone) return null;
-
-    if (isAndroid && isAndroidPWA) return null;
-
-    if (isAndroid && !promptInstall) return null;
-
-    if (isAndroid && !supportsPWA) return null;
-
-    if (!isVisible) return null;
+    if (
+        !isVisible ||
+        isDesktop ||
+        (isIOS && (navigator as ExtendedNavigator).standalone) ||
+        (isAndroid && isAndroidPWA) ||
+        (isAndroid && !promptInstall) ||
+        (isAndroid && !supportsPWA)
+    ) {
+        return null;
+    }
 
     return (
         <Modal

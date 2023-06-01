@@ -1,18 +1,12 @@
 import { FC, useEffect, useState } from 'react';
 
+import { User } from '@/core/types';
+import { getUserId, isEqual } from '@/core/utils';
 import { useAppDispatch } from '@/web/shared/store';
 import { addUser, updateUser } from '@/web/shared/store/usersReducer';
-import { User } from '@/web/shared/types';
 import { Button, Modal } from '@/web/shared/ui';
-import { isEqual } from '@/web/shared/utils';
 
 import styles from './UserForm.module.css';
-
-const getUserId = (url: string) => {
-    const regex = /\/export\/(\d+)\//;
-    const match = regex.exec(url);
-    return match ? match[1] : '';
-};
 
 type UserFormProps = {
     isOpen: boolean;
@@ -46,8 +40,8 @@ export const UserForm: FC<UserFormProps> = ({ isOpen, user, onToggle, onClearUse
 
     const handleUser = () => {
         const dto = {
+            id: user ? reportUrl : getUserId(reportUrl) || '',
             name,
-            id: user ? reportUrl : getUserId(reportUrl),
             dailyAmount,
         };
 

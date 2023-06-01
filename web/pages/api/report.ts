@@ -1,23 +1,20 @@
 import { NextApiRequest, NextApiResponse } from 'next';
 
-import { ReportData } from '@/web/shared/types';
-import { isEmpty, getReportLink, parseFatSecretCSV, formatDate, REPORT_TYPES, ReportType } from '@/web/shared/utils';
+import { ReportData } from '@/core/types';
+import { isEmpty, getReportLink, parseFatSecretCSV, formatDate, REPORT_TYPES, ReportType } from '@/core/utils';
 
-// TODO: Refactor dates
-const getReportFromFatSecret = async (req: NextApiRequest): Promise<ReportData | null> => {
+export const getReportFromFatSecret = async (req: NextApiRequest): Promise<ReportData | null> => {
     const { query } = req;
 
     if (!query || isEmpty(query)) {
         return null;
     }
 
-    const { type, userId, weight, steps } = query;
+    const { type, userId, salt } = query;
     let { date } = query;
 
     let report = {
         userId: userId as string,
-        weight: weight as string,
-        steps: steps as string,
     } as ReportData;
 
     if (!date) {
@@ -32,7 +29,8 @@ const getReportFromFatSecret = async (req: NextApiRequest): Promise<ReportData |
     }
 
     if (userId && date) {
-        const fatSecretReportUrl = getReportLink(userId.toString(), date.toString(), reportType);
+        const hash = salt?.toString();
+        const fatSecretReportUrl = getReportLink(userId.toString(), date.toString(), reportType, hash);
 
         const response = await fetch(fatSecretReportUrl);
         const reportCsv = await response.text();

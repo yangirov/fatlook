@@ -2,12 +2,12 @@ import { FC, useContext } from 'react';
 
 import classNames from 'classnames';
 
+import { REPORT_CALC_RATIO, PartialFoodDetailsKeys, FoodUnit, FoodKeys, foodKeysMap } from '@/core/types';
+import { getPercents } from '@/core/utils';
 import { UNIT_COLORS } from '@/web/shared/colors';
 import { useAppSelector } from '@/web/shared/store';
 import { getUserById } from '@/web/shared/store/usersReducer';
-import { REPORT_CALC_RATIO, PartialFoodDetailsKeys, FoodUnit, FoodKeys, foodKeysMap } from '@/web/shared/types';
 import { Divider, PieChart } from '@/web/shared/ui';
-import { getPercents } from '@/web/shared/utils';
 
 import { ReportContext } from '../../Report';
 
@@ -21,7 +21,7 @@ const FormatUnit: FC<{ unit?: FoodKeys; value: FoodUnit }> = ({ unit, value }) =
 
 const ReportSummary: FC = () => {
     const {
-        report: { userId, total, weight, steps },
+        report: { userId, total },
     } = useContext(ReportContext);
 
     const user = useAppSelector(state => getUserById(state, userId));
@@ -96,11 +96,6 @@ const ReportSummary: FC = () => {
                     ))}
                 </div>
                 <PieChart data={pieChartData} className={styles.summaryPieChart} />
-            </div>
-
-            <div className={styles.health}>
-                {weight && <div>Вес: {weight} кг</div>}
-                {steps && <div>Шаги: {steps} шагов</div>}
             </div>
         </>
     );

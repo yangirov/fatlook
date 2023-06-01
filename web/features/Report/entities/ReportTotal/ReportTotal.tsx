@@ -1,7 +1,7 @@
 import { FC, useContext } from 'react';
 
+import { PartialFoodDetailsKeys, foodKeysMap } from '@/core/types';
 import { useAppSelector } from '@/web/shared/store';
-import { PartialFoodDetailsKeys, foodKeysMap } from '@/web/shared/types';
 
 import { ReportContext } from '../../Report';
 

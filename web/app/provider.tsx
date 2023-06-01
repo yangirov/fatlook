@@ -4,6 +4,7 @@ import { FC, useEffect, useState } from 'react';
 
 import { Provider } from 'react-redux';
 
+import { PwaModal } from '@/web/entities/PwaModal';
 import { store } from '@/web/shared/store';
 import { SnackBarContextProvider } from '@/web/shared/ui/';
 
@@ -20,13 +21,16 @@ const Providers: FC<{ children: React.ReactNode }> = ({ children }) => {
 
     if (typeof window === 'undefined') {
         return <></>;
-    } else {
-        return (
+    }
+
+    return (
+        <>
+            <PwaModal />
             <Provider store={store}>
                 <SnackBarContextProvider>{children}</SnackBarContextProvider>
             </Provider>
-        );
-    }
+        </>
+    );
 };
 
 export default Providers;

@@ -1,9 +1,9 @@
 import { FC, useContext, useLayoutEffect, useRef, useState } from 'react';
 
+import { foodKeysMap, nutrientsGoals } from '@/core/types';
+import { capitalizeFirstLetter, formatDate, getPercents, parseDate } from '@/core/utils';
 import { UNIT_COLORS } from '@/web/shared/colors';
-import { foodKeysMap, nutrientsGoals } from '@/web/shared/types';
 import { BarChart, Card, ChartData, Divider } from '@/web/shared/ui';
-import { capitalizeFirstLetter, formatDate, getPercents, parseDate } from '@/web/shared/utils';
 
 import { StatsContext } from '../../Stats';
 import { FoodCard } from '../FoodCard';
@@ -13,7 +13,7 @@ import styles from './FoodNutrients.module.scss';
 export const FoodNutrients: FC = () => {
     const chartRef = useRef<HTMLDivElement>(null);
     const {
-        data: { eatenFood, totalData, foodDetails },
+        stats: { eatenFood, totalData, foodDetails },
     } = useContext(StatsContext);
 
     const legendKeys = ['carbohydrates', 'allFat', 'protein'];

@@ -28,3 +28,9 @@
     align-items: center;
     justify-content: space-between;
 }
+
+.instructionsLink {
+    composes: link from 'styles/scaffold.scss';
+    display: block;
+    margin-top: var(--gap-20);
+}

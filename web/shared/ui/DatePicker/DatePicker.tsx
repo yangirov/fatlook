@@ -5,7 +5,7 @@ import { useDatepicker, START_DATE, OnDatesChangeProps } from '@datepicker-react
 import { addDays, addMonths, isAfter } from 'date-fns';
 import { SlArrowLeft, SlArrowRight } from 'react-icons/sl';
 
-import { formatDate } from '@/web/shared/utils';
+import { formatDate } from '@/core/utils';
 
 import { Icon } from '../Icon';
 

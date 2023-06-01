@@ -1,6 +1,6 @@
 {
     "compilerOptions": {
-        "target": "es6",
+        "target": "esnext",
         "lib": ["dom", "dom.iterable", "esnext"],
         "allowJs": true,
         "skipLibCheck": true,
@@ -16,10 +16,12 @@
         "incremental": true,
         "strictNullChecks": true,
         "paths": {
+            "@/core/*": ["./core/*"],
             "@/web/*": ["./web/*"],
-            "@/mobile/*": ["./mobile/*"]
+            "@/mobile/*": ["./mobile/src/*"],
+            "@/mobile-styles": ["./mobile/src/styles/styles.module.scss"]
         }
     },
     "include": ["**/*.ts", "**/*.tsx"],
-    "exclude": ["node_modules"]
+    "exclude": ["node_modules", "dist"]
 }

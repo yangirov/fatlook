@@ -1,7 +1,7 @@
 import React, { FC } from 'react';
 
+import { getPercents } from '@/core/utils';
 import { getColor } from '@/web/shared/colors';
-import { getPercents } from '@/web/shared/utils';
 
 import styles from './BarChart.module.scss';
 

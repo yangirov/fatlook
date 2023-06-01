@@ -4,7 +4,7 @@ import { useDay } from '@datepicker-react/hooks';
 import classNames from 'classnames';
 import { isToday } from 'date-fns';
 
-import { formatDate } from '@/web/shared/utils';
+import { formatDate } from '@/core/utils';
 
 import { DatePickerContext } from '../../DatePicker';
 

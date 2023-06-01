@@ -1,4 +1,4 @@
-import { Meal, ReportData, FoodDetails, FoodInfo } from '@/web/shared/types';
+import { Meal, ReportData, FoodDetails, FoodInfo } from '../types';
 
 import { formatDate, parseDate } from './dates';
 
@@ -52,7 +52,7 @@ export const parseFatSecretCSV = (csv: string): Omit<ReportData, 'userId'> => {
 
     const kcalIndex = findFoodUnitIndex('Кал ( ккал)');
     const fatIndex = findFoodUnitIndex('Жир( г)');
-    const nonSaturatedFatIndex = findFoodUnitIndex('Н/жир( г)');
+    const saturatedFatIndex = findFoodUnitIndex('Н/жир( г)');
     const carbohydratesIndex = findFoodUnitIndex('Углев( г)');
     const fiberIndex = findFoodUnitIndex('Клетч( г)');
     const sugarIndex = findFoodUnitIndex('Сахар( г)');
@@ -76,18 +76,18 @@ export const parseFatSecretCSV = (csv: string): Omit<ReportData, 'userId'> => {
         return value.trim();
     };
 
-    const getAllFat = (rowIndex: number, fatIndex: number, nonSaturatedFatIndex: number) => {
+    const getAllFat = (rowIndex: number, fatIndex: number, saturatedFatIndex: number) => {
         const fat = Number(getValue(rowIndex, fatIndex) ?? 0);
-        const nonSaturatedFat = Number(getValue(rowIndex, nonSaturatedFatIndex) ?? 0);
+        const saturatedFat = Number(getValue(rowIndex, saturatedFatIndex) ?? 0);
 
-        return parseFloat((fat + nonSaturatedFat).toFixed(2));
+        return parseFloat((fat + saturatedFat).toFixed(2));
     };
 
     const getFromRow = (rowIndex: number): FoodDetails => ({
         kcal: getValue(rowIndex, kcalIndex),
-        allFat: getAllFat(rowIndex, fatIndex, nonSaturatedFatIndex),
+        allFat: getAllFat(rowIndex, fatIndex, saturatedFatIndex),
         fat: getValue(rowIndex, fatIndex),
-        nonSaturatedFat: getValue(rowIndex, nonSaturatedFatIndex),
+        saturatedFat: getValue(rowIndex, saturatedFatIndex),
         carbohydrates: getValue(rowIndex, carbohydratesIndex),
         fiber: getValue(rowIndex, fiberIndex),
         sugar: getValue(rowIndex, sugarIndex),

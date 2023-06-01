@@ -1,0 +1,126 @@
+$gap-5: 5px;
+$gap-10: 10px;
+$gap-20: 20px;
+
+/* Common */
+.container {
+    padding: $gap-10 $gap-20;
+}
+
+.centerContainer {
+    @extend .container;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.row {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.title {
+    font-weight: 700;
+    font-size: 32px;
+    line-height: 36px;
+}
+
+.subTitle {
+    margin: 16px 0;
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 24px;
+}
+
+.hint {
+    margin: $gap-10 0;
+    font-size: 12px;
+    line-height: 16px;
+}
+
+.card {
+    margin-bottom: $gap-20;
+}
+
+.progressBar {
+    margin-bottom: $gap-10;
+
+    &Goals {
+        margin-top: $gap-5;
+    }
+}
+
+.listItem {
+    margin-bottom: 10px;
+    padding: 4px 8px;
+    overflow: hidden;
+    border-radius: 8px;
+}
+
+/* Screens */
+.welcome {
+    &Container {
+        display: flex;
+    }
+
+    &Logo {
+        width: 100px;
+        height: 100px;
+    }
+
+    &Info {
+        width: 80%;
+        margin: $gap-20 0;
+        font-size: 16px;
+        text-align: center;
+    }
+
+    &Input {
+        width: 100%;
+
+        &Error {
+            margin-top: 5px;
+            margin-right: auto;
+        }
+    }
+
+    &Actions {
+        @extend .row;
+
+        margin-top: $gap-20;
+    }
+}
+
+.settings {
+    &Inputs {
+        @extend .row;
+
+        gap: $gap-10;
+    }
+
+    &Input {
+        flex: 1;
+    }
+
+    &Range {
+        @extend .row;
+
+        margin-top: $gap-10;
+    }
+
+    &UserId {
+        margin-bottom: $gap-20;
+        padding: 0;
+    }
+}
+
+.stats {
+    margin-top: $gap-20;
+
+    &Item {
+        margin: $gap-10 0;
+    }
+}

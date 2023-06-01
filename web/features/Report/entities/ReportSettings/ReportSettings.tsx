@@ -2,9 +2,9 @@ import { FC, useState } from 'react';
 
 import { FaCheck } from 'react-icons/fa';
 
+import { PartialFoodDetailsKeys, FoodDetails, foodKeysMap } from '@/core/types';
 import { useAppDispatch, useAppSelector } from '@/web/shared/store';
 import { changeColumns } from '@/web/shared/store/reportReducer';
-import { PartialFoodDetailsKeys, FoodDetails, foodKeysMap } from '@/web/shared/types';
 import { Divider, Icon, Modal } from '@/web/shared/ui';
 
 import styles from './ReportSettings.module.scss';
@@ -17,7 +17,7 @@ type ReportSettingsProps = {
 const allColumns: PartialFoodDetailsKeys = [
     'allFat',
     'fat',
-    'nonSaturatedFat',
+    'saturatedFat',
     'carbohydrates',
     'fiber',
     'sugar',

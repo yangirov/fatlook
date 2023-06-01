@@ -1,7 +1,7 @@
 import { FC } from 'react';
 
+import { FoodInfo } from '@/core/types';
 import { useAppSelector } from '@/web/shared/store';
-import { FoodInfo } from '@/web/shared/types';
 
 import styles from './ReportFood.module.scss';
 

@@ -1,7 +1,7 @@
 import { FC, useContext } from 'react';
 
-import { FoodDetails, foodKeysMap } from '@/web/shared/types';
-import { Entries } from '@/web/shared/utils';
+import { FoodDetails, foodKeysMap } from '@/core/types';
+import { Entries } from '@/core/utils';
 
 import { StatsContext } from '../../Stats';
 import { FoodCard } from '../FoodCard';
@@ -15,7 +15,7 @@ type CardInfo = {
 
 export const FoodNutrientsSummary: FC = () => {
     const {
-        data: {
+        stats: {
             totalData: { data },
         },
     } = useContext(StatsContext);

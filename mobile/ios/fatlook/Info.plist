@@ -52,11 +52,10 @@
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<false/>
 	<key>NSHealthShareUsageDescription</key>
-	<string>Read and understand health data.</string>
-	<key>NSHealthUpdateUsageDescription</key>
-	<string>Share workout data with other apps.</string>
-	<!-- Below is only required if requesting clinical health data -->
-	<key>NSHealthClinicalHealthRecordsShareUsageDescription</key>
-	<string>Read and understand clinical health data.</string>
+	<string>Для того чтобы тренер видел ваш прогресс, нужно запросить доступ к шагам, весу и еде.</string>
+	<key>UIAppFonts</key>
+	<array>
+		<string>MaterialCommunityIcons.ttf</string>
+	</array>
 </dict>
 </plist>

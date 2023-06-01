@@ -8,8 +8,6 @@ export type ReportData = {
     date: string;
     total: FoodDetails;
     data: { date: string; meals: Meal[] }[];
-    weight?: string;
-    steps?: string;
 };
 
 export const REPORT_CALC_RATIO: ObjectWithOptionalKeys<FoodDetails, number> = {

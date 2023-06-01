@@ -1,95 +1,72 @@
 'use client';
-import { FC, createContext, useEffect, useState } from 'react';
+import { FC, createContext, useState } from 'react';
 
-import { useParams, useRouter, useSearchParams } from 'next/navigation';
+import { useRouter } from 'next/navigation';
 
+import { StatsData } from '@/core/types';
+import { formatDate, isEmpty } from '@/core/utils';
+import { useRouteParams } from '@/web/shared/hooks';
+import { useCurrentUser } from '@/web/shared/hooks/useCurrentUser';
 import { PageLayout } from '@/web/shared/layouts';
-import { useAppSelector } from '@/web/shared/store';
-import { getUserById } from '@/web/shared/store/usersReducer';
-import { ReportData } from '@/web/shared/types';
 import { EmptyContent, Tab, Tabs, WeekSelector } from '@/web/shared/ui';
-
-import { formatDate, parseDate } from '@/web/shared/utils';
 
 import { FoodAverage } from './entities/FoodAverage';
 import { FoodCalories } from './entities/FoodCalories';
 import { FoodNutrients } from './entities/FoodNutrients';
 import { FoodNutrientsSummary } from './entities/FoodNutrientsSummary';
-import { mapStats } from './mapper';
-import { StatsData } from './types';
 
 import styles from './Stats.module.scss';
 
-export type StatsProps = {
-    report?: ReportData;
-};
-
-export const StatsContext = createContext<{ data: StatsData }>({
-    data: {} as StatsData,
+export const StatsContext = createContext<{ stats: StatsData }>({
+    stats: {} as StatsData,
 });
 
-export const Stats: FC<StatsProps> = ({ report }) => {
-    const [date, setDate] = useState<Date>();
+type StatsProps = {
+    stats: StatsData;
+};
 
+export const Stats: FC<StatsProps> = ({ stats }) => {
     const router = useRouter();
-    const searchParams = useSearchParams() as unknown as URLSearchParams;
 
-    const params = useParams();
-    const userId = params?.userId.toString() ?? '';
-    const user = useAppSelector(state => getUserById(state, userId));
+    const routeParams = useRouteParams();
+    const user = useCurrentUser();
 
-    useEffect(() => {
-        if (report) {
-            const parsedDate = parseDate(report.date);
-            setDate(parsedDate);
-        }
-    }, [report]);
+    const [date] = useState<Date>();
 
     const onWeekChange = (date: Date) => {
-        const sp = new URLSearchParams(searchParams);
-
+        const sp = new URLSearchParams(routeParams?.searchParams);
         const formattedDate = formatDate(date);
         sp.set('date', formattedDate);
-
-        router.push(`/stats/${params?.userId}?${sp}`);
+        router.push(`/stats/${user?.id}?${sp}`);
     };
 
-    const data = mapStats(report, user?.dailyAmount);
-
-    if (!data) {
-        return (
-            <PageLayout>
-                <PageLayout.Header>Отчеты</PageLayout.Header>
-                <PageLayout.Content>
-                    {date && <WeekSelector date={date} onChange={onWeekChange} />}
-                    <EmptyContent />
-                </PageLayout.Content>
-            </PageLayout>
-        );
-    }
-
     return (
-        <StatsContext.Provider value={{ data }}>
-            <PageLayout>
-                <PageLayout.Header>Отчеты</PageLayout.Header>
-                <PageLayout.Content>
-                    {date && <WeekSelector date={date} onChange={onWeekChange} />}
-                    <Tabs>
-                        <Tab title="Планки">
-                            <FoodAverage />
-                        </Tab>
-                        <Tab title="Калории">
-                            <FoodCalories />
-                        </Tab>
-                        <Tab title="Макроэлементы">
-                            <FoodNutrients />
-                        </Tab>
-                        <Tab title="Питательные вещества">
-                            <FoodNutrientsSummary />
-                        </Tab>
-                    </Tabs>
-                </PageLayout.Content>
-            </PageLayout>
-        </StatsContext.Provider>
+        <PageLayout>
+            <PageLayout.Header>Отчеты</PageLayout.Header>
+            <PageLayout.Content>
+                {date && <WeekSelector date={date} onChange={onWeekChange} />}
+
+                {!stats || isEmpty(stats) ? (
+                    <EmptyContent />
+                ) : (
+                    <StatsContext.Provider value={{ stats }}>
+                        <Tabs>
+                            <Tab title="Планки">
+                                <FoodAverage />
+                            </Tab>
+                            <Tab title="Калории">
+                                <FoodCalories />
+                            </Tab>
+                            <Tab title="Макроэлементы">
+                                <FoodNutrients />
+                            </Tab>
+                            <Tab title="Питательные вещества">
+                                <FoodNutrientsSummary />
+                            </Tab>
+                        </Tabs>
+                    </StatsContext.Provider>
+                )}
+            </PageLayout.Content>
+        </PageLayout>
     );
 };

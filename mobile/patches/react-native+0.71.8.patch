@@ -1,0 +1,169 @@
+diff --git a/node_modules/react-native/Libraries/Components/ActivityIndicator/ActivityIndicator.d.ts b/node_modules/react-native/Libraries/Components/ActivityIndicator/ActivityIndicator.d.ts
+index f1a4b24..0774d3f 100644
+--- a/node_modules/react-native/Libraries/Components/ActivityIndicator/ActivityIndicator.d.ts
++++ b/node_modules/react-native/Libraries/Components/ActivityIndicator/ActivityIndicator.d.ts
+@@ -43,6 +43,9 @@ export interface ActivityIndicatorProps extends ViewProps {
+   size?: number | 'small' | 'large' | undefined;
+ 
+   style?: StyleProp<ViewStyle> | undefined;
++
++  /** Patch. Support for CSS modules */
++  className?: string | undefined;
+ }
+ 
+ declare class ActivityIndicatorComponent extends React.Component<ActivityIndicatorProps> {}
+@@ -83,4 +86,7 @@ export interface ActivityIndicatorIOSProps extends ViewProps {
+   size?: 'small' | 'large' | undefined;
+ 
+   style?: StyleProp<ViewStyle> | undefined;
++
++  /** Patch. Support for CSS modules */
++  className?: string | undefined;
+ }
+diff --git a/node_modules/react-native/Libraries/Components/ScrollView/ScrollView.d.ts b/node_modules/react-native/Libraries/Components/ScrollView/ScrollView.d.ts
+index 3d1d94f..6b2fdea 100644
+--- a/node_modules/react-native/Libraries/Components/ScrollView/ScrollView.d.ts
++++ b/node_modules/react-native/Libraries/Components/ScrollView/ScrollView.d.ts
+@@ -737,6 +737,9 @@ export interface ScrollViewProps
+    */
+   style?: StyleProp<ViewStyle> | undefined;
+ 
++  /** Patch. Support for CSS modules */
++  className?: string | undefined;
++
+   /**
+    * A RefreshControl component, used to provide pull-to-refresh
+    * functionality for the ScrollView.
+diff --git a/node_modules/react-native/Libraries/Components/Slider/Slider.d.ts b/node_modules/react-native/Libraries/Components/Slider/Slider.d.ts
+index 33f26d0..7026d06 100644
+--- a/node_modules/react-native/Libraries/Components/Slider/Slider.d.ts
++++ b/node_modules/react-native/Libraries/Components/Slider/Slider.d.ts
+@@ -97,6 +97,9 @@ export interface SliderProps extends SliderPropsIOS, SliderPropsAndroid {
+    */
+   style?: StyleProp<ViewStyle> | undefined;
+ 
++  /** Patch. Support for CSS modules */
++  className?: string | undefined;
++
+   /**
+    * Used to locate this view in UI automation tests.
+    */
+diff --git a/node_modules/react-native/Libraries/Components/Switch/Switch.d.ts b/node_modules/react-native/Libraries/Components/Switch/Switch.d.ts
+index 64a735d..eed4c94 100644
+--- a/node_modules/react-native/Libraries/Components/Switch/Switch.d.ts
++++ b/node_modules/react-native/Libraries/Components/Switch/Switch.d.ts
+@@ -100,6 +100,9 @@ export interface SwitchProps extends SwitchPropsIOS {
+   ios_backgroundColor?: ColorValue | undefined;
+ 
+   style?: StyleProp<ViewStyle> | undefined;
++
++  /** Patch. Support for CSS modules */
++  className?: string | undefined;
+ }
+ 
+ /**
+diff --git a/node_modules/react-native/Libraries/Components/TextInput/InputAccessoryView.d.ts b/node_modules/react-native/Libraries/Components/TextInput/InputAccessoryView.d.ts
+index 00edf5a..2af84f0 100644
+--- a/node_modules/react-native/Libraries/Components/TextInput/InputAccessoryView.d.ts
++++ b/node_modules/react-native/Libraries/Components/TextInput/InputAccessoryView.d.ts
+@@ -31,4 +31,7 @@ export interface InputAccessoryViewProps {
+   nativeID?: string | undefined;
+ 
+   style?: StyleProp<ViewStyle> | undefined;
++
++  /** Patch. Support for CSS modules */
++  className?: string | undefined;
+ }
+diff --git a/node_modules/react-native/Libraries/Components/TextInput/TextInput.d.ts b/node_modules/react-native/Libraries/Components/TextInput/TextInput.d.ts
+index 5bc4318..f8ff899 100644
+--- a/node_modules/react-native/Libraries/Components/TextInput/TextInput.d.ts
++++ b/node_modules/react-native/Libraries/Components/TextInput/TextInput.d.ts
+@@ -761,6 +761,9 @@ export interface TextInputProps
+    */
+   style?: StyleProp<TextStyle> | undefined;
+ 
++  /** Patch. Support for CSS modules */
++  className?: string | undefined;
++
+   /**
+    * Align the input text to the left, center, or right sides of the input field.
+    */
+diff --git a/node_modules/react-native/Libraries/Components/Touchable/TouchableHighlight.d.ts b/node_modules/react-native/Libraries/Components/Touchable/TouchableHighlight.d.ts
+index b9faa3a..8ac2b11 100644
+--- a/node_modules/react-native/Libraries/Components/Touchable/TouchableHighlight.d.ts
++++ b/node_modules/react-native/Libraries/Components/Touchable/TouchableHighlight.d.ts
+@@ -41,6 +41,9 @@ export interface TouchableHighlightProps extends TouchableWithoutFeedbackProps {
+    */
+   style?: StyleProp<ViewStyle> | undefined;
+ 
++  /** Patch. Support for CSS modules */
++  className?: string | undefined;
++
+   /**
+    * The color of the underlay that will show through when the touch is active.
+    */
+diff --git a/node_modules/react-native/Libraries/Components/Touchable/TouchableWithoutFeedback.d.ts b/node_modules/react-native/Libraries/Components/Touchable/TouchableWithoutFeedback.d.ts
+index aa5e14b..9cbfb97 100644
+--- a/node_modules/react-native/Libraries/Components/Touchable/TouchableWithoutFeedback.d.ts
++++ b/node_modules/react-native/Libraries/Components/Touchable/TouchableWithoutFeedback.d.ts
+@@ -113,6 +113,9 @@ export interface TouchableWithoutFeedbackProps
+    */
+   style?: StyleProp<ViewStyle> | undefined;
+ 
++  /** Patch. Support for CSS modules */
++  className?: string | undefined;
++
+   /**
+    * When the scroll view is disabled, this defines how far your
+    * touch may move off of the button, before deactivating the button.
+diff --git a/node_modules/react-native/Libraries/Components/View/ViewPropTypes.d.ts b/node_modules/react-native/Libraries/Components/View/ViewPropTypes.d.ts
+index b7da46f..e2b771c 100644
+--- a/node_modules/react-native/Libraries/Components/View/ViewPropTypes.d.ts
++++ b/node_modules/react-native/Libraries/Components/View/ViewPropTypes.d.ts
+@@ -233,6 +233,9 @@ export interface ViewProps
+ 
+   style?: StyleProp<ViewStyle> | undefined;
+ 
++  /** Patch. Support for CSS modules */
++  className?: string | undefined;
++
+   /**
+    * Used to locate this view in end-to-end tests.
+    */
+diff --git a/node_modules/react-native/Libraries/Image/Image.d.ts b/node_modules/react-native/Libraries/Image/Image.d.ts
+index dd2c089..aa0c87b 100644
+--- a/node_modules/react-native/Libraries/Image/Image.d.ts
++++ b/node_modules/react-native/Libraries/Image/Image.d.ts
+@@ -262,6 +262,9 @@ export interface ImageProps extends ImagePropsBase {
+    * Style
+    */
+   style?: StyleProp<ImageStyle> | undefined;
++
++  /** Patch. Support for CSS modules */
++  className?: string | undefined;
+ }
+ 
+ declare class ImageComponent extends React.Component<ImageProps> {}
+@@ -301,6 +304,8 @@ export interface ImageBackgroundProps extends ImagePropsBase {
+   children?: React.ReactNode;
+   imageStyle?: StyleProp<ImageStyle> | undefined;
+   style?: StyleProp<ViewStyle> | undefined;
++  /** Patch. Support for CSS modules */
++  className?: string | undefined;
+   imageRef?(image: Image): void;
+ }
+ 
+diff --git a/node_modules/react-native/Libraries/Text/Text.d.ts b/node_modules/react-native/Libraries/Text/Text.d.ts
+index a9d2a1b..8aafef4 100644
+--- a/node_modules/react-native/Libraries/Text/Text.d.ts
++++ b/node_modules/react-native/Libraries/Text/Text.d.ts
+@@ -182,6 +182,9 @@ export interface TextProps
+    */
+   style?: StyleProp<TextStyle> | undefined;
+ 
++  /** Patch. Support for CSS modules */
++  className?: string | undefined;
++
+   /**
+    * Used to locate this view in end-to-end tests.
+    */
