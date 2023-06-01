@@ -9,7 +9,6 @@
         "strictNullChecks": true,
         "paths": {
             "@/core/*": ["../core/*"],
-            "@/mobile/*": ["../mobile/src/*"],
             "@/web/*": ["./*"]
         }
     },

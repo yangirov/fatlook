@@ -4,7 +4,7 @@ import { HKAuthorizationRequestStatus } from '@kingstinct/react-native-healthkit
 import { View, Image, Platform, SafeAreaView } from 'react-native';
 import { Appbar, Button, Text } from 'react-native-paper';
 
-import styles from '@/mobile-styles';
+import styles from '@/mobile/styles/styles.module.scss';
 
 import { FatSecretLink } from '../FatSecretLink';
 
@@ -48,8 +48,8 @@ export const Welcome: FC<WelcomeProps> = ({ request }) => {
                     )}
 
                     {step == 1 && (
-                        <View className={styles.welcomeActions}>
-                            <FatSecretLink onSave={incrementStep} autoFocus={true} />
+                        <View className={styles.welcomeContainer}>
+                            <FatSecretLink onSave={incrementStep} autoFocus={false} />
                         </View>
                     )}
 

@@ -63,7 +63,7 @@ $gap-20: 20px;
 /* Screens */
 .welcome {
     &Container {
-        display: flex;
+        width: 100%;
     }
 
     &Logo {
@@ -79,8 +79,6 @@ $gap-20: 20px;
     }
 
     &Input {
-        width: 100%;
-
         &Error {
             margin-top: 5px;
             margin-right: auto;
@@ -90,6 +88,7 @@ $gap-20: 20px;
     &Actions {
         @extend .row;
 
+        justify-content: space-between;
         margin-top: $gap-20;
     }
 }
@@ -122,5 +121,14 @@ $gap-20: 20px;
 
     &Item {
         margin: $gap-10 0;
+    }
+}
+
+.webView {
+    &Loader {
+        width: 100%;
+        height: 90%;
+        background-color: #fff;
+        inset: 0;
     }
 }

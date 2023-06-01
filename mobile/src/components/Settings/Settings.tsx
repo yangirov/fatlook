@@ -6,7 +6,7 @@ import { View, SafeAreaView, Settings as Storage, ScrollView, StyleSheet } from 
 import { Button, Card, List, Switch, Text, TextInput } from 'react-native-paper';
 
 import { FAT_SECRET_USER_ID, GOALS_MAP, Goal, READ_PERMISSIONS } from '@/mobile/shared';
-import styles from '@/mobile-styles';
+import styles from '@/mobile/styles/styles.module.scss';
 
 import { FatSecretLink } from '../FatSecretLink';
 
@@ -50,7 +50,7 @@ const SettingsItem: FC<{ id: string; title: string }> = ({ id, title }) => {
                     )}
                     <TextInput
                         inputMode="numeric"
-                        value={to.toString()}
+                        value={to?.toString()}
                         onChangeText={text => setToStorage('to', Number(text), setTo)}
                         className={styles.settingsInput}
                         mode="outlined"

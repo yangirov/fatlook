@@ -6,8 +6,7 @@
         "typeRoots": ["./src/shared/types"],
         "paths": {
             "@/core/*": ["../core/*"],
-            "@/mobile/*": ["./src/*"],
-            "@/mobile-styles": ["./src/styles/styles.module.scss"]
+            "@/mobile/*": ["./src/*"]
         }
     }
 }

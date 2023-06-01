@@ -18,8 +18,7 @@
         "paths": {
             "@/core/*": ["./core/*"],
             "@/web/*": ["./web/*"],
-            "@/mobile/*": ["./mobile/src/*"],
-            "@/mobile-styles": ["./mobile/src/styles/styles.module.scss"]
+            "@/mobile/*": ["./mobile/src/*"]
         }
     },
     "include": ["**/*.ts", "**/*.tsx"],

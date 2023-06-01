@@ -1,31 +1,35 @@
-import { useCallback } from 'react';
+import { useCallback, useContext } from 'react';
 
 import { Linking } from 'react-native';
 import { Text } from 'react-native-paper';
 
 import { useAppTheme } from '../hooks';
 
+import { WebViewContext } from './WebViewModal';
+
 type OpenURLButtonProps = {
     url: string;
-    children: string;
+    title: string;
 };
 
-export const OpenURLButton = ({ url, children }: OpenURLButtonProps) => {
+export const OpenURLButton = ({ url, title }: OpenURLButtonProps) => {
+    const webViewContext = useContext(WebViewContext);
+
     const theme = useAppTheme();
 
     const handlePress = useCallback(async () => {
         const supported = await Linking.canOpenURL(url);
 
         if (supported) {
-            await Linking.openURL(url);
+            webViewContext.show(title, url);
         } else {
             console.error(`Don't know how to open this URL: ${url}`);
         }
-    }, [url]);
+    }, [title, url, webViewContext]);
 
     return (
         <Text style={{ color: theme.colors.primary }} onPress={handlePress}>
-            {children}
+            {title}
         </Text>
     );
 };

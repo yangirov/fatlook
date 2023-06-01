@@ -1,4 +1,4 @@
-import { FC, useState } from 'react';
+import { FC, useContext, useState } from 'react';
 
 import { FATLOOK_URL } from '@env';
 import { addDays } from 'date-fns';
@@ -11,11 +11,13 @@ import { ReportData } from '@/core/types';
 import { beautifyDate, formatDate } from '@/core/utils';
 import { FAT_SECRET_USER_ID } from '@/mobile/shared';
 import { useAppTheme } from '@/mobile/shared/hooks';
-import styles from '@/mobile-styles';
+import { WebViewContext } from '@/mobile/shared/ui';
+import styles from '@/mobile/styles/styles.module.scss';
 
 import { getReportFromHK } from './mapper';
 
 export const Report: FC = () => {
+    const webViewContext = useContext(WebViewContext);
     const theme = useAppTheme();
 
     const date = new Date();
@@ -30,11 +32,10 @@ export const Report: FC = () => {
 
     const openReportUrl = async (date: Date) => {
         const url = `${FATLOOK_URL}/report/${userId}?&date=${formatDate(date)}`;
-
         const supported = await Linking.canOpenURL(url);
 
         if (supported) {
-            await Linking.openURL(url);
+            webViewContext.show(`Отчет ${beautifyDate(date)}`, url);
         } else {
             console.error(`Don't know how to open this URL: ${url}`);
         }

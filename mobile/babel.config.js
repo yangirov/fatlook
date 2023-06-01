@@ -16,7 +16,6 @@ module.exports = {
                 alias: {
                     '@/core': '../core',
                     '@/mobile': './src',
-                    '@/mobile-styles': './src/styles/styles.module.scss',
                 },
             },
         ],

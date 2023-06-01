@@ -11,7 +11,7 @@ import { diffInDays } from '@/core/utils';
 import { DEFAULT_GOALS_MAP, Goal, ID_MAP, UNIT_MAP } from '@/mobile/shared/consts';
 
 import { useAppTheme } from '@/mobile/shared/hooks';
-import styles from '@/mobile-styles';
+import styles from '@/mobile/styles/styles.module.scss';
 
 const date = new Date();
 

@@ -8,7 +8,7 @@ import { getUserId } from '@/core/utils';
 
 import { FAT_SECRET_USER_ID, FAT_SECRET_USER_REPORT_URL } from '@/mobile/shared';
 import { OpenURLButton } from '@/mobile/shared/ui';
-import styles from '@/mobile-styles';
+import styles from '@/mobile/styles/styles.module.scss';
 
 type FatSecretLinkProps = {
     autoFocus?: boolean;
@@ -58,7 +58,6 @@ export const FatSecretLink: FC<FatSecretLinkProps> = ({ autoFocus = false, onSav
             <TextInput
                 ref={inputRef}
                 inputMode="url"
-                className={styles.welcomeInput}
                 mode="outlined"
                 dense={true}
                 label="Ссылка на FatSecret"
@@ -75,7 +74,7 @@ export const FatSecretLink: FC<FatSecretLinkProps> = ({ autoFocus = false, onSav
             )}
 
             <View className={styles.welcomeActions}>
-                <OpenURLButton url={FAT_SECRET_INSTRUCTIONS}>Как получить ссылку?</OpenURLButton>
+                <OpenURLButton url={FAT_SECRET_INSTRUCTIONS} title="Как получить ссылку?" />
                 <Button mode="contained" onPress={onSaveFatSecretLink}>
                     Сохранить
                 </Button>
