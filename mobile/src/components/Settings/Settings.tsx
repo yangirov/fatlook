@@ -50,7 +50,7 @@ const SettingsItem: FC<{ id: string; title: string }> = ({ id, title }) => {
                     )}
                     <TextInput
                         inputMode="numeric"
-                        value={to?.toString()}
+                        value={to.toString()}
                         onChangeText={text => setToStorage('to', Number(text), setTo)}
                         className={styles.settingsInput}
                         mode="outlined"

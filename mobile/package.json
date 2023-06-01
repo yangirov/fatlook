@@ -8,7 +8,7 @@
         "lint": "eslint .",
         "start": "react-native start",
         "typed-styles": "npx typed-scss-modules src --watch",
-        "clear": "watchman watch-del-all && react-native start --reset-cache",
+        "clear": "cd ios && pod deintegrate && pod install && watchman watch-del-all && react-native start --reset-cache",
         "postinstall": "patch-package"
     },
     "dependencies": {
@@ -16,6 +16,7 @@
         "date-fns": "^2.30.0",
         "react": "18.2.0",
         "react-native": "0.71.8",
+        "react-native-device-info": "^10.6.0",
         "react-native-dotenv": "^3.4.8",
         "react-native-health-connect": "^1.0.2",
         "react-native-paper": "^5.8.0",

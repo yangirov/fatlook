@@ -9,8 +9,9 @@ import { Card, Divider, ProgressBar, Text } from 'react-native-paper';
 
 import { diffInDays } from '@/core/utils';
 import { DEFAULT_GOALS_MAP, Goal, ID_MAP, UNIT_MAP } from '@/mobile/shared/consts';
-
 import { useAppTheme } from '@/mobile/shared/hooks';
+import { getProgressBarValue } from '@/mobile/shared/utils';
+
 import styles from '@/mobile/styles/styles.module.scss';
 
 const date = new Date();
@@ -58,12 +59,11 @@ const StatsItemComponent: FC<{
 }> = ({ identifier, option, startDate = startOfDay(date), endDate, unit, title, days }) => {
     const theme = useAppTheme();
 
-    const goal = (Settings.get(ID_MAP[identifier] || '') || DEFAULT_GOALS_MAP[identifier]) as Goal;
-    const goalText = goal?.from ? `от ${goal?.from} до ${goal?.to}` : `до ${goal?.to}`;
+    const goal = (Settings.get(ID_MAP[identifier] || '') || DEFAULT_GOALS_MAP[identifier]) as Goal | undefined;
+    const goalText = goal && goal?.from ? `от ${goal?.from} до ${goal?.to}` : `до ${goal?.to}`;
 
-    const [value, setValue] = useState<string>('Нет данных');
-    const [progress, setProgress] = useState<number>();
-    const [color, setColor] = useState<string>();
+    const [value, setValue] = useState('Нет данных');
+    const [progress, setProgress] = useState<{ progress: number; color?: string }>();
 
     useEffect(() => {
         const getData = async () => {
@@ -77,15 +77,9 @@ const StatsItemComponent: FC<{
                 const average = `${formatedQuantity} ${UNIT_MAP[identifier]?.unitName}`;
                 setValue(average);
 
-                const p = goal.to / quantity;
-                setProgress(p);
-
-                if (p > 1) {
-                    setColor(theme.colors.red);
-                } else if (p < 0.4) {
-                    setColor(theme.colors.yellow);
-                } else {
-                    setColor(theme.colors.primary);
+                if (goal) {
+                    const p = getProgressBarValue(quantity, goal?.from || 0, goal?.to, theme);
+                    setProgress(p);
                 }
             }
         };
@@ -102,7 +96,11 @@ const StatsItemComponent: FC<{
             </Text>
             {progress && (
                 <View className={styles.progressBar}>
-                    <ProgressBar progress={progress} visible={progress !== undefined} color={color} />
+                    <ProgressBar
+                        progress={progress?.progress}
+                        visible={progress !== undefined}
+                        color={progress?.color}
+                    />
                     <View className={styles.progressBarGoals}>
                         <Text style={{ color: theme.colors.tertiary, fontSize: 12 }}>{goalText}</Text>
                     </View>

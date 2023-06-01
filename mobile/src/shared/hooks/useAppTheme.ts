@@ -30,7 +30,7 @@ const darkTheme = {
     },
 };
 
-type AppTheme = typeof lightTheme;
+export type AppTheme = typeof lightTheme;
 
 export const useAppTheme = () => {
     const isDarkMode = useColorScheme() === 'dark';

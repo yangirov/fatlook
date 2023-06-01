@@ -1,6 +1,6 @@
 import { FC, useContext, useState } from 'react';
 
-import { FATLOOK_URL } from '@env';
+import { FATLOOK_URL, FAT_SECRET_INSTRUCTIONS } from '@env';
 import { addDays } from 'date-fns';
 import { SafeAreaView, View, Settings, Linking } from 'react-native';
 
@@ -11,7 +11,7 @@ import { ReportData } from '@/core/types';
 import { beautifyDate, formatDate } from '@/core/utils';
 import { FAT_SECRET_USER_ID } from '@/mobile/shared';
 import { useAppTheme } from '@/mobile/shared/hooks';
-import { WebViewContext } from '@/mobile/shared/ui';
+import { OpenURLButton, WebViewContext, DismissKeyboardView } from '@/mobile/shared/ui';
 import styles from '@/mobile/styles/styles.module.scss';
 
 import { getReportFromHK } from './mapper';
@@ -35,7 +35,7 @@ export const Report: FC = () => {
         const supported = await Linking.canOpenURL(url);
 
         if (supported) {
-            webViewContext.show(`Отчет ${beautifyDate(date)}`, url);
+            webViewContext.show(beautifyDate(date), url);
         } else {
             console.error(`Don't know how to open this URL: ${url}`);
         }
@@ -47,11 +47,18 @@ export const Report: FC = () => {
                 <Text className={styles.title}>Отчеты</Text>
             </View>
 
-            <View className={styles.container}>
-                <TextInput mode="outlined" dense={true} label="Ссылка на FatSecret (сегодня)" />
+            <DismissKeyboardView className={styles.container}>
+                <TextInput
+                    mode="outlined"
+                    accessible={false}
+                    dense={true}
+                    keyboardType="url"
+                    label="Ссылка на FatSecret (сегодня)"
+                />
 
                 <Text className={styles.hint}>
-                    Это необязательное поле. По умолчанию мы забираем данные из Apple Health.
+                    Это необязательное поле. По умолчанию мы забираем данные из Apple Health.{' '}
+                    <OpenURLButton url={FAT_SECRET_INSTRUCTIONS} title="Как получить ссылку?" />
                 </Text>
 
                 <Button mode="contained" onPress={getData}>
@@ -75,7 +82,7 @@ export const Report: FC = () => {
                         );
                     })}
                 </List.Section>
-            </View>
+            </DismissKeyboardView>
         </SafeAreaView>
     );
 };

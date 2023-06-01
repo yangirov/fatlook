@@ -4,7 +4,7 @@
     "private": true,
     "scripts": {
         "dev": "next dev",
-        "watch": "concurrently \"npm run dev\" \"npm run scaffold\"",
+        "watch": "concurrently 'npm run dev' 'npm run scaffold'",
         "build": "next build",
         "start": "next start",
         "lint": "next lint",

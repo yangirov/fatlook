@@ -1,10 +1,12 @@
-import { FC, createContext, useContext, useRef, useState } from 'react';
+import { FC, createContext, useContext, useEffect, useRef, useState } from 'react';
 
 import { FAT_SECRET_INSTRUCTIONS } from '@env';
 import { ActivityIndicator, Share } from 'react-native';
+import DeviceInfo from 'react-native-device-info';
 import { Appbar, Portal } from 'react-native-paper';
 import { WebView } from 'react-native-webview';
 
+import { APP_NAME } from '@/core/utils';
 import styles from '@/mobile/styles/styles.module.scss';
 
 import { useAppTheme } from '../hooks';
@@ -41,6 +43,15 @@ export const WebViewContext = createContext<WebViewContextProps>({} as WebViewCo
 
 export const WebViewModal: FC = () => {
     const webViewRef = useRef<WebView>(null);
+    const [userAgent, setUserAgent] = useState('');
+
+    useEffect(() => {
+        DeviceInfo.getUserAgent().then(userAgent => {
+            const customUserAgent = `${userAgent} ${APP_NAME}`;
+            setUserAgent(customUserAgent);
+        });
+    }, []);
+
     const theme = useAppTheme();
     const [loading, setLoading] = useState(true);
     const ctx = useContext(WebViewContext);
@@ -70,6 +81,7 @@ export const WebViewModal: FC = () => {
             <WebView
                 ref={webViewRef}
                 source={{ uri: ctx.url }}
+                userAgent={userAgent}
                 javaScriptEnabled={true}
                 onLoadStart={() => setLoading(true)}
                 onLoadEnd={() => {

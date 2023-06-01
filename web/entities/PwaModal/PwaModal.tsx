@@ -7,7 +7,7 @@ import Image from 'next/image';
 import { FiShare } from 'react-icons/fi';
 
 import { PWA_INSTALL_PROPOSAL } from '@/web/shared/consts';
-import { useDeviceDetect } from '@/web/shared/hooks';
+import { useDeviceDetect, useWebViewStatus } from '@/web/shared/hooks';
 import { Button, Modal } from '@/web/shared/ui';
 
 import styles from './PwaModal.module.scss';
@@ -46,6 +46,7 @@ export const PwaModal: FC = () => {
     const [promptInstall, setPromptInstall] = useState<BeforeInstallPromptEvent | null>(null);
     const [isAndroidPWA, setIsAndroidPWA] = useState(false);
 
+    const isWebView = useWebViewStatus();
     const { isDesktop, isAndroid, isIOS } = useDeviceDetect();
 
     useLayoutEffect(() => {
@@ -93,6 +94,7 @@ export const PwaModal: FC = () => {
 
     if (
         !isVisible ||
+        isWebView ||
         isDesktop ||
         (isIOS && (navigator as ExtendedNavigator).standalone) ||
         (isAndroid && isAndroidPWA) ||

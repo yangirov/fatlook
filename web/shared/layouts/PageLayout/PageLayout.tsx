@@ -1,10 +1,12 @@
 import React, { FC, useContext } from 'react';
 
+import classNames from 'classnames';
 import { useParams, usePathname, useRouter } from 'next/navigation';
 import { MdArrowBack } from 'react-icons/md';
 
 import { UserSelector } from '@/web/entities/UserSelector';
 
+import { useWebViewStatus } from '../../hooks';
 import { SnackBar, SnackBarContext } from '../../ui';
 
 import styles from './PageLayout.module.scss';
@@ -19,6 +21,8 @@ export const PageLayoutWrapper: FC<PageLayoutProps> = ({ children }) => {
 };
 
 const PageLayoutHeader: FC<PageLayoutProps> = ({ children, onBack }) => {
+    const isWebView = useWebViewStatus();
+
     const pathname = usePathname();
     const router = useRouter();
     const params = useParams();
@@ -45,6 +49,10 @@ const PageLayoutHeader: FC<PageLayoutProps> = ({ children, onBack }) => {
         }
     };
 
+    if (isWebView) {
+        return null;
+    }
+
     return (
         <header className={styles.pageHeader}>
             <div className={styles.pageHeaderWrapper}>
@@ -59,10 +67,11 @@ const PageLayoutHeader: FC<PageLayoutProps> = ({ children, onBack }) => {
 };
 
 const PageLayoutContent: FC<PageLayoutProps> = ({ children }) => {
+    const isWebView = useWebViewStatus();
     const snackBarContext = useContext(SnackBarContext);
 
     return (
-        <div className={styles.pageContent}>
+        <div className={classNames(styles.pageContent, { [styles.pageContentWebView]: isWebView })}>
             {children}
             {snackBarContext.isVisible && <SnackBar />}
         </div>

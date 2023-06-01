@@ -37,4 +37,8 @@
 
 .pageContent {
     margin-top: var(--gap-50);
+
+    &WebView {
+        margin-top: var(--gap-10);
+    }
 }
