@@ -1,5 +1,5 @@
 'use client';
-import { FC, useEffect, useState } from 'react';
+import { FC, ReactElement, useEffect, useState } from 'react';
 
 import classNames from 'classnames';
 
@@ -15,7 +15,7 @@ export const Tab: FC<TabProps> = ({ children }) => {
 
 type TabsProps = {
     className?: string;
-    children: React.ReactElement<TabProps>[];
+    children: ReactElement<TabProps>[];
 };
 
 const QUERY_PARAM_TAB = 'tab';

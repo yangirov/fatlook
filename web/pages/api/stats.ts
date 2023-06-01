@@ -14,8 +14,7 @@ export const getStatsData = async (req: NextApiRequest): Promise<StatsData | und
     }
 
     const report = await getReportFromFatSecret(req);
-
-    if (!report || isEmpty(report.data)) {
+    if (!report) {
         return undefined;
     }
 

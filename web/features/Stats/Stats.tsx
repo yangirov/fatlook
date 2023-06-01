@@ -1,10 +1,10 @@
 'use client';
-import { FC, createContext, useState } from 'react';
+import { FC, createContext } from 'react';
 
 import { useRouter } from 'next/navigation';
 
 import { StatsData } from '@/core/types';
-import { formatDate, isEmpty } from '@/core/utils';
+import { formatDate, isEmpty, parseDate } from '@/core/utils';
 import { useRouteParams } from '@/web/shared/hooks';
 import { useCurrentUser } from '@/web/shared/hooks/useCurrentUser';
 import { PageLayout } from '@/web/shared/layouts';
@@ -26,12 +26,12 @@ type StatsProps = {
 };
 
 export const Stats: FC<StatsProps> = ({ stats }) => {
+    const isEmptyStats = !stats || isEmpty(stats.foodDetails) || isEmpty(stats.chartData) || isEmpty(stats.allMeals);
+
     const router = useRouter();
 
     const routeParams = useRouteParams();
     const user = useCurrentUser();
-
-    const [date] = useState<Date>();
 
     const onWeekChange = (date: Date) => {
         const sp = new URLSearchParams(routeParams?.searchParams);
@@ -44,9 +44,9 @@ export const Stats: FC<StatsProps> = ({ stats }) => {
         <PageLayout>
             <PageLayout.Header>Отчеты</PageLayout.Header>
             <PageLayout.Content>
-                {date && <WeekSelector date={date} onChange={onWeekChange} />}
+                <WeekSelector date={parseDate(stats.date)} onChange={onWeekChange} />
 
-                {!stats || isEmpty(stats) ? (
+                {isEmptyStats ? (
                     <EmptyContent />
                 ) : (
                     <StatsContext.Provider value={{ stats }}>
