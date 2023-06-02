@@ -42,10 +42,5 @@ export const getUserById = createSelector([selectUsers, selectUserId], (users, u
     users.find(u => u.id === userId)
 );
 
-export const getUserDailyAmount = createSelector(
-    [selectUsers, selectUserId],
-    (users, userId) => users.find(u => u.id === userId)?.dailyAmount
-);
-
 export const { addUser, updateUser, deleteUser } = usersSlice.actions;
 export default usersSlice.reducer;

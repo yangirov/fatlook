@@ -27,6 +27,7 @@ export const Report: FC = () => {
 
     const getData = async () => {
         const data = await getReportFromHK(userId, date);
+        console.log(JSON.stringify(data, undefined, 2));
         setReport(data);
     };
 

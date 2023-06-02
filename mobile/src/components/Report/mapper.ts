@@ -1,11 +1,19 @@
-import { HKQuantitySample, HKQuantityTypeIdentifier } from '@kingstinct/react-native-healthkit';
-import queryQuantitySamples from '@kingstinct/react-native-healthkit/src/utils/queryQuantitySamples';
+import {
+    HKQuantitySample,
+    HKQuantityTypeIdentifier as TId,
+    QueryStatisticsResponseRaw,
+    UnitForIdentifier,
+} from '@kingstinct/react-native-healthkit';
+import queryQuantitySamples, {
+    QueryQuantitySamplesResponse,
+} from '@kingstinct/react-native-healthkit/src/utils/queryQuantitySamples';
+import queryStatisticsForQuantity from '@kingstinct/react-native-healthkit/src/utils/queryStatisticsForQuantity';
 
 import { endOfDay, startOfDay } from 'date-fns';
 
-import { FoodDetails, ReportData } from '@/core/types';
+import { ReportData } from '@/core/types';
 import { formatDate } from '@/core/utils';
-import { FOOD_PERMISSIONS, UNIT_MAP } from '@/mobile/shared/consts';
+import { ACTIVITY_PERMISSIONS, FOOD_PERMISSIONS, UNIT_MAP } from '@/mobile/shared/consts';
 
 const initialFoodDetails = {
     kcal: null,
@@ -21,79 +29,129 @@ const initialFoodDetails = {
     kalium: null,
 };
 
-const mapData = <T extends HKQuantityTypeIdentifier>(result: ReportData, data: readonly HKQuantitySample<T>[]) => {
-    const info = result.data[0];
+type MapPayload = Partial<{ [k in TId]: readonly HKQuantitySample<TId>[] }>;
 
-    data.forEach(food => {
-        if (food.metadata) {
-            const mealName = food.metadata?.['Еда'];
-            let meal = info.meals.find(x => x.name === mealName);
-            if (!meal) {
-                const index = info.meals.push({
-                    name: mealName?.toString() || '',
-                    total: { ...initialFoodDetails },
-                    foods: [],
-                });
-
-                meal = info.meals[index - 1];
-            }
-
-            const unitKey = UNIT_MAP[food.quantityType]?.key;
-
-            if (unitKey) meal.total[unitKey] = (Number(meal.total[unitKey] || 0) + Number(food.quantity)).toFixed(2);
-
-            const foodName = food.metadata.HKFoodType?.toString();
-            if (foodName) {
-                let currentFood = meal.foods.find(f => f.name === foodName);
-                if (!currentFood) {
-                    const index = meal.foods.push({
-                        name: foodName,
-                        weight: 'null',
-                        details: { ...initialFoodDetails },
-                    });
-
-                    currentFood = meal.foods[index - 1];
-                }
-
-                if (unitKey) currentFood.details[unitKey] = food.quantity.toFixed(2);
-            }
-        }
-    });
-};
-
-export const getReportFromHK = (userId: string, date: Date) => {
-    const result: ReportData = {
-        userId,
+const mapData = (
+    date: Date,
+    activities: {
+        id: TId;
+        payload: QueryStatisticsResponseRaw<TId, UnitForIdentifier<TId>>;
+    }[],
+    foods: {
+        id: TId;
+        payload: QueryQuantitySamplesResponse<TId>;
+    }[]
+) => {
+    const report: ReportData = {
         date: formatDate(date),
         total: { ...initialFoodDetails },
         data: [
             {
                 date: formatDate(date),
-                meals: [],
+                meals: ['Завтрак', 'Обед', 'Ужин', 'Перекус/Другое'].map(name => ({
+                    name,
+                    total: { ...initialFoodDetails },
+                    foods: [],
+                })),
             },
         ],
     };
 
-    return Promise.all(
-        FOOD_PERMISSIONS.map(async id => {
-            const res = await queryQuantitySamples(id, {
-                from: startOfDay(date),
-                to: endOfDay(date),
-                unit: UNIT_MAP[id]?.unitKey,
-            });
+    activities.forEach(({ id, payload }) => {
+        const unitKey = UNIT_MAP[id]?.key;
 
-            mapData(result, res.samples);
-            return {};
-        })
-    ).then(() => {
-        result.total = result.data[0].meals.reduce<FoodDetails>((acc, meal) => {
-            Object.entries(meal.total).forEach(([k, v]) => {
-                acc[k] = (Number(acc[k] || 0) + Number(v)).toFixed(2);
-            });
+        if (unitKey === 'weight') {
+            report[unitKey] = Number(payload?.averageQuantity?.quantity);
+        }
 
-            return acc;
-        }, {} as FoodDetails);
-
-        return result;
+        if (unitKey === 'steps') {
+            report[unitKey] = Number(payload?.sumQuantity?.quantity);
+        }
     });
+
+    const data = foods.reduce<MapPayload>((acc, item) => {
+        acc[item.id] = item.payload.samples;
+        return acc;
+    }, {});
+
+    const result = report.data[0];
+
+    const item = data[TId.dietaryEnergyConsumed];
+    if (!item) return report;
+
+    item.forEach((food, index) => {
+        const mealName = food.metadata && Object.values(food.metadata)[0];
+        const meal = result.meals.find(x => x.name === mealName);
+
+        FOOD_PERMISSIONS.forEach(unit => {
+            const foodKey = UNIT_MAP[unit]?.key;
+
+            if (meal && foodKey) {
+                const sample = data[unit];
+                const currentItem = sample && sample[index];
+
+                if (currentItem) {
+                    const quantity = currentItem.quantity || 0;
+
+                    const mealUnitValue = Number(meal.total[foodKey] || 0) + quantity;
+                    meal.total[foodKey] = Number(mealUnitValue.toFixed(2));
+
+                    const totalUnitValue = Number(report.total[foodKey] || 0) + mealUnitValue;
+                    report.total[foodKey] = Number(totalUnitValue.toFixed(2));
+
+                    const foodName = food.metadata?.HKFoodType?.toString();
+                    if (foodName) {
+                        let foodIndex = meal.foods.findIndex(f => f.name === foodName);
+
+                        if (foodIndex === -1) {
+                            foodIndex =
+                                meal.foods.push({
+                                    name: foodName,
+                                    weight: '',
+                                    details: { ...initialFoodDetails },
+                                }) - 1;
+                        }
+
+                        const details = meal.foods[foodIndex].details;
+                        if (details) {
+                            details[foodKey] = Number(details[foodKey] || 0) + quantity;
+                        }
+                    }
+                }
+            }
+        });
+    });
+
+    return report;
+};
+
+export const getReportFromHK = (userId: string, date: Date) => {
+    const from = startOfDay(date);
+    const to = endOfDay(date);
+
+    const activity = Promise.all(
+        ACTIVITY_PERMISSIONS.map(async ({ id, option }) => ({
+            id,
+            payload: (await queryStatisticsForQuantity(
+                id,
+                [option],
+                from,
+                to,
+                UNIT_MAP[id]?.unitKey
+            )) as QueryStatisticsResponseRaw<TId, UnitForIdentifier<TId>>,
+        }))
+    );
+
+    const food = Promise.all(
+        FOOD_PERMISSIONS.map(async id => ({
+            id,
+            payload: await queryQuantitySamples(id, {
+                from,
+                to,
+                unit: UNIT_MAP[id]?.unitKey,
+            }),
+        }))
+    );
+
+    return Promise.all([activity, food]).then(([activities, foods]) => mapData(date, activities, foods));
 };

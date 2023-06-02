@@ -1,23 +1,27 @@
 import { NextRequest } from 'next/server';
 
 import { EatenFood, FoodDetails, FoodDtoWithCount, FoodDtoWithPercents, FoodInfo, StatsData } from '@/core/types';
-import { Entries, capitalizeFirstLetter, formatDate, getPercents, isEmpty, parseDate } from '@/core/utils';
+import { Entries, capitalizeFirstLetter, formatDate, getPercents, parseDate } from '@/core/utils';
 import { ChartData } from '@/web/shared/ui';
+
+import { getQueryParams } from '../utils';
 
 import { getReportFromFatSecret } from './report';
 
-export const getStatsData = async (req: NextRequest): Promise<StatsData | undefined> => {
-    const searchParams = req.nextUrl.searchParams;
-    const query = Object.fromEntries(searchParams.entries());
+const initialStats: StatsData = {
+    date: formatDate(new Date()),
+    eatenFood: [],
+    chartData: [],
+    allMeals: [],
+};
 
-    if (!query || isEmpty(query)) {
-        return undefined;
+export const getStatsData = async (req: NextRequest): Promise<StatsData> => {
+    const query = getQueryParams(req);
+    if (!query) {
+        return initialStats;
     }
 
     const report = await getReportFromFatSecret(req);
-    if (!report) {
-        return undefined;
-    }
 
     const foodData = report.data.reduce<FoodInfo[]>((acc, item) => {
         acc.push(...item.meals.flatMap(meal => meal.foods));
@@ -25,6 +29,7 @@ export const getStatsData = async (req: NextRequest): Promise<StatsData | undefi
     }, []);
 
     const allEatenFood: FoodDtoWithCount = { name: 'Всего', count: 0, kcal: 0, fat: 0, protein: 0, carbohydrates: 0 };
+
     const mapItem = (acc: EatenFood, name: string, payload: FoodDetails): EatenFood => {
         if (!acc[name]) {
             acc[name] = { name, count: 1, kcal: 0, fat: 0, protein: 0, carbohydrates: 0 };

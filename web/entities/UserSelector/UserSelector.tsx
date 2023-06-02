@@ -2,8 +2,8 @@ import { FC, useState } from 'react';
 
 import { usePathname, useSearchParams, useParams, useRouter } from 'next/navigation';
 
+import { useCurrentUser } from '@/web/shared/hooks';
 import { useAppSelector } from '@/web/shared/store';
-import { getUserById } from '@/web/shared/store/usersReducer';
 import { Modal } from '@/web/shared/ui';
 
 import styles from './UserSelector.module.scss';
@@ -23,7 +23,7 @@ export const UserSelector: FC = () => {
 
     const users = useAppSelector(state => state.users.users);
     const userId = params?.userId ? params?.userId.toString() : undefined;
-    const user = useAppSelector(state => getUserById(state, userId));
+    const user = useCurrentUser();
 
     const onToggle = () => {
         setIsOpen(prev => !prev);

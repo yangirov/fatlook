@@ -1,23 +1,27 @@
 import { NextRequest } from 'next/server';
 
-import { ReportData } from '@/core/types';
-import { isEmpty, getReportLink, parseFatSecretCSV, formatDate, REPORT_TYPES, ReportType } from '@/core/utils';
+import { FoodDetails, ReportData } from '@/core/types';
+import { getReportLink, parseFatSecretCSV, formatDate, REPORT_TYPES, ReportType } from '@/core/utils';
 
-export const getReportFromFatSecret = async (req: NextRequest): Promise<ReportData | null> => {
-    const searchParams = req.nextUrl.searchParams;
-    const query = Object.fromEntries(searchParams.entries());
+import { getQueryParams } from '../utils';
 
-    if (!query || isEmpty(query)) {
-        return null;
+const initialReport: ReportData = {
+    date: formatDate(new Date()),
+    total: {} as FoodDetails,
+    data: [],
+};
+
+export const getReportFromFatSecret = async (req: NextRequest): Promise<ReportData> => {
+    let report = initialReport;
+
+    const query = getQueryParams(req);
+    if (!query) {
+        return report;
     }
 
-    const { type, userId, salt } = query;
+    const { type, userId, hash } = query;
+
     let { date } = query;
-
-    let report = {
-        userId: userId as string,
-    } as ReportData;
-
     if (!date) {
         const yesterday = new Date();
         yesterday.setDate(yesterday.getDate() - 1);
@@ -29,14 +33,14 @@ export const getReportFromFatSecret = async (req: NextRequest): Promise<ReportDa
         reportType = type as ReportType;
     }
 
-    if (userId && date) {
-        const hash = salt?.toString();
-        const fatSecretReportUrl = getReportLink(userId.toString(), date.toString(), reportType, hash);
+    if (userId) {
+        const fatSecretReportUrl = getReportLink(userId, date, reportType, hash);
 
         const response = await fetch(fatSecretReportUrl);
         const reportCsv = await response.text();
+        const parsedReport = parseFatSecretCSV(reportCsv);
 
-        report = { ...report, ...parseFatSecretCSV(reportCsv), date: date.toString() };
+        report = { ...report, ...parsedReport, date };
     }
 
     return report;

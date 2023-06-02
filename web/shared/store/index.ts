@@ -4,8 +4,8 @@ import { TypedUseSelectorHook, useDispatch, useSelector } from 'react-redux';
 
 import { FATLOOK_STATE } from '../consts';
 
-import usersReducer from './usersReducer';
 import reportReducer from './reportReducer';
+import usersReducer from './usersReducer';
 
 const IS_SERVER = typeof window === 'undefined';
 

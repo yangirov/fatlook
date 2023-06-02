@@ -20,13 +20,13 @@ export type EatenFood = { [key: string]: FoodDtoWithCount };
 
 export type StatsData = {
     date: string;
-    allEatenFood: FoodDtoWithCount;
+    allEatenFood?: FoodDtoWithCount;
     eatenFood: FoodDtoWithCount[];
     chartData: {
         label: string;
         values: number[];
     }[];
     allMeals: FoodDtoWithPercents[];
-    totalData: { count: number; data: FoodDetails };
-    foodDetails: { [key: string]: FoodDetails };
+    totalData?: { count: number; data: FoodDetails };
+    foodDetails?: { [key: string]: FoodDetails };
 };

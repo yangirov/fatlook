@@ -3,6 +3,7 @@ import { FC, useContext, useState } from 'react';
 import classNames from 'classnames';
 
 import { FoodDetails, PartialFoodDetailsKeys, foodKeysMap } from '@/core/types';
+import { isEmpty } from '@/core/utils';
 import { Card, Divider, ToggleSwitch } from '@/web/shared/ui';
 
 import { StatsContext } from '../../Stats';
@@ -15,6 +16,10 @@ export const FoodAverage: FC = () => {
     const {
         stats: { totalData, foodDetails },
     } = useContext(StatsContext);
+
+    if (!totalData || isEmpty(totalData) || !foodDetails || isEmpty(foodDetails)) {
+        return null;
+    }
 
     const { data, count } = totalData;
 

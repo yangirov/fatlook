@@ -1,4 +1,21 @@
-import { HKQuantityTypeIdentifier, HKUnits, UnitForIdentifier, UnitOfEnergy } from '@kingstinct/react-native-healthkit';
+import {
+    HKQuantityTypeIdentifier,
+    HKStatisticsOptions,
+    HKUnits,
+    UnitForIdentifier,
+    UnitOfEnergy,
+} from '@kingstinct/react-native-healthkit';
+
+export const ACTIVITY_PERMISSIONS = [
+    {
+        id: HKQuantityTypeIdentifier.bodyMass,
+        option: HKStatisticsOptions.discreteAverage,
+    },
+    {
+        id: HKQuantityTypeIdentifier.stepCount,
+        option: HKStatisticsOptions.cumulativeSum,
+    },
+];
 
 export const FOOD_PERMISSIONS = [
     HKQuantityTypeIdentifier.dietaryEnergyConsumed,

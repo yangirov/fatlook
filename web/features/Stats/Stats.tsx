@@ -5,7 +5,7 @@ import { useRouter } from 'next/navigation';
 
 import { StatsData } from '@/core/types';
 import { formatDate, isEmpty, parseDate } from '@/core/utils';
-import { useRouteParams } from '@/web/shared/hooks';
+import { useRouteParams, useWebViewStatus } from '@/web/shared/hooks';
 import { useCurrentUser } from '@/web/shared/hooks/useCurrentUser';
 import { PageLayout } from '@/web/shared/layouts';
 import { EmptyContent, Tab, Tabs, WeekSelector } from '@/web/shared/ui';
@@ -26,17 +26,19 @@ type StatsProps = {
 };
 
 export const Stats: FC<StatsProps> = ({ stats }) => {
-    const isEmptyStats = !stats || isEmpty(stats.foodDetails) || isEmpty(stats.chartData) || isEmpty(stats.allMeals);
+    const isEmptyStats = isEmpty(stats.foodDetails) || isEmpty(stats.chartData) || isEmpty(stats.allMeals);
 
     const router = useRouter();
-
     const routeParams = useRouteParams();
+
+    const isWebView = useWebViewStatus();
     const user = useCurrentUser();
 
     const onWeekChange = (date: Date) => {
         const sp = new URLSearchParams(routeParams?.searchParams);
         const formattedDate = formatDate(date);
         sp.set('date', formattedDate);
+
         router.push(`/stats/${user?.id}?${sp}`);
     };
 
@@ -44,7 +46,7 @@ export const Stats: FC<StatsProps> = ({ stats }) => {
         <PageLayout>
             <PageLayout.Header>Отчеты</PageLayout.Header>
             <PageLayout.Content>
-                <WeekSelector date={parseDate(stats.date)} onChange={onWeekChange} />
+                {!isWebView && <WeekSelector date={parseDate(stats.date)} onChange={onWeekChange} />}
 
                 {isEmptyStats ? (
                     <EmptyContent />

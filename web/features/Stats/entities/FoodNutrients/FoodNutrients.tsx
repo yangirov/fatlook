@@ -1,7 +1,7 @@
 import { FC, useContext, useLayoutEffect, useRef, useState } from 'react';
 
 import { foodKeysMap, nutrientsGoals } from '@/core/types';
-import { capitalizeFirstLetter, formatDate, getPercents, parseDate } from '@/core/utils';
+import { capitalizeFirstLetter, formatDate, getPercents, isEmpty, parseDate } from '@/core/utils';
 import { UNIT_COLORS } from '@/web/shared/colors';
 import { BarChart, Card, ChartData, Divider } from '@/web/shared/ui';
 
@@ -12,9 +12,21 @@ import styles from './FoodNutrients.module.scss';
 
 export const FoodNutrients: FC = () => {
     const chartRef = useRef<HTMLDivElement>(null);
+
+    const [barWidth, setBarWidth] = useState<number | null>(null);
+    useLayoutEffect(() => {
+        if (chartRef && chartRef.current) {
+            setBarWidth(chartRef.current.offsetWidth);
+        }
+    }, [chartRef]);
+
     const {
         stats: { eatenFood, totalData, foodDetails },
     } = useContext(StatsContext);
+
+    if (!totalData || isEmpty(totalData) || !foodDetails || isEmpty(foodDetails)) {
+        return null;
+    }
 
     const legendKeys = ['carbohydrates', 'allFat', 'protein'];
     const legendTotalSum = legendKeys.reduce((a, b) => a + Number(totalData.data[b]), 0);
@@ -34,13 +46,6 @@ export const FoodNutrients: FC = () => {
         acc.push(data);
         return acc;
     }, []);
-
-    const [barWidth, setBarWidth] = useState<number | null>(null);
-    useLayoutEffect(() => {
-        if (chartRef && chartRef.current) {
-            setBarWidth(chartRef.current.offsetWidth);
-        }
-    }, [chartRef]);
 
     return (
         <>

@@ -5,10 +5,9 @@ import { useRouter } from 'next/navigation';
 import { SlSettings, SlShare } from 'react-icons/sl';
 import { VscGraph } from 'react-icons/vsc';
 
-import { useSharePage, useWebViewStatus } from '@/web/shared/hooks';
+import { useCurrentUser, useSharePage, useWebViewStatus } from '@/web/shared/hooks';
 import { Divider, Icon } from '@/web/shared/ui';
 
-import { ReportContext } from '../../Report';
 import { ReportSettings } from '../ReportSettings';
 
 import styles from './ReportNavigation.module.scss';
@@ -16,10 +15,7 @@ import styles from './ReportNavigation.module.scss';
 const ReportNavigation: FC = () => {
     const isWebView = useWebViewStatus();
     const router = useRouter();
-
-    const {
-        report: { userId },
-    } = useContext(ReportContext);
+    const user = useCurrentUser();
 
     const sharePage = useSharePage();
     const [isOpen, setIsOpen] = useState(false);
@@ -30,7 +26,7 @@ const ReportNavigation: FC = () => {
 
     const onStats = (e: React.MouseEvent) => {
         e.preventDefault();
-        const statsUrl = `/stats/${userId}?type=week`;
+        const statsUrl = `/stats/${user?.id}?type=week`;
         router.push(statsUrl);
     };
 

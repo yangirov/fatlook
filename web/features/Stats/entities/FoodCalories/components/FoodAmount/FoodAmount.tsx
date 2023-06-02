@@ -1,5 +1,6 @@
 import { FC, useContext, useLayoutEffect, useRef, useState } from 'react';
 
+import { isEmpty } from '@/core/utils';
 import { MEAL_COLORS } from '@/web/shared/colors';
 import { useCurrentUser } from '@/web/shared/hooks';
 import { BarChart, Card, Divider } from '@/web/shared/ui';
@@ -7,6 +8,8 @@ import { BarChart, Card, Divider } from '@/web/shared/ui';
 import { StatsContext } from '../../../../Stats';
 
 import styles from './FoodAmount.module.scss';
+
+const CHART_MEAL_COLORS = Object.values(MEAL_COLORS).map(m => m.color);
 
 export const FoodAmount: FC = () => {
     const user = useCurrentUser();
@@ -16,14 +19,16 @@ export const FoodAmount: FC = () => {
     } = useContext(StatsContext);
 
     const chartRef = useRef<HTMLDivElement>(null);
-    const chartMealColors = Object.values(MEAL_COLORS).map(m => m.color);
-
     const [barWidth, setBarWidth] = useState<number | null>(null);
     useLayoutEffect(() => {
         if (chartRef && chartRef.current) {
             setBarWidth(chartRef.current.offsetWidth);
         }
     }, [chartRef]);
+
+    if (!allEatenFood || isEmpty(allEatenFood) || !totalData || isEmpty(totalData)) {
+        return null;
+    }
 
     return (
         <Card>
@@ -40,7 +45,7 @@ export const FoodAmount: FC = () => {
                     <BarChart
                         hasMiddleLine={true}
                         data={chartData}
-                        colors={chartMealColors}
+                        colors={CHART_MEAL_COLORS}
                         width={barWidth}
                         height={125}
                     />

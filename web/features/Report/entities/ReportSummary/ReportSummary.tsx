@@ -5,8 +5,7 @@ import classNames from 'classnames';
 import { REPORT_CALC_RATIO, PartialFoodDetailsKeys, FoodUnit, FoodKeys, foodKeysMap } from '@/core/types';
 import { getPercents } from '@/core/utils';
 import { UNIT_COLORS } from '@/web/shared/colors';
-import { useAppSelector } from '@/web/shared/store';
-import { getUserById } from '@/web/shared/store/usersReducer';
+import { useCurrentUser } from '@/web/shared/hooks';
 import { Divider, PieChart } from '@/web/shared/ui';
 
 import { ReportContext } from '../../Report';
@@ -21,10 +20,10 @@ const FormatUnit: FC<{ unit?: FoodKeys; value: FoodUnit }> = ({ unit, value }) =
 
 const ReportSummary: FC = () => {
     const {
-        report: { userId, total },
+        report: { total },
     } = useContext(ReportContext);
 
-    const user = useAppSelector(state => getUserById(state, userId));
+    const user = useCurrentUser();
 
     const keys: PartialFoodDetailsKeys = [
         'allFat',
