@@ -1,0 +1,47 @@
+{
+    "name": "@fatlook/mobile",
+    "version": "0.0.1",
+    "scripts": {
+        "watch": "concurrently 'npm run typed-styles' 'npm run ios'",
+        "start": "react-native start",
+        "android": "react-native run-android",
+        "ios": "react-native run-ios",
+        "lint": "eslint .",
+        "typed-styles": "typed-scss-modules src --watch",
+        "clear": "cd ios && pod deintegrate && pod install && watchman watch-del-all && react-native start --reset-cache",
+        "postinstall": "patch-package"
+    },
+    "dependencies": {
+        "@fatlook/core": "*",
+        "@kingstinct/react-native-healthkit": "^6.1.1",
+        "react": "18.2.0",
+        "react-native": "0.71.8",
+        "react-native-device-info": "^10.6.0",
+        "react-native-dotenv": "^3.4.8",
+        "react-native-health-connect": "^1.0.2",
+        "react-native-paper": "^5.8.0",
+        "react-native-safe-area-context": "^4.5.3",
+        "react-native-vector-icons": "^9.2.0",
+        "react-native-webview": "^12.1.0"
+    },
+    "devDependencies": {
+        "@babel/core": "^7.20.0",
+        "@babel/preset-env": "^7.20.0",
+        "@babel/runtime": "^7.20.0",
+        "@react-native-community/eslint-config": "^3.2.0",
+        "@react-native/eslint-plugin": "^0.73.0",
+        "@tsconfig/react-native": "^2.0.2",
+        "@types/react": "^18.0.24",
+        "@types/react-test-renderer": "^18.0.0",
+        "babel-plugin-module-resolver": "^5.0.0",
+        "babel-plugin-react-native-classname-to-style": "^1.2.2",
+        "babel-plugin-react-native-platform-specific-extensions": "^1.1.1",
+        "metro-react-native-babel-preset": "0.73.9",
+        "patch-package": "^7.0.0",
+        "react-native-sass-transformer": "^2.0.0",
+        "react-test-renderer": "18.2.0",
+        "sass": "^1.62.1",
+        "typed-scss-modules": "^7.1.0",
+        "typescript": "^5.0.4"
+    }
+}

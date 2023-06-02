@@ -1,0 +1,4 @@
+{
+    "extends": "../../.eslintrc.json",
+    "plugins": ["eslint-comments", "react-native", "@react-native"]
+}

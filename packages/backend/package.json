@@ -1,0 +1,10 @@
+{
+    "name": "@fatlook/backend",
+    "version": "0.1.0",
+    "scripts": {
+        "build": "tsc"
+    },
+    "dependencies": {
+        "next": "^13.4.4"
+    }
+}

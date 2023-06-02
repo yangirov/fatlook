@@ -28,8 +28,9 @@ build/Release
 # Dependency directory
 node_modules
 
-# Optional npm cache directory
+# Optional cache directory
 .npm
+.yarn
 
 # Optional REPL history
 .node_repl_history

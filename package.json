@@ -1,11 +1,13 @@
 {
-    "name": "fatlook",
+    "name": "@fatlook/root",
     "version": "0.1.0",
     "private": true,
     "scripts": {
-        "start": "concurrently 'npm run start-web' 'npm run start-mobile'",
-        "start-mobile": "cd mobile && concurrently 'npm run typed-styles' 'npm run ios'",
-        "start-web": "cd web && 'npm run watch'",
+        "build": "npx lerna run build",
+        "graph": "npx nx graph",
+        "start": "concurrently 'npm run start:web' 'npm run start:mobile'",
+        "start:mobile": "cd packages/mobile && npm run watch",
+        "start:web": "cd packages/web && npm run watch",
         "prepare": "husky install"
     },
     "devDependencies": {
@@ -15,11 +17,11 @@
         "chokidar": "^3.5.3",
         "concurrently": "^8.0.1",
         "eslint": "^8.39.0",
-        "eslint-config-next": "13.3.1",
         "eslint-config-prettier": "^8.8.0",
         "eslint-plugin-import": "^2.27.5",
         "eslint-plugin-prettier": "^4.2.1",
         "husky": "^8.0.3",
+        "lerna": "^6.6.2",
         "lint-staged": "^13.2.1",
         "prettier": "^2.8.8",
         "stylelint": "^15.6.2",
@@ -30,5 +32,17 @@
         "stylelint-prettier": "^3.0.0",
         "stylelint-scss": "^5.0.0",
         "typescript": "^5.0.4"
+    },
+    "workspaces": {
+        "packages": [
+            "packages/*"
+        ],
+        "nohoist": [
+            "**/date-fns",
+            "**/date-fns/**",
+            "**/react-native",
+            "**/react-native/**",
+            "**/react-native-**"
+        ]
     }
 }
