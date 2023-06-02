@@ -21,7 +21,6 @@ export const Error: FC<ErrorProps> = ({ error }) => {
                 <div className={styles.errorText}>{error?.message}</div>
 
                 <Link
-                    className={styles.errorLink}
                     onClick={e => {
                         e.preventDefault();
                         router.back();

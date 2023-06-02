@@ -9,6 +9,7 @@
         "strictNullChecks": true,
         "paths": {
             "@/core/*": ["../core/*"],
+            "@/backend/*": ["../backend/*"],
             "@/web/*": ["./*"]
         }
     },

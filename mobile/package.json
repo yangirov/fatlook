@@ -7,7 +7,7 @@
         "ios": "react-native run-ios",
         "lint": "eslint .",
         "start": "react-native start",
-        "typed-styles": "npx typed-scss-modules src --watch",
+        "typed-styles": "typed-scss-modules src --watch",
         "clear": "cd ios && pod deintegrate && pod install && watchman watch-del-all && react-native start --reset-cache",
         "postinstall": "patch-package"
     },

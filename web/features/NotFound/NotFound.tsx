@@ -13,9 +13,7 @@ export const NotFound: FC = () => {
                 <div className={styles.notFoundTitle}>404</div>
                 <div className={styles.notFoundText}>Страница не найдена</div>
 
-                <Button href="/" className={styles.notFoundLink}>
-                    На главную
-                </Button>
+                <Button href="/">На главную</Button>
 
                 <Image className={styles.notFoundImage} src="images/404.svg" alt="404" width={250} height={250} />
             </div>

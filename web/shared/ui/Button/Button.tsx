@@ -34,7 +34,6 @@ export const Button: FC<ButtonProps> = ({
                 [styles.active]: isActive && !disabled,
                 [styles.disabled]: disabled,
                 [styles.hasHover]: hasHover && !disabled,
-                [styles.loading]: children === 'loading',
             },
             className
         );

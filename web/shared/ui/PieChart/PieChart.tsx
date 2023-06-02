@@ -30,7 +30,7 @@ export const PieChart: FC<PieChartProps> = ({ className, size = 80, data }) => {
 
     return (
         <div className={classNames(styles.pieChart, className)} style={sizeStyle}>
-            <svg className={styles.pieChartSvg} width={size} height={size}>
+            <svg width={size} height={size}>
                 <g transform={`translate(${radius},${radius})`}>
                     {data.map(({ color, name, value }) => {
                         const percentage = value / total;

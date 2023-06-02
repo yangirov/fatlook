@@ -132,11 +132,7 @@ export const PwaModal: FC = () => {
                     </div>
 
                     <div className={styles.pwaModalButtons}>
-                        {isAndroid && (
-                            <Button className={styles.pwaModalButton} onClick={addToHomeScreen}>
-                                Установить
-                            </Button>
-                        )}
+                        {isAndroid && <Button onClick={addToHomeScreen}>Установить</Button>}
 
                         {isIOS && (
                             <div className={styles.pwaModalIos}>

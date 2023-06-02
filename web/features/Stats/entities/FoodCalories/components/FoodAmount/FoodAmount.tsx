@@ -47,7 +47,7 @@ export const FoodAmount: FC = () => {
                 )}
             </div>
 
-            <div className={styles.amountCardContent}>
+            <div>
                 <div className={styles.amountCardItem}>
                     <div className={styles.amountCardInfo}>
                         <div></div>

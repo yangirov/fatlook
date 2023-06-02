@@ -58,7 +58,7 @@ export const ReportSettings: FC<ReportSettingsProps> = ({ isOpen, onToggle }) =>
                 {allColumns.map((key, index) => (
                     <div key={key}>
                         <div className={styles.column} onClick={() => saveColumn(key)}>
-                            <div className={styles.columnName}>{foodKeysMap[key]?.fullName}</div>
+                            <div>{foodKeysMap[key]?.fullName}</div>
                             <div className={styles.columnCheckbox}>
                                 <Icon color={visibleColumns.includes(key) ? 'var(--green)' : 'var(--light-gray)'}>
                                     <FaCheck />

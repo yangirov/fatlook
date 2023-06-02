@@ -4,8 +4,8 @@
     "private": true,
     "scripts": {
         "start": "concurrently 'npm run start-web' 'npm run start-mobile'",
-        "start-mobile": "concurrently 'cd mobile && npm run typed-styles' 'cd mobile && npm run ios'",
-        "start-web": "cd web && npm run watch",
+        "start-mobile": "cd mobile && concurrently 'npm run typed-styles' 'npm run ios'",
+        "start-web": "cd web && 'npm run watch'",
         "prepare": "husky install"
     },
     "devDependencies": {
@@ -29,6 +29,6 @@
         "stylelint-order": "^6.0.3",
         "stylelint-prettier": "^3.0.0",
         "stylelint-scss": "^5.0.0",
-        "typescript": "5.0.4"
+        "typescript": "^5.0.4"
     }
 }

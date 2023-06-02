@@ -56,7 +56,7 @@ export const FoodAverage: FC = () => {
                 <ToggleSwitch text="Медиана" checked={isMedianMode} onChange={setIsMedianMode} />
             </div>
 
-            <div className={styles.foodAverageContent}>
+            <div>
                 {columns.map(column => {
                     const value = isMedianMode ? median[column] : Math.floor(+(data[column] ?? 0) / count);
 

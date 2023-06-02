@@ -47,7 +47,7 @@ export const FoodNutrients: FC = () => {
             <Card>
                 <div className={styles.nutrientsTitle}>Макроэлементы</div>
 
-                <div className={styles.nutrientsChart} ref={chartRef}>
+                <div ref={chartRef}>
                     {barWidth && (
                         <BarChart data={chartData} colors={chartNutrientColors} width={barWidth} height={125} />
                     )}

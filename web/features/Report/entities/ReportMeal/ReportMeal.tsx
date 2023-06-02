@@ -22,7 +22,7 @@ const ReportMealHeader: FC<ReportMealProps> = ({ meal }) => {
     const visibleColumns = useAppSelector(state => state.report.visibleColumns);
 
     return (
-        <div className={classNames(styles.reportMealHeader, { [styles.reportMealHeaderExpanded]: isOpen })}>
+        <div className={classNames({ [styles.reportMealHeaderExpanded]: isOpen })}>
             <div className={styles.reportMealHeaderPrime}>
                 <div className={styles.reportMealHeaderPrimeIcon}>{MEAL_ICONS[meal.name]}</div>
                 <div className={styles.reportMealHeaderPrimeInfo}>

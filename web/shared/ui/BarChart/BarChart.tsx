@@ -31,7 +31,7 @@ export const BarChart: FC<BarChartProps> = ({ colors, data, width, height, hasMi
     const cumulativeHeight = new Array(data.length).fill(0);
 
     return (
-        <div className={styles.barChart}>
+        <div>
             <div className={styles.barChartSvgWrapper} style={{ width, height }}>
                 {hasMiddleLine && <div className={styles.barChartLine} style={{ bottom: middleLine }}></div>}
 
@@ -50,7 +50,6 @@ export const BarChart: FC<BarChartProps> = ({ colors, data, width, height, hasMi
 
                             return (
                                 <rect
-                                    className={styles.barChartRect}
                                     key={`${index}-${i}`}
                                     x={index * barWidth + 5}
                                     y={y}

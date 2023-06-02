@@ -21,7 +21,7 @@ export const SnackBar: FC = () => {
     return createPortal(
         <div className={styles.snackBar}>
             <div className={styles.snackBarInner}>
-                <div className={styles.snackBarLabel}>{snackBarContext.message}</div>
+                <div>{snackBarContext.message}</div>
                 <div className={styles.snackBarClose} onClick={snackBarContext.close}>
                     <MdClose />
                 </div>

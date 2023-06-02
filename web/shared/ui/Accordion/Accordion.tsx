@@ -19,7 +19,7 @@ const AccordionWrapper: FC<AccordionProps> = ({ children, className, onChange })
 
     return (
         <AccordionContext.Provider value={{ isOpen, setOpen: handleToggle }}>
-            <div className={classNames(styles.accordion, className)}>{children}</div>
+            <div className={className}>{children}</div>
         </AccordionContext.Provider>
     );
 };
