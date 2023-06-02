@@ -1,4 +1,4 @@
-import { NextApiRequest, NextApiResponse } from 'next';
+import { NextRequest } from 'next/server';
 
 import { EatenFood, FoodDetails, FoodDtoWithCount, FoodDtoWithPercents, FoodInfo, StatsData } from '@/core/types';
 import { Entries, capitalizeFirstLetter, formatDate, getPercents, isEmpty, parseDate } from '@/core/utils';
@@ -6,8 +6,9 @@ import { ChartData } from '@/web/shared/ui';
 
 import { getReportFromFatSecret } from './report';
 
-export const getStatsData = async (req: NextApiRequest): Promise<StatsData | undefined> => {
-    const { query } = req;
+export const getStatsData = async (req: NextRequest): Promise<StatsData | undefined> => {
+    const searchParams = req.nextUrl.searchParams;
+    const query = Object.fromEntries(searchParams.entries());
 
     if (!query || isEmpty(query)) {
         return undefined;
@@ -110,12 +111,3 @@ export const getStatsData = async (req: NextApiRequest): Promise<StatsData | und
         foodDetails,
     };
 };
-
-export default async function handler(req: NextApiRequest, res: NextApiResponse) {
-    try {
-        const stats = await getStatsData(req);
-        res.status(200).json(stats);
-    } catch (error) {
-        res.status(500).json({ error: 'Ошибка при загрузке отчета' });
-    }
-}

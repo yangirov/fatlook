@@ -1,10 +1,11 @@
-import { NextApiRequest, NextApiResponse } from 'next';
+import { NextRequest } from 'next/server';
 
 import { ReportData } from '@/core/types';
 import { isEmpty, getReportLink, parseFatSecretCSV, formatDate, REPORT_TYPES, ReportType } from '@/core/utils';
 
-export const getReportFromFatSecret = async (req: NextApiRequest): Promise<ReportData | null> => {
-    const { query } = req;
+export const getReportFromFatSecret = async (req: NextRequest): Promise<ReportData | null> => {
+    const searchParams = req.nextUrl.searchParams;
+    const query = Object.fromEntries(searchParams.entries());
 
     if (!query || isEmpty(query)) {
         return null;
@@ -40,12 +41,3 @@ export const getReportFromFatSecret = async (req: NextApiRequest): Promise<Repor
 
     return report;
 };
-
-export default async function handler(req: NextApiRequest, res: NextApiResponse) {
-    try {
-        const report = await getReportFromFatSecret(req);
-        res.status(200).json(report);
-    } catch (error) {
-        res.status(500).json({ error: 'Ошибка при загрузке отчета' });
-    }
-}
