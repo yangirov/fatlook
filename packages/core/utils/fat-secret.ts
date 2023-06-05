@@ -6,15 +6,20 @@ import { parseDate, diffInDays, formatDate } from './dates';
 export type ReportType = 'day' | 'week' | 'month';
 
 export const getUserId = (url: string) => {
-    const regex = /^https:\/\/www\.fatsecret\.(?:[a-z]+)\/export\/(\d+)\/.*$/;
-    const match = url.match(regex);
+    const regexAndroid = /fatsecret.+id=(\d+)/;
+    const regexIOS = /fatsecret.+export\/(\d+)/;
 
-    if (match && match.length === 2) {
-        const userId = match[1];
-        return userId;
-    } else {
-        return null;
+    const matchAndroid = url.match(regexAndroid);
+    if (matchAndroid) {
+        return matchAndroid[1];
     }
+
+    const matchIOS = url.match(regexIOS);
+    if (matchIOS) {
+        return matchIOS[1];
+    }
+
+    return null;
 };
 
 export const REPORT_TYPES: { [key: string]: ReportType } = {
