@@ -1,5 +1,5 @@
 'use client';
-import { FC, useContext, useEffect, useState } from 'react';
+import React, { FC, useContext, useEffect, useState } from 'react';
 
 import classNames from 'classnames';
 import { useParams, useRouter, useSearchParams } from 'next/navigation';

@@ -1,5 +1,5 @@
 'use client';
-import { FC, ReactNode, Children, isValidElement, useEffect, useRef } from 'react';
+import { FC, CSSProperties, ReactNode, Children, isValidElement, useEffect, useRef } from 'react';
 
 import classNames from 'classnames';
 import { createPortal } from 'react-dom';
@@ -25,7 +25,7 @@ const defaultStyle = {
     opacity: 0,
 };
 
-const transitionStyles: { [key in TransitionStatus]?: React.CSSProperties } = {
+const transitionStyles: { [key in TransitionStatus]?: CSSProperties } = {
     entering: { transform: 'translateY(100%)', opacity: 0 },
     entered: { transform: 'translateY(0)', opacity: 1 },
     exited: { transform: 'translateY(100%)', opacity: 0 },

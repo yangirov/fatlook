@@ -1,3 +1,5 @@
+import { Dictionary } from '@reduxjs/toolkit';
+
 import { FoodDetails } from '@fatlook/core/types';
 import { ObjectWithOptionalKeys, isEmpty } from '@fatlook/core/utils';
 
@@ -22,7 +24,7 @@ export const DEFAULT_CHART_COLORS = [
 
 const getUnitInfo = (color: string, key: string) => ({ color, key });
 
-export const MEAL_COLORS: { [key: string]: { color: string; key: string } } = {
+export const MEAL_COLORS: Dictionary<{ color: string; key: string }> = {
     Завтрак: getUnitInfo('#ffb700', 'breakfast'),
     Обед: getUnitInfo('#01b4f8', 'lunch'),
     Ужин: getUnitInfo('#fd9570', 'dinner'),

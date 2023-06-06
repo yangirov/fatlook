@@ -8,7 +8,7 @@ import {
     FoodInfo,
     StatsData,
 } from '@fatlook/core/types';
-import { Entries, capitalizeFirstLetter, formatDate, getPercents, parseDate } from '@fatlook/core/utils';
+import { Dictionary, Entries, capitalizeFirstLetter, formatDate, getPercents, parseDate } from '@fatlook/core/utils';
 
 import { getQueryParams } from '../utils';
 
@@ -79,7 +79,7 @@ export const getStatsData = async (req: NextRequest): Promise<StatsData> => {
         return acc;
     }, []);
 
-    const mealData = report.data.reduce<{ [key: string]: { name: string; kcal: number } }>((acc, meal) => {
+    const mealData = report.data.reduce<Dictionary<{ name: string; kcal: number }>>((acc, meal) => {
         meal.meals.forEach(({ name, total: { kcal } }) => {
             if (!kcal) kcal = 0;
 
@@ -100,7 +100,7 @@ export const getStatsData = async (req: NextRequest): Promise<StatsData> => {
 
     const totalData = { count: report.data.length, data: report.total };
 
-    const foodDetails = report.data.reduce<{ [key: string]: FoodDetails }>((acc, item) => {
+    const foodDetails = report.data.reduce<Dictionary<FoodDetails>>((acc, item) => {
         item.meals.forEach(meal => {
             if (!acc[item.date]) {
                 acc[item.date] = { ...meal.total };

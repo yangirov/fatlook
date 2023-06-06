@@ -10,7 +10,7 @@ import { StatsContext } from '../../../../Stats';
 
 import styles from './FoodAmount.module.scss';
 
-const CHART_MEAL_COLORS = Object.values(MEAL_COLORS).map(m => m.color);
+const CHART_MEAL_COLORS = Object.values(MEAL_COLORS).map(m => m?.color || '');
 
 export const FoodAmount: FC = () => {
     const user = useCurrentUser();

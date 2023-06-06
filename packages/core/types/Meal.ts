@@ -1,3 +1,5 @@
+import { Dictionary } from '../utils';
+
 import { FoodDetails, FoodInfo } from './Food';
 
 export type Meal = {
@@ -6,7 +8,7 @@ export type Meal = {
     foods: FoodInfo[];
 };
 
-export const MEAL_ICONS: { [key: string]: string } = {
+export const MEAL_ICONS: Dictionary = {
     Завтрак: '🌅',
     Обед: '🕑',
     Ужин: '🌇',

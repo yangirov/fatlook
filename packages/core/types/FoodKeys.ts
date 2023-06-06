@@ -1,4 +1,4 @@
-import { ObjectWithOptionalKeys } from '../utils';
+import { Dictionary, ObjectWithOptionalKeys } from '../utils';
 
 import { FoodDetails } from './Food';
 
@@ -32,7 +32,7 @@ export const foodKeysMap: FoodKeysMap = {
     kalium: getUnitInfo('Калий', null, 'Калий( мг)', 'н'),
 };
 
-export const nutrientsGoals: { [key: string]: string } = {
+export const nutrientsGoals: Dictionary = {
     carbohydrates: '50%',
     allFat: '30%',
     protein: '20%',

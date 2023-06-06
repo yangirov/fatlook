@@ -1,4 +1,4 @@
-import { SetStateAction, ReactNode } from 'react';
+import React, { SetStateAction, ReactNode } from 'react';
 
 export type AccordionProps = {
     children: ReactNode;

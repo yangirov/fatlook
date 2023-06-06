@@ -2,6 +2,7 @@ import { startOfMonth, startOfWeek } from 'date-fns';
 import { ru } from 'date-fns/locale';
 
 import { parseDate, diffInDays, formatDate } from './dates';
+import { Dictionary } from './types';
 
 export type ReportType = 'day' | 'week' | 'month';
 
@@ -22,7 +23,7 @@ export const getUserId = (url: string) => {
     return null;
 };
 
-export const REPORT_TYPES: { [key: string]: ReportType } = {
+export const REPORT_TYPES: Dictionary<ReportType> = {
     DAY: 'day',
     WEEK: 'week',
     MONTH: 'month',

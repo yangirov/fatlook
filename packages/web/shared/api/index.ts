@@ -1,9 +1,9 @@
 import { ReportData, StatsData } from '@fatlook/core/types';
-import { isEmpty } from '@fatlook/core/utils';
+import { Dictionary, isEmpty } from '@fatlook/core/utils';
 
 export type RouteParams = {
-    params?: { [key: string]: string };
-    searchParams?: { [key: string]: string };
+    params?: Dictionary;
+    searchParams?: Dictionary;
 };
 
 const getFromAPI = async <T>(path: string, query: RouteParams) => {

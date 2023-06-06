@@ -28,7 +28,7 @@ const initialFoodDetails = {
     kalium: null,
 };
 
-type MapPayload = Partial<{ [k in TId]: readonly HKQuantitySample<TId>[] }>;
+type MapPayload = Partial<{ [key in TId]: readonly HKQuantitySample<TId>[] }>;
 
 const mapData = (
     date: Date,

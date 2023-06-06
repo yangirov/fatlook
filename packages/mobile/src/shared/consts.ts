@@ -6,6 +6,8 @@ import {
     UnitOfEnergy,
 } from '@kingstinct/react-native-healthkit';
 
+import { Dictionary } from '@fatlook/core/utils';
+
 export const ACTIVITY_PERMISSIONS = [
     {
         id: HKQuantityTypeIdentifier.bodyMass,
@@ -50,7 +52,7 @@ const getUnitInfo = <T extends HKQuantityTypeIdentifier>(
     unitName: string
 ): UnitInfo<T> => ({ key, name, unitKey, unitName });
 
-export const UNIT_MAP: Partial<{ [k in HKQuantityTypeIdentifier]: UnitInfo<k> }> = {
+export const UNIT_MAP: Partial<{ [key in HKQuantityTypeIdentifier]: UnitInfo<key> }> = {
     [HKQuantityTypeIdentifier.stepCount]: getUnitInfo('Шаги', 'steps', HKUnits.Count, 'шагов'),
     [HKQuantityTypeIdentifier.bodyMass]: getUnitInfo('Кг', 'weight', 'kg', 'кг'),
     [HKQuantityTypeIdentifier.dietaryEnergyConsumed]: getUnitInfo('Калории', 'kcal', UnitOfEnergy.Kilocalories, 'ккал'),
@@ -76,7 +78,7 @@ const getGoal = (payload: number | [number, number]): Goal => {
     return { isRange: false, from: null, to: payload };
 };
 
-export const ID_MAP: Partial<{ [k in HKQuantityTypeIdentifier]: string }> = {
+export const ID_MAP: Partial<{ [key in HKQuantityTypeIdentifier]: string }> = {
     [HKQuantityTypeIdentifier.stepCount]: 'steps',
     [HKQuantityTypeIdentifier.dietaryEnergyConsumed]: 'kcal',
     [HKQuantityTypeIdentifier.dietaryProtein]: 'protein',
@@ -85,7 +87,7 @@ export const ID_MAP: Partial<{ [k in HKQuantityTypeIdentifier]: string }> = {
     [HKQuantityTypeIdentifier.dietaryFatTotal]: 'fatTotal',
 };
 
-export const DEFAULT_GOALS_MAP: Partial<{ [k in HKQuantityTypeIdentifier]: Goal }> = {
+export const DEFAULT_GOALS_MAP: Partial<{ [key in HKQuantityTypeIdentifier]: Goal }> = {
     [HKQuantityTypeIdentifier.stepCount]: getGoal([10_000, 12_000]),
     [HKQuantityTypeIdentifier.dietaryEnergyConsumed]: getGoal(2_500),
     [HKQuantityTypeIdentifier.dietaryProtein]: getGoal([120, 150]),
@@ -94,7 +96,7 @@ export const DEFAULT_GOALS_MAP: Partial<{ [k in HKQuantityTypeIdentifier]: Goal 
     [HKQuantityTypeIdentifier.dietaryFatTotal]: getGoal([80, 100]),
 };
 
-export const GOALS_MAP: { [key: string]: Goal } = {
+export const GOALS_MAP: Dictionary<Goal> = {
     steps: getGoal([10_000, 12_000]),
     kcal: getGoal(2_500),
     protein: getGoal([120, 150]),
