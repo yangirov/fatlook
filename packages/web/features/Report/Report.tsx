@@ -10,6 +10,7 @@ import { PageLayout } from '@/web/shared/layouts';
 import { EmptyContent } from '@/web/shared/ui';
 
 import ReportHeader from './entities/ReportHeader';
+import ReportHealth from './entities/ReportHealth';
 import ReportMeals from './entities/ReportMeals';
 import ReportNavigation from './entities/ReportNavigation';
 import ReportSummary from './entities/ReportSummary';
@@ -42,6 +43,7 @@ export const Report: FC<ReportProps> = ({ report }) => {
                         <>
                             <ReportTotal />
                             <ReportMeals />
+                            <ReportHealth />
                             <ReportSummary />
                             <ReportNavigation />
                         </>

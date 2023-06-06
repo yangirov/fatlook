@@ -38,6 +38,7 @@
             "packages/*"
         ],
         "nohoist": [
+            "**/mongoose",
             "**/date-fns",
             "**/date-fns/**",
             "**/react-native",

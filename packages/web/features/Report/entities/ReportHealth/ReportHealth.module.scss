@@ -1,0 +1,40 @@
+$border: calc(var(--border-radius) * 2);
+
+.reportHealth {
+    margin-bottom: var(--gap-25);
+    background-color: var(--white);
+    border-radius: $border;
+    box-shadow: 0 0 var(--gap-5) var(--gap-5) var(--shadow-color);
+
+    &Header {
+        display: flex;
+        gap: 15px;
+        align-items: center;
+        padding: var(--gap-10) var(--gap-15);
+
+        &Icon {
+            font-size: 1.5rem;
+        }
+
+        &Tilte {
+            display: flex;
+        }
+    }
+
+    &Content {
+        font-size: var(--font-small);
+        padding: var(--gap-10) var(--gap-15) var(--gap-10) var(--gap-50);
+        border-top: 1px solid var(--border);
+
+        &Item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+
+            &Total {
+                font-weight: bold;
+            }
+        }
+    }
+}

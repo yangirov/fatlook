@@ -1,4 +1,4 @@
-import { NextRequest } from 'next/server';
+import { NextApiRequest } from 'next';
 
 import {
     EatenFood,
@@ -8,11 +8,17 @@ import {
     FoodInfo,
     StatsData,
 } from '@fatlook/core/types';
-import { Dictionary, Entries, capitalizeFirstLetter, formatDate, getPercents, parseDate } from '@fatlook/core/utils';
+import {
+    Dictionary,
+    Entries,
+    capitalizeFirstLetter,
+    formatDate,
+    getPercents,
+    isEmpty,
+    parseDate,
+} from '@fatlook/core/utils';
 
-import { getQueryParams } from '../utils';
-
-import { getReportFromFatSecret } from './report';
+import { getReportFromFatSecret } from './getReportFromFatSecret';
 
 const initialStats: StatsData = {
     date: formatDate(new Date()),
@@ -21,9 +27,9 @@ const initialStats: StatsData = {
     allMeals: [],
 };
 
-export const getStatsData = async (req: NextRequest): Promise<StatsData> => {
-    const query = getQueryParams(req);
-    if (!query) {
+export const getStatsData = async (req: NextApiRequest): Promise<StatsData> => {
+    const { query } = req;
+    if (!query || isEmpty(query)) {
         return initialStats;
     }
 

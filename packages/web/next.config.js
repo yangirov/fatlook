@@ -11,6 +11,7 @@ module.exports = withPWA({
     reactStrictMode: true,
     experimental: {
         appDir: true,
+        serverComponentsExternalPackages: ['mongoose'],
     },
     env: {
         host: '0.0.0.0',

@@ -23,7 +23,7 @@ export const OpenURLButton = ({ url, title }: OpenURLButtonProps) => {
         if (supported) {
             webViewContext.show(title, url);
         } else {
-            console.error(`Don't know how to open this URL: ${url}`);
+            console.log(`Don't know how to open this URL: ${url}`);
         }
     }, [title, url, webViewContext]);
 

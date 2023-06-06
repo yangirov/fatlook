@@ -1,12 +1,13 @@
 import { FC, createContext, useContext, useEffect, useRef, useState } from 'react';
 
 import { FAT_SECRET_INSTRUCTIONS } from '@env';
-import { ActivityIndicator, Share } from 'react-native';
+import { ActivityIndicator, Share, View } from 'react-native';
 import DeviceInfo from 'react-native-device-info';
 import { Appbar, Portal } from 'react-native-paper';
 import { WebView } from 'react-native-webview';
 
 import { APP_NAME } from '@fatlook/core/utils';
+
 import styles from '@/mobile/styles/styles.module.scss';
 
 import { useAppTheme } from '../hooks';
@@ -63,12 +64,18 @@ export const WebViewModal: FC = () => {
         });
     };
 
+    const reloadPage = async () => {
+        webViewRef?.current?.reload();
+    };
+
     return (
         <Portal>
             <Appbar.Header>
                 <Appbar.BackAction onPress={ctx.close} />
+                <View className={styles.webViewHeaderGap}></View>
                 <Appbar.Content title={ctx.title} />
-                <Appbar.Action icon="share" onPress={sharePage} />
+                <Appbar.Action icon="reload" onPress={reloadPage} />
+                <Appbar.Action icon="share-variant" onPress={sharePage} />
             </Appbar.Header>
             {loading && (
                 <ActivityIndicator
@@ -79,6 +86,7 @@ export const WebViewModal: FC = () => {
                 />
             )}
             <WebView
+                cacheEnabled={false}
                 ref={webViewRef}
                 source={{ uri: ctx.url }}
                 userAgent={userAgent}

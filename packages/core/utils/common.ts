@@ -57,3 +57,13 @@ export const getPercents = (num: number, total: number, needSymbol = true) => {
     const value = Math.round(((num / total) * 10000) / 100);
     return needSymbol ? `${value}%` : value;
 };
+
+export const formatNumber = (num: number, separator = ' ') => {
+    const arr = num.toString().split('');
+
+    for (let i = arr.length - 3; i > 0; i -= 3) {
+        arr.splice(i, 0, separator);
+    }
+
+    return arr.join('');
+};

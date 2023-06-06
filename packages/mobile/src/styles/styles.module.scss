@@ -60,6 +60,13 @@ $gap-20: 20px;
     border-radius: 8px;
 }
 
+.loaderOverlay {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
 /* Screens */
 .welcome {
     &Container {
@@ -131,4 +138,12 @@ $gap-20: 20px;
         background-color: #fff;
         inset: 0;
     }
+
+    &HeaderGap {
+        width: 50px;
+    }
+}
+
+.report {
+    min-height: 100%;
 }

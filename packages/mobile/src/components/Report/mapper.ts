@@ -64,7 +64,7 @@ const mapData = (
         }
 
         if (unitKey === 'steps') {
-            report[unitKey] = Number(payload?.sumQuantity?.quantity);
+            report[unitKey] = Math.floor(Number(payload?.sumQuantity?.quantity));
         }
     });
 

@@ -1,9 +1,7 @@
-import { NextRequest } from 'next/server';
+import { NextApiRequest } from 'next';
 
 import { FoodDetails, ReportData } from '@fatlook/core/types';
-import { getReportLink, parseFatSecretCSV, formatDate, REPORT_TYPES, ReportType } from '@fatlook/core/utils';
-
-import { getQueryParams } from '../utils';
+import { getReportLink, parseFatSecretCSV, formatDate, REPORT_TYPES, ReportType, isEmpty } from '@fatlook/core/utils';
 
 const initialReport: ReportData = {
     date: formatDate(new Date()),
@@ -11,11 +9,11 @@ const initialReport: ReportData = {
     data: [],
 };
 
-export const getReportFromFatSecret = async (req: NextRequest): Promise<ReportData> => {
+export const getReportFromFatSecret = async (req: NextApiRequest): Promise<ReportData> => {
     let report = initialReport;
 
-    const query = getQueryParams(req);
-    if (!query) {
+    const { query } = req;
+    if (!query || isEmpty(query)) {
         return report;
     }
 
