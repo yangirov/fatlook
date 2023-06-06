@@ -11,10 +11,12 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         }
 
         if (req.method === 'GET') {
-            let report = await getReportFromDb(req, MONGO_URI);
+            const report = await getReportFromFatSecret(req);
 
-            if (!report) {
-                report = await getReportFromFatSecret(req);
+            const reportFromDb = await getReportFromDb(req, MONGO_URI);
+            if (reportFromDb) {
+                report.weight = reportFromDb.weight;
+                report.steps = reportFromDb.steps;
             }
 
             res.status(200).json(report);
