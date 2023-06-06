@@ -44,6 +44,8 @@ type ContentProps = {
 };
 
 const Content: FC<ContentProps> = ({ date, setMonth }) => {
+    const { setOpen } = useContext(AccordionContext);
+
     const searchParams = useSearchParams() as unknown as URLSearchParams;
 
     const router = useRouter();
@@ -60,6 +62,8 @@ const Content: FC<ContentProps> = ({ date, setMonth }) => {
 
             router.push(`/report/${params?.userId}?${sp}`);
         }
+
+        setOpen(prev => !prev);
     };
 
     const handleMonthChange = (month: string) => setMonth(month);
