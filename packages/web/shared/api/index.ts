@@ -16,7 +16,7 @@ const getFromAPI = async <T>(path: string, query: RouteParams) => {
         const queryString = new URLSearchParams({ userId: params.userId, ...searchParams });
 
         const response = await fetch(`${domain}/api/${path}?${queryString}`, {
-            next: { revalidate: 60 },
+            next: { revalidate: 30 },
         });
 
         const json = await response.json();
