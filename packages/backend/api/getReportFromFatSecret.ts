@@ -17,21 +17,24 @@ export const getReportFromFatSecret = async (req: NextApiRequest): Promise<Repor
         return report;
     }
 
-    const { type, userId, hash } = query;
-
-    let { date } = query;
+    let { date, userId, hash } = query;
     if (!date) {
         const yesterday = new Date();
         yesterday.setDate(yesterday.getDate() - 1);
         date = formatDate(yesterday);
     }
 
+    const { type } = query;
     let reportType = REPORT_TYPES.DAY;
     if (type && Object.values(REPORT_TYPES).includes(type as ReportType)) {
         reportType = type as ReportType;
     }
 
     if (userId) {
+        date = date.toString();
+        userId = userId.toString();
+        hash = hash?.toString();
+
         const fatSecretReportUrl = getReportLink(userId, date, reportType, hash);
 
         const response = await fetch(fatSecretReportUrl);

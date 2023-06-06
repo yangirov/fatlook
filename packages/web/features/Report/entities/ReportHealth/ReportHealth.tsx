@@ -18,8 +18,8 @@ const ReportHealth: FC = () => {
     }
 
     const healthItems = [
-        { key: 'steps', name: 'Шаги', value: formatNumber(steps) },
-        { key: 'weight', name: 'Вес', value: weight },
+        { key: 'steps', name: 'Активность', value: `${formatNumber(steps)} шагов` },
+        { key: 'weight', name: 'Вес', value: `${weight} кг` },
     ];
 
     return (
