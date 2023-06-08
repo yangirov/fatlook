@@ -67,6 +67,17 @@ export const Settings: FC = () => {
                 </div>
 
                 <Button onClick={onToggleUserForm}>Добавить клиента</Button>
+                
+                 {INSTRUCTIONS_LINK && (
+                    <Link
+                        className={styles.instructionsLink}
+                        href={INSTRUCTIONS_LINK}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                    >
+                        Как получить ссылку на отчет FatSecret
+                    </Link>
+                )}
 
                 <UserForm
                     user={user}
