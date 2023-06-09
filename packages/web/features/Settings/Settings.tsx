@@ -6,6 +6,8 @@ import { SlPencil, SlTrash } from 'react-icons/sl';
 
 import { User } from '@fatlook/core/types';
 
+import { formatDate } from '@fatlook/core/utils';
+
 import { PageLayout } from '@/web/shared/layouts';
 import { useAppSelector, useAppDispatch } from '@/web/shared/store';
 import { deleteUser } from '@/web/shared/store/usersReducer';
@@ -41,6 +43,14 @@ export const Settings: FC = () => {
         }
     };
 
+    const getReportLink = (id: string) => {
+        const yesterday = new Date();
+        yesterday.setDate(yesterday.getDate() - 1);
+        const date = formatDate(yesterday);
+
+        return `/report/${id}?date=${date}`;
+    };
+
     return (
         <PageLayout>
             <PageLayout.Header>Отчеты</PageLayout.Header>
@@ -51,7 +61,7 @@ export const Settings: FC = () => {
                 <div className={styles.users}>
                     {users?.map(({ id, name, dailyAmount }) => (
                         <div key={name + id} className={styles.userItem}>
-                            <Link className={styles.userItemLink} href={`/report/${id}`}>
+                            <Link className={styles.userItemLink} href={getReportLink(id)}>
                                 {name}
                             </Link>
                             <div className={styles.userItemButtons}>
@@ -67,8 +77,8 @@ export const Settings: FC = () => {
                 </div>
 
                 <Button onClick={onToggleUserForm}>Добавить клиента</Button>
-                
-                 {INSTRUCTIONS_LINK && (
+
+                {INSTRUCTIONS_LINK && (
                     <Link
                         className={styles.instructionsLink}
                         href={INSTRUCTIONS_LINK}
