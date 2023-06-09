@@ -1,23 +1,11 @@
-$border: calc(var(--border-radius) * 2);
-
 .reportHealth {
-    margin-bottom: var(--gap-25);
-    background-color: var(--white);
-    border-radius: $border;
-    box-shadow: 0 0 var(--gap-5) var(--gap-5) var(--shadow-color);
+    composes: mealCard from 'styles/scaffold.scss';
 
     &Header {
-        display: flex;
-        gap: 15px;
-        align-items: center;
-        padding: var(--gap-10) var(--gap-15);
+        composes: mealCardHeader from 'styles/scaffold.scss';
 
         &Icon {
-            font-size: 1.5rem;
-        }
-
-        &Tilte {
-            display: flex;
+            composes: mealCardHeaderIcon from 'styles/scaffold.scss';
         }
     }
 

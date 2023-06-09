@@ -7,7 +7,6 @@ import { isEmpty } from '@fatlook/core/utils';
 import { ReportModel } from '../data-access/models';
 import { ReportService } from '../services';
 
-// FIXME: reduce values from HK later
 export const getReportFromDb = async (req: NextApiRequest, connectionString: string): Promise<ReportData | null> => {
     const { query } = req;
 

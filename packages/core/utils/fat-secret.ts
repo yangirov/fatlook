@@ -1,32 +1,21 @@
 import { startOfMonth, startOfWeek } from 'date-fns';
 import { ru } from 'date-fns/locale';
 
+import { REPORT_TYPES, ReportType } from './consts';
 import { parseDate, diffInDays, formatDate } from './dates';
-import { Dictionary } from './types';
-
-export type ReportType = 'day' | 'week' | 'month';
 
 export const getUserId = (url: string) => {
     const regexAndroid = /fatsecret.+id=(\d+)/;
     const regexIOS = /fatsecret.+export\/(\d+)/;
 
-    const matchAndroid = url.match(regexAndroid);
-    if (matchAndroid) {
-        return matchAndroid[1];
-    }
-
-    const matchIOS = url.match(regexIOS);
-    if (matchIOS) {
-        return matchIOS[1];
+    for (const regex of [regexAndroid, regexIOS]) {
+        const match = url.match(regex);
+        if (match) {
+            return match[1];
+        }
     }
 
     return null;
-};
-
-export const REPORT_TYPES: Dictionary<ReportType> = {
-    DAY: 'day',
-    WEEK: 'week',
-    MONTH: 'month',
 };
 
 export const getReportLink = (userId: string, dateString: string, type: ReportType, hash?: string): string => {

@@ -3,13 +3,12 @@
     "version": "0.1.0",
     "scripts": {
         "dev": "next dev",
-        "watch": "concurrently 'npm run dev' 'npm run scaffold' 'npm run typed-styles'",
+        "watch": "concurrently 'npm run dev' 'npm run scaffold'",
         "build": "next build",
         "start": "next start",
         "lint": "next lint",
         "scaffold": "node .scaffold",
         "tunnel": "npx ngrok http 3000",
-        "typed-styles": "typed-scss-modules . --ignoreInitial --watch",
         "stylelint": "stylelint '**/*{.css,.scss}'",
         "stylelint:fix": "stylelint '**/*{.css,.scss}' --fix"
     },

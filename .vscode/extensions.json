@@ -1,0 +1,10 @@
+{
+    "recommendations": [
+        "esbenp.prettier-vscode",
+        "dbaeumer.vscode-eslint",
+        "stylelint.vscode-stylelint",
+        "editorconfig.editorco",
+        "andrewleedham.vscode-css-modules",
+        "viijay-kr.react-ts-css"
+    ]
+}

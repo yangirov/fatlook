@@ -8,12 +8,12 @@
 
 /* Begin PBXBuildFile section */
 		00E356F31AD99517003FC87E /* fatlookTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* fatlookTests.m */; };
+		01C520AB55A83C191BA06B49 /* libPods-fatlook.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 26159F52CEB71F4BC0193C4C /* libPods-fatlook.a */; };
 		13B07FBC1A68108700A75B9A /* AppDelegate.mm in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB01A68108700A75B9A /* AppDelegate.mm */; };
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
 		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
-		9843E1171FE8BCF7CC014C90 /* libPods-fatlook-fatlookTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 773F7EBA28322C19F3169317 /* libPods-fatlook-fatlookTests.a */; };
-		A92BC02D0EC255A5CC4CBD03 /* libPods-fatlook.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B28138E18579854F481DE77B /* libPods-fatlook.a */; };
+		DF3FC9385D796442F80D06A2 /* libPods-fatlook-fatlookTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9B3BDF53659339854D07AF5A /* libPods-fatlook-fatlookTests.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -37,13 +37,13 @@
 		13B07FB61A68108700A75B9A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = fatlook/Info.plist; sourceTree = "<group>"; };
 		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = fatlook/main.m; sourceTree = "<group>"; };
 		206013482A261003003B5D56 /* fatlook.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; name = fatlook.entitlements; path = fatlook/fatlook.entitlements; sourceTree = "<group>"; };
-		34FA0EFA67EE17B7D300218C /* Pods-fatlook-fatlookTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-fatlook-fatlookTests.debug.xcconfig"; path = "Target Support Files/Pods-fatlook-fatlookTests/Pods-fatlook-fatlookTests.debug.xcconfig"; sourceTree = "<group>"; };
-		773F7EBA28322C19F3169317 /* libPods-fatlook-fatlookTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-fatlook-fatlookTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		7F59AB04F9FBD4509F64FBFD /* Pods-fatlook-fatlookTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-fatlook-fatlookTests.release.xcconfig"; path = "Target Support Files/Pods-fatlook-fatlookTests/Pods-fatlook-fatlookTests.release.xcconfig"; sourceTree = "<group>"; };
+		26159F52CEB71F4BC0193C4C /* libPods-fatlook.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-fatlook.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = fatlook/LaunchScreen.storyboard; sourceTree = "<group>"; };
-		8DABF6E934C258C4E15A7BE6 /* Pods-fatlook.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-fatlook.release.xcconfig"; path = "Target Support Files/Pods-fatlook/Pods-fatlook.release.xcconfig"; sourceTree = "<group>"; };
-		B28138E18579854F481DE77B /* libPods-fatlook.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-fatlook.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		DE9FC294202C461E0E8DFBD8 /* Pods-fatlook.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-fatlook.debug.xcconfig"; path = "Target Support Files/Pods-fatlook/Pods-fatlook.debug.xcconfig"; sourceTree = "<group>"; };
+		942A5ACC162FD1F3424019EF /* Pods-fatlook-fatlookTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-fatlook-fatlookTests.debug.xcconfig"; path = "Target Support Files/Pods-fatlook-fatlookTests/Pods-fatlook-fatlookTests.debug.xcconfig"; sourceTree = "<group>"; };
+		9B3BDF53659339854D07AF5A /* libPods-fatlook-fatlookTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-fatlook-fatlookTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		A558E4745AE29799E1E8C01F /* Pods-fatlook.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-fatlook.debug.xcconfig"; path = "Target Support Files/Pods-fatlook/Pods-fatlook.debug.xcconfig"; sourceTree = "<group>"; };
+		C3A34799802BC7E7285E0D49 /* Pods-fatlook.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-fatlook.release.xcconfig"; path = "Target Support Files/Pods-fatlook/Pods-fatlook.release.xcconfig"; sourceTree = "<group>"; };
+		EA778642B26AB0593DCE90D1 /* Pods-fatlook-fatlookTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-fatlook-fatlookTests.release.xcconfig"; path = "Target Support Files/Pods-fatlook-fatlookTests/Pods-fatlook-fatlookTests.release.xcconfig"; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
@@ -52,7 +52,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9843E1171FE8BCF7CC014C90 /* libPods-fatlook-fatlookTests.a in Frameworks */,
+				DF3FC9385D796442F80D06A2 /* libPods-fatlook-fatlookTests.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -60,7 +60,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A92BC02D0EC255A5CC4CBD03 /* libPods-fatlook.a in Frameworks */,
+				01C520AB55A83C191BA06B49 /* libPods-fatlook.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -102,8 +102,8 @@
 			isa = PBXGroup;
 			children = (
 				ED297162215061F000B7C4FE /* JavaScriptCore.framework */,
-				B28138E18579854F481DE77B /* libPods-fatlook.a */,
-				773F7EBA28322C19F3169317 /* libPods-fatlook-fatlookTests.a */,
+				26159F52CEB71F4BC0193C4C /* libPods-fatlook.a */,
+				9B3BDF53659339854D07AF5A /* libPods-fatlook-fatlookTests.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -142,10 +142,10 @@
 		BBD78D7AC51CEA395F1C20DB /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				DE9FC294202C461E0E8DFBD8 /* Pods-fatlook.debug.xcconfig */,
-				8DABF6E934C258C4E15A7BE6 /* Pods-fatlook.release.xcconfig */,
-				34FA0EFA67EE17B7D300218C /* Pods-fatlook-fatlookTests.debug.xcconfig */,
-				7F59AB04F9FBD4509F64FBFD /* Pods-fatlook-fatlookTests.release.xcconfig */,
+				A558E4745AE29799E1E8C01F /* Pods-fatlook.debug.xcconfig */,
+				C3A34799802BC7E7285E0D49 /* Pods-fatlook.release.xcconfig */,
+				942A5ACC162FD1F3424019EF /* Pods-fatlook-fatlookTests.debug.xcconfig */,
+				EA778642B26AB0593DCE90D1 /* Pods-fatlook-fatlookTests.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -157,12 +157,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 00E357021AD99517003FC87E /* Build configuration list for PBXNativeTarget "fatlookTests" */;
 			buildPhases = (
-				E226B32BC9F419CDEF6F0E88 /* [CP] Check Pods Manifest.lock */,
+				3974EB06DF505C22C585CD02 /* [CP] Check Pods Manifest.lock */,
 				00E356EA1AD99517003FC87E /* Sources */,
 				00E356EB1AD99517003FC87E /* Frameworks */,
 				00E356EC1AD99517003FC87E /* Resources */,
-				2382E97ED71A0A6C92D0A3FE /* [CP] Embed Pods Frameworks */,
-				C6D3E7FC62A0CDB21C9570E3 /* [CP] Copy Pods Resources */,
+				A25B5B3615DB65A0F3DDBC97 /* [CP] Embed Pods Frameworks */,
+				6D0B2C726DEE6C5542D71780 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -178,14 +178,14 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 13B07F931A680F5B00A75B9A /* Build configuration list for PBXNativeTarget "fatlook" */;
 			buildPhases = (
-				7F5C7732BB65B01ED3E74CE7 /* [CP] Check Pods Manifest.lock */,
+				3F0347B82DDA164E4DF9B175 /* [CP] Check Pods Manifest.lock */,
 				FD10A7F022414F080027D42C /* Start Packager */,
 				13B07F871A680F5B00A75B9A /* Sources */,
 				13B07F8C1A680F5B00A75B9A /* Frameworks */,
 				13B07F8E1A680F5B00A75B9A /* Resources */,
 				00DD1BFF1BD5951E006B06BC /* Bundle React Native code and images */,
-				76E69D832DA4F84E14C7127F /* [CP] Embed Pods Frameworks */,
-				0B26DA0B56B1F51E2BD22ADC /* [CP] Copy Pods Resources */,
+				A0B3BE766FBA0B300B042173 /* [CP] Embed Pods Frameworks */,
+				291A9721970B271519761487 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -268,7 +268,7 @@
 			shellPath = /bin/sh;
 			shellScript = "set -e\n\nWITH_ENVIRONMENT=\"../node_modules/react-native/scripts/xcode/with-environment.sh\"\nREACT_NATIVE_XCODE=\"../node_modules/react-native/scripts/react-native-xcode.sh\"\n\n/bin/sh -c \"$WITH_ENVIRONMENT $REACT_NATIVE_XCODE\"\n";
 		};
-		0B26DA0B56B1F51E2BD22ADC /* [CP] Copy Pods Resources */ = {
+		291A9721970B271519761487 /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -285,41 +285,29 @@
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-fatlook/Pods-fatlook-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		2382E97ED71A0A6C92D0A3FE /* [CP] Embed Pods Frameworks */ = {
+		3974EB06DF505C22C585CD02 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-fatlook-fatlookTests/Pods-fatlook-fatlookTests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
-			name = "[CP] Embed Pods Frameworks";
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
 			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-fatlook-fatlookTests/Pods-fatlook-fatlookTests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-fatlook-fatlookTests-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-fatlook-fatlookTests/Pods-fatlook-fatlookTests-frameworks.sh\"\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		76E69D832DA4F84E14C7127F /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-fatlook/Pods-fatlook-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-fatlook/Pods-fatlook-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-fatlook/Pods-fatlook-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		7F5C7732BB65B01ED3E74CE7 /* [CP] Check Pods Manifest.lock */ = {
+		3F0347B82DDA164E4DF9B175 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -341,7 +329,7 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		C6D3E7FC62A0CDB21C9570E3 /* [CP] Copy Pods Resources */ = {
+		6D0B2C726DEE6C5542D71780 /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -358,26 +346,38 @@
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-fatlook-fatlookTests/Pods-fatlook-fatlookTests-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		E226B32BC9F419CDEF6F0E88 /* [CP] Check Pods Manifest.lock */ = {
+		A0B3BE766FBA0B300B042173 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-fatlook/Pods-fatlook-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
+			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-fatlook-fatlookTests-checkManifestLockResult.txt",
+				"${PODS_ROOT}/Target Support Files/Pods-fatlook/Pods-fatlook-frameworks-${CONFIGURATION}-output-files.xcfilelist",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-fatlook/Pods-fatlook-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		A25B5B3615DB65A0F3DDBC97 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-fatlook-fatlookTests/Pods-fatlook-fatlookTests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-fatlook-fatlookTests/Pods-fatlook-fatlookTests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-fatlook-fatlookTests/Pods-fatlook-fatlookTests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		FD10A7F022414F080027D42C /* Start Packager */ = {
@@ -432,7 +432,7 @@
 /* Begin XCBuildConfiguration section */
 		00E356F61AD99517003FC87E /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 34FA0EFA67EE17B7D300218C /* Pods-fatlook-fatlookTests.debug.xcconfig */;
+			baseConfigurationReference = 942A5ACC162FD1F3424019EF /* Pods-fatlook-fatlookTests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				DEVELOPMENT_TEAM = QP59D3B88J;
@@ -460,7 +460,7 @@
 		};
 		00E356F71AD99517003FC87E /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 7F59AB04F9FBD4509F64FBFD /* Pods-fatlook-fatlookTests.release.xcconfig */;
+			baseConfigurationReference = EA778642B26AB0593DCE90D1 /* Pods-fatlook-fatlookTests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				COPY_PHASE_STRIP = NO;
@@ -485,7 +485,7 @@
 		};
 		13B07F941A680F5B00A75B9A /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = DE9FC294202C461E0E8DFBD8 /* Pods-fatlook.debug.xcconfig */;
+			baseConfigurationReference = A558E4745AE29799E1E8C01F /* Pods-fatlook.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
@@ -516,7 +516,7 @@
 		};
 		13B07F951A680F5B00A75B9A /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 8DABF6E934C258C4E15A7BE6 /* Pods-fatlook.release.xcconfig */;
+			baseConfigurationReference = C3A34799802BC7E7285E0D49 /* Pods-fatlook.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;

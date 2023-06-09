@@ -6,3 +6,6 @@ export const cardTitle: string;
 export const container: string;
 export const flexCenter: string;
 export const link: string;
+export const mealCard: string;
+export const mealCardHeader: string;
+export const mealCardHeaderIcon: string;

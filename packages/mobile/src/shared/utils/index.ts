@@ -12,27 +12,29 @@ export const formatDateToISO = (date: Date) => {
     return `${year}-${month}-${day}T${hours}:${minutes}:${seconds}.${milliseconds}Z`;
 };
 
-export const getProgressBarValue = (value?: number, min = 0, max?: number, theme?: AppTheme) => {
+export const getProgressBarValue = (theme: AppTheme, value?: number, min = 0, max?: number) => {
     if (!value || !max) {
         return undefined;
     }
 
     let color;
 
-    if (value < min || value > max) {
+    if (value < min) {
         return { progress: 0, color };
+    }
+
+    if (value > max) {
+        return { progress: 1, color: theme.colors.red };
     }
 
     const progress = (value - min) / (max - min);
 
-    if (theme) {
-        color = theme.colors.primary;
+    color = theme.colors.primary;
 
-        if (progress > 1) {
-            color = theme.colors.red;
-        } else if (progress < 0.4) {
-            color = theme.colors.yellow;
-        }
+    if (progress > 1) {
+        color = theme.colors.red;
+    } else if (progress < 0.4) {
+        color = theme.colors.yellow;
     }
 
     return { progress, color };

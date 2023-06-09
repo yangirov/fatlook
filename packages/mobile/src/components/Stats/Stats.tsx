@@ -78,7 +78,7 @@ const StatsItemComponent: FC<{
                 setValue(average);
 
                 if (goal) {
-                    const p = getProgressBarValue(quantity, goal?.from || 0, goal?.to, theme);
+                    const p = getProgressBarValue(theme, quantity, goal.from || 0, goal.to);
                     setProgress(p);
                 }
             }

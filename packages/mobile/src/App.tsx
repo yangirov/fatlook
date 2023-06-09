@@ -18,7 +18,7 @@ function App(): JSX.Element {
     const webViewContext = useContext(WebViewContext);
     const theme = useAppTheme();
 
-    const [index, setIndex] = React.useState(0);
+    const [index, setIndex] = React.useState(1);
 
     const [routes] = React.useState([
         { key: 'stats', title: 'Статитика', focusedIcon: 'chart-bar' },

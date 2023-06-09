@@ -1,19 +1,15 @@
 $border: calc(var(--border-radius) * 2);
 
 .reportMeal {
-    margin-bottom: var(--gap-25);
-    background-color: var(--white);
-    border-radius: $border;
-    box-shadow: 0 0 var(--gap-5) var(--gap-5) var(--shadow-color);
+    composes: mealCard from 'styles/scaffold.scss';
 
     &Header {
         &Prime {
-            display: flex;
-            justify-content: space-between;
+            composes: mealCardHeader from 'styles/scaffold.scss';
             padding: var(--gap-10) var(--gap-15) 0 var(--gap-15);
 
             &Icon {
-                font-size: 1.5rem;
+                composes: mealCardHeaderIcon from 'styles/scaffold.scss';
             }
 
             &Info {

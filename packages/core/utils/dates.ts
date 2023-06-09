@@ -37,7 +37,7 @@ export const formatDate = (
     }
 ) => format(date, formatString, options);
 
-export const beautifyDate = (d: Date | null) => {
+export const beautifyDate = (d: Date | null, shorten = false) => {
     if (!d) return 'Нет даты';
 
     if (isYesterday(d)) {
@@ -52,7 +52,7 @@ export const beautifyDate = (d: Date | null) => {
         return 'Завтра';
     }
 
-    return formatDate(d, 'EEEE, LLLL d');
+    return formatDate(d, `${shorten ? 'EEEEEE' : 'EEEE'}, LLLL d`);
 };
 
 export const parseDate = (dateString: string, formatString = DEFAULT_DATE_FORMAT) => {

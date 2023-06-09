@@ -68,3 +68,21 @@
     font-weight: bold;
     font-size: 1.2rem;
 }
+
+.mealCard {
+    margin-bottom: var(--gap-25);
+    background-color: var(--white);
+    border-radius: calc(var(--border-radius) * 2);
+    box-shadow: 0 0 var(--gap-5) var(--gap-5) var(--shadow-color);
+
+    &Header {
+        display: flex;
+        gap: 15px;
+        align-items: center;
+        padding: var(--gap-10) var(--gap-15);
+
+        &Icon {
+            font-size: 1.5rem;
+        }
+    }
+}
