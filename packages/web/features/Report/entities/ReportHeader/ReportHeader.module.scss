@@ -22,7 +22,8 @@
     }
 
     &DatePicker {
-        margin: var(--gap-10);
+        max-width: var(--app-max-width);
+        margin: 0 auto;
     }
 
     &Overlay {
