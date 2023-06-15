@@ -1,0 +1,7 @@
+User-agent: *
+Host: fatlook.vercel.app
+Sitemap: https://fatlook.vercel.app/sitemap.xml
+
+User-agent: Yandex
+Host: fatlook.vercel.app
+Sitemap: https://fatlook.vercel.app/sitemap.xml
