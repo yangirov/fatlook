@@ -8,7 +8,7 @@ import { StatsContext } from '../../../../Stats';
 
 import styles from './ActivityChart.module.scss';
 
-const chartColors = Array.from({ length: 7 }).map(_ => 'tomato');
+const chartColors = Array.from({ length: 7 }, () => 'tomato');
 
 export const ActivityChart: FC = () => {
     const chartRef = useRef<HTMLDivElement>(null);
@@ -38,12 +38,10 @@ export const ActivityChart: FC = () => {
 
     return (
         <>
-            <Card>
+            <Card title="Шаги">
                 <div className={styles.activityCardHeader}>
-                    <div className={styles.activityCardTitle}>
-                        <span className={styles.activityCardSubTitle}>Среднее: </span>
-                        {middleSteps}
-                        <span className={styles.activityCardSubTitle}> шагов</span>
+                    <div className={styles.activityCardSubTitle}>
+                        Среднее: <b>{middleSteps} шагов</b>
                     </div>
                     {/* <div className={styles.activityCardSubTitle}>Цель: 15000</div> */}
                 </div>

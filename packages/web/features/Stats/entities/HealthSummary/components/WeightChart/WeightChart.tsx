@@ -45,12 +45,10 @@ export const WeightChart: FC = () => {
 
     return (
         <>
-            <Card>
+            <Card title="Вес">
                 <div className={styles.weightCardHeader}>
-                    <div className={styles.weightCardTitle}>
-                        <span className={styles.weightCardSubTitle}>Среднее: </span>
-                        {middleWeight}
-                        <span className={styles.weightCardSubTitle}> кг</span>
+                    <div className={styles.weightCardSubTitle}>
+                        Среднее: <b>{middleWeight} кг</b>
                     </div>
                     {/* <div className={styles.weightCardSubTitle}>Цель: 70 кг</div> */}
                 </div>

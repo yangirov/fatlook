@@ -5,13 +5,13 @@
         align-items: baseline;
     }
 
-    &Title {
-        font-size: 1.5rem;
-    }
-
     &SubTitle {
         color: var(--gray);
         font-size: var(--font-small);
+
+        b {
+            color: var(--dark);
+        }
     }
 
     &Chart {
