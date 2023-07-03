@@ -9,9 +9,9 @@ import { Card, Divider, ToggleSwitch } from '@/web/shared/ui';
 
 import { StatsContext } from '../../Stats';
 
-import styles from './FoodAverage.module.scss';
+import styles from './AverageSummary.module.scss';
 
-export const FoodAverage: FC = () => {
+export const AverageSummary: FC = () => {
     const [isMedianMode, setIsMedianMode] = useState(false);
 
     const {
@@ -25,6 +25,7 @@ export const FoodAverage: FC = () => {
     const { data, count } = totalData;
 
     const importantColumns: PartialFoodDetailsKeys = ['protein', 'allFat', 'carbohydrates', 'fiber'];
+
     const columns: PartialFoodDetailsKeys = [
         'protein',
         'allFat',

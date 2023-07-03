@@ -1,0 +1,20 @@
+.activityCard {
+    &Header {
+        display: flex;
+        justify-content: space-between;
+        align-items: baseline;
+    }
+
+    &Title {
+        font-size: 1.5rem;
+    }
+
+    &SubTitle {
+        color: var(--gray);
+        font-size: var(--font-small);
+    }
+
+    &Chart {
+        margin: var(--gap-10) 0;
+    }
+}

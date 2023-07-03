@@ -45,6 +45,7 @@ export const FoodAmount: FC = () => {
                 {barWidth && (
                     <BarChart
                         hasMiddleLine={true}
+                        hasVerticals={true}
                         data={chartData}
                         colors={CHART_MEAL_COLORS}
                         width={barWidth}

@@ -67,3 +67,22 @@ export const formatNumber = (num: number, separator = ' ') => {
 
     return arr.join('');
 };
+
+export const shortenNumber = (num: number) => {
+    if (num >= 1000) {
+        const units = ['K', 'M', 'B', 'T'];
+        let unitIndex = 0;
+        let formattedNumber = num;
+
+        while (formattedNumber >= 1000 && unitIndex < units.length) {
+            formattedNumber /= 1000;
+            unitIndex++;
+        }
+
+        formattedNumber = Math.round(formattedNumber * 10) / 10;
+
+        return formattedNumber + units[unitIndex - 1];
+    }
+
+    return num.toString();
+};

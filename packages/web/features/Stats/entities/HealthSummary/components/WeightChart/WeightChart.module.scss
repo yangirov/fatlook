@@ -1,0 +1,42 @@
+.weightCard {
+    &Header {
+        display: flex;
+        justify-content: space-between;
+        align-items: baseline;
+    }
+
+    &Title {
+        font-size: 1.5rem;
+    }
+
+    &SubTitle {
+        color: var(--gray);
+        font-size: var(--font-small);
+    }
+
+    &Chart {
+        margin: var(--gap-10) 0;
+    }
+
+    &Content {
+        margin-top: var(--gap-10);
+    }
+
+    &Item {
+        font-size: var(--font-small);
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: var(--gap-5) 0;
+
+        &Label {
+            color: var(--gray);
+        }
+
+        &Text {
+            font-weight: bold;
+            margin-right: var(--gap-5);
+        }
+    }
+}

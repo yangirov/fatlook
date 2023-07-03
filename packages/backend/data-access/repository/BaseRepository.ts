@@ -8,7 +8,11 @@ export class Repository<T extends Document> {
     }
 
     async findOne(conditions: FilterQuery<T>): Promise<T | null> {
-        return this.model.findOne(conditions).exec();
+        return await this.model.findOne(conditions);
+    }
+
+    async find(conditions: FilterQuery<T>): Promise<T[] | null> {
+        return await this.model.find(conditions);
     }
 
     async create(data: T): Promise<T> {
@@ -16,10 +20,10 @@ export class Repository<T extends Document> {
     }
 
     async update(conditions: FilterQuery<T>, update: UpdateQuery<T>): Promise<T | null> {
-        return this.model.findOneAndUpdate(conditions, update, { new: true }).exec();
+        return await this.model.findOneAndUpdate(conditions, update, { new: true });
     }
 
     async delete(conditions: FilterQuery<T>): Promise<T | null> {
-        return this.model.findOneAndDelete(conditions).exec();
+        return await this.model.findOneAndDelete(conditions);
     }
 }

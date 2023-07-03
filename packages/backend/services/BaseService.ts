@@ -41,6 +41,13 @@ export class BaseService<T extends Document> {
         return result ?? null;
     }
 
+    async getAll(conditions: FilterQuery<T>): Promise<T[] | null> {
+        this.ensureConnectionAndRepositoryInitialized();
+
+        const result = await this.repository?.find(conditions);
+        return result ?? null;
+    }
+
     async create(payload: T): Promise<T | null> {
         const result = await this.repository?.create(payload);
         return result ?? null;

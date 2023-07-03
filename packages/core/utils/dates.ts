@@ -68,3 +68,18 @@ export const parseDate = (dateString: string, formatString = DEFAULT_DATE_FORMAT
 export const diffInDays = (a: Date, b: Date) => {
     return Math.abs(differenceInDays(a, b));
 };
+
+export const generateDates = (startDate: Date, days = 7, dateFormat = DEFAULT_DATE_FORMAT): string[] => {
+    const dates: string[] = [];
+
+    let currentDate = startOfWeek(startDate);
+
+    for (let i = 0; i < days; i++) {
+        const formattedDate = formatDate(currentDate, dateFormat);
+        dates.push(formattedDate);
+
+        currentDate = addDays(currentDate, 1);
+    }
+
+    return dates;
+};

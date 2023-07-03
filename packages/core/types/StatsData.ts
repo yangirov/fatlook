@@ -1,6 +1,7 @@
 import { Dictionary } from '../utils/types';
 
 import { FoodDetails } from './Food';
+import { HealthData } from './HealthData';
 
 export type FoodDtoWithPercents = {
     name: string;
@@ -31,4 +32,5 @@ export type StatsData = {
     allMeals: FoodDtoWithPercents[];
     totalData?: { count: number; data: FoodDetails };
     foodDetails?: Dictionary<FoodDetails>;
+    healthData: HealthData[];
 };

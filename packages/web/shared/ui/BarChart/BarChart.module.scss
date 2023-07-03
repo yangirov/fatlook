@@ -1,4 +1,6 @@
 .barChart {
+    position: relative;
+
     &SvgWrapper {
         position: relative;
     }
@@ -26,6 +28,39 @@
             color: var(--gray);
             font-size: var(--font-small);
             text-align: center;
+        }
+    }
+
+    &LabelsVertical {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+
+        &Item {
+            color: var(--gray);
+            font-size: var(--font-small);
+            display: flex;
+
+            &Line {
+                border-top: 1px dashed var(--light-gray);
+            }
+
+            &Label {
+                border-left: 1px solid var(--light-gray);
+                padding-left: var(--gap-10);
+            }
+
+            &:last-child & {
+                &Line {
+                    border-top: 1px dashed transparent;
+                }
+
+                &Label {
+                    display: none;
+                }
+            }
         }
     }
 }

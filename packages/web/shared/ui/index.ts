@@ -15,3 +15,4 @@ export * from './Tabs';
 export * from './ToggleSwitch';
 export * from './SnackBar';
 export * from './Card';
+export * from './LineChart';

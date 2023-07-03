@@ -11,10 +11,11 @@ import { useCurrentUser } from '@/web/shared/hooks/useCurrentUser';
 import { PageLayout } from '@/web/shared/layouts';
 import { EmptyContent, Tab, Tabs, WeekSelector } from '@/web/shared/ui';
 
-import { FoodAverage } from './entities/FoodAverage';
+import { AverageSummary } from './entities/AverageSummary';
 import { FoodCalories } from './entities/FoodCalories';
 import { FoodNutrients } from './entities/FoodNutrients';
 import { FoodNutrientsSummary } from './entities/FoodNutrientsSummary';
+import { HealthSummary } from './entities/HealthSummary';
 
 import styles from './Stats.module.scss';
 
@@ -55,7 +56,10 @@ export const Stats: FC<StatsProps> = ({ stats }) => {
                     <StatsContext.Provider value={{ stats }}>
                         <Tabs>
                             <Tab title="Планки">
-                                <FoodAverage />
+                                <AverageSummary />
+                            </Tab>
+                            <Tab title="Здоровье">
+                                <HealthSummary />
                             </Tab>
                             <Tab title="Калории">
                                 <FoodCalories />

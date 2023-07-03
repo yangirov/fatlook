@@ -25,6 +25,7 @@ const initialStats: StatsData = {
     eatenFood: [],
     chartData: [],
     allMeals: [],
+    healthData: [],
 };
 
 export const getStatsData = async (req: NextApiRequest): Promise<StatsData> => {
@@ -131,5 +132,6 @@ export const getStatsData = async (req: NextApiRequest): Promise<StatsData> => {
         allMeals,
         totalData,
         foodDetails,
+        healthData: [],
     };
 };
