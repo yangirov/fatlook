@@ -1,5 +1,5 @@
 import { ReportData, StatsData } from '@fatlook/core/types';
-import { Dictionary, isEmpty } from '@fatlook/core/utils';
+import { Dictionary, isDev, isEmpty } from '@fatlook/core/utils';
 
 export type RouteParams = {
     params?: Dictionary;
@@ -16,7 +16,7 @@ const getFromAPI = async <T>(path: string, query: RouteParams) => {
         const queryString = new URLSearchParams({ userId: params.userId, ...searchParams });
 
         const response = await fetch(`${domain}/api/${path}?${queryString}`, {
-            next: { revalidate: 30 },
+            next: { revalidate: isDev ? 5 : 30 },
         });
 
         const json = await response.json();

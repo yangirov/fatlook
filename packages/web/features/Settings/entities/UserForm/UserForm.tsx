@@ -1,11 +1,13 @@
-import { FC, useEffect, useState } from 'react';
+import React, { FC, useEffect } from 'react';
+
+import { Controller, useForm } from 'react-hook-form';
 
 import { User } from '@fatlook/core/types';
-import { getUserId, isEqual } from '@fatlook/core/utils';
+import { getUserId, isEqual, isNumeric } from '@fatlook/core/utils';
 
 import { useAppDispatch } from '@/web/shared/store';
 import { addUser, updateUser } from '@/web/shared/store/usersReducer';
-import { Button, Modal } from '@/web/shared/ui';
+import { Button, Input, Modal } from '@/web/shared/ui';
 
 import styles from './UserForm.module.css';
 
@@ -16,35 +18,59 @@ type UserFormProps = {
     onToggle: () => void;
 };
 
-export const UserForm: FC<UserFormProps> = ({ isOpen, user, onToggle, onClearUser }) => {
-    const dispatch = useAppDispatch();
+type UserFormData = {
+    name: string;
+    id: string;
+    dailyAmount?: string;
+    weightGoal?: string;
+    stepsGoal?: string;
+};
 
-    const [name, setName] = useState('');
-    const [reportUrl, setReportUrl] = useState('');
-    const [dailyAmount, setDailyAmount] = useState<number | undefined>(undefined);
+export const UserForm: FC<UserFormProps> = ({ isOpen, user, onToggle, onClearUser }) => {
+    const {
+        control,
+        setValue,
+        getValues,
+        reset,
+        formState: { errors },
+    } = useForm<UserFormData>();
+
+    const dispatch = useAppDispatch();
 
     useEffect(() => {
         if (user) {
-            setName(user.name);
-            setReportUrl(user.id);
-            user.dailyAmount && setDailyAmount(user.dailyAmount);
+            const { name, id, dailyAmount, stepsGoal, weightGoal } = user;
+
+            setValue('name', name);
+            setValue('id', id);
+
+            dailyAmount && setValue('dailyAmount', dailyAmount.toString());
+            stepsGoal && setValue('stepsGoal', stepsGoal.toString());
+            weightGoal && setValue('weightGoal', weightGoal.toString());
         }
-    }, [user]);
+    }, [user, setValue]);
 
     const clearForm = () => {
-        setName('');
-        setReportUrl('');
-        setDailyAmount(undefined);
-
+        reset();
         onClearUser();
     };
 
-    const handleUser = () => {
-        const dto = {
-            id: user ? reportUrl : getUserId(reportUrl) || '',
-            name,
-            dailyAmount,
-        };
+    const onSubmit = (e: React.MouseEvent) => {
+        e.preventDefault();
+
+        const payload = getValues() as User;
+
+        const dto = Object.entries(payload).reduce((acc, [key, value]) => {
+            if (key === 'id') {
+                acc = { ...acc, [key]: user ? user.id : getUserId(payload.id) || '' };
+            } else if (isNumeric(value)) {
+                acc = { ...acc, [key]: Number(value) };
+            } else {
+                acc = { ...acc, [key]: value };
+            }
+
+            return acc;
+        }, {} as User);
 
         if (user !== null) {
             dispatch(updateUser(dto));
@@ -57,19 +83,33 @@ export const UserForm: FC<UserFormProps> = ({ isOpen, user, onToggle, onClearUse
     };
 
     const hasNoChanges = () => {
-        const a = user ?? { id: '', name: '', dailyAmount: '' };
-        const b = { id: reportUrl, name, dailyAmount };
+        const mappedUser = user
+            ? Object.entries(user).reduce((acc, [key, value]) => {
+                  acc = { ...acc, [key]: typeof value === 'number' ? value.toString() : value };
+                  return acc;
+              }, {})
+            : null;
 
-        return isEqual(a, b);
+        const formUser = getValues();
+
+        if (!mappedUser && Object.values(formUser).every(value => !value)) {
+            return true;
+        }
+
+        const filteredFormUser = Object.entries(formUser).reduce((acc, [key, value]) => {
+            if (value !== undefined) acc = { ...acc, [key]: value };
+            return acc;
+        }, {});
+
+        return isEqual(mappedUser, filteredFormUser);
     };
 
     const onModalToggle = () => {
-        const actionText = user ? 'обновления' : 'добавления';
-
         if (hasNoChanges()) {
             clearForm();
             onToggle();
         } else {
+            const actionText = user ? 'обновления' : 'добавления';
             const conf = confirm(`Есть несохраненные изменения. Закрыть окно ${actionText}?`);
             if (conf) {
                 clearForm();
@@ -86,42 +126,58 @@ export const UserForm: FC<UserFormProps> = ({ isOpen, user, onToggle, onClearUse
 
             <Modal.Content>
                 <form className={styles.inputs} autoComplete="off">
-                    <input
-                        className={styles.input}
-                        type="text"
-                        placeholder="Имя"
+                    <Controller
                         name="name"
-                        required
-                        value={name}
-                        onChange={e => setName(e.target.value)}
+                        control={control}
+                        render={({ field }) => <Input type="text" placeholder="Имя" {...field} />}
                     />
+                    {errors.name && <span className={styles.error}>Это обязательное поле</span>}
 
-                    <input
-                        className={styles.input}
-                        type="url"
-                        placeholder="Ссылка на отчет FatSecret"
-                        name="url"
-                        required
-                        disabled={user !== null}
-                        value={reportUrl}
-                        onChange={e => setReportUrl(e.target.value)}
+                    <Controller
+                        name="id"
+                        control={control}
+                        rules={{ required: true }}
+                        render={({ field }) => (
+                            <Input
+                                placeholder="Ссылка на отчет FatSecret"
+                                type="url"
+                                disabled={user !== null}
+                                {...field}
+                            />
+                        )}
                     />
+                    {errors.id && <span className={styles.error}>Это обязательное поле</span>}
 
-                    <input
-                        className={styles.input}
-                        type="number"
-                        placeholder="Цель по калориям (РСК)"
+                    <Controller
                         name="dailyAmount"
-                        value={dailyAmount}
-                        onChange={e => setDailyAmount(+e.target.value)}
+                        control={control}
+                        rules={{ pattern: /[^0-9]/g }}
+                        render={({ field }) => <Input placeholder="Цель по калориям (РСК)" type="number" {...field} />}
                     />
-                </form>
+                    {errors.dailyAmount && <span className={styles.error}>Только цифры</span>}
 
-                <div className={styles.buttons}>
-                    <Button onClick={handleUser} disabled={hasNoChanges()}>
-                        {actionText}
-                    </Button>
-                </div>
+                    <Controller
+                        name="weightGoal"
+                        control={control}
+                        rules={{ pattern: /[^0-9]/g }}
+                        render={({ field }) => <Input placeholder="Цель по весу" type="number" step="1" {...field} />}
+                    />
+                    {errors.weightGoal && <span className={styles.error}>Только цифры</span>}
+
+                    <Controller
+                        name="stepsGoal"
+                        control={control}
+                        rules={{ pattern: /[^0-9]/g }}
+                        render={({ field }) => <Input placeholder="Цель по шагам" type="number" step="1" {...field} />}
+                    />
+                    {errors.stepsGoal && <span className={styles.error}>Только цифры</span>}
+
+                    <div className={styles.buttons}>
+                        <Button type="submit" onClick={e => onSubmit(e)}>
+                            {actionText}
+                        </Button>
+                    </div>
+                </form>
             </Modal.Content>
         </Modal>
     );

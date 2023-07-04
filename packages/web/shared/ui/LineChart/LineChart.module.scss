@@ -1,22 +1,21 @@
 .lineChart {
+    border: 1px solid var(--border);
+
     &Path {
         fill: none;
-        stroke: #ff4500;
-        stroke-width: 2px;
+        stroke: var(--green);
+        stroke-width: 1px;
     }
 
     &Axis line {
-        stroke: #ccc;
+        stroke: var(--light-gray);
         stroke-width: 1px;
     }
 
-    &Borders line {
-        stroke: #ccc;
-        stroke-width: 1px;
-    }
-
-    &Labels text {
-        font-size: 12px;
-        fill: #000;
+    &Labels {
+        text {
+            font-size: 0.8rem;
+            fill: var(--dark);
+        }
     }
 }

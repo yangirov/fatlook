@@ -66,7 +66,7 @@ export const ReportSettings: FC<ReportSettingsProps> = ({ isOpen, onToggle }) =>
                                 </Icon>
                             </div>
                         </div>
-                        {allColumns.length - 1 !== index && <Divider />}
+                        <Divider index={index} count={allColumns.length - 1} hideLast={true} />
                     </div>
                 ))}
             </Modal.Content>

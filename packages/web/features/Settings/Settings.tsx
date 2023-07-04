@@ -59,21 +59,25 @@ export const Settings: FC = () => {
                 {users.length === 0 && <div>Нет клиентов. Добавим?</div>}
 
                 <div className={styles.users}>
-                    {users?.map(({ id, name, dailyAmount }) => (
-                        <div key={name + id} className={styles.userItem}>
-                            <Link className={styles.userItemLink} href={getReportLink(id)}>
-                                {name}
-                            </Link>
-                            <div className={styles.userItemButtons}>
-                                <IconButton onClick={() => onUpdateUser({ id, name, dailyAmount })}>
-                                    <SlPencil />
-                                </IconButton>
-                                <IconButton onClick={() => onDeleteUser(id, name)}>
-                                    <SlTrash />
-                                </IconButton>
+                    {users?.map(user => {
+                        const { id, name } = user;
+
+                        return (
+                            <div key={name + id} className={styles.userItem}>
+                                <Link className={styles.userItemLink} href={getReportLink(id)}>
+                                    {name}
+                                </Link>
+                                <div className={styles.userItemButtons}>
+                                    <IconButton onClick={() => onUpdateUser(user)}>
+                                        <SlPencil />
+                                    </IconButton>
+                                    <IconButton onClick={() => onDeleteUser(id, name)}>
+                                        <SlTrash />
+                                    </IconButton>
+                                </div>
                             </div>
-                        </div>
-                    ))}
+                        );
+                    })}
                 </div>
 
                 <Button onClick={onToggleUserForm}>Добавить клиента</Button>

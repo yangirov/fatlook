@@ -35,7 +35,7 @@ const ReportHealth: FC = () => {
                             <div>{name}</div>
                             <div className={styles.reportHealthContentItemTotal}>{value}</div>
                         </div>
-                        {index !== healthItems.length - 1 && <Divider />}
+                        <Divider index={index} count={healthItems.length - 1} hideLast={true} />
                     </div>
                 ))}
             </div>

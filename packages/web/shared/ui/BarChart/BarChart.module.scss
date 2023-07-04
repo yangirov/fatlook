@@ -6,10 +6,7 @@
     }
 
     &Svg {
-        background-color: var(--white);
-        background-image: repeating-linear-gradient(var(--light-gray) 0 1px, transparent 1px 100%),
-            repeating-linear-gradient(90deg, var(--light-gray) 0 1px, transparent 1px 100%);
-        border: 1px solid var(--light-gray);
+        border: 1px solid var(--border);
     }
 
     &Line {

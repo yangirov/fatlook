@@ -104,7 +104,7 @@ const ModalContent: FC<{ children: ReactNode }> = ({ children }) => (
     <div className={styles.modalContent}>{children}</div>
 );
 
-const ModalPortal: FC<ModalProps> = props => createPortal(<ModalWrapper {...props} />, document.body);
+const ModalPortal: FC<ModalProps> = props => <>{createPortal(<ModalWrapper {...props} />, document.body)}</>;
 
 const modalComposition = {
     Title: ModalTitle,

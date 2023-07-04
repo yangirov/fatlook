@@ -2,6 +2,7 @@ import { FC, useContext, useLayoutEffect, useRef, useState } from 'react';
 
 import { formatDate, parseDate } from '@fatlook/core/utils';
 
+import { useCurrentUser } from '@/web/shared/hooks';
 import { LineChart, Card, Divider } from '@/web/shared/ui';
 
 import { StatsContext } from '../../../../Stats';
@@ -18,6 +19,8 @@ const getWeightState = (prev: number, current: number) => {
 };
 
 export const WeightChart: FC = () => {
+    const user = useCurrentUser();
+
     const chartRef = useRef<HTMLDivElement>(null);
 
     const [chartWidth, setBarWidth] = useState<number | null>(null);
@@ -31,14 +34,15 @@ export const WeightChart: FC = () => {
         stats: { healthData },
     } = useContext(StatsContext);
 
-    const middleWeight = Math.floor(
+    const average =
         healthData.reduce((acc, { weight }) => {
             acc += weight;
             return acc;
-        }, 0) / healthData.length
-    );
+        }, 0) / healthData.length;
 
-    const weightData = healthData.map(({ date, weight }) => ({
+    const averageWeight = isNaN(average) ? 0 : average.toFixed(2);
+
+    const data = healthData.map(({ date, weight }) => ({
         date: parseDate(date),
         value: weight,
     }));
@@ -48,29 +52,29 @@ export const WeightChart: FC = () => {
             <Card title="Вес">
                 <div className={styles.weightCardHeader}>
                     <div className={styles.weightCardSubTitle}>
-                        Среднее: <b>{middleWeight} кг</b>
+                        Среднее: <b>{averageWeight} кг</b>
                     </div>
-                    {/* <div className={styles.weightCardSubTitle}>Цель: 70 кг</div> */}
+                    {user?.weightGoal && <div className={styles.weightCardSubTitle}>Цель: {user?.weightGoal} кг</div>}
                 </div>
 
                 <div className={styles.weightCardChart} ref={chartRef}>
-                    {chartWidth && <LineChart data={weightData} width={chartWidth} height={125} />}
+                    {chartWidth && <LineChart data={data} width={chartWidth} height={125} />}
                 </div>
 
                 <div className={styles.weightCardContent}>
-                    {weightData.reverse().map(({ date, value }, i, arr) => {
-                        const { value: prev } = arr[i + 1] ?? arr[0];
-                        const state = getWeightState(prev, value);
+                    {data.reverse().map(({ date, value }, i, arr) => {
+                        const { value: prevValue } = arr[i + 1] ?? arr[0];
+                        const state = getWeightState(prevValue, value);
 
                         return (
                             <div key={date.getTime()}>
-                                <Divider />
                                 <div className={styles.weightCardItem}>
                                     <div className={styles.weightCardItemLabel}>{formatDate(date, 'EEE, d MMMM')}</div>
                                     <div>
                                         <span className={styles.weightCardItemText}>{value} кг</span> {state}
                                     </div>
                                 </div>
+                                <Divider index={i} count={data.length - 1} hideLast={true} />
                             </div>
                         );
                     })}

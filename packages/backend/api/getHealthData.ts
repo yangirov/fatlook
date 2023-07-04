@@ -2,7 +2,7 @@ import { NextApiRequest } from 'next';
 
 import { HealthData } from '@fatlook/core/types';
 
-import { isEmpty } from '@fatlook/core/utils';
+import { formatDate, isEmpty, startOfWeek } from '@fatlook/core/utils';
 
 import { ReportModel } from '../data-access/models';
 import { ReportService } from '../services';
@@ -12,6 +12,11 @@ export const getHealthData = async (req: NextApiRequest, connectionString: strin
 
     if (!query || isEmpty(query)) {
         return null;
+    }
+
+    if (!query.date) {
+        const startWeekDate = startOfWeek(new Date());
+        query.date = formatDate(startWeekDate);
     }
 
     const reportService = new ReportService(ReportModel);

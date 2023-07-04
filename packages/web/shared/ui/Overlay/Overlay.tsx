@@ -11,5 +11,7 @@ type OverlayProps = {
 };
 
 export const Overlay: FC<OverlayProps> = ({ className, onClick }) => {
-    return createPortal(<div className={classNames(styles.overlay, className)} onClick={onClick} />, document.body);
+    return (
+        <>{createPortal(<div className={classNames(styles.overlay, className)} onClick={onClick} />, document.body)}</>
+    );
 };

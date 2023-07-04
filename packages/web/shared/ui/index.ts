@@ -16,3 +16,4 @@ export * from './ToggleSwitch';
 export * from './SnackBar';
 export * from './Card';
 export * from './LineChart';
+export * from './Input';

@@ -18,16 +18,20 @@ export const SnackBarContext = createContext<SnackBarContextProps>({} as SnackBa
 export const SnackBar: FC = () => {
     const snackBarContext = useContext(SnackBarContext);
 
-    return createPortal(
-        <div className={styles.snackBar}>
-            <div className={styles.snackBarInner}>
-                <div>{snackBarContext.message}</div>
-                <div className={styles.snackBarClose} onClick={snackBarContext.close}>
-                    <MdClose />
-                </div>
-            </div>
-        </div>,
-        document.body
+    return (
+        <>
+            {createPortal(
+                <div className={styles.snackBar}>
+                    <div className={styles.snackBarInner}>
+                        <div>{snackBarContext.message}</div>
+                        <div className={styles.snackBarClose} onClick={snackBarContext.close}>
+                            <MdClose />
+                        </div>
+                    </div>
+                </div>,
+                document.body
+            )}
+        </>
     );
 };
 

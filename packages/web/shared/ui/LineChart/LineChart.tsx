@@ -1,6 +1,6 @@
 import React, { FC } from 'react';
 
-import { formatDate } from '@fatlook/core/utils';
+import { formatDate, isEmpty } from '@fatlook/core/utils';
 
 import styles from './LineChart.module.scss';
 
@@ -16,6 +16,16 @@ type LineChartProps = {
 export const LineChart: FC<LineChartProps> = ({ data, width, height }) => {
     const originalHeight = height;
     height -= 20;
+
+    if (!data || isEmpty(data)) {
+        return (
+            <svg className={styles.lineChart} width={width} height={height}>
+                <text x={width / 2} y={height / 2} dominantBaseline="middle" textAnchor="middle">
+                    Нет данных
+                </text>
+            </svg>
+        );
+    }
 
     const minX = Math.min(...data.map(item => item.date.getTime()));
     const maxX = Math.max(...data.map(item => item.date.getTime()));
@@ -52,15 +62,6 @@ export const LineChart: FC<LineChartProps> = ({ data, width, height }) => {
         );
     };
 
-    const renderBorders = () => (
-        <g className={styles.lineChartBorders}>
-            <line x1={0} y1={0} x2={width} y2={0} />
-            <line x1={0} y1={height} x2={width} y2={height} />
-            <line x1={0} y1={0} x2={0} y2={height} />
-            <line x1={width} y1={0} x2={width} y2={height} />
-        </g>
-    );
-
     const renderArea = () => {
         let areaD = `M ${getSvgX(data[0].date.getTime())} ${height}`;
         areaD += `L ${getSvgX(data[0].date.getTime())} ${getSvgY(data[0].value)}`;
@@ -78,10 +79,10 @@ export const LineChart: FC<LineChartProps> = ({ data, width, height }) => {
     const renderLabels = () => {
         const groupedData = data.reduce<{ [key: string]: number[] }>((acc, item) => {
             const month = formatDate(item.date, 'MMMM yyyy');
-            if (!acc[month]) {
-                acc[month] = [];
-            }
+
+            if (!acc[month]) acc[month] = [];
             acc[month].push(item.value);
+
             return acc;
         }, {});
 
@@ -93,7 +94,7 @@ export const LineChart: FC<LineChartProps> = ({ data, width, height }) => {
         return (
             <g className={styles.lineChartLabels}>
                 {labels.map((label, index) => (
-                    <text key={index} x={index * labelWidth + labelSpacing} y={originalHeight}>
+                    <text key={index} x={index * labelWidth + labelSpacing} y={originalHeight - 5}>
                         {label}
                     </text>
                 ))}
@@ -102,10 +103,9 @@ export const LineChart: FC<LineChartProps> = ({ data, width, height }) => {
     };
 
     return (
-        <svg className={styles.lineChart} width={width} height={originalHeight}>
+        <svg className={styles.lineChart} width={width} height={originalHeight} fill="green">
             {renderArea()}
             {renderPath()}
-            {renderBorders()}
             {renderLabels()}
         </svg>
     );

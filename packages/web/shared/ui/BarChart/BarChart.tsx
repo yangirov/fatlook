@@ -1,6 +1,6 @@
 import React, { FC } from 'react';
 
-import { getPercents, shortenNumber } from '@fatlook/core/utils';
+import { getPercents, isEmpty, shortenNumber } from '@fatlook/core/utils';
 
 import { getColor } from '@/web/shared/colors';
 
@@ -59,6 +59,18 @@ export const BarChart: FC<BarChartProps> = ({
     hasMiddleLine = false,
     hasVerticals = false,
 }) => {
+    if (!data || isEmpty(data)) {
+        return (
+            <div className={styles.barChart}>
+                <svg className={styles.barChartSvg} width={width} height={height}>
+                    <text x={width / 2} y={height / 2} dominantBaseline="middle" textAnchor="middle">
+                        Нет данных
+                    </text>
+                </svg>
+            </div>
+        );
+    }
+
     const values = data.map(d => d.values.reduce((a, b) => a + b));
     const maxValue = Math.max(...values);
 
