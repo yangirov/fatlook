@@ -9,6 +9,7 @@ export type ReportData = {
     data: { date: string; meals: Meal[] }[];
     weight?: number;
     steps?: number;
+    hash?: string;
 };
 
 export const REPORT_CALC_RATIO: ObjectWithOptionalKeys<FoodDetails, number> = {

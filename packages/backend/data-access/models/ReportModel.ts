@@ -42,6 +42,7 @@ const reportSchema = new Schema<ReportWithDoc>({
     data: { type: [{ date: String, meals: [mealSchema] }], required: true },
     weight: { type: Number },
     steps: { type: Number },
+    hash: { type: String },
 });
 
 reportSchema.index({ userId: 1, date: 1 });
